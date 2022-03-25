@@ -1,0 +1,104 @@
+swagger: "2.0"
+info:
+  description: "This is a Film Store API made to control inventories, stock, 
+                available movies and sales records."
+  version: "1.0.0"
+  title: "Films & Chill"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+tags:
+- name: "movie"
+  description: "Operations about movies"
+
+schemes:
+- "http"
+
+paths:
+  /movie:
+    get:
+      tags:
+        - "movie"
+      summary: "Get all movies registered on the store"
+      description: "Returns a list of all the movies available on the store"
+      operationId: "getFilms"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/MovieResponseArray"
+        "404":
+          description: ""
+
+  /movie/{movie_id}:
+    get:
+      tags:
+        - "film"
+      summary: "Get a specific movie"
+      description: "Returns an object of the movie specified"
+      operationId: "getFilm"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "movie_id"
+          in: "path"
+          description: "ID of the movie to retrieve"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/MovieResponse"
+        "404":
+          description: "Movie not found"
+
+# Security Definitions
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+    
+# Object Definitions
+definitions:
+  MovieResponse:
+    type: "object"
+    properties:
+      movie_id:
+        type: "integer"
+        format: "int32"
+      title:
+        type: "string"
+      description:
+        type: "string"
+      release_year:
+        type: "integer"
+        format: "int32"
+      cost:
+        type: "number"
+      rating:
+        type: "string"
+      genre:
+        type: "string"
+      image:
+        type: "string"
+      stock:
+        type: "integer"
+        format: "int32"
+  
+  MovieResponseArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/MovieResponse"
