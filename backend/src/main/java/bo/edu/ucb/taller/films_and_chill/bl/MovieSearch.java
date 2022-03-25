@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
 import bo.edu.ucb.taller.films_and_chill.dto.Movie;
+import bo.edu.ucb.taller.films_and_chill.exception.DatabaseException;
 
 //SOLO BUSQUEDA DE PELICULAS
 @Component
@@ -21,5 +22,12 @@ public class MovieSearch {
 
     public List<Movie> listAllMovies(){
         return this.movieDao.listAllMovies();
+    }
+
+    public List<Movie> findById(int movie_id){
+        if(movie_id < 0){
+            throw new DatabaseException(403, "Bad request: El ID es menos a 0");
+        }
+        return this.movieDao.findById(movie_id);
     }
 }

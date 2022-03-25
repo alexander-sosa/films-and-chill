@@ -27,12 +27,12 @@ public class MovieDao {
 
     public List<Movie> listAllMovies (){
         List<Movie> result = new ArrayList<>();
-        String query = "SELECT * FROM movie";
+        String query = " SELECT * "+
+                       " FROM movie ";
         try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
-            )
-        {
+        ){
             ResultSet rSet = pStatement.executeQuery();
 
             while(rSet.next()){
@@ -53,6 +53,41 @@ public class MovieDao {
             }
 
             rSet.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
+
+    public List<Movie> findById (int movie_id){
+        List<Movie> result = new ArrayList<>();
+        String query = " SELECT * " + 
+                       " FROM movie " + 
+                       " WHERE movie_id LIKE ( ? )";
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            pStatement.setString(1, "%" + movie_id + "%");
+            
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next()){
+                Movie movie = new Movie();
+                movie.setMovie_id(rSet.getInt("movie_id"));
+                movie.setTitle(rSet.getString("title"));
+                movie.setDescription(rSet.getString("description"));
+                movie.setRelease_year(rSet.getInt("release_year"));
+                movie.setCost(rSet.getDouble("cost"));
+                movie.setRating_id(rSet.getInt("rating_id"));
+                movie.setGenre_id(rSet.getInt("genre_id"));
+                movie.setImage_link(rSet.getString("image_link"));
+                movie.setTuple_status(rSet.getBoolean("tuple_status"));
+
+                var lastUpdate = rSet.getTimestamp("last_update");
+                movie.setLast_update(new java.sql.Timestamp(lastUpdate.getTime()));
+                result.add(movie);
+            }
         }catch(SQLException ex){
             ex.printStackTrace();
         }
