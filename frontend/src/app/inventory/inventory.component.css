@@ -1,0 +1,87 @@
+
+    .header h1{
+        font-family: 'Rockwell';
+        font-weight: 400;
+        border-bottom-style: solid;
+        border-bottom-width: 3px;
+        border-bottom-color: black;
+    }
+
+    .btn-lo{
+        margin: auto;
+        margin-left: 95%;
+        border: none;
+        background-color: #532200;
+        color: white;
+        padding: 0.3%;
+        padding-inline-end: 0.5%;
+        padding-inline-start: 0.5%;
+        border-radius: 30%;
+        transition-duration: 0.4s;
+    }
+
+    .btn-lo:hover {
+        background-color: whitesmoke; /* Green */
+        color: #532200;
+    }
+
+    .header i{
+        text-align: center;
+        font-size: 30px;
+    }
+
+    table{
+        font-family: 'Trebuchet MS';
+        align-content: center;
+        width: 90%;
+        background-color: #E1A140;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1%;
+        border-style: solid;
+        border-width: 5px;
+        border-color: #532200;
+    }
+
+    i{
+        font-size: 30px;
+    }
+
+    .btn-group{
+        margin-left: 5%;
+    }
+
+    .btn-group button{
+        margin-left: 5%;
+        padding: 15%;
+        border: none;
+        border-radius: 40%;
+        margin-bottom: 10%;
+        background-color: #532200;
+        color: white;
+        transition-duration: 0.4s;
+    }
+
+    .btn-group button:hover {
+        background-color: whitesmoke; 
+        color: #532200;
+    }
+
+    .btn-group-tb{
+       display: flex;
+       margin-left: 10%;
+    }
+
+    .btn-group-tb button{
+        margin-left: 5%;
+        border: none;
+        border-radius: 30%;
+        background-color: whitesmoke;
+        padding: 5%;
+        transition-duration: 0.4s;
+    }
+
+    .btn-group-tb button:hover {
+        background-color: black; 
+        color: whitesmoke;
+    }
