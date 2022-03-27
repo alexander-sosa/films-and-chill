@@ -1,0 +1,7 @@
+.header h1{
+    font-family: 'Rockwell';
+    font-weight: 400;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: black;
+}
