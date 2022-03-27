@@ -1,0 +1,13 @@
+<h1>Todas las Películas</h1>
+<div class="col-md-4" *ngFor='let movie of movies'>
+    <div class="card text-center">
+        <img src="{{movie.image_link}}" alt="img" class="card-img-top" style="min-height:500px">
+        <div class="card-header bg-dark d-flex text-white justify-content-between align-items-center">
+            {{movie.title}}
+            <button class="btn btn-info btn-block">+</button>
+        </div>
+        <div class="card-body">
+            <p>{{movie.cost}}Bs</p>
+        </div>
+    </div>
+</div>   
