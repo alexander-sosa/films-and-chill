@@ -63,7 +63,7 @@ public class MovieDao {
         List<Movie> result = new ArrayList<>();
         String query = " SELECT * " + 
                        " FROM movie " + 
-                       " WHERE movie_id LIKE ( ? )";
+                       " WHERE movie_id = ( ? )";
         try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
