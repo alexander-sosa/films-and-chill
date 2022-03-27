@@ -1,14 +1,15 @@
+-- creation
 CREATE DATABASE films_chill;
 USE films_chill;
 
 CREATE TABLE genre(
-	genre_id int NOT NULL PRIMARY KEY,
+	genre_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	genre varchar(20) NOT NULL,
 	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE rating(
-	rating_id int NOT NULL PRIMARY KEY,
+	rating_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	rating varchar(10) NOT NULL,
 	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
@@ -19,7 +20,6 @@ CREATE TABLE movie (
     description text,
     release_year int,
     cost double(5,2) NOT NULL,
-    stock int,
 	rating_id int NOT NULL,
 	genre_id int NOT NULL,
 	image_link varchar(200),
