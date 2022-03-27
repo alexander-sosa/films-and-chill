@@ -1,6 +1,6 @@
 <div>
     <ul class="header">
-        <h1 class="text-center">Inventario de Peliculas</h1>
+        <h1 class="text-center">Inventario de Películas</h1>
         <button class="btn-lo"><i class="fa-solid fa-right-to-bracket"></i></button>        
     </ul>
     
@@ -14,8 +14,8 @@
         <thead>
             <tr style="background-color: whitesmoke;">
               <th scope="col" style="width: 5%; text-align: center;">ID</th>
-              <th scope="col">Titulo</th>
-              <th scope="col">Descripcion</th>
+              <th scope="col">Título</th>
+              <th scope="col">Descripción</th>
               <th scope="col" style="width: 5%; text-align: center;">Precio</th>
               <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
               <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
@@ -30,7 +30,7 @@
               <td style="text-align: center;">8</td>
               <td>
                 <div class="btn-group-tb">
-                  <button><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
                   <button><i class="fa-solid fa-trash"></i></button>
                 </div>                  
               </td>
@@ -43,7 +43,7 @@
                 <td style="text-align: center;">8</td>
                 <td>
                   <div class="btn-group-tb">
-                    <button><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
                     <button><i class="fa-solid fa-trash"></i></button>
                   </div>                  
                 </td>
@@ -56,7 +56,7 @@
                 <td style="text-align: center;">8</td>
                 <td>
                   <div class="btn-group-tb">
-                    <button><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
                     <button><i class="fa-solid fa-trash"></i></button>
                   </div>                  
                 </td>
@@ -64,4 +64,121 @@
 
           </tbody>
     </table>
+
+    
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Detalles del producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <form class="row needs-validation" novalidate>
+          <div class="inline">
+            <label for="ID" class="form-label">ID:</label>
+            <input type="text" class="form-control" id="ID" value="1" disabled>
+          </div>
+
+          <div class="inline">
+            <label for="title" class="form-label">Título:</label>
+            <input type="text" class="form-control" id="title" required>
+            <div class="invalid-feedback">
+              Por favor rellena el espacio.
+            </div>
+          </div>
+
+          <div class="inline">
+            <label for="description" class="form-label">Descripción:</label>
+            <div class="input-group has-validation">
+              <textarea class="form-control" id="description" rows="3" required></textarea>
+              <div class="invalid-feedback">
+                Por favor rellena el espacio.
+              </div>
+            </div>
+          </div>
+
+          <div class="inline">
+            <label for="cost" class="form-label">Precio: </label>
+            <input type="number" class="form-control" id="cost" min="10" required>
+            <div class="invalid-feedback">
+              Por favor rellena el espacio.
+            </div>
+          </div>
+
+          <div class="inline">
+            <label for="unid" class="form-label">Unidades: </label>
+            <input type="number" class="form-control" id="unid" min="1" required>
+            <div class="invalid-feedback">
+              Por favor rellena el espacio.
+            </div>
+          </div>
+
+          <div class="inline">
+            <label for="gender" class="form-label">Género:</label>
+            <select class="form-select" id="gender" required>
+              <option selected disabled value="">Género...</option>
+              <option>Drama</option>
+              <option>Comedia</option>
+              <option>Animacion</option>
+            </select>
+            <div class="invalid-feedback">
+              Selecciona un genero
+            </div>
+          </div>
+
+          <div class="inline">
+            <label for="rating" class="form-label">Rating:</label>
+            <select class="form-select" id="rating" required>
+              <option selected disabled value="">Rating...</option>
+              <option>PG</option>
+              <option>PG+16</option>
+            </select>
+            <div class="invalid-feedback">
+              Selecciona un rating
+            </div>
+          </div>
+    
+       
+
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        <button class="btn btn-edit" type="submit">Editar</button>
+      </div> 
+    </form>
+    </div>
+  </div>
 </div>
+
+<script>
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+
+</script>
+
+</div>
+
+
+

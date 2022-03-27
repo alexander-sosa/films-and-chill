@@ -85,3 +85,34 @@
         background-color: black; 
         color: whitesmoke;
     }
+
+    .inline{
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        margin-top: 5%;
+    }
+
+    .form-control, .form-select{
+        margin-left: 5%;
+        width: auto;
+    }
+
+    .modal-content{
+        background-color: #E1A140;
+        font-family: 'Trebuchet MS';
+    }
+
+    .modal-footer{
+        margin-top: 5%;
+    }
+
+    .modal-header{
+        background-color: #914110;
+        color: whitesmoke;
+    }
+
+    .btn-edit{
+        background-color: #914110;
+        color: whitesmoke;
+    }
