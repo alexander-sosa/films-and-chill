@@ -4,6 +4,7 @@ import { ListingComponent } from './components/listing/listing.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/movies', pathMatch: 'full' },
   { path: 'inventory', component: InventoryComponent}, 
   { path: 'movies', component: ListingComponent }
 ];
