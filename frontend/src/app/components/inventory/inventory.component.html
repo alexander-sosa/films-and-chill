@@ -76,21 +76,21 @@
       </div>
       <div class="modal-body">
         
-        <form class="row needs-validation" novalidate>
+        <form class="row g-3 needs-validation" novalidate>
+          
           <div class="inline">
             <label for="ID" class="form-label">ID:</label>
-            <input type="text" class="form-control" id="ID" value="1" disabled>
-          </div>
-
-          <div class="inline">
+            <input style="width: 15%;" type="text" class="form-control"  id="ID" value="101" disabled>
+            &nbsp;&nbsp;&nbsp;
             <label for="title" class="form-label">Título:</label>
-            <input type="text" class="form-control" id="title" required>
+            <input style="width: 54%;" type="text" class="form-control" id="title" required>
             <div class="invalid-feedback">
               Por favor rellena el espacio.
             </div>
           </div>
 
-          <div class="inline">
+
+          <div class="col-lg">
             <label for="description" class="form-label">Descripción:</label>
             <div class="input-group has-validation">
               <textarea class="form-control" id="description" rows="3" required></textarea>
@@ -101,20 +101,20 @@
           </div>
 
           <div class="inline">
-            <label for="cost" class="form-label">Precio: </label>
-            <input type="number" class="form-control" id="cost" min="10" required>
+            <label for="cost" class="form-label">Precio[Bs.]: </label>
+            <input style="width: 20%;"  type="number" class="form-control" id="cost" min="10" required>
+            <div class="invalid-feedback">
+              Por favor rellena el espacio.
+            </div>
+            &nbsp;&nbsp;&nbsp;
+            <label for="unid" class="form-label">Unidades: </label>
+            <input style="width: 15%;" type="number" class="form-control" id="unid" min="1" required>
             <div class="invalid-feedback">
               Por favor rellena el espacio.
             </div>
           </div>
 
-          <div class="inline">
-            <label for="unid" class="form-label">Unidades: </label>
-            <input type="number" class="form-control" id="unid" min="1" required>
-            <div class="invalid-feedback">
-              Por favor rellena el espacio.
-            </div>
-          </div>
+      
 
           <div class="inline">
             <label for="gender" class="form-label">Género:</label>
@@ -127,9 +127,7 @@
             <div class="invalid-feedback">
               Selecciona un genero
             </div>
-          </div>
-
-          <div class="inline">
+            &nbsp;&nbsp;&nbsp;
             <label for="rating" class="form-label">Rating:</label>
             <select class="form-select" id="rating" required>
               <option selected disabled value="">Rating...</option>
@@ -139,8 +137,8 @@
             <div class="invalid-feedback">
               Selecciona un rating
             </div>
-          </div>
-    
+
+          </div>   
        
 
       
@@ -152,6 +150,9 @@
     </div>
   </div>
 </div>
+
+</div>
+
 
 <script>
 
@@ -177,8 +178,3 @@
   })()
 
 </script>
-
-</div>
-
-
-
