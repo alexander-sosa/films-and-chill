@@ -1,0 +1,39 @@
+    .sigin-form{
+        text-align: center;
+        background-color: #EFCFA0;
+        width: 30%;
+        padding: 2%;
+        border-radius: 10%;
+        margin-top: 5%;
+        box-shadow: 0 4px 8px 0 #914110, 0 6px 20px 0 #532200 ;
+    }
+
+    .sigin-form{
+        font-family: 'Rockwell';
+    }
+
+    form{
+        margin-top: 10%;
+    }
+
+    .btn-sign{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        background-color: #E1A140;
+        color: #532200;
+        transition-duration: 0.4s;
+    }
+
+    .btn-sign:hover{
+        margin-top: 5%;
+        background-color:  #532200;
+        color: #E1A140;
+    }
+
+    a{
+        color: #532200;
+    }
+
+    a:hover{
+        color: black;
+    }
