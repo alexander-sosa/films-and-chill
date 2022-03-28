@@ -10,7 +10,7 @@ import { MoviesService } from 'src/app/services/movies.service';
   styleUrls: ['./listing.component.css']
 })
 export class ListingComponent implements OnInit {
-  @HostBinding('class') classes = 'row'
+  /*@HostBinding('class') classes = 'row'*/
 
   movie: Movie = {
     movie_id: 0,

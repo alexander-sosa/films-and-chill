@@ -28,6 +28,7 @@ public class MovieApi {
         return movieSearch.listAllMovies();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/{movie_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Movie> findById (@PathVariable(name = "movie_id") int movie_id){
         return movieSearch.findById(movie_id);
