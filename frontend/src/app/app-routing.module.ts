@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListingComponent } from './components/listing/listing.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/movies', pathMatch: 'full' },
   { path: 'inventory', component: InventoryComponent}, 
   { path: 'movies', component: ListingComponent },
-  { path: 'signin', component: SigninComponent }
+  { path: 'signin', component: SigninComponent },
+  { path: 'movie-detail', component: MovieDetailComponent}
 ];
 
 @NgModule({

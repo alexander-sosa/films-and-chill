@@ -6,6 +6,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListingComponent } from './components/listing/listing.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SigninComponent } from './components/signin/signin.component';
     AppComponent,
     routingComponents,
     ListingComponent,
-    SigninComponent
+    SigninComponent,
+    MovieDetailComponent
   ],
   imports: [
     BrowserModule,
