@@ -68,7 +68,7 @@ public class MovieDao {
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
         ){
-            pStatement.setString(1, "%" + movie_id + "%");
+            pStatement.setInt(1,  movie_id);
             
             ResultSet rSet = pStatement.executeQuery();
 
