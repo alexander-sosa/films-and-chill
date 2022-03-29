@@ -11,10 +11,13 @@ info:
 tags:
 - name: "movie"
   description: "Operations about movies"
+- name: "user"
+  description: "Operations about users"
 
 schemes:
 - "http"
 
+# Endpoints
 paths:
   /movie:
     get:
@@ -30,13 +33,11 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/MovieResponseArray"
-        "404":
-          description: ""
 
   /movie/{movie_id}:
     get:
       tags:
-        - "film"
+        - "movie"
       summary: "Get a specific movie"
       description: "Returns an object of the movie specified"
       operationId: "getFilm"
@@ -56,6 +57,50 @@ paths:
             $ref: "#/definitions/MovieResponse"
         "404":
           description: "Movie not found"
+
+  /user:
+    post:
+      tags:
+        - "user"
+      summary: "Create a new user"
+      description: "Sign up endpoint"
+      operationId: "createUser"
+      produces:
+        - "text/html"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "Information about the user"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateUserRequest"
+      responses:
+        "201":
+          description: "User created succesfully"
+        "400":
+          description: "Invalid data supplied"
+
+  /auth:
+    post:
+      tags:
+        - "user"
+      summary: "Validate an existing user"
+      description: "Log in endpoint"
+      operationId: "logIn"
+      produces:
+        - "text/html"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "User credentials"
+          required: true
+          schema:
+            $ref: "#/definitions/UserLogin"
+      responses:
+        "200":
+          description: "Login success"
+        "403":
+          description: "Invalid credentials"
 
 # Security Definitions
 securityDefinitions:
@@ -102,3 +147,23 @@ definitions:
     type: "array"
     items:
       $ref: "#/definitions/MovieResponse"
+
+  CreateUserRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      lastname:
+        type: "string"
+      email:
+        type: "string"
+      pass:
+        type: "string"
+
+  UserLogin:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      pass:
+        type: "string"
