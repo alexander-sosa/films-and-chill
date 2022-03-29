@@ -7,9 +7,9 @@ export interface Movie{
     release_year?: number;
     cost?: number;
     stock?: number;
-	rating_id?: number;
-	genre_id?: number;
-	image_link?: string;
-	tuple_status?: boolean;
+	  rating_id?: number;
+	  genre_id?: number;
+	  image_link?: string;
+  	tuple_status?: boolean;
     //last_update?: Timestamp<Timestamp>,
 }

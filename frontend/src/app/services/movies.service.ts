@@ -17,4 +17,9 @@ export class MoviesService {
   getMovies(){
     return this.http.get(this.API_URL + '/movie');
   }
+
+  getMovie(movie_id : number){
+    console.log("retrieving..." + this.API_URL + '/movie/' + movie_id)
+    return this.http.get(this.API_URL + '/movie/' + movie_id);
+  }
 }
