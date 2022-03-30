@@ -10,6 +10,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { CardComponent } from './components/card/card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CardComponent } from './components/card/card.component';
     SigninComponent,
     MovieDetailComponent,
     LoginComponent,
-    CardComponent
+    CardComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
