@@ -13,12 +13,12 @@ INSERT INTO rating (rating) VALUES
 ('R'),
 ('NC-17');
 
-INSERT INTO movie (title, cost, rating_id, genre_id, image_link) VALUES
-('Harry Potter y la Orden del Fenix', 15.5, 3, 3, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg'),
-('Avengers: Infinity War', 20.5, 2, 2, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/avengers.jpg'),
-('Son Como Niños 2', 13.6, 3, 5, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/grownups.jpg'),
-('Interestelar', 15.2, 1, 1, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/interstellar.jpg'),
-('Las Crónicas de Narnia: El Leon, la Bruja y el Armario', 12.3, 1, 3, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/narnia.jpg');
+INSERT INTO movie (title, cost, rating_id, genre_id, image_link, stock) VALUES
+('Harry Potter y la Orden del Fenix', 15.5, 3, 3, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg', 5),
+('Avengers: Infinity War', 20.5, 2, 2, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/avengers.jpg', 4),
+('Son Como Niños 2', 13.6, 3, 5, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/grownups.jpg', 10),
+('Interestelar', 15.2, 1, 1, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/interstellar.jpg', 6),
+('Las Crónicas de Narnia: El Leon, la Bruja y el Armario', 12.3, 1, 3, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/narnia.jpg', 2);
 
 INSERT INTO actor (first_name, last_name) VALUES
 ('Daniel', 'Radcliffe'),

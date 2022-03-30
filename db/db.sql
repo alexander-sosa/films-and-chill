@@ -22,6 +22,7 @@ CREATE TABLE movie (
     description text,
     release_year int,
     cost double(5,2) NOT NULL,
+	stock int NOT NULL, 
 	rating_id int NOT NULL,
 	genre_id int NOT NULL,
 	image_link varchar(200),
