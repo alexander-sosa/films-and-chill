@@ -9,7 +9,7 @@
         </p>
         </div>
         <div class="col-6">
-            <p *ngIf="movie[0].description == undefined"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, deleniti nostrum aspernatur eveniet rem nam asperiores illo facere voluptatum nulla non reprehenderit veritatis, nemo, sequi ipsa omnis? Molestiae, ab aliquid?</p>
+            <p *ngIf="movie[0].description == undefined"> <span class="bolder">Descripción:</span><br><i>No se encontró una descripción</i> </p>
             <p *ngIf="movie[0].description != undefined"> {{movie[0].description}} </p>
             <p>
                 <span class="bolder">Actores: </span> Robert Downey Jr., Chris Evans, Scarlett Johansson, Elizabeth Olsen

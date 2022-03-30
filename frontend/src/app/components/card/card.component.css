@@ -1,0 +1,29 @@
+    .row{
+        margin-top: 5%;
+        
+    }
+
+    .resumen{
+        padding: 5%;
+        background-color: #EFCFA0; 
+        border-radius: 5%;
+        border: solid 2px #E1A140;
+    }
+
+    .resumen h4{
+        font-family: 'Franklin Gothic Medium';
+        padding-bottom: 2%;
+    }
+
+    .resumen p, strong{
+        font-family: 'Lucida Console';
+    }
+
+    .lines, .lines-total{
+        display: flex;
+    }
+
+    .lines-total{
+        padding-top: 2%;
+        border-top: solid 2px #914110;
+    }

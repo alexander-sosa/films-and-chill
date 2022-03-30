@@ -1,4 +1,4 @@
-    .sigin-form{
+    .login-form{
         text-align: center;
         background-color: #EFCFA0;
         width: 30%;
@@ -8,7 +8,7 @@
         box-shadow: 0 4px 8px 0 #914110, 0 6px 20px 0 #532200 ;
     }
 
-    .sigin-form{
+    .login-form{
         font-family: 'Rockwell';
     }
 
@@ -16,7 +16,7 @@
         margin-top: 10%;
     }
 
-    .btn-sign{
+    .btn-log{
         margin-top: 5%;
         margin-bottom: 5%;
         background-color: #E1A140;
@@ -24,7 +24,7 @@
         transition-duration: 0.4s;
     }
 
-    .btn-sign:hover{
+    .btn-log:hover{
         margin-top: 5%;
         background-color:  #532200;
         color: #E1A140;
@@ -48,6 +48,3 @@
         margin-top: -10px;
         
     }
-
-
-    
