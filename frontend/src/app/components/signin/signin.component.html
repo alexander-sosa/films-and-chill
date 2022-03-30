@@ -2,37 +2,71 @@
     
     <div class="sigin-form">
         <h1>Sign In</h1>
-        <form>
+        <form [formGroup]="signForm" (submit)="signin()">
 
             <div class="row mb-3">
                 <label for="user" class="col-sm-4 col-form-label">Nombre de usuario:</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="user">
+                    <input type="text" class="form-control" id="user" formControlName="user">
+                    <div *ngIf="getValue('user')?.invalid && (getValue('user')?.touched || getValue('user')?.dirty)">
+                      <div *ngIf="getValue('user')?.errors?.required" class="alert alert-danger" role="alert">
+                        <p>Campo requerido</p>                          
+                      </div>
+                    </div>
                 </div>
             </div>
 
             <div class="row mb-3">
               <label for="email" class="col-sm-4 col-form-label">E-mail:</label>
               <div class="col-sm-8">
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="getValue('email')?.invalid && (getValue('email')?.touched || getValue('email')?.dirty)">
+                  <div *ngIf="getValue('email')?.errors?.required" class="alert alert-danger" role="alert">
+                    <p>Campo requerido</p> 
+                  </div>
+                  <div *ngIf="getValue('email')?.errors?.email" class="alert alert-danger" role="alert">
+                    <p>Dirección email requerida</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="row mb-3">
               <label for="pass" class="col-sm-4 col-form-label">Contraseña:</label>
               <div class="col-sm-8">
-                <input type="password" class="form-control" id="pass" placeholder="Minimo de 8 caracteres">
+                <input type="password" class="form-control" id="pass" placeholder="Minimo de 8 caracteres" formControlName="pass">
+                <div *ngIf="getValue('pass')?.invalid && (getValue('pass')?.touched || getValue('pass')?.dirty)">
+                  <div *ngIf="getValue('pass')?.errors?.required" class="alert alert-danger" role="alert">
+                    <p>Campo requerido</p> 
+                  </div>
+                  <div *ngIf="getValue('pass')?.errors?.minlength" class="alert alert-danger" role="alert">
+                    <p>Minimo 8 caracteres</p>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="row mb-3">
-                <label for="pass-conf" class="col-sm-4 col-form-label">Confirma contraseña:</label>
+                <label for="pass_conf" class="col-sm-4 col-form-label">Confirma contraseña:</label>
                 <div class="col-sm-8">
-                  <input type="password" class="form-control" id="pass-conf" placeholder="Minimo de 8 caracteres">
+                  <input type="password" class="form-control" id="pass_conf" placeholder="Minimo de 8 caracteres" formControlName="pass_conf">
+                  <div *ngIf="getValue('pass_conf')?.invalid && (getValue('pass_conf')?.touched || getValue('pass_conf')?.dirty)">
+                    <div *ngIf="getValue('pass_conf')?.errors?.required" class="alert alert-danger" role="alert">
+                      <p>Campo requerido</p> 
+                    </div>
+                    <div *ngIf="getValue('pass_conf')?.errors?.minlength" class="alert alert-danger" role="alert">
+                      <p>Minimo 8 caracteres</p>
+                    </div>
+                    <div *ngIf="getConfirm()==true" class="alert alert-danger" role="alert">
+                      <p>Contraseñas diferentes</p>
+                    </div>
+                  </div>
                 </div>
             </div>
 
-            <div class="row" style="justify-content: center;">
+
+            <!-- 
+              <div class="row" style="justify-content: center;">
                 <div class="col-4">
                     <select class="form-select" aria-label="Default select example">
                         <option selected>País</option>
@@ -50,9 +84,11 @@
                         <option value="3">Three</option>
                     </select>
                 </div>
-            </div>
+            </div> 
+          -->
+          
             
-            <button type="submit" class="btn-sign btn">Registrar</button>
+            <button type="submit" class="btn-sign btn" [disabled]="signForm.invalid">Registrar</button>
           </form>
 
           <a href="#">Ya tienes una cuenta?, Inicia sesión</a>
