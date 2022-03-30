@@ -1,4 +1,4 @@
-<div>
+
     <ul class="header">
         <h1 class="text-center">Inventario de Películas</h1>
         <button class="btn-lo"><i class="fa-solid fa-right-to-bracket"></i></button>
@@ -20,138 +20,109 @@
               <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
               <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
             </tr>
-          </thead>
+        </thead>
           <tbody>
-            <tr>
-              <th scope="row" style="text-align: center;">1</th>
-              <td>Titanic</td>
-              <td>Lorem ipsum dolor sit amet</td>
-              <td style="text-align: center;">15</td>
-              <td style="text-align: center;">8</td>
+            <tr *ngFor='let movie of movies'>
+              <th scope="row" style="text-align: center;">{{movie.movie_id}}</th>
+              <td>{{movie.title}}</td>
+              <td>{{movie.description}}</td>
+              <td style="text-align: center;">{{movie.cost}}</td>
+              <td style="text-align: center;">{{movie.stock}}</td>
               <td>
                 <div class="btn-group-tb">
-                  <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
                   <button><i class="fa-solid fa-trash"></i></button>
                 </div>
               </td>
             </tr>
-            <tr>
-                <th scope="row" style="text-align: center;">15</th>
-                <td>Red</td>
-                <td>Lorem ipsum dolor sit amet</td>
-                <td style="text-align: center;">15</td>
-                <td style="text-align: center;">8</td>
-                <td>
-                  <div class="btn-group-tb">
-                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" style="text-align: center;">23</th>
-                <td>Glass</td>
-                <td>Lorem ipsum dolor sit amet</td>
-                <td style="text-align: center;">15</td>
-                <td style="text-align: center;">8</td>
-                <td>
-                  <div class="btn-group-tb">
-                    <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button><i class="fa-solid fa-trash"></i></button>
-                  </div>
-                </td>
-              </tr>
-
           </tbody>
     </table>
 
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Detalles del producto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
+  <!-- Modal -->
+  <div class="modal fade" id="MovieDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Detalles del producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3 needs-validation" novalidate>
 
-        <form class="row g-3 needs-validation" novalidate>
-
-          <div class="inline">
-            <label for="ID" class="form-label">ID:</label>
-            <input style="width: 15%;" type="text" class="form-control"  id="ID" value="101" disabled>
-            &nbsp;&nbsp;&nbsp;
-            <label for="title" class="form-label">Título:</label>
-            <input style="width: 54%;" type="text" class="form-control" id="title" required>
-            <div class="invalid-feedback">
-              Por favor rellena el espacio.
+            <div class="inline">
+              <label for="ID" class="form-label">ID:</label>
+              <input style="width: 15%;" type="number" class="form-control"  id="ID" disabled>
+              &nbsp;&nbsp;&nbsp;
+              
             </div>
-          </div>
 
-
-          <div class="col-lg">
-            <label for="description" class="form-label">Descripción:</label>
-            <div class="input-group has-validation">
-              <textarea class="form-control" id="description" rows="3" required></textarea>
+            <div class="inline">
+              <label for="title" class="form-label">Título:</label>
+              <input style="width: 100%;" type="text" class="form-control" id="title" required>
               <div class="invalid-feedback">
                 Por favor rellena el espacio.
               </div>
             </div>
+
+            <div class="col-lg">
+              <label for="description" class="form-label">Descripción:</label>
+              <div class="input-group has-validation">
+                <textarea class="form-control" id="description" rows="3" required></textarea>
+                <div class="invalid-feedback">
+                  Por favor rellena el espacio.
+                </div>
+              </div>
+            </div>
+
+            <div class="inline">
+              <label for="cost" class="form-label">Precio[Bs.]: </label>
+              <input style="width: 20%;"  type="number" class="form-control" id="cost" min="10" required>
+              <div class="invalid-feedback">
+                Por favor rellena el espacio.
+              </div>
+              &nbsp;&nbsp;&nbsp;
+              <label for="unid" class="form-label">Unidades: </label>
+              <input style="width: 15%;" type="number" class="form-control" id="unid" min="1" required>
+              <div class="invalid-feedback">
+                Por favor rellena el espacio.
+              </div>
+            </div>            
+
+
+            <div class="inline">
+              <label for="gender" class="form-label">Género:</label>
+              <select class="form-select" id="gender" required>
+                <option selected disabled value="">Género...</option>
+                <option>Drama</option>
+                <option>Comedia</option>
+                <option>Animacion</option>
+              </select>
+              <div class="invalid-feedback">
+                Selecciona un genero
+              </div>
+              &nbsp;&nbsp;&nbsp;
+              <label for="rating" class="form-label">Rating:</label>
+              <select class="form-select" id="rating" required>
+                <option selected disabled value="">Rating...</option>
+                <option>PG</option>
+                <option>PG+16</option>
+              </select>
+              <div class="invalid-feedback">
+                Selecciona un rating
+              </div>
+            </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-edit" type="submit">Editar</button>
           </div>
 
-          <div class="inline">
-            <label for="cost" class="form-label">Precio[Bs.]: </label>
-            <input style="width: 20%;"  type="number" class="form-control" id="cost" min="10" required>
-            <div class="invalid-feedback">
-              Por favor rellena el espacio.
-            </div>
-            &nbsp;&nbsp;&nbsp;
-            <label for="unid" class="form-label">Unidades: </label>
-            <input style="width: 15%;" type="number" class="form-control" id="unid" min="1" required>
-            <div class="invalid-feedback">
-              Por favor rellena el espacio.
-            </div>
-          </div>
-
-
-
-          <div class="inline">
-            <label for="gender" class="form-label">Género:</label>
-            <select class="form-select" id="gender" required>
-              <option selected disabled value="">Género...</option>
-              <option>Drama</option>
-              <option>Comedia</option>
-              <option>Animacion</option>
-            </select>
-            <div class="invalid-feedback">
-              Selecciona un genero
-            </div>
-            &nbsp;&nbsp;&nbsp;
-            <label for="rating" class="form-label">Rating:</label>
-            <select class="form-select" id="rating" required>
-              <option selected disabled value="">Rating...</option>
-              <option>PG</option>
-              <option>PG+16</option>
-            </select>
-            <div class="invalid-feedback">
-              Selecciona un rating
-            </div>
-
-          </div>
-
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-        <button class="btn btn-edit" type="submit">Editar</button>
+          </form>
+        </div>
       </div>
-    </form>
     </div>
   </div>
-</div>
-
-</div>
 
 
 <script>
