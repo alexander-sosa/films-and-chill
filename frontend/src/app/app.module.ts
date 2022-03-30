@@ -8,6 +8,7 @@ import { ListingComponent } from './components/listing/listing.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     routingComponents,
     ListingComponent,
     SigninComponent,
-    MovieDetailComponent
+    MovieDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
