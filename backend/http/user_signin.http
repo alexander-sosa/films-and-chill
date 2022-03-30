@@ -1,0 +1,12 @@
+###
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+    "name": "eddy",
+    "lastname": "183",
+    "access_permission": "admin",
+    "email": "eddy@gmail.com",
+    "pass": "12345",
+    "tuple_status": 1
+}

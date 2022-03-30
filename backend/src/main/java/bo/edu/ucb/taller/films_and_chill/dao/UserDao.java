@@ -5,6 +5,8 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bo.edu.ucb.taller.films_and_chill.dto.User;
+
 //import bo.edu.ucb.taller.films_and_chill.dto.User;
 
 import java.sql.Connection;
@@ -24,18 +26,18 @@ public class UserDao {
         this.dataSource = dataSource;
     }
     
-    public void saveUser(){
+    public User saveUser(User user){
         //User user = new User();
         //String query;
-
-        try(
+        return user;
+        /*try(
             Connection connection = dataSource.getConnection();
-            //PreparedStatement pStatement = connection.prepareStatement(query);
+            PreparedStatement pStatement = connection.prepareStatement(query);
         ){
-            //ResultSet rSet = pStatement.executeQuery();
-            //rSet.close();
+            ResultSet rSet = pStatement.executeQuery();
+            rSet.close();
         }catch(SQLException ex){
             ex.printStackTrace();
-        }
+        }*/
     }
 }

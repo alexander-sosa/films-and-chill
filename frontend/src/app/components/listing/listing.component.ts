@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Movie } from 'src/app/models/Movie';
 
@@ -25,7 +25,7 @@ export class ListingComponent implements OnInit {
     tuple_status: true
   }
 
-  movies: any = [];
+  movies: any | Movie = [];
 
   constructor(private moviesService: MoviesService) { }
 
