@@ -4,18 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bo.edu.ucb.taller.films_and_chill.dao.UserDao;
+import bo.edu.ucb.taller.films_and_chill.dto.User;
 
 @Component
-public class UserLogin {
+public class UserSignin {
     
     private final UserDao userDao;
 
     @Autowired
-    public UserLogin(UserDao userDao) {
+    public UserSignin(UserDao userDao) {
         this.userDao = userDao;
     }
 
-    public void saveUser(){
-        this.userDao.saveUser();
+    public User saveUser(User user){
+        return this.userDao.saveUser(user);
     } 
 }

@@ -25,7 +25,7 @@ export class ListingComponent implements OnInit {
     tuple_status: true
   }
 
-  movies: any = [];
+  movies: any | Movie = [];
 
   constructor(private moviesService: MoviesService) { }
 
