@@ -22,7 +22,9 @@ public class UserApi {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(path ="/user", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User saveUser(@RequestBody User user){ 
+    public String saveUser(@RequestBody User user){ 
         return this.userSignin.saveUser(user);
+        //return this.userSignin.saveUser(user);
+        //return user.getName();
     }
 }

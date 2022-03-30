@@ -27,8 +27,19 @@ public class MovieDao {
 
     public List<Movie> listAllMovies (){
         List<Movie> result = new ArrayList<>();
-        String query = " SELECT * "+
-                       " FROM movie ";
+        String query = " SELECT m.movie_id, " + 
+                       "        m.title, " + 
+                       "        m.description, " + 
+                       "        m.release_year, " + 
+                       "        m.cost, " + 
+                       "        r.rating, " +
+                       "        g.genre, " + 
+                       "        m.image_link, " + 
+                       "        m.tuple_status, " + 
+                       "        m.last_update " + 
+                       " FROM movie m "+ 
+                       " LEFT JOIN rating r ON (r.rating_id = m.rating_id) " + 
+                       " LEFT JOIN genre g ON (g.genre_id = m.genre_id)";
         try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
@@ -42,8 +53,8 @@ public class MovieDao {
                 movie.setDescription(rSet.getString("description"));
                 movie.setRelease_year(rSet.getInt("release_year"));
                 movie.setCost(rSet.getDouble("cost"));
-                movie.setRating_id(rSet.getInt("rating_id"));
-                movie.setGenre_id(rSet.getInt("genre_id"));
+                movie.setRating(rSet.getString("rating"));
+                movie.setGenre(rSet.getString("genre"));
                 movie.setImage_link(rSet.getString("image_link"));
                 movie.setTuple_status(rSet.getBoolean("tuple_status"));
 
@@ -61,9 +72,20 @@ public class MovieDao {
 
     public List<Movie> findById (int movie_id){
         List<Movie> result = new ArrayList<>();
-        String query = " SELECT * " + 
-                       " FROM movie " + 
-                       " WHERE movie_id = ( ? )";
+        String query = " SELECT m.movie_id, " + 
+                       "        m.title, " + 
+                       "        m.description, " + 
+                       "        m.release_year, " + 
+                       "        m.cost, " + 
+                       "        r.rating, " +
+                       "        g.genre, " + 
+                       "        m.image_link, " + 
+                       "        m.tuple_status, " + 
+                       "        m.last_update " + 
+                       " FROM movie m "+ 
+                       " LEFT JOIN rating r ON (r.rating_id = m.rating_id) " + 
+                       " LEFT JOIN genre g ON (g.genre_id = m.genre_id)" +
+                       " WHERE m.movie_id = ( ? )";
         try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
@@ -79,8 +101,8 @@ public class MovieDao {
                 movie.setDescription(rSet.getString("description"));
                 movie.setRelease_year(rSet.getInt("release_year"));
                 movie.setCost(rSet.getDouble("cost"));
-                movie.setRating_id(rSet.getInt("rating_id"));
-                movie.setGenre_id(rSet.getInt("genre_id"));
+                movie.setRating(rSet.getString("rating"));
+                movie.setGenre(rSet.getString("genre"));
                 movie.setImage_link(rSet.getString("image_link"));
                 movie.setTuple_status(rSet.getBoolean("tuple_status"));
 
@@ -88,6 +110,8 @@ public class MovieDao {
                 movie.setLast_update(new java.sql.Timestamp(lastUpdate.getTime()));
                 result.add(movie);
             }
+            
+            rSet.close();
         }catch(SQLException ex){
             ex.printStackTrace();
         }

@@ -36,8 +36,8 @@ public class Movie {
     private String description;
     private Integer release_year;
     private Double cost;
-    private Integer rating_id;
-    private Integer genre_id;
+    private String rating;
+    private String genre;
     private String image_link;
     private Boolean tuple_status;
     private Timestamp last_update;
@@ -83,20 +83,20 @@ public class Movie {
         this.cost = cost;
     }
 
-    public Integer getRating_id() {
-        return this.rating_id;
+    public String getRating() {
+        return this.rating;
     }
 
-    public void setRating_id(Integer rating_id) {
-        this.rating_id = rating_id;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
-    public Integer getGenre_id() {
-        return this.genre_id;
+    public String getGenre() {
+        return this.genre;
     }
 
-    public void setGenre_id(Integer genre_id) {
-        this.genre_id = genre_id;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public String getImage_link() {

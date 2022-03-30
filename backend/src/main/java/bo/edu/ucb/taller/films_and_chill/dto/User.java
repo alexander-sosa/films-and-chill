@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 /* 
 	user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name varchar(30),
@@ -18,7 +19,7 @@ import javax.persistence.Id;
     last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 */
 @Entity(name = "user")
-public class User {
+public class User{
     
     @Id
     @Column(name="user_id")
