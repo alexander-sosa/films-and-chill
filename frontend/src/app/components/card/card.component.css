@@ -56,6 +56,7 @@
         border-radius: 5%;
         border: solid 2px #E1A140 ;
         background: none;
+        padding-bottom: 2%;
     }
 
     .btn-del{
@@ -68,4 +69,8 @@
     .btn-del:hover{
         background-color: #532200;
         color: whitesmoke;
+    }
+
+    .form-check{
+        float: right;
     }

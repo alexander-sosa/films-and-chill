@@ -12,7 +12,8 @@ export class SigninComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { 
       this.signForm = this.formBuilder.group({
-      user: ['', Validators.required],
+      name: ['', Validators.required],
+      last_name: ['', Validators.required],
       email:['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required, Validators.minLength(8)]],
       pass_conf: ['', [Validators.required, Validators.minLength(8)]]

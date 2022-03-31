@@ -22,7 +22,7 @@
             <div class="row mb-3">
               <label for="pass" class="col-sm-4 col-form-label">Contraseña:</label>
               <div class="col-sm-8">
-                <input type="password" class="form-control" id="pass" placeholder="Minimo de 8 caracteres" formControlName="pass">
+                <input type="password" class="form-control" id="pass" formControlName="pass">
                 <div *ngIf="getValue('pass')?.invalid && (getValue('pass')?.touched || getValue('pass')?.dirty)">
                   <div *ngIf="getValue('pass')?.errors?.required" class="alert alert-danger" role="alert">
                     <p>Campo requerido</p> 
