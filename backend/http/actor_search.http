@@ -1,0 +1,2 @@
+###Lista de actores de pelicula 1
+GET http://localhost:8080/actor/1
