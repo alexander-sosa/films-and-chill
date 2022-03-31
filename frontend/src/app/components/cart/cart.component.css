@@ -10,7 +10,7 @@
         border: solid 2px #E1A140;
     }
 
-    .resumen, .resum-card h4{
+    .resumen, .resum-cart h4{
         font-family: 'Franklin Gothic Medium';
         padding-bottom: 2%;
     }
@@ -28,26 +28,26 @@
         border-top: solid 2px #914110;
     }
 
-    .resum-card, .card-list{
+    .resum-cart, .cart-list{
         padding: 3%;
         background-color: #EFCFA0;
         border: solid 2px #E1A140;
         border-radius: 5%;
     }
 
-    .resum-card button{
+    .resum-cart button{
         background-color: #E1A140;
         font-size: 25px;
         color: black;
         transition-duration: 0.4s;
     }
 
-    .resum-card button:hover{
+    .resum-cart button:hover{
         background-color: #532200;
         color: whitesmoke;
     }
 
-    .card-list{
+    .cart-list{
         margin-top: 2%;
         border-radius: 5%;
     }
