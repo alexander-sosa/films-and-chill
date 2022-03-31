@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import bo.edu.ucb.taller.films_and_chill.bl.UserLogin;
 import bo.edu.ucb.taller.films_and_chill.bl.UserSignin;
 import bo.edu.ucb.taller.films_and_chill.dto.User;
 
@@ -14,10 +16,12 @@ import bo.edu.ucb.taller.films_and_chill.dto.User;
 public class UserApi {
     
     UserSignin userSignin;
+    UserLogin userLogin;
 
     @Autowired
-    public UserApi(UserSignin userSignin) {
+    public UserApi(UserSignin userSignin, UserLogin userLogin) {
         this.userSignin = userSignin;
+        this.userLogin = userLogin;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -26,5 +30,11 @@ public class UserApi {
         return this.userSignin.saveUser(user);
         //return this.userSignin.saveUser(user);
         //return user.getName();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping(path ="/auth", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public List<User> logIn(@RequestBody User user){
+        return userLogin.logIn(user.getEmail(), user.getPass());
     }
 }

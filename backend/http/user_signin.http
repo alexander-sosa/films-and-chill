@@ -6,6 +6,6 @@ Content-Type: application/json
     "name": "eddy",
     "lastname": "183",
     "access_permission": "admin",
-    "email": "eddy@gmail.com",
+    "email": "edgar@gmail.com",
     "pass": "12345"
 }

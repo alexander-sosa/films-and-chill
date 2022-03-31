@@ -57,7 +57,7 @@ CREATE TABLE user (
 	lastname varchar(30),
 	access_permission varchar(20),
 	email varchar(60) UNIQUE,
-	pass varchar(60),
+	pass text,
 	tuple_status bool DEFAULT 1,
     last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
