@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Movie } from 'src/app/models/Movie';
 import { MoviesService } from 'src/app/services/movies.service';
+import { CartService } from 'src/app/services/cart.service';
 
 import { ActivatedRoute } from "@angular/router";
 
@@ -15,8 +16,9 @@ export class MovieDetailComponent implements OnInit {
 
   movie: any | Movie = [];
   movie_id: any;
+  arrived: boolean = false;
 
-  constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute) {
+  constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute, private cartService: CartService) {
 
   }
 
@@ -32,10 +34,15 @@ export class MovieDetailComponent implements OnInit {
     this.moviesService.getMovie(movie_id).subscribe(
       res => {
         this.movie = res;
+        this.arrived = true;
         // console.log("Movie: " + this.movie[0].title)
       },
       err => console.log(err)
     );
+  }
+
+  addItem(item: Movie){
+    this.cartService.addItem(item);
   }
 
 }

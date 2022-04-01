@@ -1,5 +1,6 @@
 <div class="container">
     <br>
+    <div *ngIf="arrived">
     <p style="text-align: center; font-size: x-large;">{{movie[0].title}}</p>
     <br><br>
     <div class="row">
@@ -17,15 +18,16 @@
             <p>
                 <span class="bolder">Precio: </span> {{movie[0].cost}} Bs. <br>
                 <span class="bolder">Año: </span> {{movie[0].release_year}} <br>
-                <span class="bolder">Rating: </span> {{movie[0].rating_id}}<br>
-                <span class="bolder">Género: </span> {{movie[0].genre_id}} <br>
+                <span class="bolder">Rating: </span> {{movie[0].rating}}<br>
+                <span class="bolder">Género: </span> {{movie[0].genre}} <br>
             </p>
             <br>
             <p style="text-align: center;">
-                <button type="button" class="btn btn-outline-primary"><i class="fa-solid fa-shopping-cart"></i></button>
+                <button type="button" class="btn btn-outline-primary" (click)="addItem(movie[0])"><i class="fa-solid fa-shopping-cart"></i></button>
                 &nbsp;&nbsp;
                 <button type="button" class="btn btn-primary">Comprar Ahora</button>
             </p>
         </div>
+    </div>
     </div>
 </div>
