@@ -9,7 +9,7 @@ import { CartComponent } from './components/cart/cart.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/movies', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'inventory', component: InventoryComponent},
   { path: 'movies', component: ListingComponent },
   { path: 'signin/adm', component: SigninComponent },
