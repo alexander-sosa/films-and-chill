@@ -60,6 +60,7 @@ export class CartComponent implements OnInit {
         console.log(err);
       }
     );
+    window.location.reload();
   }
 
   calculatePrice(){
