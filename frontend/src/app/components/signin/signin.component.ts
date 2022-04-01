@@ -63,23 +63,11 @@ export class SigninComponent implements OnInit {
       console.log(JSON.stringify(this.user));
       
       this.userservices.postUser(JSON.stringify(this.user)).subscribe(
-        res => {
-          console.log('response: '+res.status);
-          if (res.status === 200) {
-            console.log('notification');
-            Swal.fire({
-              position: 'center',
-              icon: 'success',
-              title: 'Your work has been saved',
-              showConfirmButton: false,
-              timer: 1500
-            })
-          }
-        },
+        res => {},
         err =>{
           console.log('response: '+err.status);
           if (err.status === 200) {
-            console.log('notification');
+            console.log('notification2');
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -93,6 +81,11 @@ export class SigninComponent implements OnInit {
 
     }else{
       console.log('error');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Confirma tu contraseña'
+      })
     }
     
   }
