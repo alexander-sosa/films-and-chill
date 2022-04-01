@@ -13,7 +13,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class ListingComponent implements OnInit {
   /*@HostBinding('class') classes = 'row'*/
 
-  movie: Movie = {
+  movie: any = {
     movie_id: 0,
     title: '',
     description: '',
@@ -27,8 +27,10 @@ export class ListingComponent implements OnInit {
   }
 
   movies: any | Movie = [];
+  cart: any | Movie = [];
 
-  constructor(private moviesService: MoviesService, private cartService: CartService) { }
+  constructor(private moviesService: MoviesService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -43,12 +45,14 @@ export class ListingComponent implements OnInit {
     );
   }
 
-  addItem(item: Movie){
-    this.cartService.addItem(item);
-    //this.getCart();
-  }
-  
-  getCart(){
-    console.log(this.cartService.getCart())
+  addToCart(movie: Movie){
+    this.cartService.addToCart(movie).subscribe(
+      res => {
+        this.movie = res;
+        this.cart.push(this.movie);
+        console.log("Guardado");
+      },
+      err => console.log(err)
+    );
   }
 }
