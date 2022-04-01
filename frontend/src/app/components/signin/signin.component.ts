@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-signin',
@@ -62,7 +64,30 @@ export class SigninComponent implements OnInit {
       
       this.userservices.postUser(JSON.stringify(this.user)).subscribe(
         res => {
-          console.log(res);
+          console.log('response: '+res.status);
+          if (res.status === 200) {
+            console.log('notification');
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+        },
+        err =>{
+          console.log('response: '+err.status);
+          if (err.status === 200) {
+            console.log('notification');
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
         }
       );
 
