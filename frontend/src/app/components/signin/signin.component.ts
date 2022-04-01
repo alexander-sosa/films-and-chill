@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -24,7 +25,7 @@ export class SigninComponent implements OnInit {
 
   public signForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userservices: UserService, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private userservices: UserService, private router: Router, private location: Location) { 
       this.signForm = this.formBuilder.group({
       name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -71,10 +72,12 @@ export class SigninComponent implements OnInit {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: 'Your work has been saved',
+              title: 'Registro exitoso',
               showConfirmButton: false,
               timer: 1500
             })
+            this.location.replaceState('/'); // clears browser history so they can't navigate with back button
+            this.router.navigate(['movies']);
           }
         }
       );
