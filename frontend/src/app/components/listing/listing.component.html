@@ -5,7 +5,9 @@
         </ul>
         <div class="col-md-3" *ngFor='let movie of movies'>
             <div class="card text-center">
-                <img src="{{movie.image_link}}" alt="img" class="card-img-top" style="height:350px">
+                <a [routerLink]="['/movie-detail/', movie.movie_id]">
+                    <img src="{{movie.image_link}}" alt="img" class="card-img-top" style="height:350px">
+                </a>
                 <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
                     <div style="font-family: 'Rockwell';">{{movie.title}}</div>
                     <button class="btn btn-info btn-block" style="background-color: #532200; border-color: #532200; color: white;">

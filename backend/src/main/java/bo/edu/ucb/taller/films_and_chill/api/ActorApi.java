@@ -21,9 +21,15 @@ public class ActorApi {
         this.actorSearch = actorSearch;
     }
     
-    @CrossOrigin(origins = "http://localhost:4200")
+    /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/actor/{movie_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Actor> listByMovie(@PathVariable(name = "movie_id") int movie_id){
+        return actorSearch.listByMovie(movie_id);
+    }*/
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/movie/{movie_id}/actor", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Actor> listByMovie2(@PathVariable(name = "movie_id") int movie_id){
         return actorSearch.listByMovie(movie_id);
     }
 }
