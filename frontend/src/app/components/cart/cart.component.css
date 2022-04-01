@@ -59,14 +59,14 @@
         padding-bottom: 2%;
     }
 
-    .btn-del{
+    .btn-del, .btn-sold{
         background-color: #E1A140;
         font-size: 25px;
         color: black;
         transition-duration: 0.4s;
     }
 
-    .btn-del:hover{
+    .btn-del, .btn-sold:hover{
         background-color: #532200;
         color: whitesmoke;
     }

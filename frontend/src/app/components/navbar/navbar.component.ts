@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/Movie';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class NavbarComponent implements OnInit {
 
   valor: any;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.listCart();
@@ -24,7 +26,11 @@ export class NavbarComponent implements OnInit {
         this.cart = res;
         this.valor = this.cart.length;
       },
-      err => console.log(err)
+      err => {
+        this.cart = err;
+        this.valor = this.cart.length;
+        console.log(err)
+      }
     );
   }
 }

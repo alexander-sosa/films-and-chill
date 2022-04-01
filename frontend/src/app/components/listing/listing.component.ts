@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Movie } from 'src/app/models/Movie';
 
@@ -31,7 +32,8 @@ export class ListingComponent implements OnInit {
   cart: any | Movie = [];
 
   constructor(private moviesService: MoviesService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -62,6 +64,8 @@ export class ListingComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
+          setTimeout(() => window.location.reload(), 1500);
+          //this.router.navigateByUrl("/movie");
         }
       }
     );
