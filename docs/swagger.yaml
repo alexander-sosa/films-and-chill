@@ -58,6 +58,30 @@ paths:
         "404":
           description: "Movie not found"
 
+  /movie/{movie_id}/actor:
+    get:
+      tags:
+        - "movie"
+      summary: "Get the actors for a specific movie"
+      description: "Returns a list of actors"
+      operationId: "getFilmActors"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "movie_id"
+          in: "path"
+          description: "ID of the movie to retrieve"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/ActorResponseArray"
+        "400":
+          description: "Invalid ID"
+
   /user:
     post:
       tags:
@@ -167,3 +191,19 @@ definitions:
         type: "string"
       pass:
         type: "string"
+
+  ActorResponse:
+    type: "object"
+    properties:
+      actor_id: 
+        type: "number"
+      first_name:
+        type: "string"
+      last_name:
+        type: "string"
+
+  ActorResponseArray:
+    type: "array"
+    items:
+      $ref: "#/definitions/ActorResponse"
+
