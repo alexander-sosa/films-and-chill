@@ -4,6 +4,7 @@ import { Movie } from 'src/app/models/Movie';
 
 import { MoviesService } from 'src/app/services/movies.service';
 import { CartService } from 'src/app/services/cart.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-listing',
@@ -50,9 +51,19 @@ export class ListingComponent implements OnInit {
       res => {
         this.movie = res;
         this.cart.push(this.movie);
-        console.log("Guardado");
       },
-      err => console.log(err)
+      err => {
+        if(err.status == 200){
+          console.log("Guardado");
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Película añadida al carrito',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      }
     );
   }
 }
