@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/Movie';
 
 import { MoviesService } from 'src/app/services/movies.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-listing',
@@ -19,15 +20,15 @@ export class ListingComponent implements OnInit {
     release_year: 0,
     cost: 0,
     stock: 0,
-    rating_id: 0,
-    genre_id: 0,
+    rating: '',
+    genre: '',
     image_link: '',
     tuple_status: true
   }
 
   movies: any | Movie = [];
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -40,5 +41,14 @@ export class ListingComponent implements OnInit {
       },
       err => console.log(err)
     );
+  }
+
+  addItem(item: Movie){
+    this.cartService.addItem(item);
+    //this.getCart();
+  }
+  
+  getCart(){
+    console.log(this.cartService.getCart())
   }
 }

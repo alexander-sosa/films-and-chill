@@ -18,8 +18,8 @@ export class InventoryComponent implements OnInit {
     release_year: 0,
     cost: 0,
     stock: 0,
-    rating_id: 0,
-    genre_id: 0,
+    rating: '',
+    genre: '',
     image_link: '',
     tuple_status: true
   }
@@ -47,8 +47,8 @@ export class InventoryComponent implements OnInit {
     document.getElementById('description')?.setAttribute('value', String(m.description));
     document.getElementById('cost')?.setAttribute('value', String(m.cost));
     document.getElementById('unid')?.setAttribute('value', String(m.stock));
-    document.getElementById('gender')?.setAttribute('value', String(m.genre_id));
-    document.getElementById('rating')?.setAttribute('value', String(m.rating_id));
+    document.getElementById('gender')?.setAttribute('value', String(m.genre));
+    document.getElementById('rating')?.setAttribute('value', String(m.rating));
   }
 
 }
