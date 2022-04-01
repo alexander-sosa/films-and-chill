@@ -25,5 +25,10 @@ export class UserService {
     /*return this.httpClient.get(this.baseURL + 'users/' + userName + '/repos', { 'headers': headers })*/
   }
 
+  postLogin(postData:any){
+    return this.http.post<HttpResponse<any>>((this.API_URL + '/auth'),postData,{ 'headers': this.headers });
+    /*return this.httpClient.get(this.baseURL + 'users/' + userName + '/repos', { 'headers': headers })*/
+  }
+
  
 }

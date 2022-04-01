@@ -44,11 +44,11 @@ export class LoginComponent implements OnInit {
     this.user.pass = this.loginForm.get('pass')?.value;    
     console.log(JSON.stringify(this.user));
     
-    this.userservices.postUser(JSON.stringify(this.user)).subscribe(
-      res => {},
-      err =>{
-        console.log('response: '+err.status);
-        if (err.status === 200) {
+    this.userservices.postLogin(JSON.stringify(this.user)).subscribe(
+      res => {
+        console.log(res.statusText);
+        console.log('algo:'+JSON.parse(JSON.stringify(res)));
+        if (JSON.parse(JSON.stringify(res)) !='') {
           console.log('notification2');
           Swal.fire({
             position: 'center',
@@ -66,6 +66,10 @@ export class LoginComponent implements OnInit {
             text: 'Datos incorrectos'
           })
         }
+      },
+      err =>{
+        console.log('response: '+err.status);
+        
       }
     );
     
