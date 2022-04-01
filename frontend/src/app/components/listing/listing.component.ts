@@ -29,12 +29,8 @@ export class ListingComponent implements OnInit {
   movies: any | Movie = [];
   cart: any | Movie = [];
 
-<<<<<<< HEAD
   constructor(private moviesService: MoviesService,
               private cartService: CartService) { }
-=======
-  constructor(private moviesService: MoviesService, private cartService: CartService) { }
->>>>>>> 5f6770d8bb1c0511adac16c3970a264fa6c23e42
 
   ngOnInit(): void {
     this.getMovies();
@@ -49,7 +45,6 @@ export class ListingComponent implements OnInit {
     );
   }
 
-<<<<<<< HEAD
   addToCart(movie: Movie){
     this.cartService.addToCart(movie).subscribe(
       res => {
@@ -59,14 +54,5 @@ export class ListingComponent implements OnInit {
       },
       err => console.log(err)
     );
-=======
-  addItem(item: Movie){
-    this.cartService.addItem(item);
-    //this.getCart();
-  }
-  
-  getCart(){
-    console.log(this.cartService.getCart())
->>>>>>> 5f6770d8bb1c0511adac16c3970a264fa6c23e42
   }
 }

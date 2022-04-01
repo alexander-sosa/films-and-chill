@@ -41,8 +41,15 @@ export class MovieDetailComponent implements OnInit {
     );
   }
 
-  addItem(item: Movie){
-    this.cartService.addItem(item);
+  addItem(movie: Movie){
+    this.cartService.addToCart(movie).subscribe(
+      res => {
+        this.movie = res;
+        this.movie.push(this.movie);
+        console.log("Guardado");
+      },
+      err => console.log(err)
+    );
   }
 
 }
