@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/Movie';
 
 import { MoviesService } from 'src/app/services/movies.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-listing',
@@ -12,7 +13,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class ListingComponent implements OnInit {
   /*@HostBinding('class') classes = 'row'*/
 
-  movie: Movie = {
+  movie: any = {
     movie_id: 0,
     title: '',
     description: '',
@@ -26,8 +27,10 @@ export class ListingComponent implements OnInit {
   }
 
   movies: any | Movie = [];
+  cart: any | Movie = [];
 
-  constructor(private moviesService: MoviesService) { }
+  constructor(private moviesService: MoviesService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getMovies();
@@ -37,6 +40,17 @@ export class ListingComponent implements OnInit {
     this.moviesService.getMovies().subscribe(
       res => {
         this.movies = res;
+      },
+      err => console.log(err)
+    );
+  }
+
+  addToCart(movie: Movie){
+    this.cartService.addToCart(movie).subscribe(
+      res => {
+        this.movie = res;
+        this.cart.push(this.movie);
+        console.log("Guardado");
       },
       err => console.log(err)
     );
