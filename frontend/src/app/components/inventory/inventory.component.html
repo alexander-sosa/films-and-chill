@@ -41,7 +41,37 @@
                 </tbody>
           </table>
       </mat-tab>
-      <mat-tab label="Second"> Content 2 </mat-tab>
+      <mat-tab label="Registro de usuarios">
+          <table class="table table-bordered">
+            <thead>
+                <tr style="background-color: #E1A140;">
+                  <th scope="col" style="width: 5%; text-align: center;">ID Usuario</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Contraseña</th>
+                  <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+              <tbody>
+                <tr *ngFor='let movie of movies'>
+                  <th scope="row" style="text-align: center;">1012</th>
+                  <td>Nombre</td>
+                  <td>Apellido</td>
+                  <td>Admin</td>
+                  <td>Correoprueba@gmail.com</td>
+                  <td>fhv3784y34yg78ww7347gv78343i0</td>
+                  <td>
+                    <div class="btn-group-tb">
+                      <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
+                      <button><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+      </mat-tab>
       
     </mat-tab-group>
 
