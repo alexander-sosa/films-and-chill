@@ -1,13 +1,15 @@
 package bo.edu.ucb.taller.films_and_chill.bl;
 
-import java.util.List;
+//import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
-import bo.edu.ucb.taller.films_and_chill.dto.Movie;
-import bo.edu.ucb.taller.films_and_chill.exception.DatabaseException;
+//import bo.edu.ucb.taller.films_and_chill.dto.Movie;
+//import bo.edu.ucb.taller.films_and_chill.exception.DatabaseException;
 
 //SOLO BUSQUEDA DE PELICULAS
 @Component
@@ -20,14 +22,14 @@ public class MovieSearch {
         this.movieDao = movieDao;
     }
 
-    public List<Movie> listAllMovies(){
-        return this.movieDao.listAllMovies();
+    public ResponseEntity<?> listAllMovies(){
+        return ResponseEntity.ok(movieDao.listAllMovies());
     }
 
-    public List<Movie> findById(int movie_id){
-        if(movie_id < 0){
-            throw new DatabaseException(403, "Bad request: El ID es menos a 0");
+    public ResponseEntity<?> findById(int movie_id){
+        if(movieDao.findById(movie_id).size() == 0){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Película no encontrada");
         }
-        return this.movieDao.findById(movie_id);
+        return ResponseEntity.ok(movieDao.findById(movie_id));
     }
 }
