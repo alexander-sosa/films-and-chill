@@ -22,7 +22,7 @@ CREATE TABLE movie (
     description text,
     release_year int,
     cost double(5,2) NOT NULL,
-	stock int NOT NULL, 
+    stock int NOT NULL,
 	rating_id int NOT NULL,
 	genre_id int NOT NULL,
 	image_link varchar(200),
@@ -51,13 +51,21 @@ CREATE TABLE actor_movie (
     FOREIGN KEY (actor_id) REFERENCES actor(actor_id)
 );
 
+CREATE TABLE permission(
+	permission_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  	description varchar(30),
+  	tuple_status bool DEFAULT 1,
+  	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+);
+
 CREATE TABLE user (
 	user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name varchar(30),
 	lastname varchar(30),
-	access_permission varchar(20),
-	email varchar(60) UNIQUE,
+	permission_id int NOT NULL,
+	email varchar(100) UNIQUE,
 	pass text,
 	tuple_status bool DEFAULT 1,
-    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
 );

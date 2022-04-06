@@ -49,3 +49,10 @@ INSERT INTO actor_movie (movie_id, actor_id) VALUES
 (4, 11),
 (5, 12),
 (5, 13);
+
+INSERT INTO permission(description) VALUES
+('admin'),
+('client');
+
+INSERT INTO user(name, lastname, permission_id, email, pass) VALUES
+('Juan', 'Perez', 1, 'juan.perez@noreply.com', SHA2('12345678', 256));
