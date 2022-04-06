@@ -2,10 +2,21 @@
     .header h1{
         font-family: 'Rockwell';
         font-weight: 400;
+        font-size: xx-large;
         border-bottom-style: solid;
         border-bottom-width: 3px;
         border-bottom-color: black;
         margin-right: 1%;
+    }
+
+    .pages{
+        width: 90%;
+        align-self: center;
+        margin: auto;
+    }
+
+    mat-tab{
+        color: red;
     }
 
     .btn-lo{
@@ -49,6 +60,7 @@
     }
 
     .btn-group{
+        margin-top: 2%;
         margin-left: 5%;
     }
 
