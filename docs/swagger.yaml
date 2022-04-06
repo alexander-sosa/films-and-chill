@@ -104,6 +104,28 @@ paths:
         "400":
           description: "Invalid data supplied"
 
+  /user/permission:
+    put:
+      tags:
+        - "user"
+      summary: "Update a user permission"
+      description: "Change a user's permission. The 'permission' field on body parameter must be 'admin' or 'client', otherwise a 400 error will raise."
+      operationId: "updatePermission"
+      produces:
+        - "text/html"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "Information about the user and the permission"
+          required: true
+          schema:
+            $ref: "#/definitions/UpdatePermissionRequest"
+      responses:
+        "200":
+          description: "Permission updated"
+        "400":
+          description: "Invalid data supplied"
+
   /auth:
     post:
       tags:
@@ -207,3 +229,10 @@ definitions:
     items:
       $ref: "#/definitions/ActorResponse"
 
+  UpdatePermissionRequest:
+    type: "object"
+    properties:
+      user_id:
+        type: "integer"
+      permission:
+        type: "string"
