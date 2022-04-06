@@ -4,40 +4,48 @@
         <button class="btn-lo"><i class="fa-solid fa-right-to-bracket"></i></button>
     </ul>
 
-    <div class="btn-group">
-        <button><i class="fa-solid fa-file-circle-plus"></i></button>
+    <mat-tab-group>
+      <mat-tab label="Inventario de Películas"> 
+          <div class="btn-group">
+              <button><i class="fa-solid fa-file-circle-plus"></i></button>
+      
+              <button><i class="fa-solid fa-print"></i></button>
+          </div>
+      
+          <table class="table table-bordered">
+              <thead>
+                  <tr style="background-color: #E1A140;">
+                    <th scope="col" style="width: 5%; text-align: center;">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col" style="width: 5%; text-align: center;">Precio</th>
+                    <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
+                    <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
+                  </tr>
+              </thead>
+                <tbody>
+                  <tr *ngFor='let movie of movies'>
+                    <th scope="row" style="text-align: center;">{{movie.movie_id}}</th>
+                    <td>{{movie.title}}</td>
+                    <td *ngIf="movie.description == null; else showDes">No se encontró una descripción</td>
+                    <ng-template #showDes>{{movie.description}}</ng-template>
+                    <td style="text-align: center;">{{movie.cost}}</td>
+                    <td style="text-align: center;">{{movie.stock}}</td>
+                    <td>
+                      <div class="btn-group-tb">
+                        <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button><i class="fa-solid fa-trash"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+          </table>
+      </mat-tab>
+      <mat-tab label="Second"> Content 2 </mat-tab>
+      
+    </mat-tab-group>
 
-        <button><i class="fa-solid fa-print"></i></button>
-    </div>
-
-    <table class="table table-bordered">
-        <thead>
-            <tr style="background-color: #E1A140;">
-              <th scope="col" style="width: 5%; text-align: center;">ID</th>
-              <th scope="col">Título</th>
-              <th scope="col">Descripción</th>
-              <th scope="col" style="width: 5%; text-align: center;">Precio</th>
-              <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
-              <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
-            </tr>
-        </thead>
-          <tbody>
-            <tr *ngFor='let movie of movies'>
-              <th scope="row" style="text-align: center;">{{movie.movie_id}}</th>
-              <td>{{movie.title}}</td>
-              <td *ngIf="movie.description == null; else showDes">No se encontró una descripción</td>
-              <ng-template #showDes>{{movie.description}}</ng-template>
-              <td style="text-align: center;">{{movie.cost}}</td>
-              <td style="text-align: center;">{{movie.stock}}</td>
-              <td>
-                <div class="btn-group-tb">
-                  <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
-                  <button><i class="fa-solid fa-trash"></i></button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-    </table>
+    
 
 
   <!-- Modal -->
