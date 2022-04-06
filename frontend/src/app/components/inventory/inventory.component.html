@@ -1,79 +1,81 @@
 
     <ul class="header">
-        <h1 class="text-center">Inventario de Películas</h1>
+        <h1 class="text-center">Tablero de Administrador</h1>
         <button class="btn-lo"><i class="fa-solid fa-right-to-bracket"></i></button>
     </ul>
 
-    <mat-tab-group>
-      <mat-tab label="Inventario de Películas"> 
-          <div class="btn-group">
-              <button><i class="fa-solid fa-file-circle-plus"></i></button>
-      
-              <button><i class="fa-solid fa-print"></i></button>
-          </div>
-      
-          <table class="table table-bordered">
+    <div class="pages">
+      <mat-tab-group>
+        <mat-tab label="Inventario de Películas"> 
+            <div class="btn-group">
+                <button><i class="fa-solid fa-file-circle-plus"></i></button>
+        
+                <button><i class="fa-solid fa-print"></i></button>
+            </div>
+        
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color: #E1A140;">
+                      <th scope="col" style="width: 5%; text-align: center;">ID</th>
+                      <th scope="col">Título</th>
+                      <th scope="col">Descripción</th>
+                      <th scope="col" style="width: 5%; text-align: center;">Precio</th>
+                      <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
+                      <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
+                    </tr>
+                </thead>
+                  <tbody>
+                    <tr *ngFor='let movie of movies'>
+                      <th scope="row" style="text-align: center;">{{movie.movie_id}}</th>
+                      <td>{{movie.title}}</td>
+                      <td *ngIf="movie.description == null; else showDes">No se encontró una descripción</td>
+                      <ng-template #showDes>{{movie.description}}</ng-template>
+                      <td style="text-align: center;">{{movie.cost}}</td>
+                      <td style="text-align: center;">{{movie.stock}}</td>
+                      <td>
+                        <div class="btn-group-tb">
+                          <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
+                          <button><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+            </table>
+        </mat-tab>
+        <mat-tab label="Registro de usuarios">
+            <table class="table table-bordered">
               <thead>
                   <tr style="background-color: #E1A140;">
-                    <th scope="col" style="width: 5%; text-align: center;">ID</th>
-                    <th scope="col">Título</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col" style="width: 5%; text-align: center;">Precio</th>
-                    <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
+                    <th scope="col" style="width: 5%; text-align: center;">ID Usuario</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contraseña</th>
                     <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
                   </tr>
               </thead>
                 <tbody>
                   <tr *ngFor='let movie of movies'>
-                    <th scope="row" style="text-align: center;">{{movie.movie_id}}</th>
-                    <td>{{movie.title}}</td>
-                    <td *ngIf="movie.description == null; else showDes">No se encontró una descripción</td>
-                    <ng-template #showDes>{{movie.description}}</ng-template>
-                    <td style="text-align: center;">{{movie.cost}}</td>
-                    <td style="text-align: center;">{{movie.stock}}</td>
+                    <th scope="row" style="text-align: center;">1012</th>
+                    <td>Nombre</td>
+                    <td>Apellido</td>
+                    <td>Admin</td>
+                    <td>Correoprueba@gmail.com</td>
+                    <td>fhv3784y34yg78ww7347gv78343i0</td>
                     <td>
                       <div class="btn-group-tb">
-                        <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button data-bs-toggle="modal" data-bs-target="#UserDetails"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button><i class="fa-solid fa-trash"></i></button>
                       </div>
                     </td>
                   </tr>
                 </tbody>
-          </table>
-      </mat-tab>
-      <mat-tab label="Registro de usuarios">
-          <table class="table table-bordered">
-            <thead>
-                <tr style="background-color: #E1A140;">
-                  <th scope="col" style="width: 5%; text-align: center;">ID Usuario</th>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Apellido</th>
-                  <th scope="col">Rol</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Contraseña</th>
-                  <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
-                </tr>
-            </thead>
-              <tbody>
-                <tr *ngFor='let movie of movies'>
-                  <th scope="row" style="text-align: center;">1012</th>
-                  <td>Nombre</td>
-                  <td>Apellido</td>
-                  <td>Admin</td>
-                  <td>Correoprueba@gmail.com</td>
-                  <td>fhv3784y34yg78ww7347gv78343i0</td>
-                  <td>
-                    <div class="btn-group-tb">
-                      <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
-                      <button><i class="fa-solid fa-trash"></i></button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-          </table>
-      </mat-tab>
-      
-    </mat-tab-group>
+            </table>
+        </mat-tab>
+        
+      </mat-tab-group>
+    </div>
 
     
 
@@ -164,27 +166,62 @@
   </div>
 
 
-<script>
+  <!-- Modal -->
+  <div class="modal fade" id="UserDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Información del usuario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3 needs-validation" novalidate>
 
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function () {
-    'use strict'
+            <div class="inline">
+              <label for="ID" class="form-label">ID:</label>
+              <input style="width: 15%;" type="number" class="form-control"  id="ID" disabled>
+              &nbsp;&nbsp;&nbsp;
+              
+            </div>
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+            <div class="inline">
+              <label for="user" class="form-label">Usuario:</label>
+              <input style="width: 80%;" type="user" class="form-control"  id="user" disabled>
+              &nbsp;&nbsp;&nbsp;              
+            </div>
+            
+            <div class="inline">
+              
+              <label for="rol" class="form-label">Rol:</label>
+              <select class="form-select" id="rol" required>
+                <option selected disabled value="">Rol...</option>
+                <option>Admin</option>
+                <option>Cliente</option>
+              </select>
+              <div class="invalid-feedback">
+                Selecciona un rol
+              </div>
+            </div>
 
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
+            <div class="inline">
+              <label for="email" class="form-label">Email:</label>
+              <input style="width: 80%;" type="email" class="form-control"  id="email" disabled>
+              &nbsp;&nbsp;&nbsp;              
+            </div>
+            
+            <div class="inline">
+              <label for="pass" class="form-label">Contraseña:</label>
+              <input style="width: 70%;" type="text" class="form-control"  id="pas" disabled>
+              &nbsp;&nbsp;&nbsp;              
+            </div> 
 
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+            <button class="btn btn-edit" type="submit">Actualizar</button>
+          </div>
 
-</script>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
