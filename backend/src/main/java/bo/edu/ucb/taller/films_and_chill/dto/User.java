@@ -9,14 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /* 
+CREATE TABLE user (
 	user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name varchar(30),
 	lastname varchar(30),
-	access_permission varchar(20),
-	email varchar(60) UNIQUE,
-	pass varchar(60),
+	permission_id int NOT NULL,
+	email varchar(100) UNIQUE,
+	pass text,
 	tuple_status bool DEFAULT 1,
-    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
+);
 */
 @Entity(name = "user")
 public class User{
@@ -28,11 +31,20 @@ public class User{
 
     private String name;
     private String lastname;
+    private Integer permission_id;
     private String access_permission;
     private String email;
     private String pass;
     private Boolean tuple_status;
     private Timestamp last_update;
+
+    public Integer getPermission_id() {
+        return this.permission_id;
+    }
+
+    public void setPermission_id(Integer permission_id) {
+        this.permission_id = permission_id;
+    }
 
     public Integer getUser_id() {
         return this.user_id;

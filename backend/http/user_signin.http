@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "name": "eddy",
     "lastname": "183",
-    "access_permission": "admin",
+    "permission_id": "1",
     "email": "ed@gmail.com",
     "pass": "123456789"
 }

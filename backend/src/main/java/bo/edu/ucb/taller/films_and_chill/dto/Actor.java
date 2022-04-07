@@ -13,6 +13,9 @@ CREATE TABLE actor (
     actor_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name varchar(20) NOT NULL,
     last_name varchar(20) NOT NULL,
+    access_permission varchar(20),
+	email varchar(60) UNIQUE,
+	pass text,
 	tuple_status bool DEFAULT 1,
     last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

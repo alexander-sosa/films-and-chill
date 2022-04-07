@@ -29,7 +29,7 @@ public class UserDao {
     
     public void saveUser(User user){
 
-        String query = " INSERT INTO user (name, lastname, access_permission, email, pass) VALUES "
+        String query = " INSERT INTO user (name, lastname, permission_id, email, pass) VALUES "
                      + " ( ?, ?, ?, ?, ? ) ";
         try(
             Connection connection = dataSource.getConnection();
@@ -41,7 +41,7 @@ public class UserDao {
 
             pStatement.setString(1, user.getName());
             pStatement.setString(2, user.getLastname());
-            pStatement.setString(3, user.getAccess_permission());
+            pStatement.setInt(3, user.getPermission_id());
             pStatement.setString(4, user.getEmail());
             pStatement.setString(5, pwd);
             pStatement.execute();
@@ -54,14 +54,16 @@ public class UserDao {
 
         List<User> result = new ArrayList<>();
 
-        String query = " SELECT user_id, " + 
-                       "        name, " + 
-                       "        lastname, " + 
-                       "        access_permission, " + 
-                       "        email, " + 
-                       "        tuple_status, " +
-                       "        last_update " + 
-                       " FROM user " + 
+        String query = " SELECT u.user_id, " + 
+                       "        u.name, " + 
+                       "        u.lastname, " + 
+                       "        p.permission_id, " + 
+                       "        p.description, " + 
+                       "        u.email, " + 
+                       "        u.tuple_status, " +
+                       "        u.last_update " + 
+                       " FROM user u " + 
+                       " LEFT JOIN permission p ON (p.permission_id = u.permission_id) " + 
                        " WHERE pass = ( ? ) " + 
                        " AND email = ( ? ) ";
 
@@ -83,7 +85,8 @@ public class UserDao {
                 user.setUser_id(rSet.getInt("user_id"));
                 user.setName(rSet.getString("name"));
                 user.setLastname(rSet.getString("lastname"));
-                user.setAccess_permission(rSet.getString("access_permission"));
+                user.setPermission_id(rSet.getInt("permission_id"));
+                user.setAccess_permission(rSet.getString("description"));
                 user.setEmail(rSet.getString("email"));
                 user.setTuple_status(rSet.getBoolean("tuple_status"));
 
@@ -99,5 +102,32 @@ public class UserDao {
         }
 
         return result;
+    }
+
+    public void setRol(int user_id, String access_permission){
+        //System.out.println(access_permission);
+
+        String query;
+
+        if(access_permission.equals("admin")){
+            query = " UPDATE user " + 
+                    " SET permission_id = 1 " + 
+                    " WHERE user_id = ( ? ) ";
+        }else {
+            query = " UPDATE user " + 
+                    " SET permission_id = 2 " + 
+                    " WHERE user_id = ( ? ) ";
+        }
+
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            pStatement.setInt(1, user_id);
+            pStatement.execute();
+            
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
 }
