@@ -39,6 +39,7 @@ public class Movie {
     private String rating;
     private String genre;
     private String image_link;
+    private Integer stock;
     private Boolean tuple_status;
     private Timestamp last_update;
 
@@ -105,6 +106,14 @@ public class Movie {
 
     public void setImage_link(String image_link) {
         this.image_link = image_link;
+    }
+
+    public Integer getStock(){
+        return this.stock;
+    }
+
+    public void setStock(Integer stock){
+        this.stock = stock;
     }
 
     public Boolean isTuple_status() {

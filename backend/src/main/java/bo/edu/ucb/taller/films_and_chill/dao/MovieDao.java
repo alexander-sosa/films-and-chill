@@ -34,7 +34,8 @@ public class MovieDao {
                        "        m.cost, " + 
                        "        r.rating, " +
                        "        g.genre, " + 
-                       "        m.image_link, " + 
+                       "        m.image_link, " +
+                       "        m.stock, " +  
                        "        m.tuple_status, " + 
                        "        m.last_update " + 
                        " FROM movie m "+ 
@@ -56,6 +57,7 @@ public class MovieDao {
                 movie.setRating(rSet.getString("rating"));
                 movie.setGenre(rSet.getString("genre"));
                 movie.setImage_link(rSet.getString("image_link"));
+                movie.setStock(rSet.getInt("stock"));
                 movie.setTuple_status(rSet.getBoolean("tuple_status"));
 
                 var lastUpdate = rSet.getTimestamp("last_update");
@@ -80,6 +82,7 @@ public class MovieDao {
                        "        r.rating, " +
                        "        g.genre, " + 
                        "        m.image_link, " + 
+                       "        m.stock, " +
                        "        m.tuple_status, " + 
                        "        m.last_update " + 
                        " FROM movie m "+ 
@@ -104,6 +107,7 @@ public class MovieDao {
                 movie.setRating(rSet.getString("rating"));
                 movie.setGenre(rSet.getString("genre"));
                 movie.setImage_link(rSet.getString("image_link"));
+                movie.setStock(rSet.getInt("stock"));
                 movie.setTuple_status(rSet.getBoolean("tuple_status"));
 
                 var lastUpdate = rSet.getTimestamp("last_update");

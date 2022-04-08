@@ -130,4 +130,40 @@ public class UserDao {
             ex.printStackTrace();
         }
     }
+
+    public List<User> ListUsers(){
+
+        List<User> result = new ArrayList<>();
+
+        String query = " SELECT u.user_id, " + 
+                       "        u.name, " + 
+                       "        u.lastname, " + 
+                       "        p.description, " + 
+                       "        u.email " + 
+                       " FROM user u " + 
+                       " LEFT JOIN permission p ON (p.permission_id = u.permission_id) "; 
+
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){            
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next()){
+                User user = new User();
+                user.setUser_id(rSet.getInt("user_id"));
+                user.setName(rSet.getString("name"));
+                user.setLastname(rSet.getString("lastname"));
+                user.setAccess_permission(rSet.getString("description"));
+                user.setEmail(rSet.getString("email"));
+                result.add(user);
+            }
+
+            rSet.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+
+        return result;
+    }
 }
