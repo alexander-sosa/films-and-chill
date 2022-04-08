@@ -8,3 +8,11 @@ INSERT INTO movie (title, description, release_year, cost, stock, rating_id, gen
 -- insert a movie only with non null data
 INSERT INTO movie (title, cost, stock, rating_id, genre_id) VALUES
 ('Rogue One: Una Historia de Star Wars', 16.9, 10, 2, 1)
+
+-- edit an existing movie
+UPDATE movie 
+SET 
+title = 'Rogue One',
+cost = 11.5,
+stock = 2
+WHERE movie_id = 5;
