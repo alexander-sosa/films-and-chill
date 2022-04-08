@@ -79,6 +79,27 @@ paths:
         "404":
           description: "Movie not found"
 
+    put:
+      tags:
+        - "movie"
+      summary: "Edit data of a specific movie"
+      description: "Edit a movie register"
+      operationId: "updateMovie"
+      produces:
+        - "text/html"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "Information about the movie. Just use the parameters you need to edit."
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateMovieRequest"
+      responses:
+        "201":
+          description: "Movie updated succesfully"
+        "400":
+          description: "Invalid data supplied"
+
   /movie/{movie_id}/actor:
     get:
       tags:
@@ -314,6 +335,34 @@ definitions:
         type: "integer"
       genre_id:
         type: "integer"
+      image_link:
+        type: "string"
+        default: "null"
+
+  UpdateMovieRequest:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+        default: "null"
+      description:
+        type: "string"
+        default: "null"
+      release_year:
+        type: "number"
+        default: "null"
+      cost:
+        type: "number"
+        default: "null"
+      stock:
+        type: "integer"
+        default: "null"
+      rating_id:
+        type: "integer"
+        default: "null"
+      genre_id:
+        type: "integer"
+        default: "null"
       image_link:
         type: "string"
         default: "null"
