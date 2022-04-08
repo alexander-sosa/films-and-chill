@@ -34,6 +34,27 @@ paths:
           schema:
             $ref: "#/definitions/MovieResponseArray"
 
+    post:
+      tags:
+        - "movie"
+      summary: "Add a new movie"
+      description: "Create a new movie register"
+      operationId: "createMovie"
+      produces:
+        - "text/html"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "Information about the movie"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateMovieRequest"
+      responses:
+        "201":
+          description: "Movie created succesfully"
+        "400":
+          description: "Invalid data supplied"
+
   /movie/{movie_id}:
     get:
       tags:
@@ -273,3 +294,26 @@ definitions:
         type: "integer"
       permission:
         type: "string"
+
+  CreateMovieRequest:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+      description:
+        type: "string"
+        default: "null"
+      release_year:
+        type: "number"
+        default: "null"
+      cost:
+        type: "number"
+      stock:
+        type: "integer"
+      rating_id:
+        type: "integer"
+      genre_id:
+        type: "integer"
+      image_link:
+        type: "string"
+        default: "null"
