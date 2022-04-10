@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,8 +43,14 @@ public class MovieApi {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping(value = "/movie/new", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/movie", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createNewMovie (@RequestBody Movie movie){
         return movieCreation.createNewMovie(movie);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(value = "/movie/{movie_id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateMovie (@PathVariable(name = "movie_id") int movie_id, @RequestBody Movie movie){
+        return movieCreation.updateMovie(movie_id, movie);
     }
 }

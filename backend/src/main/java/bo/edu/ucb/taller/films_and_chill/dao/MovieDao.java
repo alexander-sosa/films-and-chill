@@ -1,5 +1,15 @@
 package bo.edu.ucb.taller.films_and_chill.dao;
 
+/*import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+import bo.edu.ucb.taller.films_and_chill.dto.Movie;
+
+public interface MovieDao extends CrudRepository<Movie, Integer>{
+    Optional<Movie> findById(Integer movie_id);
+}*/
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,5 +165,56 @@ public class MovieDao {
         }catch(SQLException ex){
             ex.printStackTrace();
         }
+    }
+
+    public void updateMovie(int movie_id, Movie movie){
+        
+        String query = " UPDATE movie SET ";
+
+        /*if(movie.getTitle() != null)
+            header = header + " title = ? ";
+
+        if(movie.getDescription() != null)
+            header = header + ", description = ? ";
+        
+        if(movie.getRelease_year() != null)
+            header = header + ", release_year = ? ";
+
+        if(movie.getCost() != null)
+            header = header + ", cost = ? ";
+
+        if(movie.getRating_id() != null)
+            header = header + ", rating_id = ? ";
+            
+        if(movie.getGenre_id() != null)
+            header = header + ", genre_id = ? ";
+
+        if(movie.getImage_link() != null)
+            header = header + ", image_link = ? ";
+
+        if(movie.getStock() != null)
+            header = header + ", stock = ? ";
+
+        if(movie.getTuple_status() != null)
+            header = header + ", tuple_status = ? ";
+
+        if(movie.getLast_update() != null)
+            header = header + ", last_update = ? ";*/
+
+        //System.out.println(movie.toString());
+
+        //String query = header.replaceFirst("SET ,", "SET");
+
+        /*try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            //System.out.println(pStatement.getUpdateCount());;
+
+            //pStatement.execute();
+            
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }*/
     }
 }

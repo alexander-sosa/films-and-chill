@@ -19,10 +19,41 @@ public class MovieCreation {
 
     public ResponseEntity<?> createNewMovie(Movie movie){
 
-        if(movie == null)
+        //Datos nulos inválidos: title, cost, stock, rating_id, genre_id
+        if(movie == null || movie.getTitle() == null || movie.getCost() == null
+          || movie.getStock() == null || movie.getRating_id() == null || movie.getGenre_id() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos inválidos");
+
+        //Datos nulos validos: description, release_year, image_link
+        if(movie.getDescription() == null)
+            movie.setDescription("");
+        
+        if(movie.getRelease_year() == null)
+            movie.setRelease_year(0);
+        
+        if(movie.getImage_link() == null)
+            movie.setImage_link("");
 
         movieDao.createNewMovie(movie);
         return ResponseEntity.status(HttpStatus.CREATED).body("Creado");
+    }
+
+    public ResponseEntity<?> updateMovie(int movie_id, Movie movie){
+        if(movie.getMovie_id() != null || movie == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID no puede ser editado");
+        /*
+                       "        m.title, " + 
+                       "        m.description, " + 
+                       "        m.release_year, " + 
+                       "        m.cost, " + 
+                       "        m.rating_id, " + 
+                       "        m.genre_id, " + 
+                       "        m.image_link, " + 
+                       "        m.stock, " +
+                       "        m.tuple_status, " + 
+                       "        m.last_update " + 
+        */
+        movieDao.updateMovie(movie_id, movie);
+        return ResponseEntity.status(HttpStatus.CREATED).body(movie); 
     }
 }
