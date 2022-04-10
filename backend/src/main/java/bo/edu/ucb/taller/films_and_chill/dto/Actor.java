@@ -34,6 +34,9 @@ public class Actor {
     private Boolean tuple_status;
     private Timestamp last_update;
 
+    public Actor() {
+    }
+
     public Integer getActor_id() {
         return this.actor_id;
     }

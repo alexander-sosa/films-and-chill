@@ -28,16 +28,18 @@ public class MovieDao {
     public List<Movie> listAllMovies (){
         List<Movie> result = new ArrayList<>();
         String query = " SELECT m.movie_id, " + 
-                       "        m.title, " + 
-                       "        m.description, " + 
-                       "        m.release_year, " + 
-                       "        m.cost, " + 
-                       "        r.rating, " +
-                       "        g.genre, " + 
-                       "        m.image_link, " +
-                       "        m.stock, " +  
-                       "        m.tuple_status, " + 
-                       "        m.last_update " + 
+                        "        m.title, " + 
+                        "        m.description, " + 
+                        "        m.release_year, " + 
+                        "        m.cost, " + 
+                        "        m.rating_id, " + 
+                        "        r.rating, " +
+                        "        m.genre_id, " + 
+                        "        g.genre, " + 
+                        "        m.image_link, " + 
+                        "        m.stock, " +
+                        "        m.tuple_status, " + 
+                        "        m.last_update " + 
                        " FROM movie m "+ 
                        " LEFT JOIN rating r ON (r.rating_id = m.rating_id) " + 
                        " LEFT JOIN genre g ON (g.genre_id = m.genre_id)";
@@ -54,7 +56,9 @@ public class MovieDao {
                 movie.setDescription(rSet.getString("description"));
                 movie.setRelease_year(rSet.getInt("release_year"));
                 movie.setCost(rSet.getDouble("cost"));
+                movie.setRating_id(rSet.getInt("rating_id"));
                 movie.setRating(rSet.getString("rating"));
+                movie.setGenre_id(rSet.getInt("genre_id"));
                 movie.setGenre(rSet.getString("genre"));
                 movie.setImage_link(rSet.getString("image_link"));
                 movie.setStock(rSet.getInt("stock"));
@@ -79,7 +83,9 @@ public class MovieDao {
                        "        m.description, " + 
                        "        m.release_year, " + 
                        "        m.cost, " + 
+                       "        m.rating_id, " + 
                        "        r.rating, " +
+                       "        m.genre_id, " + 
                        "        g.genre, " + 
                        "        m.image_link, " + 
                        "        m.stock, " +
@@ -104,7 +110,9 @@ public class MovieDao {
                 movie.setDescription(rSet.getString("description"));
                 movie.setRelease_year(rSet.getInt("release_year"));
                 movie.setCost(rSet.getDouble("cost"));
+                movie.setRating_id(rSet.getInt("rating_id"));
                 movie.setRating(rSet.getString("rating"));
+                movie.setGenre_id(rSet.getInt("genre_id"));
                 movie.setGenre(rSet.getString("genre"));
                 movie.setImage_link(rSet.getString("image_link"));
                 movie.setStock(rSet.getInt("stock"));
@@ -120,5 +128,32 @@ public class MovieDao {
             ex.printStackTrace();
         }
         return result;
+    }
+
+    public void createNewMovie(Movie movie){
+
+        String query = " INSERT INTO movie " + 
+                       " (title, description, release_year, cost, stock, rating_id, genre_id, image_link) " + 
+                       " VALUES " + 
+                       " ( ? , ? , ? , ? , ? , ? , ? , ? ) ";
+
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            pStatement.setString(1,  movie.getTitle());
+            pStatement.setString(2,  movie.getDescription());
+            pStatement.setInt(3,  movie.getRelease_year());
+            pStatement.setDouble(4, movie.getCost());
+            pStatement.setInt(5, movie.getStock());
+            pStatement.setInt(6, movie.getRating_id());
+            pStatement.setInt(7, movie.getGenre_id());
+            pStatement.setString(8, movie.getImage_link());
+
+            pStatement.execute();
+            
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
     }
 }
