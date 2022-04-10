@@ -30,5 +30,13 @@ export class UserService {
     /*return this.httpClient.get(this.baseURL + 'users/' + userName + '/repos', { 'headers': headers })*/
   }
 
+  getUsers(){
+    return this.http.get(this.API_URL + '/user');
+  }
+
+  putRol(putData:any){
+    return this.http.put<any>((this.API_URL + '/user/permission'),putData,{ 'headers': this.headers });
+  }
+
  
 }
