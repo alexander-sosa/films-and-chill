@@ -8,7 +8,7 @@
       <mat-tab-group>
         <mat-tab label="Inventario de Películas"> 
             <div class="btn-group">
-                <button><i class="fa-solid fa-file-circle-plus"></i></button>
+                <button data-bs-toggle="modal" data-bs-target="#NewProduct"><i class="fa-solid fa-file-circle-plus"></i></button>
         
                 <button><i class="fa-solid fa-print"></i></button>
             </div>
@@ -55,15 +55,15 @@
                   </tr>
               </thead>
                 <tbody>
-                  <tr *ngFor='let movie of movies'>
-                    <th scope="row" style="text-align: center;">1012</th>
-                    <td>Nombre</td>
-                    <td>Apellido</td>
-                    <td>Admin</td>
-                    <td>Correoprueba@gmail.com</td>
+                  <tr *ngFor='let user of users'>
+                    <th scope="row" style="text-align: center;">{{user.user_id}}</th>
+                    <td>{{user.name}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.access_permission}}</td>
+                    <td>{{user.email}}</td>
                     <td>
                       <div class="btn-group-tb">
-                        <button data-bs-toggle="modal" data-bs-target="#UserDetails"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button data-bs-toggle="modal" data-bs-target="#UserDetails" (click)="showUser(user)"><i class="fa-solid fa-pen-to-square"></i></button>
                         <button><i class="fa-solid fa-trash"></i></button>
                       </div>
                     </td>
@@ -78,7 +78,7 @@
     
 
 
-  <!-- Modal -->
+  <!--Edit Modal -->
   <div class="modal fade" id="MovieDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -164,7 +164,7 @@
   </div>
 
 
-  <!-- Modal -->
+  <!--User Modal -->
   <div class="modal fade" id="UserDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -173,11 +173,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form class="row g-3 needs-validation" novalidate>
+          <form [formGroup]="SetRolForm" (submit)="updateRol()" class="row g-3 needs-validation">
 
             <div class="inline">
-              <label for="ID" class="form-label">ID:</label>
-              <input style="width: 15%;" type="number" class="form-control"  id="ID" disabled>
+              <label for="IDU" class="form-label">ID:</label>
+              <input style="width: 15%;" type="number" class="form-control"  id="IDU" disabled>
               &nbsp;&nbsp;&nbsp;
               
             </div>
@@ -191,19 +191,99 @@
             <div class="inline">
               
               <label for="rol" class="form-label">Rol:</label>
-              <select class="form-select" id="rol" required>
-                <option selected disabled value="">Rol...</option>
-                <option>Admin</option>
-                <option>Cliente</option>
+              <select [(ngModel)]="userselected" [ngModelOptions]="{standalone: true}" class="form-select" id="rol">                
+                <option *ngFor="let r of rols" [value]="r.id" >{{r.rol}}</option>
               </select>
-              <div class="invalid-feedback">
-                Selecciona un rol
+
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+              <button class="btn btn-edit" type="submit">Actualizar</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="NewProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Nuevo producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="row g-3" >
+
+            <div class="inline">
+              <label for="title" class="form-label">Título:</label>
+              <input style="width: 100%;" type="text" class="form-control" id="title" >
+              
+            </div>
+
+            <div class="col-lg">
+              <label for="description" class="form-label">Descripción:</label>
+              <div class="input-group has-validation">
+                <textarea class="form-control" id="description" rows="3" ></textarea>
+                
               </div>
             </div>
 
+            <div class="row" style="margin-top: 5%;">
+              <div class="col">
+                <div class="inline">
+                  <label for="release_year" class="form-label">Año de estreno:</label>
+                  <input style="width: 45%;" type="number" class="form-control" id="release_year" min="1900">
+                </div>
+
+                <div class="inline">
+                  <label for="cost" class="form-label">Precio[Bs.]: </label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input style="width: 45%;"  type="number" class="form-control" id="cost" min="10">
+                </div>
+
+                <div class="inline">
+                  <label for="unid" class="form-label">Unidades: </label>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input style="width: 45%;" type="number" class="form-control" id="unid" min="1" >
+                </div>
+              </div>
+              <div class="col">
+                <label for="gender" class="form-label" style="margin-top: 3%;">Género:</label>
+                <select class="form-select" id="gender" style="width: 100%;">
+                  <option selected disabled value="">Género...</option>
+                  <option>Drama</option>
+                  <option>Comedia</option>
+                  <option>Animacion</option>
+                </select>
+
+                <label for="rating" class="form-label"  style="margin-top: 5%;">Rating:</label>
+                <select class="form-select" id="rating" style="width: 100%;">
+                  <option selected disabled value="">Rating...</option>
+                  <option>PG</option>
+                  <option>PG+16</option>
+                </select>
+                
+              </div>
+            </div>
+
+            <div class="inline">
+              <label for="img" class="form-label">Enlance de portada:</label>
+              <input style="width: 100%;" type="text" class="form-control" id="img" >
+              
+            </div>
+          
+
+
+          
+
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-            <button class="btn btn-edit" (click)="cambiarRol()">Actualizar</button>
+            <button class="btn btn-edit" type="submit">Añadir</button>
           </div>
 
           </form>

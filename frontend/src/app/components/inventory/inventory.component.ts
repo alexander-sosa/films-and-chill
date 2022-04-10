@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { Movie } from 'src/app/models/Movie'; 
+import { User } from 'src/app/models/User';
 
 import { MoviesService } from 'src/app/services/movies.service';
-
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,6 +14,11 @@ import Swal from 'sweetalert2';
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
+  userselected?: Number;
+  rols: any = [];
+  currentRol?: Number;
+
+  public SetRolForm: FormGroup;
 
   movie: Movie = {
     movie_id: 0,
@@ -28,10 +35,37 @@ export class InventoryComponent implements OnInit {
 
   movies: any = [];
 
-  constructor(private moviesServies: MoviesService) { }
+  user: User = {
+    user_id: 0,
+    name: '',
+    lastname: '',
+    access_permission: '',
+    email: '',
+    pass: '',
+  	tuple_status: true
+  }
+
+  users: any = [];
+
+  constructor(private moviesServies: MoviesService, private userSevice: UserService, private formBuilder: FormBuilder) { 
+    this.SetRolForm = this.formBuilder.group({
+      IDU: [''],
+      rol: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.getInventory();
+    this.getUsersList();
+    this.generateRols();
+
+  }
+
+  generateRols(){
+    this.rols = [
+      {id:0, rol: 'Admin'},
+      {id:1, rol: 'Cliente'}
+    ]
   }
 
   getInventory(){
@@ -40,6 +74,17 @@ export class InventoryComponent implements OnInit {
         this.movies = res;
       },
       err => console.log(err)
+    );
+  }
+
+  getUsersList(){
+    this.userSevice.getUsers().subscribe(
+      res => {
+        this.users = res;
+      },
+      err => {
+        console.log(err)
+      }
     );
   }
 
@@ -53,15 +98,85 @@ export class InventoryComponent implements OnInit {
     document.getElementById('rating')?.setAttribute('value', String(m.rating));
   }
 
-  cambiarRol(){
-    console.log("Guardado Rol");
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Cambio de Rol Realizado',
-        showConfirmButton: false,
-        timer: 2000
-      })
-      //setTimeout(() => window.location.reload(), 2000);
+  showUser(u: User){
+    document.getElementById('IDU')?.setAttribute('value', String(u.user_id));
+    document.getElementById('user')?.setAttribute('value', String(u.name +' '+u.lastname));
+    //document.getElementById('rol')?.setAttribute('value', String(u.access_permission));
+    if(u.access_permission == 'admin'){
+      this.userselected = 0;
+      this.currentRol = 0
+    }else if (u.access_permission == 'client') {
+      this.userselected = 1;
+      this.currentRol = 1;
+    }
+    
   }
+
+  updateRol(){
+    var IDU = (document.getElementById('IDU') as HTMLInputElement).value;
+    var newRol = (document.getElementById('rol') as HTMLInputElement).value;
+    var btn = document.getElementById('btnUpdate');
+    //console.log((document.getElementById('IDU') as HTMLInputElement).value);
+    //console.log((document.getElementById('rol') as HTMLInputElement).value);
+    if (this.currentRol == Number(newRol)) {
+      console.log('sin cambios');
+      Swal.fire({
+        icon: 'warning',
+        title: 'Error en actualización',
+        text: 'El rol no se ha modificado',
+      })
+    }else{
+      var nr;
+      switch (Number(newRol)) {
+        case 0:
+          nr = 'admin'; 
+          break;
+        
+        case 1:
+          nr = 'client'; 
+          break;
+      
+        default:
+          break;
+      }
+      let data = {
+        "user_id": IDU,
+        "access_permission": nr 
+      }
+      console.log(JSON.stringify(data));
+      this.userSevice.putRol(data).subscribe(
+        res => {
+          console.log('response: '+res.statusText);
+          if (res.status === 200) {
+            console.log('notification2');
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Registro actualizado',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            
+          }
+        },
+        err =>{
+          console.log(err);
+          console.log('response: '+err.statusText);
+          if (err.status === 200) {
+            console.log('notification2');
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Registro actualizado',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.getUsersList();
+            
+          }
+        }
+      );
+    }
+  }
+
 }

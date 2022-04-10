@@ -4,6 +4,10 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZ
 Content-Type: application/json
 
 {
+<<<<<<< HEAD
     "email": "eddy@noreply.com",
+=======
+    "user_id": 1,
+>>>>>>> dc79083829bc11807746a0350902933df8336dbc
     "access_permission": "admin"
 }
