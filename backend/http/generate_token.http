@@ -1,0 +1,4 @@
+###
+GET http://localhost:8080/refreshtoken
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjQ5NTU4NDQ2LCJpYXQiOjE2NDk1NTc0NDZ9.xpLOTDeHWXFCTVu8zz6eID-Vh5n_LQe1oiyHVGtZZucILAC5cPeVLUJ1sLne6xOnopXz-IACy_Rj7sSswhNpCA
+isRefreshToken: true

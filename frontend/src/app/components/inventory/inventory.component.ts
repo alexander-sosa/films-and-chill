@@ -4,6 +4,8 @@ import { Movie } from 'src/app/models/Movie';
 
 import { MoviesService } from 'src/app/services/movies.service';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -51,4 +53,15 @@ export class InventoryComponent implements OnInit {
     document.getElementById('rating')?.setAttribute('value', String(m.rating));
   }
 
+  cambiarRol(){
+    console.log("Guardado Rol");
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Cambio de Rol Realizado',
+        showConfirmButton: false,
+        timer: 2000
+      })
+      //setTimeout(() => window.location.reload(), 2000);
+  }
 }

@@ -1,8 +1,9 @@
 ###
 PUT http://localhost:8080/user/permission
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjQ5NTUxODg4LCJpYXQiOjE2NDk1NDI4ODh9.sSmfg-9CT1jP-Jm2eew7wITq7bDlkaL_oy-jL-wVoXRtwuz_GSArroJCAN9io51Jh45ZomggUPKgLfAPp3X4Ww
 Content-Type: application/json
 
 {
-    "user_id": 2,
+    "email": "eddy@noreply.com",
     "access_permission": "admin"
 }
