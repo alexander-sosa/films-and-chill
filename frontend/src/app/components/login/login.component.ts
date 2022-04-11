@@ -55,12 +55,13 @@ export class LoginComponent implements OnInit {
     
     this.userservices.postLogin(data).subscribe(
       res => {
-        console.log(res.statusText);
+        //console.log(res.ok);
         console.log('Response: '+ res);
+        console.log('respuesta: '+Object.values(res));
         resp = Object.values(res);
-        console.log('token: '+ resp);
-        this.saveLocalStorage(resp);
-        console.log('algo:'+JSON.parse(JSON.stringify(res)));
+        console.log('token: '+ resp[0]);
+        this.saveLocalStorage(resp[0],resp[1]);
+        
         if (JSON.parse(JSON.stringify(res)) !='') {
           console.log('notification2');
           Swal.fire({
@@ -70,25 +71,37 @@ export class LoginComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
+          switch(resp[1]){
+            case 0:
+              this.location.replaceState('/');
+              this.router.navigate(['inventory']);
+              break;
+            case 1:
+              this.location.replaceState('/'); // clears browser history so they can't navigate with back button
+              this.router.navigate(['movies']);
+              break;
+          }
           //this.location.replaceState('/'); // clears browser history so they can't navigate with back button
           //this.router.navigate(['movies']);
-        }else{
+        }
+      },
+      err =>{
+        console.log('response: '+err.status);
+        if(err.status === 401){
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
             text: 'Datos incorrectos'
           })
         }
-      },
-      err =>{
-        console.log('response: '+err.status);
         
       }
     );
     
   }
 
-  saveLocalStorage(token:string){
+  saveLocalStorage(token:string, idr:number){
     localStorage.setItem('token', token);
+    localStorage.setItem('idr', String(idr));
   }
 }
