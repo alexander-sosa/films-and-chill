@@ -1,6 +1,6 @@
 ###
 GET http://localhost:8080/cart
-
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbGV4QG5vcmVwbHkuY29tIiwiZXhwIjoxNjQ5NjUwNDMyLCJpYXQiOjE2NDk2NDA0MzJ9.fsltdxUEJTNNTHhqTUglHTuSZNvmk__37QAQeBr1ZoV19i3e8yIIM5XLwN5lLLxkMeAgZHsBz33UG8GEwU2irw
 ###
 POST http://localhost:8080/cart
 Content-Type: application/json
