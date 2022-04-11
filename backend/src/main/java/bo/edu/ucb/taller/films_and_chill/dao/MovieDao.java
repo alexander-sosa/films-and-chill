@@ -188,6 +188,17 @@ public class MovieDao {
         ){
             //System.out.println(pStatement.getUpdateCount());;
 
+            pStatement.setString(1,  movie.getTitle());
+            pStatement.setString(2,  movie.getDescription());
+            pStatement.setInt(3,  movie.getRelease_year());
+            pStatement.setDouble(4, movie.getCost());
+            pStatement.setInt(5, movie.getRating_id());
+            pStatement.setInt(6, movie.getGenre_id());
+            pStatement.setString(7, movie.getImage_link());
+            pStatement.setInt(8, movie.getStock());
+            pStatement.setBoolean(9, movie.getTuple_status());
+            pStatement.setTimestamp(10, movie.getLast_update());
+
             //pStatement.execute();
             
         }catch(SQLException ex){
