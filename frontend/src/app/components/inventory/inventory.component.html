@@ -229,6 +229,21 @@
               </div>              
             </div>
 
+            <div class="col-lg">
+              <label for="description" class="form-label">Descripción:</label>
+              <div class="input-group has-validation" style="width: 95%;">
+                <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+              </div>
+              <div *ngIf="getValue('description')?.invalid && (getValue('description')?.touched || getValue('description')?.dirty)">
+                <div *ngIf="getValue('description')?.errors?.required" class="alert alert-danger" role="alert">
+                  <p>Campo requerido</p>                          
+                </div>
+              </div>
+              <div *ngIf="getValue('description')?.errors?.minlength" class="alert alert-danger" role="alert">
+                <p>Minimo 100 caracteres</p>
+              </div>
+            </div>
+
             <div class="row" style="margin-top: 5%;">
               <div class="col">
                 <div class="inline">
@@ -239,6 +254,9 @@
                 <div *ngIf="getValue('release_year')?.invalid && (getValue('release_year')?.touched || getValue('release_year')?.dirty)">
                   <div *ngIf="getValue('release_year')?.errors?.required" class="alert alert-danger" role="alert">
                     <p>Campo requerido</p>                          
+                  </div>
+                  <div *ngIf="getValue('release_year')?.errors?.min" class="alert alert-danger" role="alert">
+                    <p>Año minimo 1900</p>                          
                   </div>
                 </div>
 
@@ -251,6 +269,9 @@
                   <div *ngIf="getValue('cost')?.errors?.required" class="alert alert-danger" role="alert">
                     <p>Campo requerido</p>                          
                   </div>
+                  <div *ngIf="getValue('cost')?.errors?.min" class="alert alert-danger" role="alert">
+                    <p>Costo minimo 10</p>                          
+                  </div>
                 </div>
 
                 <div class="inline">
@@ -261,6 +282,9 @@
                 <div *ngIf="getValue('unid')?.invalid && (getValue('unid')?.touched || getValue('unid')?.dirty)">
                   <div *ngIf="getValue('unid')?.errors?.required" class="alert alert-danger" role="alert">
                     <p>Campo requerido</p>                          
+                  </div>
+                  <div *ngIf="getValue('unid')?.errors?.min" class="alert alert-danger" role="alert">
+                    <p>Minimo 1 unidad</p>                          
                   </div>
                 </div>
 

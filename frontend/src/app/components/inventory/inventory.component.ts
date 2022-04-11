@@ -65,9 +65,10 @@ export class InventoryComponent implements OnInit {
 
     this.NewProductForm = this.formBuilder.group({
       title: ['', Validators.required],
-      release_year: ['', Validators.required],
-      cost: ['', Validators.required],
-      unid: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(100)]],
+      release_year: ['', [Validators.required, Validators.min(1900)]],
+      cost: ['', [Validators.required, Validators.min(10)]],
+      unid: ['', [Validators.required, Validators.min(1)]],
       gender: ['', Validators.required],
       rating: ['', Validators.required],
       img: ['', [Validators.required,Validators.pattern(reg)]]
