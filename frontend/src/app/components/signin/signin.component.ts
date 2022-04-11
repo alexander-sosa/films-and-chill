@@ -67,6 +67,7 @@ export class SigninComponent implements OnInit {
         res => {
           console.log('notification');
           console.log('response: '+res.status);
+          console.log('respuesta:'+ Object.values(res));
           if (res.status === 200) {
             resp = Object.values(res);
             console.log('token: '+ resp);
