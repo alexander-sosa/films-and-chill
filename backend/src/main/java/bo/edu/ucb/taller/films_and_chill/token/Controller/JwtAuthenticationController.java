@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bo.edu.ucb.taller.films_and_chill.token.Config.JwtTokenUtil;
+import bo.edu.ucb.taller.films_and_chill.token.Model.DAOUser;
 import bo.edu.ucb.taller.films_and_chill.token.Model.JwtRequest;
 import bo.edu.ucb.taller.films_and_chill.token.Model.JwtResponse;
 import bo.edu.ucb.taller.films_and_chill.token.Model.UserDTO;
@@ -50,7 +51,9 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        final DAOUser user = userDetailsService.findByUsername(authenticationRequest.getUsername());
+
+        return ResponseEntity.ok(new JwtResponse(token, user.getPermission_id()));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -75,14 +78,14 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(userDetailsService.updateRol(user));
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    /*@CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/refreshtoken", method = RequestMethod.GET)
 	public ResponseEntity<?> refreshtoken(HttpServletRequest request) throws Exception {
 		DefaultClaims claims = (io.jsonwebtoken.impl.DefaultClaims) request.getAttribute("claims");
 		Map<String, Object> expectedMap = getMapFromIoJsonwebtokenClaims(claims);
 		String token = jwtTokenUtil.doGenerateRefreshToken(expectedMap, expectedMap.get("sub").toString());
 		return ResponseEntity.ok(new JwtResponse(token));
-	}
+	}*/
 
     private void authenticate (String username, String password) throws Exception{
         try{

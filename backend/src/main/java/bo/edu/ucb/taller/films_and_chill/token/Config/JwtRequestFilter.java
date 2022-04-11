@@ -64,12 +64,13 @@ public class JwtRequestFilter extends OncePerRequestFilter{
             } catch(IllegalArgumentException e){
                 System.out.println("Unable to get JWT Token");
             } catch(ExpiredJwtException e){
-                String isRefreshToken = request.getHeader("isRefreshToken");
+                System.out.println("Token expired");
+                /*String isRefreshToken = request.getHeader("isRefreshToken");
                 String requestURL = request.getRequestURL().toString();
                 if (isRefreshToken != null && isRefreshToken.equals("true") && requestURL.contains("refreshtoken")) {
                     allowForRefreshToken(e, request);
                 } else
-                    request.setAttribute("exception", e);
+                    request.setAttribute("exception", e);*/
             }
         }else {
             logger.warn("JWT Token does not begin with Bearer String");
@@ -78,7 +79,7 @@ public class JwtRequestFilter extends OncePerRequestFilter{
         filterChain.doFilter(request, response);
     }
 
-    private void allowForRefreshToken(ExpiredJwtException ex, HttpServletRequest request) {
+    /*private void allowForRefreshToken(ExpiredJwtException ex, HttpServletRequest request) {
 
 		// create a UsernamePasswordAuthenticationToken with null values.
 		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
@@ -94,7 +95,7 @@ public class JwtRequestFilter extends OncePerRequestFilter{
 		// new JWT
 		request.setAttribute("claims", ex.getClaims());
 
-	}
+	}*/
 
     private String extractJwtFromRequest(HttpServletRequest request) {
 		String bearerToken = request.getHeader("Authorization");

@@ -1,5 +1,15 @@
 package bo.edu.ucb.taller.films_and_chill.dao;
 
+/*import java.util.Optional;
+
+import org.springframework.data.repository.CrudRepository;
+
+import bo.edu.ucb.taller.films_and_chill.dto.Movie;
+
+public interface MovieDao extends CrudRepository<Movie, Integer>{
+    Optional<Movie> findById(Integer movie_id);
+}*/
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,6 +161,34 @@ public class MovieDao {
             pStatement.setString(8, movie.getImage_link());
 
             pStatement.execute();
+            
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public void updateMovie(int movie_id, Movie movie){
+        
+        String query = " UPDATE movie SET "      + 
+                       "    title = ? , "        + 
+                       "    description = ? , "  + 
+                       "    release_year = ? , " +
+                       "    cost = ? , "         + 
+                       "    rating_id = ? , "    + 
+                       "    genre_id = ? , "     + 
+                       "    image_link = ? , "   + 
+                       "    stock = ? , "        + 
+                       "    tuple_status = ? , " + 
+                       "    last_update = ? "    +
+                       " WHERE movie_id = ? ";
+
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            //System.out.println(pStatement.getUpdateCount());;
+
+            //pStatement.execute();
             
         }catch(SQLException ex){
             ex.printStackTrace();

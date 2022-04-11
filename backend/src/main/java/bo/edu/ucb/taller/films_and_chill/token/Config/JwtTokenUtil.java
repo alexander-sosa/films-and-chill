@@ -25,9 +25,6 @@ public class JwtTokenUtil implements Serializable{
     @Value("${jwt.expirationDateInMs}")
     private int jwtExpirationInMs;
 
-	@Value("${jwt.refreshExpirationDateInMs}")
-	private int refreshExpirationDateInMs;
-
     public String getUsernameFromToken(String token){
         return getClaimFromToken(token, Claims::getSubject);
     }
@@ -61,12 +58,12 @@ public class JwtTokenUtil implements Serializable{
                .signWith(SignatureAlgorithm.HS512, secret).compact();
     }
 
-    public String doGenerateRefreshToken(Map<String, Object> claims, String subject) {
+    /*public String doGenerateRefreshToken(Map<String, Object> claims, String subject) {
 		return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
 				.setExpiration(new Date(System.currentTimeMillis() + refreshExpirationDateInMs))
 				.signWith(SignatureAlgorithm.HS512, secret).compact();
 
-	}
+	}*/
 
     public Boolean validateToken(String token, UserDetails userDetails){
         final String username = getUsernameFromToken(token);

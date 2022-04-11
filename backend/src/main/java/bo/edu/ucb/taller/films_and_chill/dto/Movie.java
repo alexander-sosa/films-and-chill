@@ -1,5 +1,6 @@
 package bo.edu.ucb.taller.films_and_chill.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ CREATE TABLE movie (
 );
 */
 @Entity(name = "movie")
-public class Movie {
+public class Movie implements Serializable{
 
     //Id, de la columna movie_id, generado automaticamente
     @Id
