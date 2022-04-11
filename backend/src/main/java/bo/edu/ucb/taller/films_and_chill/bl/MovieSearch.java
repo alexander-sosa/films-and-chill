@@ -32,4 +32,8 @@ public class MovieSearch {
         }
         return ResponseEntity.ok(movieDao.findById(movie_id));
     }
+
+    public ResponseEntity<?> listAllMoviesByGenre(String genre){
+        return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre));
+    }
 }

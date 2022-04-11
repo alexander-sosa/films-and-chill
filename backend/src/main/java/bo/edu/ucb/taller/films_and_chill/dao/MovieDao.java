@@ -194,4 +194,58 @@ public class MovieDao {
             ex.printStackTrace();
         }
     }
+
+    public List<Movie> listAllMoviesByGenre(String genre){
+        List<Movie> result = new ArrayList<>();
+        String query = " SELECT m.movie_id, " + 
+                        "        m.title, " + 
+                        "        m.description, " + 
+                        "        m.release_year, " + 
+                        "        m.cost, " + 
+                        "        m.rating_id, " + 
+                        "        r.rating, " +
+                        "        m.genre_id, " + 
+                        "        g.genre, " + 
+                        "        m.image_link, " + 
+                        "        m.stock, " +
+                        "        m.tuple_status, " + 
+                        "        m.last_update " + 
+                       " FROM movie m "+ 
+                       " LEFT JOIN rating r ON (r.rating_id = m.rating_id) " + 
+                       " LEFT JOIN genre g ON (g.genre_id = m.genre_id) " + 
+                       " WHERE g.genre = ? ";
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            pStatement.setString(1,  genre);
+
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next()){
+                Movie movie = new Movie();
+                movie.setMovie_id(rSet.getInt("movie_id"));
+                movie.setTitle(rSet.getString("title"));
+                movie.setDescription(rSet.getString("description"));
+                movie.setRelease_year(rSet.getInt("release_year"));
+                movie.setCost(rSet.getDouble("cost"));
+                movie.setRating_id(rSet.getInt("rating_id"));
+                movie.setRating(rSet.getString("rating"));
+                movie.setGenre_id(rSet.getInt("genre_id"));
+                movie.setGenre(rSet.getString("genre"));
+                movie.setImage_link(rSet.getString("image_link"));
+                movie.setStock(rSet.getInt("stock"));
+                movie.setTuple_status(rSet.getBoolean("tuple_status"));
+
+                var lastUpdate = rSet.getTimestamp("last_update");
+                movie.setLast_update(new java.sql.Timestamp(lastUpdate.getTime()));
+                result.add(movie);
+            }
+
+            rSet.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }    
 }

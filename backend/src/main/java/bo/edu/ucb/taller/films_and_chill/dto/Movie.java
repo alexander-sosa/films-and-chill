@@ -46,7 +46,9 @@ public class Movie implements Serializable{
     private Boolean tuple_status;
     private Timestamp last_update;
 
-    public Movie() {
+    public Movie() 
+    {
+        
     }
 
     public Integer getMovie_id() {
