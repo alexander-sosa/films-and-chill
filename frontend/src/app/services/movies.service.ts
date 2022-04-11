@@ -22,4 +22,8 @@ export class MoviesService {
     console.log("retrieving..." + this.API_URL + '/movie/' + movie_id)
     return this.http.get(this.API_URL + '/movie/' + movie_id);
   }
+
+  getGenres(){
+    return this.http.get(this.API_URL + '/movie/genre');
+  }
 }

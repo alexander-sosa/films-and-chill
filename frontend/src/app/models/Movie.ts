@@ -13,3 +13,9 @@ export interface Movie{
   	tuple_status?: boolean;
     //last_update?: Timestamp<Timestamp>,
 }
+
+
+export interface Genre{
+    genre_id?: number,
+    genre?: string
+}

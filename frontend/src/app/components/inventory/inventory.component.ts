@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Movie } from 'src/app/models/Movie'; 
+import { Genre, Movie } from 'src/app/models/Movie'; 
 import { User } from 'src/app/models/User';
 
 import { MoviesService } from 'src/app/services/movies.service';
@@ -48,20 +48,29 @@ export class InventoryComponent implements OnInit {
 
   users: any = [];
 
+  genres: any = [];
+  genre: Genre ={
+    genre_id: 0,
+    genre: ''
+  }
+
   constructor(private moviesServies: MoviesService, private userSevice: UserService, private formBuilder: FormBuilder) { 
     this.SetRolForm = this.formBuilder.group({
       IDU: [''],
       rol: ['']
     });
 
+    
+    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+
     this.NewProductForm = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', [Validators.required, Validators.minLength(20)]],
       release_year: ['', Validators.required],
       cost: ['', Validators.required],
       unid: ['', Validators.required],
       gender: ['', Validators.required],
-      rating: ['', Validators.required]
+      rating: ['', Validators.required],
+      img: ['', [Validators.required,Validators.pattern(reg)]]
 
     });
   }
@@ -70,7 +79,7 @@ export class InventoryComponent implements OnInit {
     this.getInventory();
     this.getUsersList();
     this.generateRols();
-
+    this.getGenres();
   }
 
 
@@ -84,6 +93,17 @@ export class InventoryComponent implements OnInit {
       {id:0, rol: 'Admin'},
       {id:1, rol: 'Cliente'}
     ]
+  }
+
+  getGenres(){
+    this.moviesServies.getGenres().subscribe(
+      res => {
+        this.genres = res;
+      },
+      err => {
+        console.log(err)
+      }
+    );
   }
 
   getInventory(){
@@ -198,7 +218,8 @@ export class InventoryComponent implements OnInit {
   }
 
   AddProduct(){
-
+    console.log(this.NewProductForm.value);
+    
   }
 
 }
