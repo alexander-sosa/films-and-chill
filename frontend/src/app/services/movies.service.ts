@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -11,6 +11,9 @@ import { Movie } from '../models/Movie';
 export class MoviesService {
 
   API_URL = 'http://localhost:8080';
+  headers= new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('Access-Control-Allow-Origin', '*');
 
   constructor(private http: HttpClient) { }
 
@@ -29,5 +32,9 @@ export class MoviesService {
 
   getRatings(){
     return this.http.get(this.API_URL + '/movie/rating');
+  }
+
+  postMovie(postData:any){
+    return this.http.post<HttpResponse<any>>((this.API_URL + '/movie'),postData,{ 'headers': this.headers });
   }
 }

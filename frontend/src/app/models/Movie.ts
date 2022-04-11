@@ -14,6 +14,17 @@ export interface Movie{
     //last_update?: Timestamp<Timestamp>,
 }
 
+export interface MovieCreate{
+  title?: string;
+  description?: string;
+  release_year?: number;
+  cost?: number;
+  stock?: number;
+  rating_id?: number;
+  genre_id?: number;
+  image_link?: string;
+}
+
 export interface Genre{
     genre_id?: number,
     genre?: string

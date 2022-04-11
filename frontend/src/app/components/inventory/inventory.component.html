@@ -28,7 +28,7 @@
                     <tr *ngFor='let movie of movies'>
                       <th scope="row" style="text-align: center;">{{movie.movie_id}}</th>
                       <td>{{movie.title}}</td>
-                      <td *ngIf="movie.description == null; else showDes">No se encontró una descripción</td>
+                      <td *ngIf="movie.description == null || movie.description == '' ; else showDes">No se encontró una descripción</td>
                       <ng-template #showDes>{{movie.description}}</ng-template>
                       <td style="text-align: center;">{{movie.cost}}</td>
                       <td style="text-align: center;">{{movie.stock}}</td>
@@ -323,7 +323,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-            <button class="btn btn-edit" type="submit" [disabled]="NewProductForm.invalid">Añadir</button>
+            <button class="btn btn-edit" type="submit" [disabled]="NewProductForm.invalid" data-bs-dismiss="modal">Añadir</button>
           </div>
 
           </form>
