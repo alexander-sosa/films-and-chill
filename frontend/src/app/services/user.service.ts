@@ -8,8 +8,6 @@ import { HttpHeaders, HttpResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 
-
-
 export class UserService {
 
   API_URL = 'http://localhost:8080';
