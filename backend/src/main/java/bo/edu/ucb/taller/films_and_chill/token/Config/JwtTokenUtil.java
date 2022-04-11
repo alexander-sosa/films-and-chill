@@ -25,9 +25,6 @@ public class JwtTokenUtil implements Serializable{
     @Value("${jwt.expirationDateInMs}")
     private int jwtExpirationInMs;
 
-	@Value("${jwt.refreshExpirationDateInMs}")
-	private int refreshExpirationDateInMs;
-
     public String getUsernameFromToken(String token){
         return getClaimFromToken(token, Claims::getSubject);
     }

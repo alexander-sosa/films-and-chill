@@ -169,43 +169,20 @@ public class MovieDao {
 
     public void updateMovie(int movie_id, Movie movie){
         
-        String query = " UPDATE movie SET ";
+        String query = " UPDATE movie SET "      + 
+                       "    title = ? , "        + 
+                       "    description = ? , "  + 
+                       "    release_year = ? , " +
+                       "    cost = ? , "         + 
+                       "    rating_id = ? , "    + 
+                       "    genre_id = ? , "     + 
+                       "    image_link = ? , "   + 
+                       "    stock = ? , "        + 
+                       "    tuple_status = ? , " + 
+                       "    last_update = ? "    +
+                       " WHERE movie_id = ? ";
 
-        /*if(movie.getTitle() != null)
-            header = header + " title = ? ";
-
-        if(movie.getDescription() != null)
-            header = header + ", description = ? ";
-        
-        if(movie.getRelease_year() != null)
-            header = header + ", release_year = ? ";
-
-        if(movie.getCost() != null)
-            header = header + ", cost = ? ";
-
-        if(movie.getRating_id() != null)
-            header = header + ", rating_id = ? ";
-            
-        if(movie.getGenre_id() != null)
-            header = header + ", genre_id = ? ";
-
-        if(movie.getImage_link() != null)
-            header = header + ", image_link = ? ";
-
-        if(movie.getStock() != null)
-            header = header + ", stock = ? ";
-
-        if(movie.getTuple_status() != null)
-            header = header + ", tuple_status = ? ";
-
-        if(movie.getLast_update() != null)
-            header = header + ", last_update = ? ";*/
-
-        //System.out.println(movie.toString());
-
-        //String query = header.replaceFirst("SET ,", "SET");
-
-        /*try(
+        try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
         ){
@@ -215,6 +192,6 @@ public class MovieDao {
             
         }catch(SQLException ex){
             ex.printStackTrace();
-        }*/
+        }
     }
 }

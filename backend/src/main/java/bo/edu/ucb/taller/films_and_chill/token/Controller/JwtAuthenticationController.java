@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bo.edu.ucb.taller.films_and_chill.token.Config.JwtTokenUtil;
+import bo.edu.ucb.taller.films_and_chill.token.Model.DAOUser;
 import bo.edu.ucb.taller.films_and_chill.token.Model.JwtRequest;
 import bo.edu.ucb.taller.films_and_chill.token.Model.JwtResponse;
 import bo.edu.ucb.taller.films_and_chill.token.Model.UserDTO;
@@ -50,7 +51,9 @@ public class JwtAuthenticationController {
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        final DAOUser user = userDetailsService.findByUsername(authenticationRequest.getUsername());
+
+        return ResponseEntity.ok(new JwtResponse(token, user.getPermission_id()));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
