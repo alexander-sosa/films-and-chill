@@ -3,9 +3,9 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-    "name": "Edgar",
-    "lastname": "Carrasco",
+    "name": "test",
+    "lastname": "uno",
     "permission_id": 1,
-    "email": "eddy@noreply.com",
+    "email": "vale@noreply.com",
     "pass": "12345678"
 }

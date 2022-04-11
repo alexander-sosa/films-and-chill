@@ -208,7 +208,7 @@
     </div>
   </div>
 
-   <!-- Modal -->
+   <!-- New product Modal -->
    <div class="modal fade" id="NewProduct" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -217,11 +217,16 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form class="row g-3" >
+          <form class="row g-3" [formGroup]="NewProductForm" (submit)="AddProduct()">
 
             <div class="inline">
               <label for="title" class="form-label">Título:</label>
-              <input style="width: 100%;" type="text" class="form-control" id="title" >
+              <input style="width: 100%;" type="text" class="form-control" id="title" formControlName="title">
+              <div *ngIf="getValue('title')?.invalid && (getValue('title')?.touched || getValue('title')?.dirty)">
+                <div *ngIf="getValue('title')?.errors?.required" class="alert alert-danger" role="alert">
+                  <p>Campo requerido</p>                          
+                </div>
+              </div>
               
             </div>
 
@@ -255,7 +260,6 @@
               <div class="col">
                 <label for="gender" class="form-label" style="margin-top: 3%;">Género:</label>
                 <select class="form-select" id="gender" style="width: 100%;">
-                  <option selected disabled value="">Género...</option>
                   <option>Drama</option>
                   <option>Comedia</option>
                   <option>Animacion</option>
@@ -263,7 +267,6 @@
 
                 <label for="rating" class="form-label"  style="margin-top: 5%;">Rating:</label>
                 <select class="form-select" id="rating" style="width: 100%;">
-                  <option selected disabled value="">Rating...</option>
                   <option>PG</option>
                   <option>PG+16</option>
                 </select>
@@ -283,7 +286,7 @@
 
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-            <button class="btn btn-edit" type="submit">Añadir</button>
+            <button class="btn btn-edit" type="submit" [disabled]="NewProductForm.invalid">Añadir</button>
           </div>
 
           </form>

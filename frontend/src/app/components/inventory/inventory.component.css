@@ -130,3 +130,14 @@
         background-color: #914110;
         color: whitesmoke;
     }
+
+    .alert-danger{
+        height: 5px;
+        text-align: left;
+        
+    }
+
+    .alert-danger p{
+        margin-top: -10px;
+        
+    }

@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/User';
+import { User, UserSingUp } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -14,13 +14,12 @@ import Swal from 'sweetalert2';
 })
 export class SigninComponent implements OnInit {
 
-  user: User ={
+  user: UserSingUp ={
     name: '',
     lastname: '',
-    access_permission: '',
+    permission_id: 0,
     email: '',
-    pass: '',
-  	tuple_status: true
+    pass: ''
   }
 
   public signForm: FormGroup;
@@ -45,6 +44,7 @@ export class SigninComponent implements OnInit {
   }
 
   signin(){
+    let resp:any;
     console.log(this.signForm.value);
     if(!this.getConfirm()){
       console.log('enviar');
@@ -55,20 +55,42 @@ export class SigninComponent implements OnInit {
       this.user.lastname = this.signForm.get('last_name')?.value;  
       if (this.router.url === '/signin/adm') {
         console.log('admin');
-        this.user.access_permission = 'admin';
+        this.user.permission_id = 0;
       }else if (this.router.url === '/signin/cli') {
-        this.user.access_permission = 'client';
+        this.user.permission_id = 1;
       }
       this.user.email = this.signForm.get('email')?.value;
       this.user.pass = this.signForm.get('pass')?.value;    
       console.log(JSON.stringify(this.user));
       
       this.userservices.postUser(JSON.stringify(this.user)).subscribe(
-        res => {},
+        res => {
+          console.log('notification');
+          console.log('response: '+res.status);
+          if (res.status === 200) {
+            resp = Object.values(res);
+            console.log('token: '+ resp);
+            this.saveLocalStorage(resp);
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Registro exitoso',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            
+          }
+          
+        },
         err =>{
           console.log('response: '+err.status);
-          if (err.status === 200) {
+          console.log('Response: '+ err);
+          
+          /*if (err.status === 200) {
             console.log('notification2');
+            resp = Object.values(err);
+            console.log('token: '+ resp);
+            this.saveLocalStorage(resp);
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -78,7 +100,7 @@ export class SigninComponent implements OnInit {
             })
             this.location.replaceState('/'); // clears browser history so they can't navigate with back button
             this.router.navigate(['movies']);
-          }
+          }*/
         }
       );
 
@@ -99,6 +121,10 @@ export class SigninComponent implements OnInit {
     }else{
       return false;
     }
+  }
+
+  saveLocalStorage(token:string){
+    localStorage.setItem('token', token);
   }
 
 }
