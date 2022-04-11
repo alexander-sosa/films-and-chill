@@ -14,8 +14,12 @@ export interface Movie{
     //last_update?: Timestamp<Timestamp>,
 }
 
-
 export interface Genre{
     genre_id?: number,
     genre?: string
+}
+
+export interface Rating{
+  rating_id?: number,
+  rating?: string
 }

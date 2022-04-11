@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Genre, Movie } from 'src/app/models/Movie'; 
+import { Genre, Movie, Rating } from 'src/app/models/Movie'; 
 import { User } from 'src/app/models/User';
 
 import { MoviesService } from 'src/app/services/movies.service';
@@ -21,6 +21,7 @@ export class InventoryComponent implements OnInit {
   public SetRolForm: FormGroup;
   public NewProductForm: FormGroup;
 
+  movies: any = [];
   movie: Movie = {
     movie_id: 0,
     title: '',
@@ -33,9 +34,8 @@ export class InventoryComponent implements OnInit {
     image_link: '',
     tuple_status: true
   }
-
-  movies: any = [];
-
+ 
+  users: any = [];
   user: User = {
     user_id: 0,
     name: '',
@@ -46,12 +46,18 @@ export class InventoryComponent implements OnInit {
   	tuple_status: true
   }
 
-  users: any = [];
+ 
 
   genres: any = [];
   genre: Genre ={
     genre_id: 0,
     genre: ''
+  }
+
+  ratings: any = [];
+  rating: Rating ={
+    rating_id: 0,
+    rating: ''
   }
 
   constructor(private moviesServies: MoviesService, private userSevice: UserService, private formBuilder: FormBuilder) { 
@@ -65,13 +71,13 @@ export class InventoryComponent implements OnInit {
 
     this.NewProductForm = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', [Validators.required, Validators.minLength(100)]],
+      description: ['', Validators.minLength(100)],
       release_year: ['', [Validators.required, Validators.min(1900)]],
       cost: ['', [Validators.required, Validators.min(10)]],
       unid: ['', [Validators.required, Validators.min(1)]],
       gender: ['', Validators.required],
       rating: ['', Validators.required],
-      img: ['', [Validators.required,Validators.pattern(reg)]]
+      img: ['', Validators.pattern(reg)]
 
     });
   }
@@ -81,6 +87,7 @@ export class InventoryComponent implements OnInit {
     this.getUsersList();
     this.generateRols();
     this.getGenres();
+    this.getRatings();
   }
 
 
@@ -100,6 +107,17 @@ export class InventoryComponent implements OnInit {
     this.moviesServies.getGenres().subscribe(
       res => {
         this.genres = res;
+      },
+      err => {
+        console.log(err)
+      }
+    );
+  }
+
+  getRatings(){
+    this.moviesServies.getRatings().subscribe(
+      res => {
+        this.ratings = res;
       },
       err => {
         console.log(err)

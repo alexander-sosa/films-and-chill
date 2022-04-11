@@ -26,4 +26,8 @@ export class MoviesService {
   getGenres(){
     return this.http.get(this.API_URL + '/movie/genre');
   }
+
+  getRatings(){
+    return this.http.get(this.API_URL + '/movie/rating');
+  }
 }
