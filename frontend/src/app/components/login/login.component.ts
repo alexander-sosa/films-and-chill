@@ -1,4 +1,5 @@
 import { Location } from '@angular/common';
+import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -42,11 +43,23 @@ export class LoginComponent implements OnInit {
     
     this.user.email = this.loginForm.get('email')?.value;
     this.user.pass = this.loginForm.get('pass')?.value;    
+
+    let data = {
+      "username": this.loginForm.get('email')?.value,
+      "password": this.loginForm.get('pass')?.value
+    }
+
+    let resp:any;
+
     console.log(JSON.stringify(this.user));
     
-    this.userservices.postLogin(JSON.stringify(this.user)).subscribe(
+    this.userservices.postLogin(data).subscribe(
       res => {
         console.log(res.statusText);
+        console.log('Response: '+ res);
+        resp = Object.values(res);
+        console.log('token: '+ resp);
+        this.saveLocalStorage(resp);
         console.log('algo:'+JSON.parse(JSON.stringify(res)));
         if (JSON.parse(JSON.stringify(res)) !='') {
           console.log('notification2');
@@ -57,8 +70,8 @@ export class LoginComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-          this.location.replaceState('/'); // clears browser history so they can't navigate with back button
-          this.router.navigate(['movies']);
+          //this.location.replaceState('/'); // clears browser history so they can't navigate with back button
+          //this.router.navigate(['movies']);
         }else{
           Swal.fire({
             icon: 'error',
@@ -73,6 +86,9 @@ export class LoginComponent implements OnInit {
       }
     );
     
-    
+  }
+
+  saveLocalStorage(token:string){
+    localStorage.setItem('token', token);
   }
 }

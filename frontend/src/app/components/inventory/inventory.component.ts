@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Movie } from 'src/app/models/Movie'; 
 import { User } from 'src/app/models/User';
@@ -19,6 +19,7 @@ export class InventoryComponent implements OnInit {
   currentRol?: Number;
 
   public SetRolForm: FormGroup;
+  public NewProductForm: FormGroup;
 
   movie: Movie = {
     movie_id: 0,
@@ -52,6 +53,17 @@ export class InventoryComponent implements OnInit {
       IDU: [''],
       rol: ['']
     });
+
+    this.NewProductForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(20)]],
+      release_year: ['', Validators.required],
+      cost: ['', Validators.required],
+      unid: ['', Validators.required],
+      gender: ['', Validators.required],
+      rating: ['', Validators.required]
+
+    });
   }
 
   ngOnInit(): void {
@@ -60,6 +72,12 @@ export class InventoryComponent implements OnInit {
     this.generateRols();
 
   }
+
+
+  getValue(value:string){
+    return this.NewProductForm.get(value);
+  }
+
 
   generateRols(){
     this.rols = [
@@ -177,6 +195,10 @@ export class InventoryComponent implements OnInit {
         }
       );
     }
+  }
+
+  AddProduct(){
+
   }
 
 }
