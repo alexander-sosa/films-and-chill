@@ -40,10 +40,8 @@ export class InventoryComponent implements OnInit {
     user_id: 0,
     name: '',
     lastname: '',
-    access_permission: '',
-    email: '',
-    pass: '',
-  	tuple_status: true
+    permission_id: 0,
+    username: ''
   }
 
  
@@ -169,13 +167,9 @@ export class InventoryComponent implements OnInit {
     document.getElementById('IDU')?.setAttribute('value', String(u.user_id));
     document.getElementById('user')?.setAttribute('value', String(u.name +' '+u.lastname));
     //document.getElementById('rol')?.setAttribute('value', String(u.access_permission));
-    if(u.access_permission == 'admin'){
-      this.userselected = 0;
-      this.currentRol = 0
-    }else if (u.access_permission == 'client') {
-      this.userselected = 1;
-      this.currentRol = 1;
-    }
+    this.userselected = u.permission_id;
+    this.currentRol = u.permission_id;
+    
     
   }
 

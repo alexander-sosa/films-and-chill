@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class LoginComponent implements OnInit {
 
   user: User ={
-    email: '',
+    username: '',
     pass: ''
   }
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     console.log(this.router.url);
 
     
-    this.user.email = this.loginForm.get('email')?.value;
+    this.user.username = this.loginForm.get('email')?.value;
     this.user.pass = this.loginForm.get('pass')?.value;    
 
     let data = {

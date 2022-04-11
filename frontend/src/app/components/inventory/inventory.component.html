@@ -59,8 +59,13 @@
                     <th scope="row" style="text-align: center;">{{user.user_id}}</th>
                     <td>{{user.name}}</td>
                     <td>{{user.lastname}}</td>
-                    <td>{{user.access_permission}}</td>
-                    <td>{{user.email}}</td>
+                    <td> 
+                      <div *ngIf="user.permission_id == 0; else Cliente">
+                        Admin
+                      </div>
+                      <ng-template #Cliente>Cliente</ng-template>
+                    </td>                    
+                    <td>{{user.username}}</td>
                     <td>
                       <div class="btn-group-tb">
                         <button data-bs-toggle="modal" data-bs-target="#UserDetails" (click)="showUser(user)"><i class="fa-solid fa-pen-to-square"></i></button>

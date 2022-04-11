@@ -4,6 +4,6 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YWxlQG5vcmVwbHkuY29tIiwiZ
 Content-Type: application/json
 
 {
-    "email": "eddy@noreply.com",
-    "access_permission": "admin"
+    "username": "vale@noreply.com",
+    "access_permission": "client"
 }
