@@ -3,7 +3,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-  
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -15,10 +15,12 @@
         <li class="nav-item active">
           <button routerLink="/cart" type="button" class="btn btn-primary position-relative">
             <i class="fa-solid fa-cart-shopping"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{valor}}
-              <span class="visually-hidden">unread messages</span>
-            </span>
+            <div *ngIf="isLogged">
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{valor}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </div>
           </button>
         </li>
         <li class="nav-item active">
@@ -47,9 +49,13 @@
         </li>
         -->
       </ul>
-        &nbsp;&nbsp;
-        <button class="btn btn-outline-primary" routerLink="/login">Login</button>
-        &nbsp;
+      <div *ngIf="!isLogged">
+        <button class="btn btn-outline-primary" routerLink="/login">Login</button>&nbsp;&nbsp;
         <button class="btn btn-primary" routerLink="/signin/cli">Sign Up</button>
+      </div>
+      <div *ngIf="isLogged">
+        <span>Nombre Usuario</span>&nbsp;&nbsp;
+        <button class="btn btn-outline-primary" (click)="logout()">Logout</button>
+      </div>
     </div>
 </nav>
