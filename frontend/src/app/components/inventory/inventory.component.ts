@@ -20,6 +20,7 @@ export class InventoryComponent implements OnInit {
 
   public SetRolForm: FormGroup;
   public NewProductForm: FormGroup;
+  public EditProductForm: FormGroup;
 
   movies: any = [];
   movie: Movie = {
@@ -29,10 +30,9 @@ export class InventoryComponent implements OnInit {
     release_year: 0,
     cost: 0,
     stock: 0,
-    rating: '',
-    genre: '',
-    image_link: '',
-    tuple_status: true
+    rating_id: 0,
+    genre_id: 0,
+    image_link: ''
   }
  
   users: any = [];
@@ -80,7 +80,7 @@ export class InventoryComponent implements OnInit {
 
     this.NewProductForm = this.formBuilder.group({
       title: ['', Validators.required],
-      description: ['', Validators.minLength(100)],
+      description: [''],
       release_year: ['', [Validators.required, Validators.min(1900)]],
       cost: ['', [Validators.required, Validators.min(10)]],
       unid: ['', [Validators.required, Validators.min(1)]],
@@ -88,6 +88,17 @@ export class InventoryComponent implements OnInit {
       rating: ['', Validators.required],
       img: ['', Validators.pattern(reg)]
 
+    });
+
+    this.EditProductForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      description: [''],
+      release_year: ['', [Validators.required, Validators.min(1900)]],
+      cost: ['', [Validators.required, Validators.min(10)]],
+      unid: ['', [Validators.required, Validators.min(1)]],
+      gender: ['', Validators.required],
+      rating: ['', Validators.required],
+      img: ['', Validators.pattern(reg)]
     });
   }
 
@@ -100,8 +111,8 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  getValue(value:string){
-    return this.NewProductForm.get(value);
+  getValue(form: FormGroup,value:string){
+    return form.get(value);
   }
 
   generateRols(){
@@ -155,12 +166,14 @@ export class InventoryComponent implements OnInit {
 
   openDetails(m: Movie){
     document.getElementById('ID')?.setAttribute('value', String(m.movie_id));
-    document.getElementById('title')?.setAttribute('value', String(m.title));
-    document.getElementById('description')?.setAttribute('value', String(m.description));
-    document.getElementById('cost')?.setAttribute('value', String(m.cost));
-    document.getElementById('unid')?.setAttribute('value', String(m.stock));
-    document.getElementById('gender')?.setAttribute('value', String(m.genre));
-    document.getElementById('rating')?.setAttribute('value', String(m.rating));
+    this.EditProductForm.get('title')?.setValue(m.title);
+    this.EditProductForm.get('description')?.setValue(m.description);
+    this.EditProductForm.get('release_year')?.setValue(m.release_year);
+    this.EditProductForm.get('cost')?.setValue(m.cost);
+    this.EditProductForm.get('unid')?.setValue(m.stock);
+    this.EditProductForm.get('gender')?.setValue(m.genre_id);
+    this.EditProductForm.get('rating')?.setValue(m.rating_id);
+    this.EditProductForm.get('img')?.setValue(m.image_link);
   }
 
   showUser(u: User){
@@ -291,10 +304,23 @@ export class InventoryComponent implements OnInit {
             timer: 1500
           })
           this.getInventory();
+          this.resetform(this.NewProductForm);
         }
       }
     );
     
   }
 
+  resetform(form: FormGroup){
+    form.reset();
+    console.log('formulario enviado: ',form.value);
+    form.setErrors(null);
+
+  }
+
+  EditProduct(){
+
+  }
+
 }
+

@@ -7,11 +7,9 @@ export interface Movie{
     release_year?: number;
     cost?: number;
     stock?: number;
-	  rating?: string;
-	  genre?: string;
-	  image_link?: string;
-  	tuple_status?: boolean;
-    //last_update?: Timestamp<Timestamp>,
+    rating_id?: number;
+    genre_id?: number;
+    image_link?: string;
 }
 
 export interface MovieCreate{

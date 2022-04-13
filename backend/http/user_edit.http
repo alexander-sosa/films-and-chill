@@ -4,6 +4,6 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YWxlQG5vcmVwbHkuY29tIiwiZ
 Content-Type: application/json
 
 {
-    "username": "vale@noreply.com",
+    "user_id": 10,
     "access_permission": "client"
 }
