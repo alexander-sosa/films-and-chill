@@ -170,7 +170,7 @@ export class InventoryComponent implements OnInit {
   showUser(u: User){
     document.getElementById('IDU')?.setAttribute('value', String(u.user_id));
     document.getElementById('user')?.setAttribute('value', String(u.name +' '+u.lastname));
-    //document.getElementById('rol')?.setAttribute('value', String(u.access_permission));
+    console.log('used per; ', u.permission_id);
     this.userselected = u.permission_id;
     this.currentRol = u.permission_id;
     
@@ -180,7 +180,7 @@ export class InventoryComponent implements OnInit {
   updateRol(){
     var IDU = (document.getElementById('IDU') as HTMLInputElement).value;
     var newRol = (document.getElementById('rol') as HTMLInputElement).value;
-    var btn = document.getElementById('btnUpdate');
+    
     //console.log((document.getElementById('IDU') as HTMLInputElement).value);
     //console.log((document.getElementById('rol') as HTMLInputElement).value);
     if (this.currentRol == Number(newRol)) {
@@ -191,29 +191,17 @@ export class InventoryComponent implements OnInit {
         text: 'El rol no se ha modificado',
       })
     }else{
-      var nr;
-      switch (Number(newRol)) {
-        case 0:
-          nr = 'admin'; 
-          break;
-        
-        case 1:
-          nr = 'client'; 
-          break;
       
-        default:
-          break;
-      }
       let data = {
         "user_id": IDU,
-        "access_permission": nr 
+        "permission_id": newRol 
       }
       console.log(JSON.stringify(data));
       this.userSevice.putRol(data).subscribe(
         res => {
           console.log('response: '+res.statusText);
           if (res.status === 200) {
-            console.log('notification2');
+            console.log('notification');
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -225,9 +213,10 @@ export class InventoryComponent implements OnInit {
           }
         },
         err =>{
+          console.log('notification2');
           console.log(err);
           console.log('response: '+err.statusText);
-          if (err.status === 200) {
+          if (err.statusText === 'OK') {
             console.log('notification2');
             Swal.fire({
               position: 'center',
