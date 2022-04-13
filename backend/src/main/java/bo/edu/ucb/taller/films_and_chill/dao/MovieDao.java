@@ -199,7 +199,9 @@ public class MovieDao {
             pStatement.setBoolean(9, movie.getTuple_status());
             pStatement.setTimestamp(10, movie.getLast_update());
 
-            //pStatement.execute();
+            pStatement.setInt(11, movie_id);
+
+            pStatement.execute();
             
         }catch(SQLException ex){
             ex.printStackTrace();

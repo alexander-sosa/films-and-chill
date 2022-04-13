@@ -25,11 +25,10 @@ public class MovieCreation {
         if(movie == null || movie.getTitle() == null || movie.getCost() == null
           || movie.getStock() == null || movie.getRating_id() == null || movie.getGenre_id() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos inválidos");
-
         //Datos nulos validos: description, release_year, image_link
         if(movie.getDescription() == null)
-            movie.setDescription("");
-        
+        movie.setDescription("");
+    
         if(movie.getRelease_year() == null)
             movie.setRelease_year(0);
         
