@@ -53,7 +53,10 @@ public class JwtAuthenticationController {
 
         final DAOUser user = userDetailsService.findByUsername(authenticationRequest.getUsername());
 
-        return ResponseEntity.ok(new JwtResponse(token, user.getPermission_id()));
+        return ResponseEntity.ok(new JwtResponse(token, 
+                                     user.getPermission_id(), 
+                                     user.getName(), 
+                                     user.getLastname()));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
