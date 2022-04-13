@@ -203,6 +203,35 @@ paths:
           description: "Unauthorized (login first)"
         "403":
           description: "Forbidden (user permission)"
+          
+  /user/{user_id}:
+    put:
+      tags:
+        - "user"
+      summary: "Update user info"
+      description: "Update the user details"
+      operationId: "updateUser"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "user_id"
+          in: "path"
+          description: "ID of the user to edit"
+          required: true
+          type: "integer"
+        - name: "body"
+          in: "body"
+          description: "Information about the user"
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateUserRequest"
+      responses:
+        "201":
+          description: "User updated succesfully"
+        "400":
+          description: "Invalid data supplied"
+        "401":
+          description: "Unauthorized (login first)"
 
   /user/permission:
     put:
@@ -422,3 +451,24 @@ definitions:
     type: "array"
     items:
       $ref: "#/definitions/GenreResponse"
+
+  UpdateUserRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        default: "null"
+        example: "new name"
+      lastname:
+        type: "string"
+        default: "null"
+        example: "new lastname"
+      email:
+        type: "string"
+        default: "null"
+        example: "new-email@noreply.com"
+      pass:
+        type: "string"
+        default: "null"
+        example: "new password"
+
