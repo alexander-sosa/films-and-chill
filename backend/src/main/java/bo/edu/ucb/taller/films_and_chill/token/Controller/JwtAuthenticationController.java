@@ -23,6 +23,7 @@ import bo.edu.ucb.taller.films_and_chill.token.Config.JwtTokenUtil;
 import bo.edu.ucb.taller.films_and_chill.token.Model.DAOUser;
 import bo.edu.ucb.taller.films_and_chill.token.Model.JwtRequest;
 import bo.edu.ucb.taller.films_and_chill.token.Model.JwtResponse;
+import bo.edu.ucb.taller.films_and_chill.token.Model.RoleRequest;
 import bo.edu.ucb.taller.films_and_chill.token.Model.UserDTO;
 import bo.edu.ucb.taller.films_and_chill.token.Service.JWTUserDetailsService;
 import io.jsonwebtoken.impl.DefaultClaims;
@@ -72,7 +73,7 @@ public class JwtAuthenticationController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/user/permission", method = RequestMethod.PUT)
-    public ResponseEntity<?> changeRol(@RequestBody UserDTO user) throws Exception{
+    public ResponseEntity<?> changeRol(@RequestBody RoleRequest user) throws Exception{
         return userDetailsService.updateRol(user);
     }
 

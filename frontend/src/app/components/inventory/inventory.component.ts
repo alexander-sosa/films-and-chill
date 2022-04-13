@@ -193,7 +193,7 @@ export class InventoryComponent implements OnInit {
     }else{
       
       let data = {
-        "user_editor_id": localStorage.getItem("idr"),
+        "user_editor_id": Number(localStorage.getItem("idr")),
         "user_editee_id": Number(IDU),
         "permission_id": Number(newRol) 
       }

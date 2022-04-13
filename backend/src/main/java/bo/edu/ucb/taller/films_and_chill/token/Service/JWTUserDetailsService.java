@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import bo.edu.ucb.taller.films_and_chill.token.Dao.UserDao;
 import bo.edu.ucb.taller.films_and_chill.token.Model.DAOUser;
+import bo.edu.ucb.taller.films_and_chill.token.Model.RoleRequest;
 import bo.edu.ucb.taller.films_and_chill.token.Model.UserDTO;
 
 @Service
@@ -64,15 +65,20 @@ public class JWTUserDetailsService implements UserDetailsService{
 
     //public ResponseEntity<?>updateUser(UserDTO user){}
 
-    public ResponseEntity<?> updateRol(UserDTO user){
-        if(user.getUser_id() == null || user.getPermission_id() == null)
+    public ResponseEntity<?> updateRol(RoleRequest user){
+        if(user.getUser_editor_id() == null || 
+           user.getPermission_id() == null || 
+           user.getUser_editee_id() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos inválidos");
-        Optional<DAOUser> newUser = userDao.findById(user.getUser_id());
-        if(newUser.get().getPermission_id() != 1)
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso Denagado");
 
-        newUser.get().setPermission_id(user.getPermission_id());
-        return ResponseEntity.ok(userDao.save(newUser.get()));
+        Optional<DAOUser> editee = userDao.findById(user.getUser_editee_id());
+        Optional<DAOUser> editor = userDao.findById(user.getUser_editor_id());
+
+        if(editor.get().getPermission_id() != 1)
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso Denegado");
+
+            editee.get().setPermission_id(user.getPermission_id());
+        return ResponseEntity.ok(userDao.save(editee.get()));
     }
 
     public Iterable<DAOUser> listAll(){
