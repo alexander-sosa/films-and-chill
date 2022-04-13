@@ -14,12 +14,12 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/movie/6
+PUT http://localhost:8080/movie/7
 Content-Type: application/json
 
 {
     "title": "Rogue One",
-    "description": "",
+    "description": "Una nueva descripcion",
     "release_year": 2016,
     "cost": 12.2,
     "rating_id": 2,
