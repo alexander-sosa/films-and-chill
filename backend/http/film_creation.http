@@ -14,18 +14,18 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/movie/1
+PUT http://localhost:8080/movie/6
 Content-Type: application/json
 
 {
     "title": "Rogue One: Una Historia de Star Wars",
     "description": "La batalla de la rebelión por conseguir los planos de la Estrella de la Muerte",
     "release_year": 2016,
-    "cost": 16.9,
+    "cost": 12,
     "rating_id": 2,
     "genre_id": 1,
     "image_link": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg",
-    "stock": 10,
+    "stock": 7,
     "tuple_status": true,
     "last_update": "2022-04-10T19:19:12.000+00:00"
   }

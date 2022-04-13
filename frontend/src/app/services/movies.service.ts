@@ -37,4 +37,8 @@ export class MoviesService {
   postMovie(postData:any){
     return this.http.post<HttpResponse<any>>((this.API_URL + '/movie'),postData,{ 'headers': this.headers });
   }
+
+  putMovie(putData:any, movie_id: number | undefined){
+    return this.http.put<any>((this.API_URL + '/movie/' + movie_id),putData,{ 'headers': this.headers });
+  }
 }

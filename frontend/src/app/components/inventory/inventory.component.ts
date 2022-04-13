@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Genre, Movie, MovieCreate, Rating } from 'src/app/models/Movie'; 
+import { Genre, Movie, Rating } from 'src/app/models/Movie'; 
 import { User } from 'src/app/models/User';
 
 import { MoviesService } from 'src/app/services/movies.service';
@@ -17,6 +17,7 @@ export class InventoryComponent implements OnInit {
   userselected?: Number;
   rols: any = [];
   currentRol?: Number;
+  currentMovie?: number;
 
   public SetRolForm: FormGroup;
   public NewProductForm: FormGroup;
@@ -24,7 +25,6 @@ export class InventoryComponent implements OnInit {
 
   movies: any = [];
   movie: Movie = {
-    movie_id: 0,
     title: '',
     description: '',
     release_year: 0,
@@ -58,16 +58,6 @@ export class InventoryComponent implements OnInit {
     rating: ''
   }
 
-  newMovie: MovieCreate ={
-    title: '',
-    description: '',
-    release_year: 0,
-    cost: 0,
-    stock: 0,
-    rating_id: 0,
-    genre_id: 0,
-    image_link: ''
-  }
 
   constructor(private moviesServies: MoviesService, private userSevice: UserService, private formBuilder: FormBuilder) { 
     this.SetRolForm = this.formBuilder.group({
@@ -117,8 +107,8 @@ export class InventoryComponent implements OnInit {
 
   generateRols(){
     this.rols = [
-      {id:0, rol: 'Admin'},
-      {id:1, rol: 'Cliente'}
+      {id:1, rol: 'Admin'},
+      {id:2, rol: 'Cliente'}
     ]
   }
 
@@ -165,6 +155,7 @@ export class InventoryComponent implements OnInit {
   }
 
   openDetails(m: Movie){
+    this.currentMovie = m.movie_id;
     document.getElementById('ID')?.setAttribute('value', String(m.movie_id));
     this.EditProductForm.get('title')?.setValue(m.title);
     this.EditProductForm.get('description')?.setValue(m.description);
@@ -257,19 +248,19 @@ export class InventoryComponent implements OnInit {
     console.log(this.NewProductForm.value);
 
 
-    this.newMovie.title = this.NewProductForm.get('title')?.value;
-    this.newMovie.description = this.NewProductForm.get('description ')?.value;
-    this.newMovie.release_year = this.NewProductForm.get('release_year')?.value;
-    this.newMovie.cost = this.NewProductForm.get('cost')?.value;
-    this.newMovie.stock = this.NewProductForm.get('unid')?.value;
-    this.newMovie.genre_id = this.NewProductForm.get('gender')?.value;
-    this.newMovie.rating_id = this.NewProductForm.get('rating')?.value;
-    this.newMovie.image_link = this.NewProductForm.get('img')?.value;
+    this.movie.title = this.NewProductForm.get('title')?.value;
+    this.movie.description = this.NewProductForm.get('description')?.value;
+    this.movie.release_year = this.NewProductForm.get('release_year')?.value;
+    this.movie.cost = this.NewProductForm.get('cost')?.value;
+    this.movie.stock = this.NewProductForm.get('unid')?.value;
+    this.movie.genre_id = this.NewProductForm.get('gender')?.value;
+    this.movie.rating_id = this.NewProductForm.get('rating')?.value;
+    this.movie.image_link = this.NewProductForm.get('img')?.value;
 
-    console.log(JSON.stringify(this.newMovie));
+    console.log(JSON.stringify(this.movie));
     
     
-    this.moviesServies.postMovie(JSON.stringify(this.newMovie)).subscribe(
+    this.moviesServies.postMovie(JSON.stringify(this.movie)).subscribe(
       res => {
         /*
         console.log('notification');
@@ -319,6 +310,61 @@ export class InventoryComponent implements OnInit {
   }
 
   EditProduct(){
+    console.log('id movie; ', this.currentMovie);
+    console.log(this.EditProductForm.value);
+
+    this.movie.title = this.EditProductForm.get('title')?.value;
+    this.movie.description = this.EditProductForm.get('description')?.value;
+    this.movie.release_year = this.EditProductForm.get('release_year')?.value;
+    this.movie.cost = this.EditProductForm.get('cost')?.value;
+    this.movie.stock = this.EditProductForm.get('unid')?.value;
+    this.movie.genre_id = this.EditProductForm.get('gender')?.value;
+    this.movie.rating_id = this.EditProductForm.get('rating')?.value;
+    this.movie.image_link = this.EditProductForm.get('img')?.value;
+
+    console.log(JSON.stringify(this.movie));
+
+    this.moviesServies.putMovie(JSON.stringify(this.movie), this.currentMovie).subscribe(
+      res => {
+        console.log('notification');
+        console.log('response: '+res.status);
+        console.log('respuesta; '+Object.values(res));
+        /*
+        let txt:any = Object.values(res);
+        if (res.status === 201 && txt === 'Creado') {
+          console.log('notification');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Producto añadido exitosamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.getInventory();
+        }*/
+        
+      },
+      err =>{
+        console.log('notification2');
+        console.log('response: '+err.status);
+        console.log('Response: '+ Object.values(err));
+        /*
+        
+        if (err.status === 201) {
+         
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Producto añadido exitosamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.getInventory();
+          this.resetform(this.NewProductForm);
+        }
+        */
+      }
+    );
 
   }
 
