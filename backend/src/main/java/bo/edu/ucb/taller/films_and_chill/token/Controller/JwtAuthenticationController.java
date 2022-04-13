@@ -7,7 +7,6 @@ import java.util.Map.Entry;
 //import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -74,11 +73,7 @@ public class JwtAuthenticationController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/user/permission", method = RequestMethod.PUT)
     public ResponseEntity<?> changeRol(@RequestBody UserDTO user) throws Exception{
-        if(user.getAccess_permission() == null || user.getEmail() == null)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos Inválidos");
-        if(!user.getAccess_permission().equals("admin"))
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso Denegado");
-        return ResponseEntity.ok(userDetailsService.updateRol(user));
+        return userDetailsService.updateRol(user);
     }
 
     /*@CrossOrigin(origins = "http://localhost:4200")

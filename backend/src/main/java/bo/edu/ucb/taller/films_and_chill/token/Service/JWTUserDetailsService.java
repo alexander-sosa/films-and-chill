@@ -3,8 +3,11 @@ package bo.edu.ucb.taller.films_and_chill.token.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -59,13 +62,15 @@ public class JWTUserDetailsService implements UserDetailsService{
 		return userDao.save(newUser);
 	}
 
-    public DAOUser updateRol(UserDTO user){
-        DAOUser newUser = userDao.findByUsername(user.getEmail());
-        if(user.getAccess_permission().equals("admin"))
-            newUser.setPermission_id(1);
-        else if(user.getAccess_permission().equals("client"))
-            newUser.setPermission_id(2);
-        return userDao.save(newUser);
+    public ResponseEntity<?> updateRol(UserDTO user){
+        if(user.getUser_id() == null || user.getPermission_id() == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos inválidos");
+        Optional<DAOUser> newUser = userDao.findById(user.getUser_id());
+        if(newUser.get().getPermission_id() != 1)
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso Denagado");
+
+        newUser.get().setPermission_id(user.getPermission_id());
+        return ResponseEntity.ok(userDao.save(newUser.get()));
     }
 
     public Iterable<DAOUser> listAll(){
