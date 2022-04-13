@@ -13,16 +13,8 @@ export class CartService {
   
   headers = new HttpHeaders()
   .set('Access-Control-Allow-Origin', '*')
-  //.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-  //.set('Accept', 'application/json')
   .set('Authorization', this.tkn);
   
-  /*
-  headers = new HttpHeaders({
-    Authorization: this.tkn
-  });
-  */
-
   constructor(private http:HttpClient) { }
 
   listCart(){
@@ -41,19 +33,5 @@ export class CartService {
 
   removeAll(){
     return this.http.delete(this.API_URL + '/cart', {headers: this.headers});
-  }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler){
-    if(localStorage.getItem('token')){
-      req = req.clone({
-        setHeaders: {
-          //Authorization: localStorage.getItem('token');
-
-        }
-      });
-    }
-    else{
-      console.log("No token")
-    }
   }
 }
