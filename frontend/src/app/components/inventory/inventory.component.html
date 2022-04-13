@@ -60,7 +60,7 @@
                     <td>{{user.name}}</td>
                     <td>{{user.lastname}}</td>
                     <td> 
-                      <div *ngIf="user.permission_id == 0; else Cliente">
+                      <div *ngIf="user.permission_id == 1; else Cliente">
                         Admin
                       </div>
                       <ng-template #Cliente>Cliente</ng-template>
