@@ -14,8 +14,9 @@ import { ActivatedRoute } from "@angular/router";
 
 export class MovieDetailComponent implements OnInit {
 
-  movie: any | Movie = [];
   movie_id: any;
+  movie: any | Movie = [];
+  actors: any;
   arrived: boolean = false;
 
   constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute, private cartService: CartService) {
@@ -26,7 +27,8 @@ export class MovieDetailComponent implements OnInit {
     const params = this.activatedRoute.snapshot.params;
     if(params.movie_id){
       this.movie_id = params.movie_id;
-      this.getMovie(this.movie_id)
+      this.getMovie(this.movie_id);
+      this.getMovieActors(this.movie_id);
     }
   }
 
@@ -38,6 +40,15 @@ export class MovieDetailComponent implements OnInit {
         // console.log("Movie: " + this.movie[0].title)
       },
       err => console.log(err)
+    );
+  }
+
+  getMovieActors(movie_id: number){
+    this.moviesService.getActors(movie_id).subscribe(
+      res => {
+        this.actors = res;
+        console.log(this.actors);
+      }
     );
   }
 

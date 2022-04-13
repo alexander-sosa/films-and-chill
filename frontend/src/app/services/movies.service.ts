@@ -42,6 +42,10 @@ export class MoviesService {
     return this.http.get(this.API_URL + '/movie/rating', {headers: this.auth_headers});
   }
 
+  getActors(movie_id: number){
+    return this.http.get(this.API_URL + '/movie/' + movie_id + '/actor')
+  }
+
   postMovie(postData:any){
     return this.http.post<HttpResponse<any>>((this.API_URL + '/movie'),postData,{ 'headers': this.auth_headers });
   }

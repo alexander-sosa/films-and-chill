@@ -12,33 +12,46 @@ export class NavbarComponent implements OnInit {
   cart: any | Movie = [];
   valor: any;
 
-  // token control
+  // Access Control
   isLogged: boolean = false;
+  isAdmin: boolean = false;
+
+  // User data
+  name: string | any = localStorage.getItem("name");
+  lastname: string | any = localStorage.getItem("lastname");
 
   constructor(private cartService: CartService,
               private router: Router) { }
 
   ngOnInit(): void {
-    this.listCart();
     localStorage.getItem('token') ? this.isLogged = true : this.isLogged = false;
+    localStorage.getItem('idr') == "1" ? this.isAdmin = true : this.isAdmin = false;
+
+    this.listCart();
   }
 
   listCart(){
-    this.cartService.listCart().subscribe(
-      res => {
-        this.cart = res;
-        this.valor = this.cart.length;
-      },
-      err => {
-        this.cart = err;
-        this.valor = this.cart.length;
-        console.log(err)
-      }
-    );
+    if(this.isLogged){
+      this.cartService.listCart().subscribe(
+        res => {
+          this.cart = res;
+          this.valor = this.cart.length;
+        },
+        err => {
+          this.cart = err;
+          this.valor = this.cart.length;
+          console.log(err)
+        }
+      );
+    }
   }
 
   logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('idr');
+    if(this.isLogged){
+      localStorage.removeItem('token');
+      localStorage.removeItem('idr');
+      localStorage.removeItem('name');
+      localStorage.removeItem('lastname');
+    }
   }
 }
