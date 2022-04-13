@@ -62,6 +62,8 @@ public class JWTUserDetailsService implements UserDetailsService{
 		return userDao.save(newUser);
 	}
 
+    //public ResponseEntity<?>updateUser(UserDTO user){}
+
     public ResponseEntity<?> updateRol(UserDTO user){
         if(user.getUser_id() == null || user.getPermission_id() == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos inválidos");
