@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.listCart();
     localStorage.getItem('token') ? this.isLogged = true : this.isLogged = false;
-    //console.log("token status: " + this.isLogged)
   }
 
   listCart(){

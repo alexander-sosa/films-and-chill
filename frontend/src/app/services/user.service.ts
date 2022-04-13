@@ -12,9 +12,16 @@ export class UserService {
 
   API_URL = 'http://localhost:8080';
 
+  tkn = 'Bearer ' + localStorage.getItem('token');
+
   headers= new HttpHeaders()
   .set('content-type', 'application/json')
   .set('Access-Control-Allow-Origin', '*');
+
+  auth_headers= new HttpHeaders()
+  .set('content-type', 'application/json')
+  .set('Access-Control-Allow-Origin', '*')
+  .set('Authorization', this.tkn);
 
   constructor(private http: HttpClient) { }
 
@@ -29,11 +36,11 @@ export class UserService {
   }
 
   getUsers(){
-    return this.http.get(this.API_URL + '/user');
+    return this.http.get(this.API_URL + '/user', {headers: this.auth_headers});
   }
 
   putRol(putData:any){
-    return this.http.put<any>((this.API_URL + '/user/permission'),putData,{ 'headers': this.headers });
+    return this.http.put<any>((this.API_URL + '/user/permission'),putData,{ 'headers': this.auth_headers });
   }
 
  
