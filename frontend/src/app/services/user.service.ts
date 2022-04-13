@@ -40,7 +40,8 @@ export class UserService {
   }
 
   putRol(putData:any){
-    return this.http.put<any>((this.API_URL + '/user/permission'),putData,{ 'headers': this.auth_headers });
+    
+    return this.http.put<any>((this.API_URL + '/user/permission'), putData, { 'headers': this.auth_headers });
   }
 
  

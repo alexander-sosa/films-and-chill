@@ -193,8 +193,9 @@ export class InventoryComponent implements OnInit {
     }else{
       
       let data = {
-        "user_id": IDU,
-        "permission_id": newRol 
+        "user_editor_id": localStorage.getItem("idr"),
+        "user_editee_id": Number(IDU),
+        "permission_id": Number(newRol) 
       }
       console.log(JSON.stringify(data));
       this.userSevice.putRol(data).subscribe(
@@ -217,7 +218,6 @@ export class InventoryComponent implements OnInit {
           console.log(err);
           console.log('response: '+err.statusText);
           if (err.statusText === 'OK') {
-            console.log('notification2');
             Swal.fire({
               position: 'center',
               icon: 'success',
