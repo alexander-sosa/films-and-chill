@@ -19,7 +19,7 @@ schemes:
 
 # Endpoints
 paths:
-  /movie:
+  /movie/list:
     get:
       tags:
         - "movie"
@@ -40,6 +40,7 @@ paths:
           schema:
             $ref: "#/definitions/MovieResponseArray"
 
+  /movie:
     post:
       tags:
         - "movie"
@@ -60,6 +61,8 @@ paths:
           description: "Movie created succesfully"
         "400":
           description: "Invalid data supplied"
+        "401":
+          description: "Unauthorized (login first)"
 
   /movie/{movie_id}:
     get:
@@ -82,6 +85,8 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/MovieResponse"
+        "401":
+          description: "Unauthorized (login first)"
         "404":
           description: "Movie not found"
 
@@ -111,6 +116,8 @@ paths:
           description: "Movie updated succesfully"
         "400":
           description: "Invalid data supplied"
+        "401":
+          description: "Unauthorized (login first)"
 
   /movie/{movie_id}/actor:
     get:
@@ -135,6 +142,8 @@ paths:
             $ref: "#/definitions/ActorResponseArray"
         "400":
           description: "Invalid ID"
+        "401":
+          description: "Unauthorized (login first)"
 
   /movie/genre:
     get:
@@ -150,6 +159,8 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/GenreResponseArray"
+        "401":
+          description: "Unauthorized (login first)"
 
   /user:
     post:
@@ -172,6 +183,8 @@ paths:
           description: "User created succesfully"
         "400":
           description: "Invalid data supplied"
+        "401":
+          description: "Unauthorized (login first)"
 
     get:
       tags:
@@ -212,6 +225,8 @@ paths:
           description: "Permission updated"
         "400":
           description: "Invalid data supplied"
+        "401":
+          description: "Unauthorized (login first)"
 
   /auth:
     post:
