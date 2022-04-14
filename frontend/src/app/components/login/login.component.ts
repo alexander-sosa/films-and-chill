@@ -21,7 +21,12 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userservices: UserService, private router: Router, private location: Location) { 
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userservices: UserService, 
+    private router: Router, 
+    private location: Location
+    ) { 
       this.loginForm = this.formBuilder.group({
       email:['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required, Validators.minLength(8)]]
@@ -72,13 +77,17 @@ export class LoginComponent implements OnInit {
             timer: 1500
           })
           switch(resp[1]){
-            case 0:
-              this.location.replaceState('/');
-              this.router.navigate(['inventory']);
-              break;
             case 1:
-              this.location.replaceState('/'); // clears browser history so they can't navigate with back button
-              this.router.navigate(['movies']);
+              console.log("Inventory...")
+              //this.location.replaceState('/');
+              //window.location.reload();
+              //this.router.navigate(['inventory']);
+              break;
+            case 2:
+              console.log("Movies...")
+              //this.location.replaceState('/'); // clears browser history so they can't navigate with back button
+              //window.location.reload();
+              //this.router.navigate(['movies']);
               break;
           }
           //this.location.replaceState('/'); // clears browser history so they can't navigate with back button
@@ -94,10 +103,9 @@ export class LoginComponent implements OnInit {
             text: 'Datos incorrectos'
           })
         }
-        
+ 
       }
-    );
-    
+    );    
   }
 
   saveLocalStorage(token:string, idr:number, name:string, lastname:string){

@@ -24,15 +24,19 @@ export class SigninComponent implements OnInit {
 
   public signForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userservices: UserService, private router: Router, private location: Location) { 
+  constructor(
+    private formBuilder: FormBuilder, 
+    private userservices: UserService, 
+    private router: Router, 
+    private location: Location
+    ) { 
       this.signForm = this.formBuilder.group({
       name: ['', Validators.required],
       last_name: ['', Validators.required],
       email:['', [Validators.required, Validators.email]],
       pass: ['', [Validators.required, Validators.minLength(8)]],
       pass_conf: ['', [Validators.required, Validators.minLength(8)]]
-    });
-  
+    });  
   }
 
   ngOnInit(): void {
@@ -113,7 +117,7 @@ export class SigninComponent implements OnInit {
         text: 'Confirma tu contraseña'
       })
     }
-    
+    setTimeout(() => this.router.navigate(['/movies']), 1500);
   }
 
   getConfirm(){

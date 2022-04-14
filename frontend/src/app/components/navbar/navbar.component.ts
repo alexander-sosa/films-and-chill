@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/Movie';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -21,7 +22,9 @@ export class NavbarComponent implements OnInit {
   lastname: string | any = localStorage.getItem("lastname");
 
   constructor(private cartService: CartService,
-              private router: Router) { }
+              private router: Router,
+              private location: Location
+  ) { }
 
   ngOnInit(): void {
     localStorage.getItem('token') ? this.isLogged = true : this.isLogged = false;
@@ -52,6 +55,10 @@ export class NavbarComponent implements OnInit {
       localStorage.removeItem('idr');
       localStorage.removeItem('name');
       localStorage.removeItem('lastname');
+
+      this.location.replaceState('/');
+      window.location.reload();
+      this.router.navigate(['movies']);
     }
   }
 }
