@@ -78,16 +78,14 @@ export class LoginComponent implements OnInit {
           })
           switch(resp[1]){
             case 1:
-              console.log("Inventory...")
-              //this.location.replaceState('/');
-              //window.location.reload();
-              //this.router.navigate(['inventory']);
+              console.log("Redirecting to...")
+              this.location.replaceState('/');
+              setTimeout(() => window.location.replace("http://localhost:4200/inventory"), 1000);
               break;
             case 2:
               console.log("Movies...")
-              //this.location.replaceState('/'); // clears browser history so they can't navigate with back button
-              //window.location.reload();
-              //this.router.navigate(['movies']);
+              this.location.replaceState('/'); // clears browser history so they can't navigate with back button
+              setTimeout(() => window.location.replace("http://localhost:4200/movies"), 1000);
               break;
           }
           //this.location.replaceState('/'); // clears browser history so they can't navigate with back button

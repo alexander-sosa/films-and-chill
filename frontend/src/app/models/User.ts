@@ -13,6 +13,6 @@ export interface UserSingUp{
   name?: string;
   lastname?: string;
   permission_id?: number;
-  email?: string;
+  username?: string;
   pass?: string;
 }

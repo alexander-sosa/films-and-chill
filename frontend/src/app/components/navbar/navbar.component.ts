@@ -57,8 +57,8 @@ export class NavbarComponent implements OnInit {
       localStorage.removeItem('lastname');
 
       this.location.replaceState('/');
-      window.location.reload();
-      this.router.navigate(['movies']);
+      window.location.replace("http://localhost:4200/");
+      //this.router.navigate(['/inventory']);
     }
   }
 }

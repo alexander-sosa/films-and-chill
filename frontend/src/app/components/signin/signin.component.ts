@@ -18,7 +18,7 @@ export class SigninComponent implements OnInit {
     name: '',
     lastname: '',
     permission_id: 0,
-    email: '',
+    username: '',
     pass: ''
   }
 
@@ -63,7 +63,7 @@ export class SigninComponent implements OnInit {
       }else if (this.router.url === '/signin/cli') {
         this.user.permission_id = 1;
       }
-      this.user.email = this.signForm.get('email')?.value;
+      this.user.username = this.signForm.get('email')?.value;
       this.user.pass = this.signForm.get('pass')?.value;    
       console.log(JSON.stringify(this.user));
       
