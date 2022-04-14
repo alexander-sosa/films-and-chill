@@ -63,7 +63,7 @@ public class JwtAuthenticationController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception{
-        return ResponseEntity.ok(userDetailsService.save(user));
+        return userDetailsService.save(user);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
