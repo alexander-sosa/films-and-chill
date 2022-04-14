@@ -5,6 +5,7 @@ USE films_chill;
 CREATE TABLE genre(
 	genre_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	genre varchar(20) NOT NULL,
+	image_link varchar(255),
 	tuple_status bool DEFAULT 1,
 	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
@@ -25,7 +26,7 @@ CREATE TABLE movie (
     stock int NOT NULL,
 	rating_id int NOT NULL,
 	genre_id int NOT NULL,
-	image_link varchar(200),
+	image_link varchar(255),
 	tuple_status bool DEFAULT 1,
     last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (rating_id) REFERENCES rating(rating_id),

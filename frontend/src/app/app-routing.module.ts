@@ -7,6 +7,7 @@ import { MovieDetailComponent } from './components/movie-detail/movie-detail.com
 import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
 import { SearchesComponent } from './components/searches/searches.component';
+import { GenreListingComponent } from './components/genre-listing/genre-listing.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'movie-detail/:movie_id', component: MovieDetailComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'search', component: SearchesComponent }
+  { path: 'search', component: SearchesComponent },
+  { path: 'genres', component: GenreListingComponent}
 ];
 
 @NgModule({

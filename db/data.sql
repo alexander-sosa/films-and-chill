@@ -1,10 +1,10 @@
 -- data
-INSERT INTO genre (genre) VALUES 
-('ciencia ficcion'),
-('accion'),
-('fantasia'),
-('drama'),
-('comedia');
+INSERT INTO genre (genre, image_link) VALUES 
+('ciencia ficcion', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/ciencia-ficcion.jpg'),
+('accion', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/accion.jpg'),
+('fantasia', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/fantasia.jpg'),
+('drama', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/drama.jpg'),
+('comedia', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/comedia.jpg');
 
 INSERT INTO rating (rating) VALUES
 ('G'),

@@ -444,8 +444,13 @@ definitions:
       genre_id:
         type: "integer"
         format: "int32"
+        example: 1
       description:
         type: "string"
+        example: "ciencia ficcion"
+      image:
+        type: "string"
+        example: "https://domain/image.jpg"
 
   GenreResponseArray:
     type: "array"
