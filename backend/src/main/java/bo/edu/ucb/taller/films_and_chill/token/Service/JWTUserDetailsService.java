@@ -3,6 +3,7 @@ package bo.edu.ucb.taller.films_and_chill.token.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,22 +49,35 @@ public class JWTUserDetailsService implements UserDetailsService{
         newUser.setName(user.getName());
         newUser.setLastname(user.getLastname());
         newUser.setPermission_id(user.getPermission_id());
-		newUser.setUsername(user.getEmail());
+		newUser.setUsername(user.getUsername());
 		newUser.setPass(bcryptEncoder.encode(user.getPass()));
         newUser.setTuple_status(true);
 
         Instant instant = Instant.now();
         newUser.setLast_update(new Timestamp(instant.toEpochMilli()));
 
-        if(newUser.getPermission_id() == 1)
-            newUser.setAccess_permission("admin");
-        else if(newUser.getPermission_id() == 2)
-            newUser.setAccess_permission("client");
-
 		return userDao.save(newUser);
 	}
 
-    //public ResponseEntity<?>updateUser(UserDTO user){}
+    public ResponseEntity<?>updateUser(UserDTO user, Integer user_id){
+        if(user == null || 
+           user.getUser_id() != null ||
+           user.getName() == null ||
+           user.getLastname() == null ||
+           user.getPermission_id() == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos Inválidos");
+
+        Optional<DAOUser> newUser = userDao.findById(user_id);
+
+        newUser.get().setName(user.getName());
+        newUser.get().setLastname(user.getLastname());
+        newUser.get().setPermission_id(user.getPermission_id());
+        newUser.get().setUsername(user.getUsername());
+        newUser.get().setTuple_status(user.getTuple_status());
+        newUser.get().setLast_update(user.getLast_update());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+    }
 
     public ResponseEntity<?> updateRol(RoleRequest user){
         if(user.getUser_editor_id() == null || 
@@ -76,11 +90,16 @@ public class JWTUserDetailsService implements UserDetailsService{
         if(user.getUser_editor_id() != 1)
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso Denegado");
 
-            editee.get().setPermission_id(user.getPermission_id());
+        editee.get().setPermission_id(user.getPermission_id());
         return ResponseEntity.ok(userDao.save(editee.get()));
     }
 
-    public Iterable<DAOUser> listAll(){
-        return userDao.findAll();
+    public List<DAOUser> listAll(){
+        Iterable<DAOUser> users = userDao.findAll();
+        List<DAOUser> allowedUsers = new ArrayList<>();
+        for(DAOUser user: users)
+            if(user.isTuple_status())
+                allowedUsers.add(user);
+        return allowedUsers;
     }
 }
