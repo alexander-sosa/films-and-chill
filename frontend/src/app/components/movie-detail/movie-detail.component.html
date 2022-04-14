@@ -11,9 +11,12 @@
         </div>
         <div class="col-6">
             <p *ngIf="movie[0].description == undefined"> <span class="bolder">Descripción:</span><br><i>No se encontró una descripción</i> </p>
-            <p *ngIf="movie[0].description != undefined"> {{movie[0].description}} </p>
+            <p *ngIf="movie[0].description != undefined"> <span class="bolder">Descripción:</span>{{movie[0].description}} </p>
             <p>
-                <span class="bolder">Actores: </span> Robert Downey Jr., Chris Evans, Scarlett Johansson, Elizabeth Olsen
+                <span class="bolder">Actores: </span>
+                <span *ngFor="let actor of actors">
+                    {{actor.first_name}} {{actor.last_name}},
+                </span>
             </p>
             <p>
                 <span class="bolder">Precio: </span> {{movie[0].cost}} Bs. <br>

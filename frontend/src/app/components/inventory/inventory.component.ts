@@ -8,6 +8,8 @@ import { MoviesService } from 'src/app/services/movies.service';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
@@ -59,11 +61,16 @@ export class InventoryComponent implements OnInit {
   }
 
 
-  constructor(private moviesServies: MoviesService, private userSevice: UserService, private formBuilder: FormBuilder) { 
-    this.SetRolForm = this.formBuilder.group({
-      IDU: [''],
-      rol: ['']
-    });
+  constructor(
+    private moviesServies: MoviesService, 
+    private userSevice: UserService, 
+    private formBuilder: FormBuilder,
+    private router: Router
+    ) { 
+  this.SetRolForm = this.formBuilder.group({
+    IDU: [''],
+    rol: ['']
+  });
 
     
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -93,6 +100,10 @@ export class InventoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('idr') != "1"){
+      this.router.navigate(['/login']);
+    }
+
     this.getInventory();
     this.getUsersList();
     this.generateRols();
