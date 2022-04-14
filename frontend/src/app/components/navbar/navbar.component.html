@@ -15,14 +15,14 @@
               <a class="nav-link" routerLink="/genres">Géneros<span class="sr-only"></span></a>
             </li>
             <li class="nav-item active">
-              <button routerLink="/cart" type="button" class="btn btn-primary position-relative">
+              <button routerLink="/cart" type="button" class="btn btn-dark position-relative">
                 <i class="fa-solid fa-cart-shopping"></i>
               </button>
             </li>
             <li class="nav-item active">
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Buscar película" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa-solid fa-search"></i></button>
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa-solid fa-search"></i></button>
                 </form>
             </li>
             <!--
@@ -45,8 +45,8 @@
             </li>
             -->
           </ul>
-          <button class="btn btn-outline-primary" routerLink="/login">Login</button>&nbsp;&nbsp;
-          <button class="btn btn-primary" routerLink="/signin/cli">Sign Up</button>
+          <button class="btn btn-outline-dark" routerLink="/login">Login</button>&nbsp;&nbsp;
+          <button class="btn btn-dark" routerLink="/signin/cli">Sign Up</button>
         </div>
     </nav>
 </div>
@@ -68,8 +68,8 @@
             <a class="nav-link" routerLink="/inventory">Dashboard<span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <span>{{name}}&nbsp;{{lastname}}</span>&nbsp;&nbsp;
-        <button class="btn btn-outline-primary" (click)="logout()">Logout</button>
+        <span>{{name}}&nbsp;{{lastname}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
       </div>
   </nav>
 </div>
@@ -88,7 +88,7 @@
             <a class="nav-link" routerLink="/">Inicio <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <button routerLink="/cart" type="button" class="btn btn-primary position-relative">
+            <button routerLink="/cart" type="button" class="btn btn-dark position-relative">
               <i class="fa-solid fa-cart-shopping"></i>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {{valor}}
@@ -99,12 +99,12 @@
           <li class="nav-item active">
               <form class="form-inline my-2 my-lg-0">
                   <input class="form-control mr-sm-2" type="search" placeholder="Buscar película" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa-solid fa-search"></i></button>
+                  <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"><i class="fa-solid fa-search"></i></button>
               </form>
           </li>
         </ul>
-        <span>{{name}}&nbsp;{{lastname}}</span>&nbsp;&nbsp;
-        <button class="btn btn-outline-primary" (click)="logout()">Logout</button>
+        <span>{{name}}&nbsp;{{lastname}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
       </div>
   </nav>
 </div>
