@@ -6,6 +6,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
+import { SearchesComponent } from './components/searches/searches.component';
 
 
 const routes: Routes = [
@@ -15,8 +16,9 @@ const routes: Routes = [
   { path: 'signin/adm', component: SigninComponent },
   { path: 'signin/cli', component: SigninComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'movie-detail/:movie_id', component: MovieDetailComponent},
-  { path: 'cart', component: CartComponent}
+  { path: 'movie-detail/:movie_id', component: MovieDetailComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'search', component: SearchesComponent }
 ];
 
 @NgModule({
@@ -24,4 +26,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [InventoryComponent, ListingComponent, SigninComponent, LoginComponent, MovieDetailComponent, CartComponent];
+export const routingComponents = [InventoryComponent, ListingComponent, SigninComponent, LoginComponent, MovieDetailComponent, CartComponent, SearchesComponent];
