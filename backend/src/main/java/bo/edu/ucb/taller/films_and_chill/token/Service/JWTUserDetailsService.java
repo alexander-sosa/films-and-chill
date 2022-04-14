@@ -44,8 +44,21 @@ public class JWTUserDetailsService implements UserDetailsService{
         return userDao.findByUsername(username);
     }
 
-    public DAOUser save(UserDTO user) {
-		DAOUser newUser = new DAOUser();
+    public ResponseEntity<?> save(UserDTO user) {
+        DAOUser existingUser = findByUsername(user.getUsername());
+        if(existingUser != null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario existente");
+            
+        if(user == null || 
+            user.getUser_id() != null ||
+            user.getName() == null ||
+            user.getLastname() == null ||
+            user.getUsername() == null ||
+            user.getPass() == null ||
+            user.getPermission_id() == null)
+                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos Inválidos");
+		
+        DAOUser newUser = new DAOUser();
         newUser.setName(user.getName());
         newUser.setLastname(user.getLastname());
         newUser.setPermission_id(user.getPermission_id());
@@ -56,7 +69,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         Instant instant = Instant.now();
         newUser.setLast_update(new Timestamp(instant.toEpochMilli()));
 
-		return userDao.save(newUser);
+		return ResponseEntity.status(HttpStatus.CREATED).body(userDao.save(newUser));
 	}
 
     public ResponseEntity<?>updateUser(UserDTO user, Integer user_id){
@@ -65,8 +78,12 @@ public class JWTUserDetailsService implements UserDetailsService{
            user.getName() == null ||
            user.getLastname() == null ||
            user.getPermission_id() == null)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos Inválidos");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos Inválidos");
 
+        DAOUser existingUser = findByUsername(user.getUsername());
+        if(existingUser != null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario existente");
+        
         Optional<DAOUser> newUser = userDao.findById(user_id);
 
         newUser.get().setName(user.getName());
@@ -76,7 +93,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         newUser.get().setTuple_status(user.getTuple_status());
         newUser.get().setLast_update(user.getLast_update());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userDao.save(newUser.get()));
     }
 
     public ResponseEntity<?> updateRol(RoleRequest user){

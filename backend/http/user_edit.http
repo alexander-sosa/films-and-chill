@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/user/1
+PUT http://localhost:8080/user/2
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjQ5OTc3Njk0LCJpYXQiOjE2NDk5Njc2OTR9.hCxgbiwCvZxchZI1xZIM9l6xJDdDW3y98LFKM2G7BUqcEWYUNBZGsTL3AfPUSVEnvz03IaOM5JZysT93CNn19g
 Content-Type: application/json
 
@@ -18,7 +18,7 @@ Content-Type: application/json
     "name": "Edgar Fabian",
     "lastname": "Carrasco",
     "permission_id": 1,
-    "email": "eddy@noreply.com",
+    "username": "eddy2@noreply.com",
     "tuple_status": true,
     "last_update": "2022-04-11T13:49:30.000+00:00"
   }
