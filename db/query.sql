@@ -16,3 +16,12 @@ title = 'Rogue One',
 cost = 11.5,
 stock = 2
 WHERE movie_id = 10;
+
+-- edit an existing user
+UPDATE user 
+SET 
+name = 'Rogue One',
+lastname = 11.5,
+email = 2,
+pass = 'new hashed pass'
+WHERE user_id = 5;
