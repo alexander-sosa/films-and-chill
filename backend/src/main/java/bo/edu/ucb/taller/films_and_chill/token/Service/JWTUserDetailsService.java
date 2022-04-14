@@ -72,9 +72,8 @@ public class JWTUserDetailsService implements UserDetailsService{
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos inválidos");
 
         Optional<DAOUser> editee = userDao.findById(user.getUser_editee_id());
-        Optional<DAOUser> editor = userDao.findById(user.getUser_editor_id());
 
-        if(editor.get().getPermission_id() != 1)
+        if(user.getUser_editor_id() != 1)
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso Denegado");
 
             editee.get().setPermission_id(user.getPermission_id());
