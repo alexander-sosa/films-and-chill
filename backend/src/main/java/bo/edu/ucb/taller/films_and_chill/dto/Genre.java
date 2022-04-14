@@ -6,11 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 /**
- * CREATE TABLE genre(
- * genre_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
- * genre varchar(20) NOT NULL,
- * tuple_status bool DEFAULT 1,
- * last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+CREATE TABLE genre(
+	genre_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	genre varchar(20) NOT NULL,
+	image_link varchar(255),
+	tuple_status bool DEFAULT 1,
+	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
  */
 @Entity(name = "genre")
@@ -20,6 +21,7 @@ public class Genre {
     private Integer genre_id;
 
     private String genre;
+    private String image_link;
     private Boolean tuple_status;
     private Timestamp last_update;
 
@@ -42,6 +44,14 @@ public class Genre {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getImage_link() {
+        return this.image_link;
+    }
+
+    public void setImage_link(String image_link) {
+        this.image_link = image_link;
     }
 
     public Boolean isTuple_status() {

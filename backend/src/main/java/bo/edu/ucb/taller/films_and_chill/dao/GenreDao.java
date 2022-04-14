@@ -27,9 +27,10 @@ public class GenreDao {
     public List<Genre> listAllGenres (){
         List<Genre> result = new ArrayList<>();
         String query = " SELECT genre_id, " + 
-                        "       genre, " + 
-                        "       tuple_status, " + 
-                        "       last_update " + 
+                       "       genre, " + 
+                       "       image_link, " + 
+                       "       tuple_status, " + 
+                       "       last_update " + 
                        " FROM genre g ";
         try(
             Connection connection = dataSource.getConnection();
@@ -41,6 +42,7 @@ public class GenreDao {
                 Genre genre = new Genre();
                 genre.setGenre_id(rSet.getInt("genre_id"));
                 genre.setGenre(rSet.getString("genre"));
+                genre.setImage_link(rSet.getString("image_link"));
                 genre.setTuple_status(rSet.getBoolean("tuple_status"));
 
                 var lastUpdate = rSet.getTimestamp("last_update");
