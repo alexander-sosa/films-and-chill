@@ -14,6 +14,7 @@ export interface Movie{
 
 export interface Genre{
     genre_id?: number,
+    image?: string, 
     genre?: string
 }
 
