@@ -19,7 +19,7 @@ public class DAOUser {
 	private String lastname;
 	@Column
 	private Integer permission_id;
-	@Column(unique = true)
+	@Column(unique = true, name = "email")
 	private String username;
 	@Column
 	@JsonIgnore
@@ -28,8 +28,6 @@ public class DAOUser {
 	private Boolean tuple_status;
 	@Column
 	private Timestamp last_update;
-
-	private String access_permission;
 
 	public Integer getUser_id() {
 		return this.user_id;
@@ -97,13 +95,5 @@ public class DAOUser {
 
 	public void setLast_update(Timestamp last_update) {
 		this.last_update = last_update;
-	}
-
-	public String getAccess_permission() {
-		return this.access_permission;
-	}
-
-	public void setAccess_permission(String access_permission) {
-		this.access_permission = access_permission;
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,6 +76,12 @@ public class JwtAuthenticationController {
     @RequestMapping(value = "/user/permission", method = RequestMethod.PUT)
     public ResponseEntity<?> changeRol(@RequestBody RoleRequest user) throws Exception{
         return userDetailsService.updateRol(user);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/user/{user_id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO user, @PathVariable(name = "user_id") Integer user_id) throws Exception{
+        return userDetailsService.updateUser(user, user_id);
     }
 
     private void authenticate (String username, String password) throws Exception{

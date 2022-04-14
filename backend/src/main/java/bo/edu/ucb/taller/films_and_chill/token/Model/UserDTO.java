@@ -8,12 +8,10 @@ public class UserDTO {
 	private String name;
 	private String lastname;
 	private Integer permission_id;
-	private String email;
+	private String username;
 	private String pass;
 	private Boolean tuple_status;
 	private Timestamp last_update;
-    
-    private String access_permission;
 
     public Integer getUser_id() {
         return this.user_id;
@@ -47,12 +45,12 @@ public class UserDTO {
         this.permission_id = permission_id;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPass() {
@@ -81,13 +79,5 @@ public class UserDTO {
 
     public void setLast_update(Timestamp last_update) {
         this.last_update = last_update;
-    }
-
-    public String getAccess_permission() {
-        return this.access_permission;
-    }
-
-    public void setAccess_permission(String access_permission) {
-        this.access_permission = access_permission;
     }
 }
