@@ -1,11 +1,10 @@
 ###
-###
 PUT http://localhost:8080/user/permission
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJleHAiOjE2NDk5MDMxMTUsImlhdCI6MTY0OTg5MzExNX0.bjItMYNuNHtyWh6UCyvCk5XAPMUMv8fQZkJw6HRshZIpB4CsftGk6yEZ8v99TL_ItSOTUSyGyktQaVSDg-j4qQ
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJleHAiOjE2NDk5MDQ4MjIsImlhdCI6MTY0OTg5NDgyMn0.SMGFJ6RpzX0i6kX9UgK-wzf51R1IcrcR2OSzmCrVNoTUUy1-LkhADmwfFT4ONxDgFGCLt8-t2XO19AuvwCe72w
 Content-Type: application/json
 
 {
     "user_editor_id": 1,
     "user_editee_id": 1,
-    "permission_id": 1
+    "permission_id": 2
 }

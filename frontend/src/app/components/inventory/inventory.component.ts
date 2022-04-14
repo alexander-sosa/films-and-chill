@@ -200,9 +200,10 @@ export class InventoryComponent implements OnInit {
       console.log(JSON.stringify(data));
       this.userSevice.putRol(data).subscribe(
         res => {
-          console.log('response: '+res.statusText);
-          if (res.status === 200) {
-            console.log('notification');
+          console.log('notification');
+          console.log('response: '+res);
+          if (res != '') {
+            
             Swal.fire({
               position: 'center',
               icon: 'success',
@@ -210,6 +211,7 @@ export class InventoryComponent implements OnInit {
               showConfirmButton: false,
               timer: 1500
             })
+            this.getUsersList();
             
           }
         },
