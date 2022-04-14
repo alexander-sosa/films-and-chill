@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/movie/7
+PUT http://localhost:8080/movie/6
 Content-Type: application/json
 
 {

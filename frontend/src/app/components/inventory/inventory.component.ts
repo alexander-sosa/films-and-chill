@@ -329,21 +329,19 @@ export class InventoryComponent implements OnInit {
     this.moviesServies.putMovie(JSON.stringify(this.movie), this.currentMovie).subscribe(
       res => {
         console.log('notification');
-        console.log('response: '+res.status);
+        console.log('response: '+res.headers );
         console.log('respuesta; '+Object.values(res));
-        /*
-        let txt:any = Object.values(res);
-        if (res.status === 201 && txt === 'Creado') {
-          console.log('notification');
+        if (res != null) {
+          
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Producto añadido exitosamente',
+            title: 'Producto editado exitosamente',
             showConfirmButton: false,
             timer: 1500
           })
           this.getInventory();
-        }*/
+        }
         
       },
       err =>{
