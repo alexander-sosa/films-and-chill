@@ -147,3 +147,7 @@
     textarea{
         resize: none;
     }
+
+    span{
+        font-weight: 600;
+    }

@@ -266,56 +266,67 @@
         <div class="modal-body">
           <form [formGroup]="EditUserForm" (submit)="updateUser()">
 
-            
+            <div class="inline">
+              <label for="IDUser" class="form-label">ID:</label>
+              <input style="width: 15%;  margin-left: 16%;" type="number" class="form-control"  id="IDUser" disabled>              
+            </div>
+
+            <div class="inline">
               <label for="name">Nombres:</label>
-              <input type="text" class="form-control" id="name" formControlName="name" style="width: 80%;">
+              <input type="text" class="form-control" id="name" formControlName="name" style="width: 75%; margin-left: 7%;">
               <div *ngIf="getValue(EditUserForm,'name')?.invalid && (getValue(EditUserForm,'name')?.touched || getValue(EditUserForm,'name')?.dirty)">              
-                <div *ngIf="getValue(EditUserForm,'name')?.errors?.required" class="alert alert-danger" role="alert">
-                  <p>Campo requerido</p>                          
+                <div *ngIf="getValue(EditUserForm,'name')?.errors?.required">
+                  <span class="text-danger" >Campo requerido</span>                        
                 </div>
               </div> 
-            
+            </div>
 
             <div class="inline">
               <label for="last_name">Apellidos:</label>            
-              <input type="text" class="form-control" id="last_name" formControlName="last_name" style="width: 80%; margin-left: 5%;">
+              <input type="text" class="form-control" id="last_name" formControlName="last_name"  style="width: 75%; margin-left: 7%;">
               <div *ngIf="getValue(EditUserForm, 'last_name')?.invalid && (getValue(EditUserForm, 'last_name')?.touched || getValue(EditUserForm, 'last_name')?.dirty)">
-                <div *ngIf="getValue(EditUserForm, 'last_name')?.errors?.required" class="alert alert-danger" role="alert">
-                  <p>Campo requerido</p>                          
+                <div *ngIf="getValue(EditUserForm, 'last_name')?.errors?.required">
+                  <span class="text-danger" >Campo requerido</span>                                   
                 </div>
               </div>
             </div>
 
             <div class="inline">
               <label for="email">E-mail:</label>            
-              <input type="email" class="form-control" id="email" formControlName="email" style="width: 80%; margin-left: 8%;">
+              <input type="email" class="form-control" id="email" formControlName="email" style="width: 75%; margin-left: 11%;">
               <div *ngIf="getValue(EditUserForm, 'email')?.invalid && (getValue(EditUserForm, 'email')?.touched || getValue(EditUserForm, 'email')?.dirty)">
-                <div *ngIf="getValue(EditUserForm, 'email')?.errors?.required" class="alert alert-danger" role="alert">
-                  <p>Campo requerido</p> 
+                <div *ngIf="getValue(EditUserForm, 'email')?.errors?.required">
+                  <span class="text-danger" >Campo requerido</span>          
                 </div>
-                <div *ngIf="getValue(EditUserForm, 'email')?.errors?.email" class="alert alert-danger" role="alert">
-                  <p>Dirección email requerida</p>
+                <div *ngIf="getValue(EditUserForm, 'email')?.errors?.email">
+                  <span class="text-danger" >Dirección email requerida</span>          
                 </div>
               </div>
             </div>
+
+            <!---<div class="inline">
+              <label for="pass" >Contraseña:</label>            
+              <input type="password" class="form-control" id="pass" placeholder="Minimo de 8 caracteres" formControlName="pass" style="margin-right: 3%;">
+              <div *ngIf="getValue(EditUserForm, 'pass')?.invalid && (getValue(EditUserForm, 'pass')?.touched || getValue(EditUserForm, 'pass')?.dirty)">
+                <div *ngIf="getValue(EditUserForm, 'pass')?.errors?.required">                  
+                  <span class="text-danger">Campo requerido</span>  
+                </div>
+                <div *ngIf="getValue(EditUserForm, 'pass')?.errors?.minlength">
+                  
+                  <span class="text-danger" >Minimo 8 caracteres</span>  
+                </div>
+              </div>
+            </div>
+            --->
 
             <div class="inline">
-              <label for="pass" >Contraseña:</label>            
-              <input type="password" class="form-control" id="pass" placeholder="Minimo de 8 caracteres" formControlName="pass">
-              <div *ngIf="getValue(EditUserForm, 'pass')?.invalid && (getValue(EditUserForm, 'pass')?.touched || getValue(EditUserForm, 'pass')?.dirty)">
-                <div *ngIf="getValue(EditUserForm, 'pass')?.errors?.required" class="alert alert-danger" role="alert">
-                  <p>Campo requerido</p> 
-                </div>
-                <div *ngIf="getValue(EditUserForm, 'pass')?.errors?.minlength" class="alert alert-danger" role="alert">
-                  <p>Minimo 8 caracteres</p>
-                </div>
-              </div>
-            </div>
-             
-            
-            
+              
+              <label for="rol" class="form-label">Rol:</label>
+              <select [(ngModel)]="userselected" [ngModelOptions]="{standalone: true}" class="form-select" id="rol" style="margin-left: 16%;">                
+                <option *ngFor="let r of rols" [value]="r.id" >{{r.rol}}</option>
+              </select>
 
-            
+            </div>           
 
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>

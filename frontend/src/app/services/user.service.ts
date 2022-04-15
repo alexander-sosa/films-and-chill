@@ -39,9 +39,13 @@ export class UserService {
     return this.http.get(this.API_URL + '/user', {headers: this.auth_headers});
   }
 
-  putRol(putData:any){
-    
+  putRol(putData:any){    
     return this.http.put<any>((this.API_URL + '/user/permission'), putData, { 'headers': this.auth_headers });
+  }
+
+  putUser(putData: any, idu: number){
+    return this.http.put<any>((this.API_URL + '/user/' +idu), putData,  { 'headers': this.auth_headers });
+
   }
 
  

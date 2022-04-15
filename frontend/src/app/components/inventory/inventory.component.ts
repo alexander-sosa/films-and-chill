@@ -103,8 +103,8 @@ export class InventoryComponent implements OnInit {
     this.EditUserForm = this.formBuilder.group({
       name: ['', Validators.required],
       last_name: ['', Validators.required],
-      email:['', [Validators.required, Validators.email]],
-      pass: ['', [Validators.required, Validators.minLength(8)]],
+      email:['', [Validators.required, Validators.email]]
+      //pass: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -377,12 +377,68 @@ export class InventoryComponent implements OnInit {
 
   }
 
-  showUserInfo(user: User){
+  showUserInfo(u: User){
+    console.log('user:', u);
+    document.getElementById('IDUser')?.setAttribute('value', String(u.user_id));
+    this.EditUserForm.get('name')?.setValue(u.name);
+    this.EditUserForm.get('last_name')?.setValue(u.lastname);
+    this.EditUserForm.get('email')?.setValue(u.username);
+    this.userselected = u.permission_id;
+    this.currentRol = u.permission_id;
 
   }
 
   updateUser(){
+    var IDU = (document.getElementById('IDUser') as HTMLInputElement).value;
+    var newRol = (document.getElementById('rol') as HTMLInputElement).value;
+   
 
+    let data = {
+      "name": this.EditUserForm.get('name')?.value,
+      "lastname": this.EditUserForm.get('last_name')?.value,
+      "permission_id": Number(newRol),
+      "username": this.EditUserForm.get('email')?.value
+
+    } 
+
+    console.log('data: '+ JSON.stringify(data));
+
+    this.userSevice.putUser(data, Number(IDU)).subscribe(
+      res => {
+        console.log('notification');
+        console.log('response: '+res);
+        /*if (res != '') {
+          
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Registro actualizado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.getUsersList();
+          
+        }*/
+      },
+      err =>{
+        console.log('notification2');
+        console.log(err);
+        console.log('response: '+err.statusText);
+        /*if (err.statusText === 'OK') {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Registro actualizado',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.getUsersList();*/
+      }
+          
+    );
+  
+
+    
   }
 
 }

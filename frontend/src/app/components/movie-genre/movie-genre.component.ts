@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Movie } from 'src/app/models/Movie';
+import { Genre, Movie } from 'src/app/models/Movie';
 import { CartService } from 'src/app/services/cart.service';
 import { MoviesService } from 'src/app/services/movies.service';
 import Swal from 'sweetalert2';
@@ -12,6 +12,9 @@ import Swal from 'sweetalert2';
 })
 export class MovieGenreComponent implements OnInit {
   genre_id?: number;
+  existGenre?: boolean;
+  genre?: string;
+  
 
   movie: any = {
     movie_id: 0,
@@ -26,19 +29,39 @@ export class MovieGenreComponent implements OnInit {
     tuple_status: true
   }
 
+
   movies: any | Movie = [];
+  genres: any | Genre = [];
   cart: any | Movie = [];
 
-  constructor(private moviesService: MoviesService, private cartService: CartService, private router: Router,  private activatedRoute: ActivatedRoute) { }
+  constructor(private moviesService: MoviesService, private cartService: CartService,  private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.existGenre = false;
     const params = this.activatedRoute.snapshot.params;
     if(params.genre_id){
       this.genre_id = params.genre_id;
+      this.getGenre(this.genre_id);
       this.getGenreMovies(this.genre_id);
-      //this.getMovieActors(this.movie_id);
     }
-    //this.getMovies();
+  }
+
+  getGenre(id: any){
+    this.moviesService.getGenres().subscribe(
+      res => {
+        console.log('genres: ',res);
+        this.genres = res;
+        for(let g of this.genres){
+          if(g.genre_id === Number(id)){
+            this.genre = g.genre;
+          }
+        }
+      },
+      err => console.log(err)
+    );
+
+    
+
   }
 
   getGenreMovies(movie_id:any){
@@ -46,8 +69,13 @@ export class MovieGenreComponent implements OnInit {
       res => {
         console.log('response: '+ res);
         this.movies = res;
+        this.existGenre = true;
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+        this.existGenre = false;
+      }
+
     );
   }
 
