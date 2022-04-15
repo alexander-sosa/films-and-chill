@@ -24,6 +24,7 @@ export class InventoryComponent implements OnInit {
   public SetRolForm: FormGroup;
   public NewProductForm: FormGroup;
   public EditProductForm: FormGroup;
+  public EditUserForm: FormGroup;
 
   movies: any = [];
   movie: Movie = {
@@ -67,10 +68,11 @@ export class InventoryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router
     ) { 
-  this.SetRolForm = this.formBuilder.group({
-    IDU: [''],
-    rol: ['']
-  });
+
+    this.SetRolForm = this.formBuilder.group({
+      IDU: [''],
+      rol: ['']
+    });
 
     
     const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
@@ -96,6 +98,13 @@ export class InventoryComponent implements OnInit {
       gender: ['', Validators.required],
       rating: ['', Validators.required],
       img: ['', Validators.pattern(reg)]
+    });
+
+    this.EditUserForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      last_name: ['', Validators.required],
+      email:['', [Validators.required, Validators.email]],
+      pass: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -365,6 +374,14 @@ export class InventoryComponent implements OnInit {
         */
       }
     );
+
+  }
+
+  showUserInfo(user: User){
+
+  }
+
+  updateUser(){
 
   }
 
