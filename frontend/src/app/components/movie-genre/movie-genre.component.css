@@ -9,8 +9,12 @@
         padding: 3%;
         margin: auto;
         align-content: center;
-        border-radius: 2%;
+        border-radius: 3%;
         box-shadow: 4px 4px 4px 10px #E1A140, 4px 4px 4px 4px #EFCFA0;
+    }
+
+    .card{
+        width: 90%;
     }
 
     .card-img-top{

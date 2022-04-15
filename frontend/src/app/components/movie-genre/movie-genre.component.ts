@@ -33,8 +33,8 @@ export class MovieGenreComponent implements OnInit {
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
-    if(params.movie_id){
-      this.genre_id = params.movie_id;
+    if(params.genre_id){
+      this.genre_id = params.genre_id;
       this.getGenreMovies(this.genre_id);
       //this.getMovieActors(this.movie_id);
     }
@@ -44,6 +44,7 @@ export class MovieGenreComponent implements OnInit {
   getGenreMovies(movie_id:any){
     this.moviesService.getGenreMovies(movie_id).subscribe(
       res => {
+        console.log('response: '+ res);
         this.movies = res;
       },
       err => console.log(err)
