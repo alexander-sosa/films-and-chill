@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/Movie';
 import { CartService } from 'src/app/services/cart.service';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -11,6 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./movie-genre.component.css']
 })
 export class MovieGenreComponent implements OnInit {
+  genre_id?: number;
+
   movie: any = {
     movie_id: 0,
     title: '',
@@ -27,16 +29,20 @@ export class MovieGenreComponent implements OnInit {
   movies: any | Movie = [];
   cart: any | Movie = [];
 
-  constructor(private moviesService: MoviesService,
-              private cartService: CartService,
-              private router: Router) { }
+  constructor(private moviesService: MoviesService, private cartService: CartService, private router: Router,  private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getMovies();
+    const params = this.activatedRoute.snapshot.params;
+    if(params.movie_id){
+      this.genre_id = params.movie_id;
+      this.getGenreMovies(this.genre_id);
+      //this.getMovieActors(this.movie_id);
+    }
+    //this.getMovies();
   }
 
-  getMovies(){
-    this.moviesService.getMovies().subscribe(
+  getGenreMovies(movie_id:any){
+    this.moviesService.getGenreMovies(movie_id).subscribe(
       res => {
         this.movies = res;
       },

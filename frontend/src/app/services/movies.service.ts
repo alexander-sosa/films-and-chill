@@ -53,4 +53,9 @@ export class MoviesService {
   putMovie(putData:any, movie_id: number | undefined){
     return this.http.put<HttpResponse<any>>((this.API_URL + '/movie/' + movie_id),putData,{ 'headers': this.headers });
   }
+
+  getGenreMovies(movie_id: number){
+    return this.http.get(this.API_URL + '/movie/genre/' + movie_id );
+  }
+
 }
