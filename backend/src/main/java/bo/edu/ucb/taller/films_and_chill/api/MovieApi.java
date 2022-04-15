@@ -55,8 +55,8 @@ public class MovieApi {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/movie/genre/{genre}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> listAllMoviesByGenre(@PathVariable(name = "genre") String genre){
-        return movieSearch.listAllMoviesByGenre(genre);
+    @GetMapping(value = "/movie/genre/{genre_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> listAllMoviesByGenre(@PathVariable(name = "genre_id") Integer genre_id){
+        return movieSearch.listAllMoviesByGenre(genre_id);
     }
 }

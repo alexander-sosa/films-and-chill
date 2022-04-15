@@ -208,7 +208,7 @@ public class MovieDao {
         }
     }
 
-    public List<Movie> listAllMoviesByGenre(String genre){
+    public List<Movie> listAllMoviesByGenre(Integer genre_id){
         List<Movie> result = new ArrayList<>();
         String query = " SELECT m.movie_id, " + 
                         "        m.title, " + 
@@ -226,12 +226,12 @@ public class MovieDao {
                        " FROM movie m "+ 
                        " LEFT JOIN rating r ON (r.rating_id = m.rating_id) " + 
                        " LEFT JOIN genre g ON (g.genre_id = m.genre_id) " + 
-                       " WHERE g.genre = ? ";
+                       " WHERE g.genre_id = ? ";
         try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
         ){
-            pStatement.setString(1,  genre);
+            pStatement.setInt(1,  genre_id);
 
             ResultSet rSet = pStatement.executeQuery();
 
