@@ -6,12 +6,11 @@ import { MoviesService } from 'src/app/services/movies.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-searches',
-  templateUrl: './searches.component.html',
-  styleUrls: ['./searches.component.css']
+  selector: 'app-movie-genre',
+  templateUrl: './movie-genre.component.html',
+  styleUrls: ['./movie-genre.component.css']
 })
-export class SearchesComponent implements OnInit {
-
+export class MovieGenreComponent implements OnInit {
   movie: any = {
     movie_id: 0,
     title: '',
@@ -67,5 +66,4 @@ export class SearchesComponent implements OnInit {
       }
     );
   }
-
 }

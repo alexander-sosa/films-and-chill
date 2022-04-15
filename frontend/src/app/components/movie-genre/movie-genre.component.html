@@ -1,0 +1,27 @@
+<ul class="header">
+    <h1 class="text-center">Películas de Genero</h1>      
+</ul>
+
+<div class="container-movies">
+    
+    <div class="row">
+        <div class="col" *ngFor='let movie of movies'>
+            <div class="card text-center">
+                <a [routerLink]="['/movie-detail/', movie.movie_id]">
+                    <img src="{{movie.image_link}}" alt="img" class="card-img-top">
+                </a>
+                <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
+                    <div style="font-family: 'Rockwell';">{{movie.title}}</div>
+                    <button class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </div>
+                <div class="card-body" style="background-color: #EFCFA0;">
+                    <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}}Bs</p>
+                </div>
+            </div>
+            <br><br>
+        </div>  
+
+    </div>
+</div> 

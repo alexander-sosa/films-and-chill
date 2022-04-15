@@ -14,8 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { CartComponent } from './components/cart/cart.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SearchesComponent } from './components/searches/searches.component';
 import { GenreListingComponent } from './components/genre-listing/genre-listing.component';
+import { MovieGenreComponent } from './components/movie-genre/movie-genre.component';
 
 
 
@@ -29,8 +29,8 @@ import { GenreListingComponent } from './components/genre-listing/genre-listing.
     LoginComponent,
     CartComponent,
     NavbarComponent,
-    SearchesComponent,
     GenreListingComponent,
+    MovieGenreComponent,
           
   ],
   imports: [
