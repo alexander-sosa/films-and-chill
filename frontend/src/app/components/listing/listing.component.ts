@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ListingComponent implements OnInit {
   /*@HostBinding('class') classes = 'row'*/
+  buttonDisabled?: boolean;
 
   movie: any = {
     movie_id: 0,
@@ -37,6 +38,7 @@ export class ListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
+    this.buttonDisabled = false;
   }
 
   getMovies(){
@@ -69,5 +71,16 @@ export class ListingComponent implements OnInit {
         }
       }
     );
+  }
+
+  StockValidation(m: Movie){
+    console.log(m.stock);
+    if(m.stock != 0){
+      //this.buttonDisabled = false;;
+      return false;
+    }else{
+      //this.buttonDisabled = false;
+      return true;
+    }
   }
 }
