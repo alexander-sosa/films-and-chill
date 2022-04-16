@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ListingComponent implements OnInit {
   /*@HostBinding('class') classes = 'row'*/
-  buttonDisabled?: boolean;
+  control?:boolean;
 
   movie: any = {
     movie_id: 0,
@@ -31,6 +31,7 @@ export class ListingComponent implements OnInit {
 
   movies: any | Movie = [];
   cart: any | Movie = [];
+  cart_list: any | Movie = [];
 
   constructor(private moviesService: MoviesService,
               private cartService: CartService,
@@ -38,7 +39,9 @@ export class ListingComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
-    this.buttonDisabled = false;
+    this.setList();
+    this.control = false;
+    
   }
 
   getMovies(){
@@ -51,36 +54,78 @@ export class ListingComponent implements OnInit {
   }
 
   addToCart(movie: Movie){
-    this.cartService.addToCart(movie).subscribe(
-      res => {
-        this.movie = res;
-        this.cart.push(this.movie);
-      },
-      err => {
-        if(err.status == 200){
-          console.log("Guardado");
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Película añadida al carrito',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          setTimeout(() => window.location.reload(), 1500);
-          //this.router.navigateByUrl("/movie");
+    console.log('algo');
+    console.log('lista: ', this.cart_list);
+    this.CheckItemDouble(movie)
+    if(!this.control){
+      this.cartService.addToCart(movie).subscribe(
+        res => {
+          this.movie = res;
+          this.cart.push(this.movie);
+        },
+        err => {
+          if(err.status == 200){
+            console.log("Guardado");
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Película añadida al carrito',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => window.location.reload(), 1500);
+            //this.router.navigateByUrl("/movie");
+          }
         }
-      }
-    );
+      );
+
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Esta película ya la tienes añadida al carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+    //console.log('control ', this.control);
+    
   }
 
   StockValidation(m: Movie){
-    console.log(m.stock);
     if(m.stock != 0){
-      //this.buttonDisabled = false;;
       return false;
     }else{
-      //this.buttonDisabled = false;
       return true;
     }
   }
+
+  setList(){
+    this.cartService.listCart().subscribe(
+      res => {
+        this.cart_list = res;
+        
+      },
+      err => console.log(err) 
+    );
+  };
+
+  CheckItemDouble(m: Movie){
+    //var x;
+    if (this.cart_list.length == 0){
+      this.control = false;
+    }else{
+      for(let c of this.cart_list){
+        console.log(m.movie_id)
+        if(m.movie_id === c.movie_id){
+          console.log('igual ');
+          this.control = true;
+        }else{
+          this.control = false;
+        }
+      } 
+    }         
+  }
 }
+
+

@@ -101,4 +101,13 @@ export class MovieGenreComponent implements OnInit {
       }
     );
   }
+
+  StockValidation(m: Movie){
+    console.log(m.stock);
+    if(m.stock != 0){
+      return false;
+    }else{
+      return true;
+    }
+  }
 }
