@@ -12,9 +12,9 @@
         </div>
 
         <div class="cart-list">
-            <div class="card mb-3" *ngFor='let movie of cart'>
-                <div class="row g-0">
-                  <div class="col-md-4">
+            <div class="card mb-3" *ngFor='let movie of cart' >
+                <div class="row g-0" style=" padding-left: 3%; margin-top: 2%;">
+                  <div class="col-md-4" style="background-color: aliceblue; padding: 1%; padding-left: 8%;">
                     <img src="{{movie.image_link}}" class="img-fluid rounded-start" alt="...">
                   </div>
                   <div class="col-md-8">
@@ -22,8 +22,8 @@
                       <h5 class="card-title">{{movie.title}}</h5>
                       <p class="card-text">Precio: {{movie.cost}}$</p>
                       <label>Unidades: </label>
-                      <input type="number">
-                      <button class="btn btn-del"><i class="fas fa-trash-alt" (click)="removeFromCart(movie.movie_id)"></i></button>                        
+                      <input style="width: 15%; margin-left: 2%; text-align: end;" type="number" value="1" min="1">
+                      <button style="float: right" class="btn btn-del"><i class="fas fa-trash-alt" (click)="removeFromCart(movie.movie_id)"></i></button>                        
                     </div>
                   </div>
                 </div>
