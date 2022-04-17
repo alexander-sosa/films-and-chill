@@ -54,8 +54,8 @@ export class ListingComponent implements OnInit {
   }
 
   addToCart(movie: Movie){
-    console.log('algo');
-    console.log('lista: ', this.cart_list);
+    //console.log('algo');
+    //console.log('lista: ', this.cart_list);
     this.CheckItemDouble(movie)
     if(!this.control){
       this.cartService.addToCart(movie).subscribe(
@@ -115,13 +115,13 @@ export class ListingComponent implements OnInit {
     if (this.cart_list.length == 0){
       this.control = false;
     }else{
+      this.control = false;
       for(let c of this.cart_list){
-        console.log(m.movie_id)
+        //console.log(m.movie_id)
         if(m.movie_id === c.movie_id){
-          console.log('igual ');
+          //console.log('igual ');
           this.control = true;
-        }else{
-          this.control = false;
+          break;
         }
       } 
     }         
