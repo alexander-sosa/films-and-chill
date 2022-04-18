@@ -22,8 +22,12 @@ public class MovieSearch {
         this.movieDao = movieDao;
     }
 
-    public ResponseEntity<?> listAllMovies(){
-        return ResponseEntity.ok(movieDao.listAllMovies());
+    public ResponseEntity<?> listAllMovies(Integer genre_id, Integer from){
+        if(from != null)
+            return ResponseEntity.ok(movieDao.listAllMovies(from, from + 40));
+        if(genre_id != null)
+            return listAllMoviesByGenre(genre_id, from);
+        return ResponseEntity.ok(movieDao.listAllMovies(1, 40));
     }
 
     public ResponseEntity<?> findById(int movie_id){
@@ -33,7 +37,10 @@ public class MovieSearch {
         return ResponseEntity.ok(movieDao.findById(movie_id));
     }
 
-    public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id){
-        return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre_id));
+    public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id, Integer from){
+        if(from != null)
+            return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre_id, from));
+
+        return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre_id, 1));
     }
 }

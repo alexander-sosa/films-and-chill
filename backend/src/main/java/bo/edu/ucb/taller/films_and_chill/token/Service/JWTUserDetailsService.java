@@ -77,6 +77,7 @@ public class JWTUserDetailsService implements UserDetailsService{
            user.getUser_id() != null ||
            user.getName() == null ||
            user.getLastname() == null ||
+           user.getPass() == null ||
            user.getPermission_id() == null)
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos Inválidos");
 
@@ -90,6 +91,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         newUser.get().setLastname(user.getLastname());
         newUser.get().setPermission_id(user.getPermission_id());
         newUser.get().setUsername(user.getUsername());
+        newUser.get().setPass(bcryptEncoder.encode(user.getPass()));
         newUser.get().setTuple_status(user.getTuple_status());
         newUser.get().setLast_update(user.getLast_update());
 

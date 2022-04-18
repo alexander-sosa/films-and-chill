@@ -35,7 +35,10 @@ public class MovieDao {
         this.dataSource = dataSource;
     }
 
-    public List<Movie> listAllMovies (){
+    public List<Movie> listAllMovies (Integer from, Integer to){
+        System.out.println(from);
+        System.out.println(to);
+
         List<Movie> result = new ArrayList<>();
         String query = " SELECT m.movie_id, " + 
                         "        m.title, " + 
@@ -52,11 +55,16 @@ public class MovieDao {
                         "        m.last_update " + 
                        " FROM movie m "+ 
                        " LEFT JOIN rating r ON (r.rating_id = m.rating_id) " + 
-                       " LEFT JOIN genre g ON (g.genre_id = m.genre_id)";
+                       " LEFT JOIN genre g ON (g.genre_id = m.genre_id) " + 
+                       " WHERE m.movie_id >= ( ? ) " + 
+                       " AND m.movie_id < ( ? ) ";
         try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
         ){
+            pStatement.setInt(1, from);
+            pStatement.setInt(2, to);
+
             ResultSet rSet = pStatement.executeQuery();
 
             while(rSet.next()){
@@ -208,7 +216,7 @@ public class MovieDao {
         }
     }
 
-    public List<Movie> listAllMoviesByGenre(Integer genre_id){
+    public List<Movie> listAllMoviesByGenre(Integer genre_id, Integer from){
         List<Movie> result = new ArrayList<>();
         String query = " SELECT m.movie_id, " + 
                         "        m.title, " + 
@@ -226,12 +234,15 @@ public class MovieDao {
                        " FROM movie m "+ 
                        " LEFT JOIN rating r ON (r.rating_id = m.rating_id) " + 
                        " LEFT JOIN genre g ON (g.genre_id = m.genre_id) " + 
-                       " WHERE g.genre_id = ? ";
+                       " WHERE g.genre_id = ? " + 
+                       " AND m.movie_id >= ( ? ) " + 
+                       " LIMIT 40 ";;
         try(
             Connection connection = dataSource.getConnection();
             PreparedStatement pStatement = connection.prepareStatement(query);
         ){
             pStatement.setInt(1,  genre_id);
+            pStatement.setInt(2,  from);
 
             ResultSet rSet = pStatement.executeQuery();
 
