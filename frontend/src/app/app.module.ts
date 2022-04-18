@@ -16,6 +16,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { GenreListingComponent } from './components/genre-listing/genre-listing.component';
 import { MovieGenreComponent } from './components/movie-genre/movie-genre.component';
+import { UseProfileComponent } from './components/use-profile/use-profile.component';
+import { PasswordEditComponent } from './components/password-edit/password-edit.component';
 
 
 
@@ -31,6 +33,8 @@ import { MovieGenreComponent } from './components/movie-genre/movie-genre.compon
     NavbarComponent,
     GenreListingComponent,
     MovieGenreComponent,
+    UseProfileComponent,
+    PasswordEditComponent,
           
   ],
   imports: [

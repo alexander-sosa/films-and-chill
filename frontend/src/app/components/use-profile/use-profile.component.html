@@ -1,0 +1,80 @@
+<div class="Edit-user">
+    <h1>Perfil de usuario</h1>
+
+    <form [formGroup]="EditUserForm" (submit)="updateUser()">
+
+        <div class="row g-4 align-items-center">
+            <div class="col-auto">
+                <label for="IDUser" class="col-form-label">ID:</label>              
+            </div>
+            <div class="col-auto">
+              <input  style="text-align: right; width: 50%;" type="number" class="form-control" value="1"  id="IDUser" disabled>
+            </div>
+            <div class="col-auto">
+                <label for="rol" class="form-label">Rol:</label>
+              
+            </div>
+
+            <div class="col-auto">
+                <select [(ngModel)]="userselected" [ngModelOptions]="{standalone: true}" class="form-select" id="rol"  disabled>                
+                    <option *ngFor="let r of rols" [value]="r.id" >{{r.rol}}</option>
+                  </select>
+              
+            </div>
+        </div>
+
+
+        <div class="row" style="margin-top: 2%; margin-bottom: 2%;">
+            <div class="col">
+                <label for="name">Nombres:</label>
+                <input type="text" class="form-control" id="name" formControlName="name">
+                <div *ngIf="getValue(EditUserForm,'name')?.invalid && (getValue(EditUserForm,'name')?.touched || getValue(EditUserForm,'name')?.dirty)">              
+                    <div *ngIf="getValue(EditUserForm,'name')?.errors?.required">
+                      <span class="text-danger" >Campo requerido</span>                        
+                    </div>
+                </div>
+
+                <label for="email" style="margin-top: 2%;">E-mail:</label>            
+                <input type="email" class="form-control" id="email" formControlName="email">
+                <div *ngIf="getValue(EditUserForm, 'email')?.invalid && (getValue(EditUserForm, 'email')?.touched || getValue(EditUserForm, 'email')?.dirty)">
+                    <div *ngIf="getValue(EditUserForm, 'email')?.errors?.required">
+                        <span class="text-danger" >Campo requerido</span>          
+                    </div>
+                    <div *ngIf="getValue(EditUserForm, 'email')?.errors?.email">
+                        <span class="text-danger" >Dirección email requerida</span>          
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+                <label for="last_name">Apellidos:</label>            
+                <input type="text" class="form-control" id="last_name" formControlName="last_name">
+                <div *ngIf="getValue(EditUserForm, 'last_name')?.invalid && (getValue(EditUserForm, 'last_name')?.touched || getValue(EditUserForm, 'last_name')?.dirty)">
+                    <div *ngIf="getValue(EditUserForm, 'last_name')?.errors?.required">
+                        <span class="text-danger" >Campo requerido</span>                                   
+                    </div>
+                </div>
+
+                <label for="pass" style="margin-top: 2%;">Contraseña:</label>            
+                <input type="password" class="form-control" id="pass" placeholder="Minimo de 8 caracteres" formControlName="pass" >
+                <div *ngIf="getValue(EditUserForm, 'pass')?.invalid && (getValue(EditUserForm, 'pass')?.touched || getValue(EditUserForm, 'pass')?.dirty)">
+                    <div *ngIf="getValue(EditUserForm, 'pass')?.errors?.required">                  
+                        <span class="text-danger">Campo requerido para la edición</span>  
+                    </div>
+                    <div *ngIf="getValue(EditUserForm, 'pass')?.errors?.minlength">                    
+                        <span class="text-danger" >Minimo 8 caracteres</span>  
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <button class="btn btn-edit" type="submit" >Cambiar Contraseña</button>
+        <button class="btn btn-edit" type="submit" [disabled]="EditUserForm.invalid" style="float:right" (click)="showPopup()">Editar</button>
+        
+    </form>
+
+</div>
+
