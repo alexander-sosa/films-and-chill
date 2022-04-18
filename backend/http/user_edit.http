@@ -19,6 +19,7 @@ Content-Type: application/json
     "lastname": "Carrasco",
     "permission_id": 1,
     "username": "eddy2@noreply.com",
+    "pass": "12345678",
     "tuple_status": true,
     "last_update": "2022-04-11T13:49:30.000+00:00"
   }

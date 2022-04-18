@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import bo.edu.ucb.taller.films_and_chill.bl.MovieCreation;
@@ -32,8 +33,10 @@ public class MovieApi {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> listAllMovies(){
-        return movieSearch.listAllMovies();
+    public ResponseEntity<?> listAllMovies(@RequestParam(required = false) Integer genre_id,
+                                           @RequestParam(required = false) Integer from){
+
+        return movieSearch.listAllMovies(genre_id, from);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -54,9 +57,9 @@ public class MovieApi {
         return movieCreation.updateMovie(movie_id, movie);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/genre/{genre_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listAllMoviesByGenre(@PathVariable(name = "genre_id") Integer genre_id){
         return movieSearch.listAllMoviesByGenre(genre_id);
-    }
+    }*/
 }

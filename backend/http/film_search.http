@@ -1,8 +1,8 @@
 ###Listado de todas las peliculas
-GET http://localhost:8080/movie
+GET http://localhost:8080/movie?from=10
 
 ###Listado de pelicula con movie_id = 1
 GET http://localhost:8080/movie/6
 
 ###Listado por genero
-GET http://localhost:8080/movie/genre/1
+GET http://localhost:8080/movie?genre_id=1&from=5
