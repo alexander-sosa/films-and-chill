@@ -9,6 +9,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { GenreListingComponent } from './components/genre-listing/genre-listing.component';
 import { MovieGenreComponent } from './components/movie-genre/movie-genre.component';
 import { UseProfileComponent } from './components/use-profile/use-profile.component';
+import { PasswordEditComponent } from './components/password-edit/password-edit.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'genres', component: GenreListingComponent},
   { path: 'movies-genre/:genre_id', component: MovieGenreComponent },
-  { path: 'user-profile', component: UseProfileComponent }
+  { path: 'user-profile', component: UseProfileComponent },
+  { path: 'password-edit', component: PasswordEditComponent }
 ];
 
 @NgModule({
@@ -30,4 +32,14 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [InventoryComponent, ListingComponent, SigninComponent, LoginComponent, MovieDetailComponent, CartComponent, MovieGenreComponent, UseProfileComponent ];
+export const routingComponents = [
+  InventoryComponent, 
+  ListingComponent, 
+  SigninComponent, 
+  LoginComponent, 
+  MovieDetailComponent, 
+  CartComponent, 
+  MovieGenreComponent, 
+  UseProfileComponent, 
+  PasswordEditComponent 
+];

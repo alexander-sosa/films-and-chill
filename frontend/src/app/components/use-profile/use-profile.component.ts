@@ -138,9 +138,5 @@ export class UseProfileComponent implements OnInit {
     
   }
 
-  showPopup(){
-    
-  }
-
 
 }

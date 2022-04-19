@@ -71,8 +71,8 @@
 
         </div>
 
-        <button class="btn btn-edit" type="submit" >Cambiar Contraseña</button>
-        <button class="btn btn-edit" type="submit" [disabled]="EditUserForm.invalid" style="float:right" (click)="showPopup()">Editar</button>
+        <a [routerLink]="['/password-edit']" >Cambiar Contraseña</a>
+        <button class="btn btn-edit" type="submit" [disabled]="EditUserForm.invalid" style="float:right">Editar</button>
         
     </form>
 
