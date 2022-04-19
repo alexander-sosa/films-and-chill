@@ -74,6 +74,12 @@ public class JwtAuthenticationController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/user/{user_id}", method = RequestMethod.GET)
+    public ResponseEntity<?> findById(@PathVariable(name = "user_id") Integer user_id) throws Exception{
+        return ResponseEntity.ok(userDetailsService.findById(user_id));
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/user/permission", method = RequestMethod.PUT)
     public ResponseEntity<?> changeRol(@RequestBody RoleRequest user) throws Exception{
         return userDetailsService.updateRol(user);

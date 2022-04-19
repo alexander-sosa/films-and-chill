@@ -40,6 +40,10 @@ public class JWTUserDetailsService implements UserDetailsService{
 				new ArrayList<>());
     }
 
+    public DAOUser findById(Integer user_id){
+        return userDao.findById(user_id).get();
+    }
+
     public DAOUser findByUsername(String username){
         return userDao.findByUsername(username);
     }
