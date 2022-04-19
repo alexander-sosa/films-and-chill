@@ -3,7 +3,14 @@ package bo.edu.ucb.taller.films_and_chill.api;
 //import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,27 +23,41 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bo.edu.ucb.taller.films_and_chill.bl.MovieCreation;
 import bo.edu.ucb.taller.films_and_chill.bl.MovieSearch;
+import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
 //import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 
 @RestController()
+@CrossOrigin
 public class MovieApi {
     
+    @Autowired
     MovieSearch movieSearch;
-    MovieCreation movieCreation;
 
     @Autowired
+    MovieCreation movieCreation;
+
+    /*@Autowired
     public MovieApi(MovieSearch movieSearch, MovieCreation movieCreation) {
         this.movieSearch = movieSearch;
-        this.movieCreation = movieCreation;
-    }
+        //this.movieCreation = movieCreation;
+    }*/
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> listAllMovies(@RequestParam(required = false) Integer genre_id,
-                                           @RequestParam(required = false) Integer from){
+    public ResponseEntity<?> listAllMovies(@RequestParam(required = false) Integer genreId,
+                                           @RequestParam(defaultValue = "0") Integer page,
+                                           @RequestParam(defaultValue = "40") Integer size){
 
-        return movieSearch.listAllMovies(genre_id, from);
+        //return movieSearch.listAllMovies(genre_id, page);
+        //PageRequest pageable = PageRequest.of(page, size);
+        //Page<Movie> movies = movieDao.findAll(pageable);
+//
+        //Map<String, Object> response = new HashMap<>();
+        //response.put("movies", movies);
+//
+        //return ResponseEntity.ok(response);
+        return movieSearch.listAllMovies(genreId, page, size);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

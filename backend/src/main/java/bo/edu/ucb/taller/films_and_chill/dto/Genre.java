@@ -7,35 +7,36 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 /**
 CREATE TABLE genre(
-	genre_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	genreid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	genre varchar(20) NOT NULL,
-	image_link varchar(255),
-	tuple_status bool DEFAULT 1,
-	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+	imagelink varchar(255),
+	tuplestatus bool DEFAULT 1,
+	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+);
 );
  */
 @Entity(name = "genre")
 public class Genre {
     @Id
-    @Column(name = "genre_id")
-    private Integer genre_id;
+    @Column(name = "genreid")
+    private Integer genreid;
 
     private String genre;
-    private String image_link;
-    private Boolean tuple_status;
-    private Timestamp last_update;
+    private String imagelink;
+    private Boolean tuplestatus;
+    private Timestamp lastupdate;
 
     public Genre() 
     {
 
     }
 
-    public Integer getGenre_id() {
-        return this.genre_id;
+    public Integer getGenreid() {
+        return this.genreid;
     }
 
-    public void setGenre_id(Integer genre_id) {
-        this.genre_id = genre_id;
+    public void setGenreid(Integer genreid) {
+        this.genreid = genreid;
     }
 
     public String getGenre() {
@@ -46,31 +47,31 @@ public class Genre {
         this.genre = genre;
     }
 
-    public String getImage_link() {
-        return this.image_link;
+    public String getImagelink() {
+        return this.imagelink;
     }
 
-    public void setImage_link(String image_link) {
-        this.image_link = image_link;
+    public void setImagelink(String imagelink) {
+        this.imagelink = imagelink;
     }
 
-    public Boolean isTuple_status() {
-        return this.tuple_status;
+    public Boolean isTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public Boolean getTuple_status() {
-        return this.tuple_status;
+    public Boolean getTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public void setTuple_status(Boolean tuple_status) {
-        this.tuple_status = tuple_status;
+    public void setTuplestatus(Boolean tuplestatus) {
+        this.tuplestatus = tuplestatus;
     }
 
-    public Timestamp getLast_update() {
-        return this.last_update;
+    public Timestamp getLastupdate() {
+        return this.lastupdate;
     }
 
-    public void setLast_update(Timestamp last_update) {
-        this.last_update = last_update;
+    public void setLastupdate(Timestamp lastupdate) {
+        this.lastupdate = lastupdate;
     }
 }

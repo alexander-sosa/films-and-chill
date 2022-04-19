@@ -1,46 +1,70 @@
 package bo.edu.ucb.taller.films_and_chill.bl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.*;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
 //import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 //import bo.edu.ucb.taller.films_and_chill.exception.DatabaseException;
+import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 
 //SOLO BUSQUEDA DE PELICULAS
-@Component
+/*@Service
+public class MovieSearch{}*/
+@Service
 public class MovieSearch {
     
-    private final MovieDao movieDao;
-
     @Autowired
+    private MovieDao movieDao;
+
+    /*@Autowired
     public MovieSearch(MovieDao movieDao) {
         this.movieDao = movieDao;
-    }
+    }*/
 
-    public ResponseEntity<?> listAllMovies(Integer genre_id, Integer from){
-        if(from != null)
-            return ResponseEntity.ok(movieDao.listAllMovies(from, from + 40));
-        if(genre_id != null)
-            return listAllMoviesByGenre(genre_id, from);
-        return ResponseEntity.ok(movieDao.listAllMovies(1, 40));
+    public ResponseEntity<?> listAllMovies(Integer genreId, Integer page, Integer size){
+        //PageRequest pageable = PageRequest.of(page, 40, Sort.by("movie_id"));
+        //Page<Movie> movies = movieDao.findAll(pageable);
+        //if(page != null)
+        //return ResponseEntity.ok(movies);
+            //return ResponseEntity.ok(movieDao.listAllMovies(page, page + 40));
+        /*if(genre_id != null)
+            return listAllMoviesByGenre(genre_id, page);
+        return ResponseEntity.ok(movieDao.listAllMovies(1, 40));*/
+        //PageRequest pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Movie> movies;
+
+        if(genreId == null)
+            movies = movieDao.findAll(pageable);
+        else
+            movies = movieDao.findByGenreid(genreId, pageable);
+        
+        return ResponseEntity.ok(movies.getContent());
     }
 
     public ResponseEntity<?> findById(int movie_id){
-        if(movieDao.findById(movie_id).size() == 0){
+        if(movieDao.findById(movie_id).isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Película no encontrada");
         }
         return ResponseEntity.ok(movieDao.findById(movie_id));
     }
 
-    public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id, Integer from){
+    /*public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id, Integer from){
         if(from != null)
             return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre_id, from));
 
         return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre_id, 1));
-    }
+    }*/
 }

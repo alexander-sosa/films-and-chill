@@ -1,6 +1,5 @@
 package bo.edu.ucb.taller.films_and_chill.dto;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -8,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 /*
 CREATE TABLE movie (
     movie_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -24,39 +24,49 @@ CREATE TABLE movie (
     FOREIGN KEY (genre_id) REFERENCES genre(genre_id)
 );
 */
-@Entity(name = "movie")
-public class Movie implements Serializable{
+@Entity
+@Table(name = "movie")
+public class Movie {
 
     //Id, de la columna movie_id, generado automaticamente
     @Id
-    @Column(name="movie_id")
+    @Column(name="movieid")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer movie_id;
-    
+    private Integer movieid;
+    @Column
     private String title;
+    @Column
     private String description;
-    private Integer release_year;
+    @Column
+    private Integer releaseyear;
+    @Column
     private Double cost;
-    private Integer rating_id;
+    @Column
+    private Integer ratingid;
     private String rating;
-    private Integer genre_id;
+    @Column
+    private Integer genreid;
     private String genre;
-    private String image_link;
+    @Column
+    private String imagelink;
+    @Column
     private Integer stock;
-    private Boolean tuple_status;
-    private Timestamp last_update;
+    @Column
+    private Boolean tuplestatus;
+    @Column
+    private Timestamp lastupdate;
 
     public Movie() 
     {
         
     }
 
-    public Integer getMovie_id() {
-        return this.movie_id;
+    public Integer getMovieid() {
+        return this.movieid;
     }
 
-    public void setMovie_id(Integer movie_id) {
-        this.movie_id = movie_id;
+    public void setMovieid(Integer movieid) {
+        this.movieid = movieid;
     }
 
     public String getTitle() {
@@ -75,12 +85,12 @@ public class Movie implements Serializable{
         this.description = description;
     }
 
-    public Integer getRelease_year() {
-        return this.release_year;
+    public Integer getReleaseyear() {
+        return this.releaseyear;
     }
 
-    public void setRelease_year(Integer release_year) {
-        this.release_year = release_year;
+    public void setReleaseyear(Integer releaseyear) {
+        this.releaseyear = releaseyear;
     }
 
     public Double getCost() {
@@ -91,12 +101,28 @@ public class Movie implements Serializable{
         this.cost = cost;
     }
 
+    public Integer getRatingid() {
+        return this.ratingid;
+    }
+
+    public void setRatingid(Integer ratingid) {
+        this.ratingid = ratingid;
+    }
+
     public String getRating() {
         return this.rating;
     }
 
     public void setRating(String rating) {
         this.rating = rating;
+    }
+
+    public Integer getGenreid() {
+        return this.genreid;
+    }
+
+    public void setGenreid(Integer genreid) {
+        this.genreid = genreid;
     }
 
     public String getGenre() {
@@ -107,57 +133,40 @@ public class Movie implements Serializable{
         this.genre = genre;
     }
 
-    public String getImage_link() {
-        return this.image_link;
+    public String getImagelink() {
+        return this.imagelink;
     }
 
-    public void setImage_link(String image_link) {
-        this.image_link = image_link;
+    public void setImagelink(String imagelink) {
+        this.imagelink = imagelink;
     }
 
-    public Integer getStock(){
+    public Integer getStock() {
         return this.stock;
     }
 
-    public void setStock(Integer stock){
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
-    public Boolean isTuple_status() {
-        return this.tuple_status;
+    public Boolean isTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public Boolean getTuple_status() {
-        return this.tuple_status;
+    public Boolean getTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public void setTuple_status(Boolean tuple_status) {
-        this.tuple_status = tuple_status;
+    public void setTuplestatus(Boolean tuplestatus) {
+        this.tuplestatus = tuplestatus;
     }
 
-    public Timestamp getLast_update() {
-        return this.last_update;
+    public Timestamp getLastupdate() {
+        return this.lastupdate;
     }
 
-    public void setLast_update(Timestamp last_update) {
-        this.last_update = last_update;
+    public void setLastupdate(Timestamp lastupdate) {
+        this.lastupdate = lastupdate;
     }
-
-    public Integer getRating_id() {
-        return this.rating_id;
-    }
-
-    public void setRating_id(Integer rating_id) {
-        this.rating_id = rating_id;
-    }
-
-    public Integer getGenre_id() {
-        return this.genre_id;
-    }
-
-    public void setGenre_id(Integer genre_id) {
-        this.genre_id = genre_id;
-    }
-
 }
 

@@ -26,10 +26,10 @@ public class RatingDao {
 
     public List<Rating> listAllRatings (){
         List<Rating> result = new ArrayList<>();
-        String query = " SELECT rating_id, " + 
+        String query = " SELECT ratingid, " + 
                         "       rating, " + 
-                        "       tuple_status, " + 
-                        "       last_update " + 
+                        "       tuplestatus, " + 
+                        "       lastupdate " + 
                        " FROM rating ";
         try(
             Connection connection = dataSource.getConnection();
@@ -39,12 +39,12 @@ public class RatingDao {
 
             while(rSet.next()){
                 Rating rating = new Rating();
-                rating.setRating_id(rSet.getInt("rating_id"));
+                rating.setRatinid(rSet.getInt("ratingid"));
                 rating.setRating(rSet.getString("rating"));
-                rating.setTuple_status(rSet.getBoolean("tuple_status"));
+                rating.setTuplestatus(rSet.getBoolean("tuplestatus"));
 
-                var lastUpdate = rSet.getTimestamp("last_update");
-                rating.setLast_update(new java.sql.Timestamp(lastUpdate.getTime()));
+                var lastUpdate = rSet.getTimestamp("lastupdate");
+                rating.setLastupdate(new java.sql.Timestamp(lastUpdate.getTime()));
                 result.add(rating);
             }
 

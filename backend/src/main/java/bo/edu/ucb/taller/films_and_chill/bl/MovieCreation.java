@@ -1,16 +1,79 @@
 package bo.edu.ucb.taller.films_and_chill.bl;
 
+import java.util.Optional;
+
 import java.sql.Timestamp;
+import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
 import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 
-@Component
+@Service
+public class MovieCreation{
+
+    @Autowired
+    private MovieDao movieDao;
+
+    public ResponseEntity<?> createNewMovie(Movie movie){
+        //Datos nulos inválidos: title, cost, stock, rating_id, genre_id
+        if(movie == null || movie.getTitle() == null || movie.getCost() == null
+          || movie.getStock() == null || movie.getRatingid() == null || movie.getGenreid() == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos inválidos");
+        //Datos nulos validos: description, release_year, image_link
+        if(movie.getDescription() == null)
+        movie.setDescription("");
+    
+        if(movie.getReleaseyear() == null)
+            movie.setReleaseyear(0);
+        
+        if(movie.getImagelink() == null)
+            movie.setImagelink("");
+
+        movie.setLastupdate(new Timestamp(System.currentTimeMillis()));
+        //movieDao.save(movie);
+        return ResponseEntity.status(HttpStatus.CREATED).body(movieDao.save(movie));
+    }
+
+    public ResponseEntity<?> updateMovie(int movie_id, Movie movie){
+        if(movie.getMovieid() != null || movie == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID no puede ser editado");
+
+        Optional<Movie> newMovie = movieDao.findById(movie_id);
+
+        newMovie.get().setTitle(movie.getTitle());
+        newMovie.get().setDescription(movie.getDescription());
+        newMovie.get().setReleaseyear(movie.getReleaseyear());
+        newMovie.get().setCost(movie.getCost());
+        newMovie.get().setRatingid(movie.getRatingid());
+        newMovie.get().setImagelink(movie.getImagelink());
+        newMovie.get().setStock(movie.getStock());
+
+        if(movie.getTuplestatus() == null)
+        newMovie.get().setTuplestatus(true);
+        newMovie.get().setLastupdate(new Timestamp(System.currentTimeMillis()));
+        /*
+        
+        
+        if(movie.getStock() == null)
+            movie.setStock(0);
+
+        if(movie.getTuplestatus() == null)
+            movie.setTuplestatus(true);
+
+        if(movie.getLastupdate() == null)
+            movie.setLastupdate(new Timestamp(System.currentTimeMillis()));*/
+        
+        //movieDao.updateMovie(movie_id, movie);
+        return ResponseEntity.status(HttpStatus.CREATED).body(movieDao.save(newMovie.get())); 
+    }
+}
+/*@Component
 public class MovieCreation {
     private final MovieDao movieDao;
 
@@ -42,18 +105,7 @@ public class MovieCreation {
     public ResponseEntity<?> updateMovie(int movie_id, Movie movie){
         if(movie.getMovie_id() != null || movie == null)
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ID no puede ser editado");
-        /*
-                       "        m.title, " + 
-                       "        m.description, " + 
-                       "        m.release_year, " + 
-                       "        m.cost, " + 
-                       "        m.rating_id, " + 
-                       "        m.genre_id, " + 
-                       "        m.image_link, " + 
-                       "        m.stock, " +
-                       "        m.tuple_status, " + 
-                       "        m.last_update " + 
-        */
+
         if(movie.getTitle() == null)
             movie.setTitle("");
         
@@ -84,4 +136,4 @@ public class MovieCreation {
         movieDao.updateMovie(movie_id, movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(movie); 
     }
-}
+}*/

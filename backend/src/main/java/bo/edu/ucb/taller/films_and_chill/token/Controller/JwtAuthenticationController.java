@@ -56,6 +56,7 @@ public class JwtAuthenticationController {
 
         return ResponseEntity.ok(new JwtResponse(token, 
                                      user.getPermission_id(), 
+                                     user.getUser_id(),
                                      user.getName(), 
                                      user.getLastname()));
     }
