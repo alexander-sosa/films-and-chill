@@ -1,65 +1,65 @@
 -- creation
-CREATE DATABASE films_chill;
+/*CREATE DATABASE films_chill;*/
 USE films_chill;
 
 CREATE TABLE genre(
-	genre_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	genreid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	genre varchar(20) NOT NULL,
-	image_link varchar(255),
-	tuple_status bool DEFAULT 1,
-	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+	imagelink varchar(255),
+	tuplestatus bool DEFAULT 1,
+	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE rating(
-	rating_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	ratingid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	rating varchar(10) NOT NULL,
-	tuple_status bool DEFAULT 1,
-	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+	tuplestatus bool DEFAULT 1,
+	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
 CREATE TABLE movie (
-    movie_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    movieid int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title varchar(100) NOT NULL,
     description text,
-    release_year int,
+    releaseyear int,
     cost double(5,2) NOT NULL,
     stock int NOT NULL,
-	rating_id int NOT NULL,
-	genre_id int NOT NULL,
-	image_link varchar(255),
-	tuple_status bool DEFAULT 1,
-    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (rating_id) REFERENCES rating(rating_id),
-    FOREIGN KEY (genre_id) REFERENCES genre(genre_id),
+	ratingid int NOT NULL,
+	genreid int NOT NULL,
+	imagelink varchar(255),
+	tuplestatus bool DEFAULT 1,
+    lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (ratingid) REFERENCES rating(ratingid),
+    FOREIGN KEY (genreid) REFERENCES genre(genreid),
     INDEX (title)
 );
 
 CREATE TABLE actor (
-    actor_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    first_name varchar(20) NOT NULL,
-    last_name varchar(20) NOT NULL,
-	tuple_status bool DEFAULT 1,
-    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    actorid int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstname varchar(20) NOT NULL,
+    lastname varchar(20) NOT NULL,
+	tuplestatus bool DEFAULT 1,
+    lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE actor_movie (
-	actor_movie_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    movie_id int NOT NULL,
-    actor_id int NOT NULL,
-	tuple_status bool DEFAULT 1,
-    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (movie_id) REFERENCES movie(movie_id),
-    FOREIGN KEY (actor_id) REFERENCES actor(actor_id)
+CREATE TABLE actormovie (
+	actormovieid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    movieid int NOT NULL,
+    actorid int NOT NULL,
+	tuplestatus bool DEFAULT 1,
+    lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (movieid) REFERENCES movie(movieid),
+    FOREIGN KEY (actorid) REFERENCES actor(actorid)
 );
 
 CREATE TABLE permission(
-	permission_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	permissionid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   	description varchar(30),
-  	tuple_status bool DEFAULT 1,
-  	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+  	tuplestatus bool DEFAULT 1,
+  	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
-CREATE TABLE user (
+/*CREATE TABLE user (
 	user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name varchar(30),
 	lastname varchar(30),
@@ -69,4 +69,4 @@ CREATE TABLE user (
 	tuple_status bool DEFAULT 1,
     last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
-);
+);*/
