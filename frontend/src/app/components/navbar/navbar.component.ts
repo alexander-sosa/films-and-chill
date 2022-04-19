@@ -35,6 +35,7 @@ export class NavbarComponent implements OnInit {
 
   listCart(){
     if(this.isLogged){
+      console.log("getting list from navbar component")
       this.cartService.listCart().subscribe(
         res => {
           this.cart = res;

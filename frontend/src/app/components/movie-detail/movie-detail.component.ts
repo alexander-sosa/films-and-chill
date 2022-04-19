@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Movie } from 'src/app/models/Movie';
 import { MoviesService } from 'src/app/services/movies.service';
 import { CartService } from 'src/app/services/cart.service';
+import { LoginFirstService } from 'src/app/services/login-first.service';
 
 import { ActivatedRoute } from "@angular/router";
 
@@ -19,11 +20,19 @@ export class MovieDetailComponent implements OnInit {
   actors: any;
   arrived: boolean = false;
 
-  constructor(private moviesService: MoviesService, private activatedRoute: ActivatedRoute, private cartService: CartService) {
+  constructor(
+    private moviesService: MoviesService, 
+    private activatedRoute: ActivatedRoute, 
+    private cartService: CartService,
+    private loginControlService: LoginFirstService
+    ) {
 
   }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.loginControlService.loginFirstAlert();
+    }
     const params = this.activatedRoute.snapshot.params;
     if(params.movie_id){
       this.movie_id = params.movie_id;

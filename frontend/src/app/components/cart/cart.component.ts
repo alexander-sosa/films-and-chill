@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Movie } from 'src/app/models/Movie';
-
 import { CartService } from 'src/app/services/cart.service';
+import { LoginFirstService } from 'src/app/services/login-first.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +10,10 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private loginControlService: LoginFirstService
+    ) { }
 
   cart: any | Movie = [];
 
@@ -20,10 +22,14 @@ export class CartComponent implements OnInit {
   total: any;
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token')){
+      this.loginControlService.loginFirstAlert();
+    }
     this.listCart();
   }
 
   listCart(){
+    console.log("getting list from cart component")
     this.cartService.listCart().subscribe(
       res => {
         this.cart = res;
