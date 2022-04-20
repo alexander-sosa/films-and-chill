@@ -12,10 +12,6 @@ import { Timestamp } from "rxjs";
   styleUrls: ['./use-profile.component.css']
 })
 export class UseProfileComponent implements OnInit {
-  todayNumber: number = Date.now();
-  todayDate : Date = new Date();
-  todayString : string = new Date().toDateString();
-  todayISOString : string = new Date().toISOString();
 
   userselected?: Number;
   rols: any = [];
@@ -103,20 +99,7 @@ export class UseProfileComponent implements OnInit {
 
   }
 
-  updateUser(){
-    const current = new Date();
-
-    current.setHours(0)
-
-    current.setMinutes(0)
-
-    current.setSeconds(0)
-
-    current.setMilliseconds(0)
-    const timestamp = current.getTime();
-
-
-    
+  updateUser(){    
     var IDU = (document.getElementById('IDUser') as HTMLInputElement).value;
     var newRol = (document.getElementById('rol') as HTMLInputElement).value;
    
@@ -127,8 +110,8 @@ export class UseProfileComponent implements OnInit {
       "permission_id": Number(newRol),
       "username": this.EditUserForm.get('email')?.value,
       "pass": this.EditUserForm.get('pass')?.value,
-      "tuple_status": true,
-      "last_update": this.todayISOString
+      "tuple_status": true
+      //"last_update": this.todayISOString
       //lastupdate": "2022-03-31T02:58:38.000+00:00"
 
     } 
@@ -139,7 +122,7 @@ export class UseProfileComponent implements OnInit {
       res => {
         console.log('notification');
         console.log('response: '+res);
-        /*if (res != '') {
+        if (res != '') {
           
           Swal.fire({
             position: 'center',
@@ -148,9 +131,9 @@ export class UseProfileComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-          this.getUsersList();
+          this.getUserInfo();
           
-        }*/
+        }
       },
       err =>{
         console.log('notification2');
