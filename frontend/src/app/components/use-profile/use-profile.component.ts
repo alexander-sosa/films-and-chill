@@ -138,6 +138,13 @@ export class UseProfileComponent implements OnInit {
       err =>{
         console.log('notification2');
         console.log(err);
+        Swal.fire({
+          position: 'center',
+          icon: 'warning',
+          title: 'Contraseña Incorrecta',
+          showConfirmButton: false,
+          timer: 1500
+        })
         //console.log('response: '+ );
         /*if (err.statusText === 'OK') {
           Swal.fire({

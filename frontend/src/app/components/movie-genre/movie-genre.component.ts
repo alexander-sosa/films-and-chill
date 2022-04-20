@@ -14,7 +14,7 @@ export class MovieGenreComponent implements OnInit {
   genre_id?: number;
   existGenre?: boolean;
   genre?: string;
-  
+  control?:boolean;
 
   movie: any = {
     movieid: 0,
@@ -33,6 +33,7 @@ export class MovieGenreComponent implements OnInit {
   movies: any | Movie = [];
   genres: any | Genre = [];
   cart: any | Movie = [];
+  cart_list: any | Movie = [];
 
   constructor(private moviesService: MoviesService, private cartService: CartService,  private activatedRoute: ActivatedRoute) { }
 
@@ -43,6 +44,7 @@ export class MovieGenreComponent implements OnInit {
       this.genre_id = params.genre_id;
       this.getGenre(this.genre_id);
       this.getGenreMovies(this.genre_id);
+      this.setList();
     }
   }
 
@@ -85,27 +87,48 @@ export class MovieGenreComponent implements OnInit {
   }
 
   addToCart(movie: Movie){
-    this.cartService.addToCart(movie).subscribe(
-      res => {
-        this.movie = res;
-        this.cart.push(this.movie);
-      },
-      err => {
-        if(err.status == 200){
-          console.log("Guardado");
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Película añadida al carrito',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          setTimeout(() => window.location.reload(), 1500);
-          //this.router.navigateByUrl("/movie");
+    this.CheckItemDouble(movie)
+    if(!this.control){
+      this.cartService.addToCart(movie).subscribe(
+        res => {
+          this.movie = res;
+          this.cart.push(this.movie);
+        },
+        err => {
+          if(err.status == 200){
+            console.log("Guardado");
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Película añadida al carrito',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => window.location.reload(), 1500);
+            //this.router.navigateByUrl("/movie");
+          }
         }
-      }
-    );
+      );
+    }else{
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Esta película ya la tienes añadida al carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
   }
+
+  setList(){
+    this.cartService.listCart().subscribe(
+      res => {
+        this.cart_list = res;
+        
+      },
+      err => console.log(err) 
+    );
+  };
 
   StockValidation(m: Movie){
     console.log(m.stock);
@@ -114,5 +137,22 @@ export class MovieGenreComponent implements OnInit {
     }else{
       return true;
     }
+  }
+
+  CheckItemDouble(m: Movie){
+    //var x;
+    if (this.cart_list.length == 0){
+      this.control = false;
+    }else{
+      this.control = false;
+      for(let c of this.cart_list){
+        //console.log(m.movie_id)
+        if(m.movieid === c.movieid){
+          //console.log('igual ');
+          this.control = true;
+          break;
+        }
+      } 
+    }         
   }
 }

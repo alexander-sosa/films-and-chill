@@ -72,10 +72,10 @@ export class SigninComponent implements OnInit {
           console.log('notification');
           console.log('response: '+res.status);
           console.log('respuesta:'+ Object.values(res));
-          if (res.status === 200) {
-            resp = Object.values(res);
-            console.log('token: '+ resp);
-            this.saveLocalStorage(resp);
+          if (res != undefined) {
+            //resp = Object.values(res);
+            //console.log('token: '+ resp);
+            //this.saveLocalStorage(resp);
             Swal.fire({
               position: 'center',
               icon: 'success',
