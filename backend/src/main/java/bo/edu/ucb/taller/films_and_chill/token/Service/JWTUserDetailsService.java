@@ -67,6 +67,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         newUser.setLastname(user.getLastname());
         newUser.setPermission_id(user.getPermission_id());
 		newUser.setUsername(user.getUsername());
+
 		newUser.setPass(bcryptEncoder.encode(user.getPass()));
         newUser.setTuple_status(true);
 
@@ -76,7 +77,7 @@ public class JWTUserDetailsService implements UserDetailsService{
 		return ResponseEntity.status(HttpStatus.CREATED).body(userDao.save(newUser));
 	}
 
-    public ResponseEntity<?>updateUser(UserDTO user, Integer user_id){
+    public ResponseEntity<?>updateUser(UserDTO user, Integer user_id) throws Exception{
         if(user == null || 
            user.getUser_id() != null ||
            user.getName() == null ||
@@ -85,21 +86,29 @@ public class JWTUserDetailsService implements UserDetailsService{
            user.getPermission_id() == null)
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Datos Inválidos");
 
-        DAOUser existingUser = findByUsername(user.getUsername());
-        if(existingUser != null)
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario existente");
-        
         Optional<DAOUser> newUser = userDao.findById(user_id);
 
+        if(newUser == null)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario no encontrado");
+        
+        DAOUser existingUser = findByUsername(user.getUsername());
+        
+        if(existingUser != null && existingUser != newUser.get())
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario existente");
+
+        if(!bcryptEncoder.matches(user.getPass(), newUser.get().getPass()))
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Contraseña incorrecta");
+        
         newUser.get().setName(user.getName());
         newUser.get().setLastname(user.getLastname());
         newUser.get().setPermission_id(user.getPermission_id());
         newUser.get().setUsername(user.getUsername());
-        newUser.get().setPass(bcryptEncoder.encode(user.getPass()));
         newUser.get().setTuple_status(user.getTuple_status());
-        newUser.get().setLast_update(user.getLast_update());
+        newUser.get().setLast_update(new Timestamp(System.currentTimeMillis()));
 
         return ResponseEntity.status(HttpStatus.CREATED).body(userDao.save(newUser.get()));
+//        return ResponseEntity.status(HttpStatus.CREATED).body("paso");
+
     }
 
     public ResponseEntity<?> updateRol(RoleRequest user){

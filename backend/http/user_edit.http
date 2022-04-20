@@ -10,15 +10,15 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:8080/user/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjUwNDMxNDQ3LCJpYXQiOjE2NTA0MjE0NDd9.EdmB3DPleY_xfpOt0Y0QMuNgqpHfIjc3eJ6tiHDMY7zG1xFkkiCyeHekKCtpxePyJtt2jxL_4kUyVy6qRbn17A
+PUT http://localhost:8080/user/3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5M0Bub3JlcGx5LmNvbSIsImV4cCI6MTY1MDQ3NjQwNSwiaWF0IjoxNjUwNDY2NDA1fQ.ewDso9nh0kWc4CDR5pUOtzB23s1yv03vqoc5OFBOX1VesiHAe0yW-b5ct2xNpsoCBY8j0j5M156Op0fv6SRuiQ
 Content-Type: application/json
 
   {
     "name": "Edgar Fabian",
     "lastname": "Carrasco",
     "permission_id": 1,
-    "username": "eddy2@noreply.com",
+    "username": "eddy3@noreply.com",
     "pass": "12345678",
     "tuple_status": true
   }
