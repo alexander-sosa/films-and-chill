@@ -110,7 +110,7 @@ export class UseProfileComponent implements OnInit {
       "permission_id": Number(newRol),
       "username": this.EditUserForm.get('email')?.value,
       "pass": this.EditUserForm.get('pass')?.value,
-
+      //"tuple_status": true,
     } 
 
     console.log('data: '+ JSON.stringify(data));

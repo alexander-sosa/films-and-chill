@@ -34,6 +34,7 @@ export class MovieDetailComponent implements OnInit {
       this.loginControlService.loginFirstAlert();
     }
     const params = this.activatedRoute.snapshot.params;
+    console.log(params.movie_id);
     if(params.movie_id){
       this.movie_id = params.movie_id;
       this.getMovie(this.movie_id);
@@ -46,7 +47,7 @@ export class MovieDetailComponent implements OnInit {
       res => {
         this.movie = res;
         this.arrived = true;
-        // console.log("Movie: " + this.movie[0].title)
+        console.log(this.movie);
       },
       err => console.log(err)
     );

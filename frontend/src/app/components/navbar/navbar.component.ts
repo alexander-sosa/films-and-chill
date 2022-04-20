@@ -54,6 +54,7 @@ export class NavbarComponent implements OnInit {
     if(this.isLogged){
       localStorage.removeItem('token');
       localStorage.removeItem('idr');
+      localStorage.removeItem('idu');
       localStorage.removeItem('name');
       localStorage.removeItem('lastname');
 

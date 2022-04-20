@@ -1,32 +1,32 @@
 <div class="container">
     <br>
     <div *ngIf="arrived">
-    <p style="text-align: center; font-size: x-large;">{{movie[0].title}}</p>
+    <p style="text-align: center; font-size: x-large;">{{movie.title}}</p>
     <br><br>
     <div class="row">
         <div class="col-6">
         <p style="text-align: center;">
-            <img src="{{movie[0].image_link}}" alt="imagen pelicula" class="img-fluid" width="60%">
+            <img src="{{movie.imagelink}}" alt="imagen pelicula" class="img-fluid" width="60%">
         </p>
         </div>
         <div class="col-6">
-            <p *ngIf="movie[0].description == undefined"> <span class="bolder">Descripción:</span><br><i>No se encontró una descripción</i> </p>
-            <p *ngIf="movie[0].description != undefined"> <span class="bolder">Descripción:</span>{{movie[0].description}} </p>
+            <p *ngIf="movie.description == undefined"> <span class="bolder">Descripción:</span><br><i>No se encontró una descripción</i> </p>
+            <p *ngIf="movie.description != undefined"> <span class="bolder">Descripción:</span>{{movie.description}} </p>
             <p>
                 <span class="bolder">Actores: </span>
                 <span *ngFor="let actor of actors">
-                    {{actor.first_name}} {{actor.last_name}},
+                    {{actor.firstname}} {{actor.lastname}},
                 </span>
             </p>
             <p>
-                <span class="bolder">Precio: </span> {{movie[0].cost}} Bs. <br>
-                <span class="bolder">Año: </span> {{movie[0].release_year}} <br>
-                <span class="bolder">Rating: </span> {{movie[0].rating}}<br>
-                <span class="bolder">Género: </span> {{movie[0].genre}} <br>
+                <span class="bolder">Precio: </span> {{movie.cost}} Bs. <br>
+                <span class="bolder">Año: </span> {{movie.releaseyear}} <br>
+                <span class="bolder">Rating: </span> {{movie.rating}}<br>
+                <span class="bolder">Género: </span> {{movie.genre}} <br>
             </p>
             <br>
             <p style="text-align: center;">
-                <button type="button" class="btn btn-outline-primary" (click)="addItem(movie[0])"><i class="fa-solid fa-shopping-cart"></i></button>
+                <button type="button" class="btn btn-outline-primary" (click)="addItem(movie)"><i class="fa-solid fa-shopping-cart"></i></button>
                 &nbsp;&nbsp;
                 <button type="button" class="btn btn-primary">Comprar Ahora</button>
             </p>

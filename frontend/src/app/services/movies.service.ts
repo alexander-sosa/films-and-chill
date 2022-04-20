@@ -55,7 +55,7 @@ export class MoviesService {
   }
 
   getGenreMovies(genre_id: number){
-    return this.http.get(this.API_URL + '/movie?genre_id=' + genre_id );
+    return this.http.get(this.API_URL + '/movie?genreId=' + genre_id );
   }
 
 }

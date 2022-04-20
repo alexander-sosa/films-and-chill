@@ -17,16 +17,16 @@ export class MovieGenreComponent implements OnInit {
   
 
   movie: any = {
-    movie_id: 0,
+    movieid: 0,
     title: '',
     description: '',
-    release_year: 0,
+    releaseyear: 0,
     cost: 0,
     stock: 0,
     rating: '',
     genre: '',
-    image_link: '',
-    tuple_status: true
+    imagelink: '',
+    tuplestatus: true
   }
 
 
@@ -50,10 +50,14 @@ export class MovieGenreComponent implements OnInit {
     this.moviesService.getGenres().subscribe(
       res => {
         console.log('genres: ',res);
-        this.genres = res;
+        this.genres = res
+        //console.log('>>>' + this.genres);
         for(let g of this.genres){
-          if(g.genre_id === Number(id)){
+          //console.log( g );
+          if(g.genreid === Number(id)){
             this.genre = g.genre;
+            //console.log('>>>' + this.genre);
+            break;
           }
         }
       },
