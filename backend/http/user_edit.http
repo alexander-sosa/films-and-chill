@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###
 PUT http://localhost:8080/user/2
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjQ5OTc3Njk0LCJpYXQiOjE2NDk5Njc2OTR9.hCxgbiwCvZxchZI1xZIM9l6xJDdDW3y98LFKM2G7BUqcEWYUNBZGsTL3AfPUSVEnvz03IaOM5JZysT93CNn19g
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjUwNDMxNDQ3LCJpYXQiOjE2NTA0MjE0NDd9.EdmB3DPleY_xfpOt0Y0QMuNgqpHfIjc3eJ6tiHDMY7zG1xFkkiCyeHekKCtpxePyJtt2jxL_4kUyVy6qRbn17A
 Content-Type: application/json
 
   {
@@ -20,6 +20,5 @@ Content-Type: application/json
     "permission_id": 1,
     "username": "eddy2@noreply.com",
     "pass": "12345678",
-    "tuple_status": true,
-    "last_update": "2022-04-11T13:49:30.000+00:00"
+    "tuple_status": true
   }

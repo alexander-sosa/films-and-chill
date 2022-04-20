@@ -68,7 +68,12 @@
             <a class="nav-link" routerLink="/inventory">Dashboard<span class="sr-only">(current)</span></a>
           </li>
         </ul>
-        <span>{{name}}&nbsp;{{lastname}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+       
+        <a [routerLink]="['/user-profile']">
+          <span>{{name}}&nbsp;{{lastname}}</span>
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        
         <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
       </div>
   </nav>
@@ -106,7 +111,10 @@
               </form>
           </li>
         </ul>
-        <span>{{name}}&nbsp;{{lastname}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a [routerLink]="['/user-profile']">
+          <span>{{name}}&nbsp;{{lastname}}</span>
+        </a>
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <button class="btn btn-outline-dark" (click)="logout()">Logout</button>
       </div>
   </nav>

@@ -1,24 +1,24 @@
 import { Timestamp } from "rxjs";
 
 export interface Movie{
-    movie_id?: number;
+    movieid?: number;
     title?: string;
     description?: string;
-    release_year?: number;
+    releaseyear?: number;
     cost?: number;
     stock?: number;
-    rating_id?: number;
-    genre_id?: number;
-    image_link?: string;
+    ratingid?: number;
+    genreid?: number;
+    imagelink?: string;
 }
 
 export interface Genre{
-    genre_id?: number,
+    genreid?: number,
     image?: string, 
     genre?: string
 }
 
 export interface Rating{
-  rating_id?: number,
+  ratingid?: number,
   rating?: string
 }

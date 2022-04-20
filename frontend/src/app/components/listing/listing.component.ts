@@ -17,16 +17,16 @@ export class ListingComponent implements OnInit {
   control?:boolean;
 
   movie: any = {
-    movie_id: 0,
+    movieid: 0,
     title: '',
     description: '',
-    release_year: 0,
+    releaseyear: 0,
     cost: 0,
     stock: 0,
     rating: '',
     genre: '',
-    image_link: '',
-    tuple_status: true
+    imagelink: '',
+    tuplestatus: true
   }
 
   movies: any | Movie = [];
@@ -118,7 +118,7 @@ export class ListingComponent implements OnInit {
       this.control = false;
       for(let c of this.cart_list){
         //console.log(m.movie_id)
-        if(m.movie_id === c.movie_id){
+        if(m.movieid === c.movieid){
           //console.log('igual ');
           this.control = true;
           break;

@@ -48,5 +48,9 @@ export class UserService {
 
   }
 
+  getUser(id:number){
+    return this.http.get(this.API_URL + '/user/' + id, {headers: this.auth_headers});
+  }
+
  
 }

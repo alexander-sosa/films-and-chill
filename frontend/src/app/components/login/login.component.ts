@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
         console.log('respuesta: '+Object.values(res));
         resp = Object.values(res);
         console.log('token: '+ resp[0]);
-        this.saveLocalStorage(resp[0], resp[1], resp[2], resp[3]);
+        this.saveLocalStorage(resp[0], resp[1], resp[2], resp[3], resp[4]);
         
         if (JSON.parse(JSON.stringify(res)) !='') {
           console.log('notification2');
@@ -106,9 +106,10 @@ export class LoginComponent implements OnInit {
     );    
   }
 
-  saveLocalStorage(token:string, idr:number, name:string, lastname:string){
+  saveLocalStorage(token:string, idr:number, id:number, name:string, lastname:string){
     localStorage.setItem('token', token);
     localStorage.setItem('idr', String(idr));
+    localStorage.setItem('idu', String(id));
     localStorage.setItem('name', name);
     localStorage.setItem('lastname', lastname);
   }

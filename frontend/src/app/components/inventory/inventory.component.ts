@@ -30,12 +30,12 @@ export class InventoryComponent implements OnInit {
   movie: Movie = {
     title: '',
     description: '',
-    release_year: 0,
+    releaseyear: 0,
     cost: 0,
     stock: 0,
-    rating_id: 0,
-    genre_id: 0,
-    image_link: ''
+    ratingid: 0,
+    genreid: 0,
+    imagelink: ''
   }
  
   users: any = [];
@@ -51,13 +51,13 @@ export class InventoryComponent implements OnInit {
 
   genres: any = [];
   genre: Genre ={
-    genre_id: 0,
+    genreid: 0,
     genre: ''
   }
 
   ratings: any = [];
   rating: Rating ={
-    rating_id: 0,
+    ratingid: 0,
     rating: ''
   }
 
@@ -92,7 +92,7 @@ export class InventoryComponent implements OnInit {
     this.EditProductForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: [''],
-      release_year: ['', [Validators.required, Validators.min(1900)]],
+      releaseyear: ['', [Validators.required, Validators.min(1900)]],
       cost: ['', [Validators.required, Validators.min(10)]],
       unid: ['', [Validators.required, Validators.min(1)]],
       gender: ['', Validators.required],
@@ -169,16 +169,16 @@ export class InventoryComponent implements OnInit {
   }
 
   openDetails(m: Movie){
-    this.currentMovie = m.movie_id;
-    document.getElementById('ID')?.setAttribute('value', String(m.movie_id));
+    this.currentMovie = m.movieid;
+    document.getElementById('ID')?.setAttribute('value', String(m.movieid));
     this.EditProductForm.get('title')?.setValue(m.title);
     this.EditProductForm.get('description')?.setValue(m.description);
-    this.EditProductForm.get('release_year')?.setValue(m.release_year);
+    this.EditProductForm.get('release_year')?.setValue(m.releaseyear);
     this.EditProductForm.get('cost')?.setValue(m.cost);
     this.EditProductForm.get('unid')?.setValue(m.stock);
-    this.EditProductForm.get('gender')?.setValue(m.genre_id);
-    this.EditProductForm.get('rating')?.setValue(m.rating_id);
-    this.EditProductForm.get('img')?.setValue(m.image_link);
+    this.EditProductForm.get('gender')?.setValue(m.genreid);
+    this.EditProductForm.get('rating')?.setValue(m.ratingid);
+    this.EditProductForm.get('img')?.setValue(m.imagelink);
   }
 
   showUser(u: User){
@@ -254,12 +254,12 @@ export class InventoryComponent implements OnInit {
 
     this.movie.title = this.NewProductForm.get('title')?.value;
     this.movie.description = this.NewProductForm.get('description')?.value;
-    this.movie.release_year = this.NewProductForm.get('release_year')?.value;
+    this.movie.releaseyear = this.NewProductForm.get('release_year')?.value;
     this.movie.cost = this.NewProductForm.get('cost')?.value;
     this.movie.stock = this.NewProductForm.get('unid')?.value;
-    this.movie.genre_id = this.NewProductForm.get('gender')?.value;
-    this.movie.rating_id = this.NewProductForm.get('rating')?.value;
-    this.movie.image_link = this.NewProductForm.get('img')?.value;
+    this.movie.genreid = this.NewProductForm.get('gender')?.value;
+    this.movie.ratingid = this.NewProductForm.get('rating')?.value;
+    this.movie.imagelink = this.NewProductForm.get('img')?.value;
 
     console.log(JSON.stringify(this.movie));
     
@@ -319,12 +319,12 @@ export class InventoryComponent implements OnInit {
 
     this.movie.title = this.EditProductForm.get('title')?.value;
     this.movie.description = this.EditProductForm.get('description')?.value;
-    this.movie.release_year = this.EditProductForm.get('release_year')?.value;
+    this.movie.releaseyear = this.EditProductForm.get('release_year')?.value;
     this.movie.cost = this.EditProductForm.get('cost')?.value;
     this.movie.stock = this.EditProductForm.get('unid')?.value;
-    this.movie.genre_id = this.EditProductForm.get('gender')?.value;
-    this.movie.rating_id = this.EditProductForm.get('rating')?.value;
-    this.movie.image_link = this.EditProductForm.get('img')?.value;
+    this.movie.genreid = this.EditProductForm.get('gender')?.value;
+    this.movie.ratingid = this.EditProductForm.get('rating')?.value;
+    this.movie.imagelink = this.EditProductForm.get('img')?.value;
 
     console.log(JSON.stringify(this.movie));
 

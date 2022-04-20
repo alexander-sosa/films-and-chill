@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
+import { Timestamp } from "rxjs";
 
 @Component({
   selector: 'app-use-profile',
@@ -15,12 +16,20 @@ export class UseProfileComponent implements OnInit {
   userselected?: Number;
   rols: any = [];
   currentRol?: Number;
+  IDU?: Number;
 
   public EditUserForm: FormGroup;
   public SetRolForm: FormGroup;
 
   users: any = [];
   user: User = {
+    user_id: 0,
+    name: '',
+    lastname: '',
+    permission_id: 0,
+    username: ''
+  }
+  current_user: User = {
     user_id: 0,
     name: '',
     lastname: '',
@@ -42,14 +51,15 @@ export class UseProfileComponent implements OnInit {
     this.EditUserForm = this.formBuilder.group({
       name: ['', Validators.required],
       last_name: ['', Validators.required],
-      email:['', [Validators.required, Validators.email]]
-      //pass: ['', [Validators.required, Validators.minLength(8)]],
+      email:['', [Validators.required, Validators.email]],
+      pass: ['', [Validators.required, Validators.minLength(8)]],
     });
 
   }
 
   ngOnInit(): void {
-    //this.getUsersList();
+    this.IDU = Number(localStorage.getItem("idu"));
+    this.getUserInfo();
     this.generateRols();
   }
 
@@ -64,10 +74,13 @@ export class UseProfileComponent implements OnInit {
     ]
   }
 
-  getUsersList(){
-    this.userSevice.getUsers().subscribe(
+  getUserInfo(){
+    
+    this.userSevice.getUser(Number(this.IDU)).subscribe(
       res => {
-        this.users = res;
+        this.current_user = res;
+        //console.log(this.current_user);
+        this.showUserInfo(this.current_user);
       },
       err => {
         console.log(err)
@@ -95,12 +108,13 @@ export class UseProfileComponent implements OnInit {
       "name": this.EditUserForm.get('name')?.value,
       "lastname": this.EditUserForm.get('last_name')?.value,
       "permission_id": Number(newRol),
-      "username": this.EditUserForm.get('email')?.value
+      "username": this.EditUserForm.get('email')?.value,
+      "pass": this.EditUserForm.get('pass')?.value,
 
     } 
 
     console.log('data: '+ JSON.stringify(data));
-
+/*
     this.userSevice.putUser(data, Number(IDU)).subscribe(
       res => {
         console.log('notification');
@@ -116,7 +130,7 @@ export class UseProfileComponent implements OnInit {
           })
           this.getUsersList();
           
-        }*/
+        }
       },
       err =>{
         console.log('notification2');
@@ -130,11 +144,11 @@ export class UseProfileComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-          this.getUsersList();*/
+          this.getUsersList();
       }
           
     );
-
+*/
     
   }
 
