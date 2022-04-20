@@ -3,12 +3,12 @@ package bo.edu.ucb.taller.films_and_chill.bl;
 import java.util.Optional;
 
 import java.sql.Timestamp;
-import java.time.Instant;
+//import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+//import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
@@ -55,21 +55,12 @@ public class MovieCreation{
         newMovie.get().setStock(movie.getStock());
 
         if(movie.getTuplestatus() == null)
-        newMovie.get().setTuplestatus(true);
+            newMovie.get().setTuplestatus(true);
+        else
+            newMovie.get().setTuplestatus(movie.getTuplestatus());
+        
         newMovie.get().setLastupdate(new Timestamp(System.currentTimeMillis()));
-        /*
         
-        
-        if(movie.getStock() == null)
-            movie.setStock(0);
-
-        if(movie.getTuplestatus() == null)
-            movie.setTuplestatus(true);
-
-        if(movie.getLastupdate() == null)
-            movie.setLastupdate(new Timestamp(System.currentTimeMillis()));*/
-        
-        //movieDao.updateMovie(movie_id, movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(movieDao.save(newMovie.get())); 
     }
 }

@@ -5,7 +5,7 @@ Content-Type: application/json
 {
     "name": "Edgar",
     "lastname": "Carrasco",
-    "permission_id": 1,
-    "username": "eddy@noreply.com",
+    "permission_id": 2,
+    "username": "eddy2@noreply.com",
     "pass": "12345678"
 }

@@ -4,13 +4,13 @@ package bo.edu.ucb.taller.films_and_chill.api;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.util.HashMap;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+//import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+//import org.springframework.data.domain.Page;
+//import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bo.edu.ucb.taller.films_and_chill.bl.MovieCreation;
 import bo.edu.ucb.taller.films_and_chill.bl.MovieSearch;
-import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
+//import bo.edu.ucb.taller.films_and_chill.dao.MovieDao;
 //import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 

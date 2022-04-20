@@ -54,4 +54,38 @@ public class RatingDao {
         }
         return result;
     }
+
+    public List<Rating> findById (Integer ratingid){
+        List<Rating> result = new ArrayList<>();
+        String query = " SELECT ratingid, " + 
+                        "       rating, " + 
+                        "       tuplestatus, " + 
+                        "       lastupdate " + 
+                       " FROM rating " + 
+                       " WHERE ratingid = ? ";
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            pStatement.setInt(1, ratingid);
+
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next()){
+                Rating rating = new Rating();
+                rating.setRatinid(rSet.getInt("ratingid"));
+                rating.setRating(rSet.getString("rating"));
+                rating.setTuplestatus(rSet.getBoolean("tuplestatus"));
+
+                var lastUpdate = rSet.getTimestamp("lastupdate");
+                rating.setLastupdate(new java.sql.Timestamp(lastUpdate.getTime()));
+                result.add(rating);
+            }
+
+            rSet.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
 }

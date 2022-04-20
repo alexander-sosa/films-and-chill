@@ -35,7 +35,7 @@ export class CartComponent implements OnInit {
         this.cart = res;
         this.valor = this.cart.length;
         this.calculatePrice();
-        this.total = this.subtotal + 10;
+        this.total = this.subtotal;
         console.log(res)
       },
       err => console.log(err)

@@ -73,6 +73,7 @@ export class MovieGenreComponent implements OnInit {
       res => {
         console.log('response: '+ res);
         this.movies = res;
+        this.movies = this.movies.content;
         this.existGenre = true;
       },
       err => {

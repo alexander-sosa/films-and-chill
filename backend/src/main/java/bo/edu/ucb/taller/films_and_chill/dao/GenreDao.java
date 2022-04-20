@@ -56,4 +56,40 @@ public class GenreDao {
         }
         return result;
     }
+
+    public List<Genre> findById(Integer genreid){
+        List<Genre> result = new ArrayList<>();
+        String query = " SELECT genreid, " + 
+                       "       genre, " + 
+                       "       imagelink, " + 
+                       "       tuplestatus, " + 
+                       "       lastupdate " + 
+                       " FROM genre g " + 
+                       " WHERE genreid = ? ";
+        try(
+            Connection connection = dataSource.getConnection();
+            PreparedStatement pStatement = connection.prepareStatement(query);
+        ){
+            pStatement.setInt(1, genreid);
+            
+            ResultSet rSet = pStatement.executeQuery();
+
+            while(rSet.next()){
+                Genre genre = new Genre();
+                genre.setGenreid(rSet.getInt("genreid"));
+                genre.setGenre(rSet.getString("genre"));
+                genre.setImagelink(rSet.getString("imagelink"));
+                genre.setTuplestatus(rSet.getBoolean("tuplestatus"));
+
+                var lastUpdate = rSet.getTimestamp("lastupdate");
+                genre.setLastupdate(new java.sql.Timestamp(lastUpdate.getTime()));
+                result.add(genre);
+            }
+
+            rSet.close();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        return result;
+    }
 }

@@ -29,6 +29,7 @@ export class ListingComponent implements OnInit {
     tuplestatus: true
   }
 
+  response: any = [];
   movies: any | Movie = [];
   cart: any | Movie = [];
   cart_list: any | Movie = [];
@@ -47,7 +48,10 @@ export class ListingComponent implements OnInit {
   getMovies(){
     this.moviesService.getMovies().subscribe(
       res => {
+        //console.log(res);
         this.movies = res;
+        //console.log(this.movies.content);
+        this.movies = this.movies.content;
       },
       err => console.log(err)
     );

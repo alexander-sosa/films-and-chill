@@ -80,7 +80,7 @@ export class InventoryComponent implements OnInit {
     this.NewProductForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: [''],
-      release_year: ['', [Validators.required, Validators.min(1900)]],
+      releaseyear: ['', [Validators.required, Validators.min(1900)]],
       cost: ['', [Validators.required, Validators.min(10)]],
       unid: ['', [Validators.required, Validators.min(1)]],
       gender: ['', Validators.required],
@@ -152,6 +152,7 @@ export class InventoryComponent implements OnInit {
     this.moviesServies.getMovies().subscribe(
       res => {
         this.movies = res;
+        this.movies = this.movies.content;
       },
       err => console.log(err)
     );
@@ -173,7 +174,7 @@ export class InventoryComponent implements OnInit {
     document.getElementById('ID')?.setAttribute('value', String(m.movieid));
     this.EditProductForm.get('title')?.setValue(m.title);
     this.EditProductForm.get('description')?.setValue(m.description);
-    this.EditProductForm.get('release_year')?.setValue(m.releaseyear);
+    this.EditProductForm.get('releaseyear')?.setValue(m.releaseyear);
     this.EditProductForm.get('cost')?.setValue(m.cost);
     this.EditProductForm.get('unid')?.setValue(m.stock);
     this.EditProductForm.get('gender')?.setValue(m.genreid);
@@ -254,7 +255,7 @@ export class InventoryComponent implements OnInit {
 
     this.movie.title = this.NewProductForm.get('title')?.value;
     this.movie.description = this.NewProductForm.get('description')?.value;
-    this.movie.releaseyear = this.NewProductForm.get('release_year')?.value;
+    this.movie.releaseyear = this.NewProductForm.get('releaseyear')?.value;
     this.movie.cost = this.NewProductForm.get('cost')?.value;
     this.movie.stock = this.NewProductForm.get('unid')?.value;
     this.movie.genreid = this.NewProductForm.get('gender')?.value;
@@ -319,7 +320,7 @@ export class InventoryComponent implements OnInit {
 
     this.movie.title = this.EditProductForm.get('title')?.value;
     this.movie.description = this.EditProductForm.get('description')?.value;
-    this.movie.releaseyear = this.EditProductForm.get('release_year')?.value;
+    this.movie.releaseyear = this.EditProductForm.get('releaseyear')?.value;
     this.movie.cost = this.EditProductForm.get('cost')?.value;
     this.movie.stock = this.EditProductForm.get('unid')?.value;
     this.movie.genreid = this.EditProductForm.get('gender')?.value;

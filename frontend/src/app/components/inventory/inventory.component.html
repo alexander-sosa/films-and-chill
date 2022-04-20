@@ -122,15 +122,15 @@
             <div class="row" style="margin-top: 5%;">
               <div class="col">
                 <div class="inline">
-                  <label for="release_year" class="form-label">Año de estreno:</label>
-                  <input style="width: 45%;" type="number" class="form-control" id="release_year" min="1900" formControlName="release_year">
+                  <label for="releaseyear" class="form-label">Año de estreno:</label>
+                  <input style="width: 45%;" type="number" class="form-control" id="releaseyear" min="1900" formControlName="releaseyear">
                   
                 </div>
-                <div *ngIf="getValue(EditProductForm,'release_year')?.invalid && (getValue(EditProductForm,'release_year')?.touched || getValue(EditProductForm,'release_year')?.dirty)">
-                  <div *ngIf="getValue(EditProductForm,'release_year')?.errors?.required" class="alert alert-danger" role="alert">
+                <div *ngIf="getValue(EditProductForm,'releaseyear')?.invalid && (getValue(EditProductForm,'releaseyear')?.touched || getValue(EditProductForm,'releaseyear')?.dirty)">
+                  <div *ngIf="getValue(EditProductForm,'releaseyear')?.errors?.required" class="alert alert-danger" role="alert">
                     <p>Campo requerido</p>                          
                   </div>
-                  <div *ngIf="getValue(EditProductForm,'release_year')?.errors?.min" class="alert alert-danger" role="alert">
+                  <div *ngIf="getValue(EditProductForm,'releaseyear')?.errors?.min" class="alert alert-danger" role="alert">
                     <p>Año minimo 1900</p>                          
                   </div>
                 </div>
@@ -288,15 +288,15 @@
             <div class="row" style="margin-top: 5%;">
               <div class="col">
                 <div class="inline">
-                  <label for="release_year" class="form-label">Año de estreno: <span class="text-danger" >*</span></label>
-                  <input style="width: 45%;" type="number" class="form-control" id="release_year" min="1900" formControlName="release_year">
+                  <label for="releaseyear" class="form-label">Año de estreno: <span class="text-danger" >*</span></label>
+                  <input style="width: 45%;" type="number" class="form-control" id="releaseyear" min="1900" formControlName="releaseyear">
                   
                 </div>
-                <div *ngIf="getValue(NewProductForm,'release_year')?.invalid && (getValue(NewProductForm,'release_year')?.touched || getValue(NewProductForm,'release_year')?.dirty)">
-                  <div *ngIf="getValue(NewProductForm,'release_year')?.errors?.required" class="alert alert-danger" role="alert">
+                <div *ngIf="getValue(NewProductForm,'releaseyear')?.invalid && (getValue(NewProductForm,'releaseyear')?.touched || getValue(NewProductForm,'releaseyear')?.dirty)">
+                  <div *ngIf="getValue(NewProductForm,'releaseyear')?.errors?.required" class="alert alert-danger" role="alert">
                     <p>Campo requerido</p>                          
                   </div>
-                  <div *ngIf="getValue(NewProductForm,'release_year')?.errors?.min" class="alert alert-danger" role="alert">
+                  <div *ngIf="getValue(NewProductForm,'releaseyear')?.errors?.min" class="alert alert-danger" role="alert">
                     <p>Año minimo 1900</p>                          
                   </div>
                 </div>
