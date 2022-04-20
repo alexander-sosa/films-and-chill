@@ -25,7 +25,7 @@ public class CartDao {
         List<Integer> movie_ids = new ArrayList<>();
 
         for(int i = 0; i < this.cart.size(); i++){
-            movie_ids.add(this.cart.get(i).getMovie_id());
+            movie_ids.add(this.cart.get(i).getMovieid());
         }
 
         int index = movie_ids.indexOf(movie_id);

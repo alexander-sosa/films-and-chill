@@ -1,5 +1,5 @@
 -- data
-INSERT INTO genre (genre, image_link) VALUES 
+INSERT INTO genre (genre, imagelink) VALUES 
 ('ciencia ficcion', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/ciencia-ficcion.jpg'),
 ('accion', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/accion.jpg'),
 ('fantasia', 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/sprint-2/images/fantasia.jpg'),
@@ -13,14 +13,14 @@ INSERT INTO rating (rating) VALUES
 ('R'),
 ('NC-17');
 
-INSERT INTO movie (title, cost, rating_id, genre_id, image_link, stock) VALUES
+INSERT INTO movie (title, cost, ratingid, genreid, imagelink, stock) VALUES
 ('Harry Potter y la Orden del Fenix', 15.5, 3, 3, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg', 5),
 ('Avengers: Infinity War', 20.5, 2, 2, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/avengers.jpg', 4),
 ('Son Como Niños 2', 13.6, 3, 5, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/grownups.jpg', 10),
 ('Interestelar', 15.2, 1, 1, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/interstellar.jpg', 6),
 ('Las Crónicas de Narnia: El Leon, la Bruja y el Armario', 12.3, 1, 3, 'https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/narnia.jpg', 2);
 
-INSERT INTO actor (first_name, last_name) VALUES
+INSERT INTO actor (firstname, lastname) VALUES
 ('Daniel', 'Radcliffe'),
 ('Emma', 'Wattson'),
 ('Rupert', 'Grint'),
@@ -35,7 +35,7 @@ INSERT INTO actor (first_name, last_name) VALUES
 ('William', 'Moseley'),
 ('Anna', 'Popplewell');
 
-INSERT INTO actor_movie (movie_id, actor_id) VALUES
+INSERT INTO actormovie (movieid, actorid) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -54,5 +54,5 @@ INSERT INTO permission(description) VALUES
 ('admin'),
 ('client');
 
-INSERT INTO user(name, lastname, permission_id, email, pass) VALUES
-('Juan', 'Perez', 1, 'juan.perez@noreply.com', SHA2('12345678', 256));
+/*INSERT INTO user(name, lastname, permission_id, email, pass) VALUES
+('Juan', 'Perez', 1, 'juan.perez@noreply.com', SHA2('12345678', 256));*/

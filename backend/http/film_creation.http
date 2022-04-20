@@ -5,12 +5,12 @@ Content-Type: application/json
 {    
     "title": "Rogue One: Una Historia de Star Wars",
     "description": "La batalla de la rebelión por conseguir los planos de la Estrella de la Muerte",
-    "release_year": 2016,
+    "releaseyear": 2016,
     "cost": 16.9,
     "stock": 10,
-    "rating_id": 2,
-    "genre_id": 1,
-    "image_link": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg"
+    "ratingid": 2,
+    "genreid": 1,
+    "imagelink": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg"
 }
 
 ###
@@ -20,12 +20,10 @@ Content-Type: application/json
 {
     "title": "Rogue One",
     "description": "Una nueva descripcion",
-    "release_year": 2016,
+    "releaseyear": 2016,
     "cost": 12.2,
-    "rating_id": 2,
-    "genre_id": 1,
-    "image_link": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg",
-    "stock": 8,
-    "tuple_status": true,
-    "last_update": "2022-04-10T19:19:12.000+00:00"
+    "ratingid": 2,
+    "genreid": 1,
+    "imagelink": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg",
+    "stock": 8
   }

@@ -26,15 +26,15 @@ public class ActorDao {
 
     public List<Actor> listByMovie(int movie_id){
         List<Actor> result = new ArrayList<>();
-        String query = "SELECT a.actor_id, " + 
-                       "       a.first_name, " + 
-                       "       a.last_name, " + 
-                       "       a.tuple_status, " + 
-                       "       a.last_update" + 
+        String query = "SELECT a.actorid, " + 
+                       "       a.firstname, " + 
+                       "       a.lastname, " + 
+                       "       a.tuplestatus, " + 
+                       "       a.lastupdate" + 
                        " FROM actor a " + 
-                       " LEFT JOIN actor_movie am ON (am.actor_id = a.actor_id) " + 
-                       " LEFT JOIN movie m ON (m.movie_id = am.movie_id) " + 
-                       " WHERE m.movie_id = ( ? );";
+                       " LEFT JOIN actormovie am ON (am.actorid = a.actorid) " + 
+                       " LEFT JOIN movie m ON (m.movieid = am.movieid) " + 
+                       " WHERE m.movieid = ( ? );";
 
         try(
             Connection connection = dataSource.getConnection();
@@ -45,13 +45,13 @@ public class ActorDao {
 
             while(rSet.next()){
                 Actor actor = new Actor();
-                actor.setActor_id(rSet.getInt("actor_id"));
-                actor.setFirst_name(rSet.getString("first_name"));
-                actor.setLast_name(rSet.getString("last_name"));
-                actor.setTuple_status(rSet.getBoolean("tuple_status"));
+                actor.setActorid(rSet.getInt("actorid"));
+                actor.setFirstname(rSet.getString("firstname"));
+                actor.setLastname(rSet.getString("lastname"));
+                actor.setTuplestatus(rSet.getBoolean("tuplestatus"));
                 
-                var lastUpdate = rSet.getTimestamp("last_update");
-                actor.setLast_update(new java.sql.Timestamp(lastUpdate.getTime()));
+                var lastUpdate = rSet.getTimestamp("lastupdate");
+                actor.setLastupdate(new java.sql.Timestamp(lastUpdate.getTime()));
                 result.add(actor);
             }
 

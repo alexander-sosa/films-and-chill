@@ -6,16 +6,16 @@ POST http://localhost:8080/cart
 Content-Type: application/json
 
 {    
-    "movie_id": 1,
+    "movieid": 1,
     "title": "Harry Potter y la Orden del Fenix",
     "description": null,
-    "release_year": 0,
+    "releaseyear": 0,
     "cost": 15.5,
     "rating": "PG-13",
     "genre": "fantasia",
-    "image_link": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg",
-    "tuple_status": true,
-    "last_update": "2022-03-31T02:58:38.000+00:00"
+    "imagelink": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg",
+    "tuplestatus": true,
+    "lastupdate": "2022-03-31T02:58:38.000+00:00"
 }
 
 ###

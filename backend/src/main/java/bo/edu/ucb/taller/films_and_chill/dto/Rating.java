@@ -8,34 +8,34 @@ import javax.persistence.Id;
 
 /*
 CREATE TABLE rating(
-	rating_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	ratingid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	rating varchar(10) NOT NULL,
-	tuple_status bool DEFAULT 1,
-	last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
+	tuplestatus bool DEFAULT 1,
+	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 */
 @Entity(name = "rating")
 public class Rating {
 
     @Id
-    @Column(name = "rating_id")
-    private Integer rating_id;
+    @Column(name = "ratingid")
+    private Integer ratingid;
 
     private String rating;
-    private Boolean tuple_status;
-    private Timestamp last_update;
+    private Boolean tuplestatus;
+    private Timestamp lastupdate;
 
     public Rating() 
     {
 
     }
 
-    public Integer getRating_id() {
-        return this.rating_id;
+    public Integer getRatingid() {
+        return this.ratingid;
     }
 
-    public void setRating_id(Integer rating_id) {
-        this.rating_id = rating_id;
+    public void setRatinid(Integer ratingid) {
+        this.ratingid = ratingid;
     }
 
     public String getRating() {
@@ -46,23 +46,23 @@ public class Rating {
         this.rating = rating;
     }
 
-    public Boolean isTuple_status() {
-        return this.tuple_status;
+    public Boolean isTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public Boolean getTuple_status() {
-        return this.tuple_status;
+    public Boolean getTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public void setTuple_status(Boolean tuple_status) {
-        this.tuple_status = tuple_status;
+    public void setTuplestatus(Boolean tuplestatus) {
+        this.tuplestatus = tuplestatus;
     }
 
-    public Timestamp getLast_update() {
-        return this.last_update;
+    public Timestamp getLastupdate() {
+        return this.lastupdate;
     }
 
-    public void setLast_update(Timestamp last_update) {
-        this.last_update = last_update;
+    public void setLastupdate(Timestamp lastupdate) {
+        this.lastupdate = lastupdate;
     }
 }

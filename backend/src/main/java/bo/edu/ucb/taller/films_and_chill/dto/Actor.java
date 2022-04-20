@@ -10,14 +10,11 @@ import javax.persistence.Id;
 
 /*
 CREATE TABLE actor (
-    actor_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    first_name varchar(20) NOT NULL,
-    last_name varchar(20) NOT NULL,
-    access_permission varchar(20),
-	email varchar(60) UNIQUE,
-	pass text,
-	tuple_status bool DEFAULT 1,
-    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    actorid int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    firstname varchar(20) NOT NULL,
+    lastname varchar(20) NOT NULL,
+	tuplestatus bool DEFAULT 1,
+    lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 */
 
@@ -25,59 +22,59 @@ CREATE TABLE actor (
 public class Actor {
     
     @Id
-    @Column(name = "actor_id")
+    @Column(name = "actorid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer actor_id;
+    private Integer actorid;
 
-    private String first_name;
-    private String last_name;
-    private Boolean tuple_status;
-    private Timestamp last_update;
+    private String firstname;
+    private String lastname;
+    private Boolean tuplestatus;
+    private Timestamp lastupdate;
 
     public Actor() {
     }
 
-    public Integer getActor_id() {
-        return this.actor_id;
+    public Integer getActorid() {
+        return this.actorid;
     }
 
-    public void setActor_id(Integer actor_id) {
-        this.actor_id = actor_id;
+    public void setActorid(Integer actorid) {
+        this.actorid = actorid;
     }
 
-    public String getFirst_name() {
-        return this.first_name;
+    public String getFirstname() {
+        return this.firstname;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getLast_name() {
-        return this.last_name;
+    public String getLastname() {
+        return this.lastname;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public Boolean isTuple_status() {
-        return this.tuple_status;
+    public Boolean isTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public Boolean getTuple_status() {
-        return this.tuple_status;
+    public Boolean getTuplestatus() {
+        return this.tuplestatus;
     }
 
-    public void setTuple_status(Boolean tuple_status) {
-        this.tuple_status = tuple_status;
+    public void setTuplestatus(Boolean tuplestatus) {
+        this.tuplestatus = tuplestatus;
     }
 
-    public Timestamp getLast_update() {
-        return this.last_update;
+    public Timestamp getLastupdate() {
+        return this.lastupdate;
     }
 
-    public void setLast_update(Timestamp last_update) {
-        this.last_update = last_update;
+    public void setLastupdate(Timestamp lastupdate) {
+        this.lastupdate = lastupdate;
     }
 }
