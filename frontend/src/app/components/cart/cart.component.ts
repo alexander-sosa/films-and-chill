@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from 'src/app/models/Item';
 import { Movie } from 'src/app/models/Movie';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginFirstService } from 'src/app/services/login-first.service';
@@ -16,10 +17,16 @@ export class CartComponent implements OnInit {
     ) { }
 
   cart: any | Movie = [];
+  items: any | Item = [];
 
   valor: any;
   subtotal: any;
   total: any;
+
+  item: Item = {
+    movie: null,
+    amount: 1
+  }
 
   ngOnInit(): void {
     if(!localStorage.getItem('token')){
@@ -34,12 +41,24 @@ export class CartComponent implements OnInit {
       res => {
         this.cart = res;
         this.valor = this.cart.length;
+        this.chargeItems();
+        console.log(this.items);
         this.calculatePrice();
-        this.total = this.subtotal;
         console.log(res)
       },
       err => console.log(err)
     );
+  }
+
+  chargeItems(){
+    this.items = [];
+    for(let i = 0; i < this.cart.length ; i++){
+      this.item = {
+        movie: this.cart[i],
+        amount: 1
+      }
+      this.items[i] = this.item;
+    }
   }
 
   removeFromCart(movie_id: any){
@@ -71,10 +90,11 @@ export class CartComponent implements OnInit {
 
   calculatePrice(){
     this.subtotal = 0;
-    //this.checkDate();;
     for(let i = 0; i < this.cart.length ; i++){
-      this.subtotal += this.cart[i].cost /** this.dias*/;
+      this.subtotal += this.cart[i].cost * this.items[i].amount;
+      console.log(this.subtotal);
     }
     this.subtotal = (Math.round(this.subtotal * 100) / 100);
+    this.total = this.subtotal;
   }
 }
