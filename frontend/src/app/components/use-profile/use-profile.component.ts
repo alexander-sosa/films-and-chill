@@ -18,6 +18,10 @@ export class UseProfileComponent implements OnInit {
   currentRol?: Number;
   IDU?: Number;
 
+  new_name?: string;
+  new_lastname?: string;
+  
+
   public EditUserForm: FormGroup;
   public SetRolForm: FormGroup;
 
@@ -115,6 +119,8 @@ export class UseProfileComponent implements OnInit {
       //lastupdate": "2022-03-31T02:58:38.000+00:00"
 
     } 
+    this.new_name = this.EditUserForm.get('name')?.value;
+    this.new_lastname = this.EditUserForm.get('last_name')?.value;
 
     console.log('data: '+ JSON.stringify(data));
 
@@ -123,7 +129,10 @@ export class UseProfileComponent implements OnInit {
         console.log('notification');
         console.log('response: '+res);
         if (res != '') {
-          
+          if(this.new_name != undefined && this.new_lastname != undefined){
+            localStorage.setItem('name', this.new_name);
+            localStorage.setItem('lastname', this.new_lastname);
+          }
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -138,6 +147,9 @@ export class UseProfileComponent implements OnInit {
       err =>{
         console.log('notification2');
         console.log(err);
+        this.new_name = undefined;
+        this.new_lastname = undefined;
+
         Swal.fire({
           position: 'center',
           icon: 'warning',
