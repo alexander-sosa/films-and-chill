@@ -12,6 +12,10 @@ import { Timestamp } from "rxjs";
   styleUrls: ['./use-profile.component.css']
 })
 export class UseProfileComponent implements OnInit {
+  todayNumber: number = Date.now();
+  todayDate : Date = new Date();
+  todayString : string = new Date().toDateString();
+  todayISOString : string = new Date().toISOString();
 
   userselected?: Number;
   rols: any = [];
@@ -100,6 +104,19 @@ export class UseProfileComponent implements OnInit {
   }
 
   updateUser(){
+    const current = new Date();
+
+    current.setHours(0)
+
+    current.setMinutes(0)
+
+    current.setSeconds(0)
+
+    current.setMilliseconds(0)
+    const timestamp = current.getTime();
+
+
+    
     var IDU = (document.getElementById('IDUser') as HTMLInputElement).value;
     var newRol = (document.getElementById('rol') as HTMLInputElement).value;
    
@@ -110,11 +127,14 @@ export class UseProfileComponent implements OnInit {
       "permission_id": Number(newRol),
       "username": this.EditUserForm.get('email')?.value,
       "pass": this.EditUserForm.get('pass')?.value,
-      //"tuple_status": true,
+      "tuple_status": true,
+      "last_update": this.todayISOString
+      //lastupdate": "2022-03-31T02:58:38.000+00:00"
+
     } 
 
     console.log('data: '+ JSON.stringify(data));
-/*
+
     this.userSevice.putUser(data, Number(IDU)).subscribe(
       res => {
         console.log('notification');
@@ -130,12 +150,12 @@ export class UseProfileComponent implements OnInit {
           })
           this.getUsersList();
           
-        }
+        }*/
       },
       err =>{
         console.log('notification2');
         console.log(err);
-        console.log('response: '+err.statusText);
+        //console.log('response: '+ );
         /*if (err.statusText === 'OK') {
           Swal.fire({
             position: 'center',
@@ -144,11 +164,11 @@ export class UseProfileComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500
           })
-          this.getUsersList();
+          this.getUsersList();*/
       }
           
     );
-*/
+
     
   }
 
