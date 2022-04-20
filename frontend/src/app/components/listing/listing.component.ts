@@ -34,6 +34,15 @@ export class ListingComponent implements OnInit {
   cart: any | Movie = [];
   cart_list: any | Movie = [];
 
+  totalPages: number = 0;
+  totalMovies: number = 0;
+  numberOfElements: number = 0;
+  pageNumber: number = 0;
+  lastPage: boolean = false;
+  firstPage: boolean = false;
+
+  page: number = 0;
+
   constructor(private moviesService: MoviesService,
               private cartService: CartService,
               private router: Router) { }
@@ -49,9 +58,16 @@ export class ListingComponent implements OnInit {
     this.moviesService.getMovies().subscribe(
       res => {
         //console.log(res);
-        this.movies = res;
+        this.response = res;
         //console.log(this.movies.content);
-        this.movies = this.movies.content;
+        this.movies = this.response.content;
+        this.totalPages = this.response.totalPages;
+        this.totalMovies = this.response.totalMovies;
+        this.numberOfElements = this.response.numberOfElements;
+        this.pageNumber = this.response.number;
+        this.page = this.pageNumber + 1;
+        this.lastPage = this.response.last;
+        this.firstPage = this.response.first;
       },
       err => console.log(err)
     );

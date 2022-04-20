@@ -167,7 +167,7 @@
               <div class="col">
                 <label for="gender" class="form-label" style="margin-top: 3%;">Género:</label>
                 <select class="form-select" id="gender" style="width: 100%;" formControlName="gender">
-                  <option *ngFor="let g of genres" [value]="g.genre_id" >{{g.genre}}</option>
+                  <option *ngFor="let g of genres" [value]="g.genreid" >{{g.genre}}</option>
                 </select>
                 <div *ngIf="getValue(EditProductForm,'gender')?.invalid && (getValue(EditProductForm,'gender')?.touched || getValue(EditProductForm,'gender')?.dirty)">
                   <div *ngIf="getValue(EditProductForm,'gender')?.errors?.required" class="alert alert-danger" role="alert">
@@ -177,7 +177,7 @@
 
                 <label for="rating" class="form-label"  style="margin-top: 5%;">Rating:</label>
                 <select class="form-select" id="rating" style="width: 100%;" formControlName="rating">
-                  <option *ngFor="let ra of ratings" [value]="ra.rating_id" >{{ra.rating}}</option>
+                  <option *ngFor="let ra of ratings" [value]="ra.ratingid" >{{ra.rating}}</option>
                 </select>
                 <div *ngIf="getValue(EditProductForm,'rating')?.invalid && (getValue(EditProductForm,'rating')?.touched || getValue(EditProductForm,'rating')?.dirty)">
                   <div *ngIf="getValue(EditProductForm,'rating')?.errors?.required" class="alert alert-danger" role="alert">
