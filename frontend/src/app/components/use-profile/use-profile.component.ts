@@ -18,8 +18,8 @@ export class UseProfileComponent implements OnInit {
   currentRol?: Number;
   IDU?: Number;
 
-  new_name?: string;
-  new_lastname?: string;
+  new_name?: string = "";
+  new_lastname?: string = "";
   
 
   public EditUserForm: FormGroup;
@@ -85,6 +85,15 @@ export class UseProfileComponent implements OnInit {
         this.current_user = res;
         //console.log(this.current_user);
         this.showUserInfo(this.current_user);
+        if(this.current_user.name != undefined){
+          this.new_name = this.current_user.name;
+          localStorage.setItem("name", this.new_name);
+        }
+        if(this.current_user.lastname != undefined){
+          this.new_lastname= this.current_user.lastname;
+         localStorage.setItem("lastname", this.new_lastname);
+        }
+
       },
       err => {
         console.log(err)
@@ -171,7 +180,7 @@ export class UseProfileComponent implements OnInit {
           
     );
 
-    
+    window.location.reload();
   }
 
 

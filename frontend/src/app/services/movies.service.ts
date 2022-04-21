@@ -25,6 +25,10 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
+  getMoviesByPage(page: number){
+    return this.http.get(this.API_URL + '/movie' + '?page=' + page);
+  }
+
   getMovies(){
     return this.http.get(this.API_URL + '/movie');
   }

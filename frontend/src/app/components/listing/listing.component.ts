@@ -73,6 +73,52 @@ export class ListingComponent implements OnInit {
     );
   }
 
+  getMoviesByPagePrev(page?: any | undefined){
+    page--;
+    if(page < 0) return;
+    console.log("Getting page..." + page)
+    this.pageNumber--;
+    this.moviesService.getMoviesByPage(page).subscribe(
+      res => {
+        //console.log(res);
+        this.response = res;
+        //console.log(this.movies.content);
+        this.movies = this.response.content;
+        this.totalPages = this.response.totalPages;
+        this.totalMovies = this.response.totalMovies;
+        this.numberOfElements = this.response.numberOfElements;
+        this.pageNumber = this.response.number;
+        this.page = this.pageNumber + 1;
+        this.lastPage = this.response.last;
+        this.firstPage = this.response.first;
+      },
+      err => console.log(err)
+    );
+  }
+
+  getMoviesByPageNext(page?: any | undefined){
+    page++;
+    if(page > this.totalPages) return;
+    console.log("Getting page..." + page)
+    this.pageNumber--;
+    this.moviesService.getMoviesByPage(page).subscribe(
+      res => {
+        //console.log(res);
+        this.response = res;
+        //console.log(this.movies.content);
+        this.movies = this.response.content;
+        this.totalPages = this.response.totalPages;
+        this.totalMovies = this.response.totalMovies;
+        this.numberOfElements = this.response.numberOfElements;
+        this.pageNumber = this.response.number;
+        this.page = this.pageNumber + 1;
+        this.lastPage = this.response.last;
+        this.firstPage = this.response.first;
+      },
+      err => console.log(err)
+    );
+  }
+
   addToCart(movie: Movie){
     //console.log('algo');
     //console.log('lista: ', this.cart_list);
