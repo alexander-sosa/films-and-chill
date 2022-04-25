@@ -35,7 +35,7 @@
                       <td>
                         <div class="btn-group-tb">
                           <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button><i class="fa-solid fa-trash"></i></button>
+                          <button (click)="deleteMovie(movie)" ><i class="fa-solid fa-trash"></i></button>
                         </div>
                       </td>
                     </tr>

@@ -371,5 +371,27 @@ export class InventoryComponent implements OnInit {
 
   }
 
+  deleteMovie(m: Movie){
+    Swal.fire({
+      title: 'Eliminar película',
+      text: "¿Estas seguro de querer eliminar este producto?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#E1A140',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(m);
+        /*Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )*/
+      }
+    })
+  }
+
 }
 
