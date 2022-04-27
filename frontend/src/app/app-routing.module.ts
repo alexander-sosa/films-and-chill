@@ -10,36 +10,39 @@ import { GenreListingComponent } from './components/genre-listing/genre-listing.
 import { MovieGenreComponent } from './components/movie-genre/movie-genre.component';
 import { UseProfileComponent } from './components/use-profile/use-profile.component';
 import { PasswordEditComponent } from './components/password-edit/password-edit.component';
+import { MoviePremieresComponent } from './components/movie-premieres/movie-premieres.component';
 
 
-const routes: Routes = [
-  { path: '', redirectTo: '/movies', pathMatch: 'full' },
-  { path: 'inventory', component: InventoryComponent},
-  { path: 'movies', component: ListingComponent },
-  { path: 'signin/adm', component: SigninComponent },
-  { path: 'signin/cli', component: SigninComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'movie-detail/:movie_id', component: MovieDetailComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'genres', component: GenreListingComponent},
-  { path: 'movies-genre/:genre_id', component: MovieGenreComponent },
-  { path: 'user-profile', component: UseProfileComponent },
-  { path: 'password-edit', component: PasswordEditComponent }
-];
+  const routes: Routes = [
+    { path: '', redirectTo: '/movies', pathMatch: 'full' },
+    { path: 'inventory', component: InventoryComponent},
+    { path: 'movies', component: ListingComponent },
+    { path: 'signin/adm', component: SigninComponent },
+    { path: 'signin/cli', component: SigninComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'movie-detail/:movie_id', component: MovieDetailComponent },
+    { path: 'cart', component: CartComponent },
+    { path: 'genres', component: GenreListingComponent},
+    { path: 'movies-genre/:genre_id', component: MovieGenreComponent },
+    { path: 'user-profile', component: UseProfileComponent },
+    { path: 'password-edit', component: PasswordEditComponent },
+    { path: 'premieres', component: MoviePremieresComponent }
+  ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-export const routingComponents = [
-  InventoryComponent, 
-  ListingComponent, 
-  SigninComponent, 
-  LoginComponent, 
-  MovieDetailComponent, 
-  CartComponent, 
-  MovieGenreComponent, 
-  UseProfileComponent, 
-  PasswordEditComponent 
-];
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }
+  export const routingComponents = [
+    InventoryComponent, 
+    ListingComponent, 
+    SigninComponent, 
+    LoginComponent, 
+    MovieDetailComponent, 
+    CartComponent, 
+    MovieGenreComponent, 
+    UseProfileComponent, 
+    PasswordEditComponent,
+    MoviePremieresComponent
+  ];

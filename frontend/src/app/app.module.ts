@@ -18,6 +18,7 @@ import { GenreListingComponent } from './components/genre-listing/genre-listing.
 import { MovieGenreComponent } from './components/movie-genre/movie-genre.component';
 import { UseProfileComponent } from './components/use-profile/use-profile.component';
 import { PasswordEditComponent } from './components/password-edit/password-edit.component';
+import { MoviePremieresComponent } from './components/movie-premieres/movie-premieres.component';
 
 
 
@@ -35,6 +36,7 @@ import { PasswordEditComponent } from './components/password-edit/password-edit.
     MovieGenreComponent,
     UseProfileComponent,
     PasswordEditComponent,
+    MoviePremieresComponent,
           
   ],
   imports: [
