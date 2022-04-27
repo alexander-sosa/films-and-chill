@@ -27,3 +27,6 @@ Content-Type: application/json
     "imagelink": "https://raw.githubusercontent.com/alexander-sosa/films-and-chill/main/images/harrypotter.jpg",
     "stock": 8
   }
+
+###
+DELETE http://localhost:8080/movie/1

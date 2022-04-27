@@ -54,9 +54,9 @@ public class MovieSearch {
         Page<Movie> movies;
 
         if(genreId == null)
-            movies = movieDao.findAll(pageable);
+            movies = movieDao.findByTuplestatus(true, pageable);
         else
-            movies = movieDao.findByGenreid(genreId, pageable);
+            movies = movieDao.findByGenreidAndTuplestatus(genreId, true, pageable);
         
         return ResponseEntity.ok(movies);
     }

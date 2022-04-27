@@ -24,7 +24,8 @@ import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 //Acceso a la DB
 @Repository
 public interface MovieDao extends JpaRepository<Movie, Integer>{
-    Page<Movie> findByGenreid(Integer genreId, org.springframework.data.domain.Pageable pageable);
+    Page<Movie> findByTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+    Page<Movie> findByGenreidAndTuplestatus(Integer genreId, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
 }
 
 /*@Component

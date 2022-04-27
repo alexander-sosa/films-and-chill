@@ -3,6 +3,7 @@ package bo.edu.ucb.taller.films_and_chill.api;
 //import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 //import java.util.HashMap;
 //import java.util.Map;
@@ -78,6 +79,11 @@ public class MovieApi {
         return movieCreation.updateMovie(movie_id, movie);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping(value = "/movie/{movie_id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteMovie (@PathVariable(name = "movie_id") int movie_id){
+        return movieCreation.deleteMovie(movie_id);
+    }
     /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/genre/{genre_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listAllMoviesByGenre(@PathVariable(name = "genre_id") Integer genre_id){

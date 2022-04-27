@@ -63,6 +63,17 @@ public class MovieCreation{
         
         return ResponseEntity.status(HttpStatus.CREATED).body(movieDao.save(newMovie.get())); 
     }
+    
+    public ResponseEntity<?> deleteMovie(int movie_id){
+        if(movieDao.findById(movie_id).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Película no encontrada");
+        }
+
+        Optional<Movie> newMovie = movieDao.findById(movie_id);
+        newMovie.get().setTuplestatus(false);
+
+        return ResponseEntity.ok(movieDao.save(newMovie.get()));
+    }
 }
 /*@Component
 public class MovieCreation {
