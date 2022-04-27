@@ -24,7 +24,7 @@
                 </thead>
                   <tbody>
                     <tr *ngFor='let movie of movies'>
-                      <th scope="row" style="text-align: center;">{{movie.movie_id}}</th>
+                      <th scope="row" style="text-align: center;">{{movie.movieid}}</th>
                       <td>{{movie.title}}</td>
                       <td *ngIf="movie.description == null || movie.description == '' ; else showDes">No se encontró una descripción</td>
                       <ng-template #showDes>
@@ -56,7 +56,7 @@
               </thead>
                 <tbody>
                   <tr *ngFor='let user of users'>
-                    <th scope="row" style="text-align: center;">{{user.user_id}}</th>
+                    <th scope="row" style="text-align: center;">{{user.userid}}</th>
                     <td>{{user.name}}</td>
                     <td>{{user.lastname}}</td>
                     <td> 

@@ -384,11 +384,21 @@ export class InventoryComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(m);
-        /*Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )*/
+        this.moviesServies.deleteMovie(Number(m.movieid)).subscribe(
+          res => {
+            console.log(res);
+            if (res != undefined) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+              this.getInventory();
+            }
+          },
+          err => console.log(err)
+        );
+        
       }
     })
   }

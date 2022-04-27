@@ -62,4 +62,8 @@ export class MoviesService {
     return this.http.get(this.API_URL + '/movie?genreId=' + genre_id );
   }
 
+  deleteMovie(movie_id: number){
+    return this.http.delete(this.API_URL + '/movie/' + movie_id );
+  }
+
 }
