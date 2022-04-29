@@ -87,8 +87,9 @@ public class MovieApi {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/latest", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findByReleaseYear (){
-        return movieSearch.findByReleaseYear();
+    public ResponseEntity<?> findByReleaseYear (@RequestParam(defaultValue = "0") Integer page,
+                                                @RequestParam(defaultValue = "12") Integer size){
+        return movieSearch.findByReleaseYear(page, size);
     }
     /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/genre/{genre_id}", produces = MediaType.APPLICATION_JSON_VALUE)

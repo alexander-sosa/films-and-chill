@@ -76,9 +76,9 @@ public class MovieSearch {
         return ResponseEntity.ok(movieDao.findById(movie_id));
     }
 
-    public ResponseEntity<?> findByReleaseYear(){
+    public ResponseEntity<?> findByReleaseYear(Integer page, Integer size){
         //findByTuplestatusOrderByReleaseyear
-        Pageable pageable = PageRequest.of(0, 12, Sort.by(Sort.Direction.DESC, "releaseyear"));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "releaseyear"));
         Page<Movie> movies = movieDao.findAll(pageable);
 
         return ResponseEntity.ok(movies);
