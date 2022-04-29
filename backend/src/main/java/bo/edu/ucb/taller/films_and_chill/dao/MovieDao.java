@@ -26,6 +26,7 @@ import bo.edu.ucb.taller.films_and_chill.dto.Movie;
 public interface MovieDao extends JpaRepository<Movie, Integer>{
     Page<Movie> findByTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     Page<Movie> findByGenreidAndTuplestatus(Integer genreId, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+    Page<Movie> findByTuplestatusOrderByReleaseyear(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
 }
 
 /*@Component

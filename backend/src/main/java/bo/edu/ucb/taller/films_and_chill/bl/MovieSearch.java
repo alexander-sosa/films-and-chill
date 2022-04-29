@@ -7,7 +7,6 @@ package bo.edu.ucb.taller.films_and_chill.bl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
-import org.springframework.data.domain.PageRequest;
 //import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +74,14 @@ public class MovieSearch {
         movie.setRating(rating.getRating());
 
         return ResponseEntity.ok(movieDao.findById(movie_id));
+    }
+
+    public ResponseEntity<?> findByReleaseYear(){
+        //findByTuplestatusOrderByReleaseyear
+        Pageable pageable = PageRequest.of(0, 12, Sort.by(Sort.Direction.DESC, "releaseyear"));
+        Page<Movie> movies = movieDao.findAll(pageable);
+
+        return ResponseEntity.ok(movies);
     }
 
     /*public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id, Integer from){

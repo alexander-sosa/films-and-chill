@@ -84,6 +84,12 @@ public class MovieApi {
     public ResponseEntity<?> deleteMovie (@PathVariable(name = "movie_id") int movie_id){
         return movieCreation.deleteMovie(movie_id);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/movie/latest", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> findByReleaseYear (){
+        return movieSearch.findByReleaseYear();
+    }
     /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/genre/{genre_id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listAllMoviesByGenre(@PathVariable(name = "genre_id") Integer genre_id){
