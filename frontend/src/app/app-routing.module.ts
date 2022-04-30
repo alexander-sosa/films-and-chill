@@ -11,6 +11,7 @@ import { MovieGenreComponent } from './components/movie-genre/movie-genre.compon
 import { UseProfileComponent } from './components/use-profile/use-profile.component';
 import { PasswordEditComponent } from './components/password-edit/password-edit.component';
 import { MoviePremieresComponent } from './components/movie-premieres/movie-premieres.component';
+import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 
 
   const routes: Routes = [
@@ -26,7 +27,8 @@ import { MoviePremieresComponent } from './components/movie-premieres/movie-prem
     { path: 'movies-genre/:genre_id', component: MovieGenreComponent },
     { path: 'user-profile', component: UseProfileComponent },
     { path: 'password-edit', component: PasswordEditComponent },
-    { path: 'premieres', component: MoviePremieresComponent }
+    { path: 'premieres', component: MoviePremieresComponent },
+    { path: 'movie-search', component: MovieSearchComponent }
   ];
 
   @NgModule({
@@ -44,5 +46,6 @@ import { MoviePremieresComponent } from './components/movie-premieres/movie-prem
     MovieGenreComponent, 
     UseProfileComponent, 
     PasswordEditComponent,
-    MoviePremieresComponent
+    MoviePremieresComponent,
+    MovieSearchComponent
   ];

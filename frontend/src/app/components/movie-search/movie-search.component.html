@@ -1,0 +1,36 @@
+<ul class="header">
+    <h1 class="text-center">Resultado de búsqueda</h1>      
+</ul>
+
+<div class="container-movies">
+    
+    <div class="row">
+        <div class="col-3" >
+        <!--<div class="col-3" *ngFor='let movie of movies'>-->
+            <div class="card text-center">
+                <a>
+                <!--<a [routerLink]="['/movie-detail/', movie.movieid]">-->
+                    <img src="" alt="img" class="card-img-top">
+                    <!--<img src="{{movie.imagelink}}" alt="img" class="card-img-top">-->
+                </a>
+                <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
+                    <div style="font-family: 'Rockwell';"> Titulo </div>
+                    <button  class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" >
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
+                </div>
+                <div class="card-body" style="background-color: #EFCFA0;">
+                    <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">## Bs</p>
+                </div>
+            </div>
+            <br><br>
+        </div>  
+        <div>
+            <img src="..\images\404.png"><br>
+            <span>Error</span><br>
+            <span>No se encontro una película con ese titulo</span>
+        </div>
+
+    </div>
+</div> 
+
