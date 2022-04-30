@@ -3,6 +3,7 @@ import { Movie } from 'src/app/models/Movie';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -21,16 +22,36 @@ export class NavbarComponent implements OnInit {
   name: string | any = localStorage.getItem("name");
   lastname: string | any = localStorage.getItem("lastname");
 
+  public SearchForm: FormGroup;
+
   constructor(private cartService: CartService,
               private router: Router,
-              private location: Location
-  ) { }
+              private location: Location,
+              private formBuilder: FormBuilder, 
+  ) { 
+    this.SearchForm = this.formBuilder.group({
+      search_movie:[]
+    });
+  }
 
   ngOnInit(): void {
     localStorage.getItem('token') ? this.isLogged = true : this.isLogged = false;
     localStorage.getItem('idr') == "1" ? this.isAdmin = true : this.isAdmin = false;
 
     this.listCart();
+  }
+
+
+  search(){
+    
+    var title = (document.getElementById('search_movie') as HTMLInputElement | null)?.value;
+    if (title == "") {
+      alert("Por favor, ingrese el titulo de la pelicula");
+    }else{
+      var search_title = title?.toLowerCase();
+      console.log(search_title);
+    }
+    
   }
 
   listCart(){
