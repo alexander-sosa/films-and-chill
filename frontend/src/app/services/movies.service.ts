@@ -66,4 +66,8 @@ export class MoviesService {
     return this.http.delete(this.API_URL + '/movie/' + movie_id );
   }
 
+  getPremiereMovies(){
+    return this.http.get(this.API_URL + '/movie/latest');
+  }
+
 }
