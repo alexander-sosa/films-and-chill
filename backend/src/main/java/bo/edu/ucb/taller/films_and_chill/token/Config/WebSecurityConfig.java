@@ -57,7 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				// dont authenticate this particular request
 				.authorizeRequests().antMatchers("/auth", 
 												 "/user/**", 
-												 "/movie/**")
+												 "/movie/**",
+												 "/v3/**")
 				.permitAll().antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 				// all other requests need to be authenticated
 				.anyRequest().authenticated().and().
