@@ -1,7 +1,7 @@
 <div class="container p-4">
     <div class="row">
         <ul class="header">
-            <h1 class="text-center">Todas las Películas</h1>      
+            <h1 class="text-center">Todas las Películas</h1>
         </ul>
         <div class="col-md-3" *ngFor='let movie of movies'>
             <div class="card text-center">
@@ -19,15 +19,33 @@
                 </div>
             </div>
             <br><br>
-        </div>  
+        </div>
         <div class="column">
-            <button class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="getMoviesByPagePrev(pageNumber)">
-                <i class="far fa-arrow-alt-circle-left"></i>
-            </button>
-            {{page}} / {{totalPages}}
-            <button class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="getMoviesByPageNext(pageNumber)">
-                <i class="far fa-arrow-alt-circle-right"></i>
-            </button>
+            <p style="text-align: center;">
+                <span *ngIf="page == 1">
+                  <button class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" disabled>
+                    <i class="far fa-arrow-alt-circle-left"></i>
+                  </button>
+                </span>
+                <span *ngIf="page != 1">
+                  <button class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="getMoviesByPagePrev(pageNumber)">
+                    <i class="far fa-arrow-alt-circle-left"></i>
+                  </button>
+                </span>
+
+                {{page}} / {{totalPages}}
+
+                <span *ngIf="page != totalPages">
+                  <button class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="getMoviesByPageNext(pageNumber)">
+                      <i class="far fa-arrow-alt-circle-right"></i>
+                  </button>
+                </span>
+                <span *ngIf="page == totalPages">
+                  <button class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" disabled>
+                      <i class="far fa-arrow-alt-circle-right"></i>
+                  </button>
+                </span>
+            </p>
         </div>
     </div>
-</div> 
+</div>
