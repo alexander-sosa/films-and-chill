@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./movie-genre.component.css']
 })
 export class MovieGenreComponent implements OnInit {
-  genre_id?: number;
+  genre_id: number = -1;
   existGenre?: boolean;
   genre?: string;
   control?:boolean;
@@ -29,13 +29,24 @@ export class MovieGenreComponent implements OnInit {
     tuplestatus: true
   }
 
-
+  response: any = [];
   movies: any | Movie = [];
   genres: any | Genre = [];
   cart: any | Movie = [];
   cart_list: any | Movie = [];
 
-  constructor(private moviesService: MoviesService, private cartService: CartService,  private activatedRoute: ActivatedRoute) { }
+  // pagination control
+  totalPages: number = 0;
+  totalMovies: number = 0;
+  numberOfElements: number = 0;
+  pageNumber: number = 0;
+  lastPage: boolean = false;
+  firstPage: boolean = false;
+  page: number = 0;
+
+  constructor(private moviesService: MoviesService,
+              private cartService: CartService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.existGenre = false;
@@ -65,18 +76,24 @@ export class MovieGenreComponent implements OnInit {
       },
       err => console.log(err)
     );
-
-    
-
   }
 
   getGenreMovies(genre_id:any){
     this.moviesService.getGenreMovies(genre_id).subscribe(
       res => {
-        console.log('response: '+ res);
-        this.movies = res;
-        this.movies = this.movies.content;
+        // console.log('response: '+ res);
+        this.response = res;
+        this.movies = this.response.content;
         this.existGenre = true;
+
+        // pagination control
+        this.totalPages = this.response.totalPages;
+        this.totalMovies = this.response.totalMovies;
+        this.numberOfElements = this.response.numberOfElements;
+        this.pageNumber = this.response.number;
+        this.page = this.pageNumber + 1;
+        this.lastPage = this.response.last;
+        this.firstPage = this.response.first;
       },
       err => {
         console.log(err);
@@ -124,9 +141,9 @@ export class MovieGenreComponent implements OnInit {
     this.cartService.listCart().subscribe(
       res => {
         this.cart_list = res;
-        
+
       },
-      err => console.log(err) 
+      err => console.log(err)
     );
   };
 
@@ -152,7 +169,53 @@ export class MovieGenreComponent implements OnInit {
           this.control = true;
           break;
         }
-      } 
-    }         
+      }
+    }
+  }
+
+  getMoviesByPagePrev(page?: any | undefined){
+    page--;
+    if(page < 0) return;
+    console.log("Getting page..." + page)
+    this.pageNumber--;
+    this.moviesService.getGenreMoviesPaginated(this.genre_id, page).subscribe(
+      res => {
+        //console.log(res);
+        this.response = res;
+        //console.log(this.movies.content);
+        this.movies = this.response.content;
+        this.totalPages = this.response.totalPages;
+        this.totalMovies = this.response.totalMovies;
+        this.numberOfElements = this.response.numberOfElements;
+        this.pageNumber = this.response.number;
+        this.page = this.pageNumber + 1;
+        this.lastPage = this.response.last;
+        this.firstPage = this.response.first;
+      },
+      err => console.log(err)
+    );
+  }
+
+  getMoviesByPageNext(page?: any | undefined){
+    page++;
+    if(page > this.totalPages) return;
+    console.log("Getting page..." + page)
+    this.pageNumber--;
+    this.moviesService.getGenreMoviesPaginated(this.genre_id, page).subscribe(
+      res => {
+        //console.log(res);
+        this.response = res;
+        //console.log(this.movies.content);
+        this.movies = this.response.content;
+        this.totalPages = this.response.totalPages;
+        this.totalMovies = this.response.totalMovies;
+        this.numberOfElements = this.response.numberOfElements;
+        this.pageNumber = this.response.number;
+        this.page = this.pageNumber + 1;
+        this.lastPage = this.response.last;
+        this.firstPage = this.response.first;
+      },
+      err => console.log(err)
+    );
   }
 }

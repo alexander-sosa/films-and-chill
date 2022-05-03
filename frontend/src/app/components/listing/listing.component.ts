@@ -51,7 +51,6 @@ export class ListingComponent implements OnInit {
     this.getMovies();
     this.setList();
     this.control = false;
-    
   }
 
   getMovies(){
@@ -155,7 +154,7 @@ export class ListingComponent implements OnInit {
       })
     }
     //console.log('control ', this.control);
-    
+
   }
 
   StockValidation(m: Movie){
@@ -170,9 +169,9 @@ export class ListingComponent implements OnInit {
     this.cartService.listCart().subscribe(
       res => {
         this.cart_list = res;
-        
+
       },
-      err => console.log(err) 
+      err => console.log(err)
     );
   };
 
@@ -189,8 +188,8 @@ export class ListingComponent implements OnInit {
           this.control = true;
           break;
         }
-      } 
-    }         
+      }
+    }
   }
 }
 

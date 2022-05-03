@@ -1,5 +1,5 @@
 -- creation
-/*CREATE DATABASE films_chill;*/
+CREATE DATABASE films_chill;
 USE films_chill;
 
 CREATE TABLE genre(

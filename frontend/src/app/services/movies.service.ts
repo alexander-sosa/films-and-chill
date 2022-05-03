@@ -62,6 +62,10 @@ export class MoviesService {
     return this.http.get(this.API_URL + '/movie?genreId=' + genre_id );
   }
 
+  getGenreMoviesPaginated(genre_id: number, page: number){
+    return this.http.get(this.API_URL + '/movie?genreId=' + genre_id + '&page=' + page);
+  }
+
   deleteMovie(movie_id: number){
     return this.http.delete(this.API_URL + '/movie/' + movie_id );
   }
