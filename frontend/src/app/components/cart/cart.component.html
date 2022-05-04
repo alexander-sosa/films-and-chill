@@ -22,7 +22,7 @@
                       <h5 class="card-title">{{item.movie.title}}</h5>
                       <p class="card-text">Precio: {{item.movie.cost}}$</p>
                       <label>Unidades: </label>
-                      <input style="width: 15%; margin-left: 2%; text-align: end;" type="number" value="1" min="1" max="item.movie.stock" [(ngModel)]="item.amount" (change)="calculatePrice()">
+                      <input style="width: 15%; text-align: end;" type="number" value="1" min="1" max="{{item.movie.stock}}" [(ngModel)]="item.amount" (change)="calculatePrice()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                       <button style="float: right" class="btn btn-del"><i class="fas fa-trash-alt" (click)="removeFromCart(item.movie.movieid)"></i></button>                        
                     </div>
                   </div>
