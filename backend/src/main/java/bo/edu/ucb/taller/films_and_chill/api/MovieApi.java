@@ -88,7 +88,7 @@ public class MovieApi {
     @GetMapping(value = "/movie/{title}/search", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findByTitle(@PathVariable(name = "title") String title,
                                          @RequestParam(defaultValue = "0") Integer page,
-                                         @RequestParam(defaultValue = "40") Integer size){
+                                         @RequestParam(defaultValue = "20") Integer size){
         //System.out.println(title);
         return movieSearch.findByTitle(title, page, size);
     }
