@@ -1,7 +1,7 @@
 <div class="container">
     <br>
     <div *ngIf="arrived">
-    <p style="text-align: center; font-size: x-large;">{{movie.title}}</p>
+    <br><p style="text-align: center; font-size: x-large; font-weight: bold;">{{movie.title}}</p>
     <br><br>
     <div class="row">
         <div class="col-6">
@@ -10,8 +10,9 @@
         </p>
         </div>
         <div class="col-6">
+            <br><br><br><br><br><br><br><br>
             <p *ngIf="movie.description == undefined"> <span class="bolder">Descripción:</span><br><i>No se encontró una descripción</i> </p>
-            <p *ngIf="movie.description != undefined"> <span class="bolder">Descripción:</span>{{movie.description}} </p>
+            <p *ngIf="movie.description != undefined"> <span class="bolder">Descripción:</span><br><i>{{movie.description}}</i></p>
             <p>
                 <span class="bolder">Actores: </span>
                 <span *ngFor="let actor of actors">
@@ -25,10 +26,10 @@
                 <span class="bolder">Género: </span> {{movie.genre}} <br>
             </p>
             <br>
-            <p style="text-align: center;">
-                <button type="button" class="btn btn-outline-primary" (click)="addItem(movie)"><i class="fa-solid fa-shopping-cart"></i></button>
+            <p>
+                <button type="button" class="btn btn-outline-dark" (click)="addItem(movie)"><i class="fa-solid fa-shopping-cart"></i></button>
                 &nbsp;&nbsp;
-                <button type="button" class="btn btn-primary">Comprar Ahora</button>
+                <button type="button" class="btn btn-dark" routerLink="/cart">Comprar Ahora</button>
             </p>
         </div>
     </div>
