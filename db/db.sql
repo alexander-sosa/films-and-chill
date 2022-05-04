@@ -70,3 +70,24 @@ CREATE TABLE permission(
     last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
 );*/
+
+CREATE TABLE purchase(
+	purchaseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	userid int NOT NULL,
+	totalcost double(5, 2) NOT NULL,
+	purchasedate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	tuplestatus bool DEFAULT 1,
+  	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
+	FOREIGN KEY (userid) REFERENCES user(user_id)
+);
+
+CREATE TABLE moviepurchase(
+	moviepurchaseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	movieid int NOT NULL,
+	purchaseid int NOT NULL,
+	quantity int NOT NULL, 
+	tuplestatus bool DEFAULT 1,
+	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	FOREIGN KEY (movieid) REFERENCES movie(movieid),
+	FOREIGN KEY (purchaseid) REFERENCES purchase(purchaseid)
+);
