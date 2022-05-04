@@ -50,14 +50,6 @@ public class MovieApi {
                                            @RequestParam(defaultValue = "0") Integer page,
                                            @RequestParam(defaultValue = "40") Integer size){
 
-        //return movieSearch.listAllMovies(genre_id, page);
-        //PageRequest pageable = PageRequest.of(page, size);
-        //Page<Movie> movies = movieDao.findAll(pageable);
-//
-        //Map<String, Object> response = new HashMap<>();
-        //response.put("movies", movies);
-//
-        //return ResponseEntity.ok(response);
         return movieSearch.listAllMovies(genreId, page, size);
     }
 
@@ -91,9 +83,13 @@ public class MovieApi {
                                                 @RequestParam(defaultValue = "12") Integer size){
         return movieSearch.findByReleaseYear(page, size);
     }
-    /*@CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/movie/genre/{genre_id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> listAllMoviesByGenre(@PathVariable(name = "genre_id") Integer genre_id){
-        return movieSearch.listAllMoviesByGenre(genre_id);
-    }*/
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/movie/{title}/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> findByTitle(@PathVariable(name = "title") String title,
+                                         @RequestParam(defaultValue = "0") Integer page,
+                                         @RequestParam(defaultValue = "40") Integer size){
+        //System.out.println(title);
+        return movieSearch.findByTitle(title, page, size);
+    }
 }

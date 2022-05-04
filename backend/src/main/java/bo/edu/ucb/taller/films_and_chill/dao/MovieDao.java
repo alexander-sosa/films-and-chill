@@ -7,6 +7,7 @@ package bo.edu.ucb.taller.films_and_chill.dao;
 import org.springframework.data.domain.Page;
 //import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 //import org.springframework.data.repository.CrudRepository;
 //import org.springframework.data.repository.PagingAndSortingRepository;
 //import org.springframework.stereotype.Component;
@@ -27,6 +28,9 @@ public interface MovieDao extends JpaRepository<Movie, Integer>{
     Page<Movie> findByTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     Page<Movie> findByGenreidAndTuplestatus(Integer genreId, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     Page<Movie> findByTuplestatusOrderByReleaseyear(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+
+    @Query(value = "SELECT m FROM Movie m WHERE LOWER(m.title) LIKE (:title) AND m.tuplestatus = :tuplestatus")
+    Page<Movie> findByTitleAndTuplestatus(String title, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
 }
 
 /*@Component

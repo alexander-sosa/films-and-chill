@@ -84,6 +84,14 @@ public class MovieSearch {
         return ResponseEntity.ok(movies);
     }
 
+    public ResponseEntity<?> findByTitle(String title, Integer page, Integer size){
+        title = "%" + title.toLowerCase() + "%";
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Movie> movies = movieDao.findByTitleAndTuplestatus(title, true, pageable);
+
+        return ResponseEntity.ok(movies);
+    }
+
     /*public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id, Integer from){
         if(from != null)
             return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre_id, from));

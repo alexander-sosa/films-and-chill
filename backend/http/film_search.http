@@ -12,3 +12,6 @@ DELETE http://localhost:8080/movie/1
 
 ###Listado de pelicula por año de lanzamiento
 GET http://localhost:8080/movie/latest
+
+###Buscar pelicula por titulo
+GET http://localhost:8080/movie/one/search
