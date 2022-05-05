@@ -49,7 +49,27 @@ export class NavbarComponent implements OnInit {
       alert("Por favor, ingrese el titulo de la pelicula");
     }else{
       var search_title = title?.toLowerCase();
-      console.log(search_title);
+      var aux = search_title?.split(" ");
+      //console.log(x?.length);
+      if (aux?.length == 1) {
+        this.location.replaceState('/');
+        window.location.replace("http://localhost:4200/movie-search/"+aux[0]);
+        
+        
+      }else if(aux!=null){
+        var new_title="";
+        for (let i = 0; i < aux.length; i++) {
+          if (i < aux.length-1) {
+            new_title += aux[i] + "_";
+          }else{
+            new_title += aux[i];
+          }
+          
+        }
+        console.log(new_title);
+        this.location.replaceState('/');
+        window.location.replace("http://localhost:4200/movie-search/"+new_title);
+      }
     }
     
   }

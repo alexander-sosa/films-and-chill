@@ -55,8 +55,8 @@ public class JwtAuthenticationController {
         final DAOUser user = userDetailsService.findByUsername(authenticationRequest.getUsername());
 
         return ResponseEntity.ok(new JwtResponse(token, 
-                                     user.getPermission_id(), 
-                                     user.getUser_id(),
+                                     user.getPermissionid(), 
+                                     user.getUserid(),
                                      user.getName(), 
                                      user.getLastname()));
     }

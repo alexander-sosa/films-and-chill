@@ -65,7 +65,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         DAOUser newUser = new DAOUser();
         newUser.setName(user.getName());
         newUser.setLastname(user.getLastname());
-        newUser.setPermission_id(user.getPermission_id());
+        newUser.setPermissionid(user.getPermission_id());
 		newUser.setUsername(user.getUsername());
 
 		newUser.setPass(bcryptEncoder.encode(user.getPass()));
@@ -101,7 +101,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         
         newUser.get().setName(user.getName());
         newUser.get().setLastname(user.getLastname());
-        newUser.get().setPermission_id(user.getPermission_id());
+        newUser.get().setPermissionid(user.getPermission_id());
         newUser.get().setUsername(user.getUsername());
         newUser.get().setTuple_status(user.getTuple_status());
         newUser.get().setLast_update(new Timestamp(System.currentTimeMillis()));
@@ -122,7 +122,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         if(user.getUser_editor_id() != 1)
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acceso Denegado");
 
-        editee.get().setPermission_id(user.getPermission_id());
+        editee.get().setPermissionid(user.getPermission_id());
         return ResponseEntity.ok(userDao.save(editee.get()));
     }
 
@@ -130,7 +130,7 @@ public class JWTUserDetailsService implements UserDetailsService{
         Iterable<DAOUser> users = userDao.findAll();
         List<DAOUser> allowedUsers = new ArrayList<>();
         for(DAOUser user: users)
-            if(user.isTuple_status())
+            if(user.isTuplestatus())
                 allowedUsers.add(user);
         return allowedUsers;
     }

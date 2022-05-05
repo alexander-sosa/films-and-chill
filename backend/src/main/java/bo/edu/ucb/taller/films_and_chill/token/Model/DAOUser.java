@@ -12,29 +12,29 @@ public class DAOUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer user_id;
+	private Integer userid;
 	@Column
 	private String name;
 	@Column
 	private String lastname;
 	@Column
-	private Integer permission_id;
+	private Integer permissionid;
 	@Column(unique = true, name = "email")
 	private String username;
 	@Column
 	@JsonIgnore
 	private String pass;
 	@Column
-	private Boolean tuple_status;
+	private Boolean tuplestatus;
 	@Column
-	private Timestamp last_update;
+	private Timestamp lastupdate;
 
-	public Integer getUser_id() {
-		return this.user_id;
+	public Integer getUserid() {
+		return this.userid;
 	}
 
-	public void setUser_id(Integer user_id) {
-		this.user_id = user_id;
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 
 	public String getName() {
@@ -53,12 +53,12 @@ public class DAOUser {
 		this.lastname = lastname;
 	}
 
-	public Integer getPermission_id() {
-		return this.permission_id;
+	public Integer getPermissionid() {
+		return this.permissionid;
 	}
 
-	public void setPermission_id(Integer permission_id) {
-		this.permission_id = permission_id;
+	public void setPermissionid(Integer permissionid) {
+		this.permissionid = permissionid;
 	}
 
 	public String getUsername() {
@@ -77,23 +77,23 @@ public class DAOUser {
 		this.pass = pass;
 	}
 
-	public Boolean isTuple_status() {
-		return this.tuple_status;
+	public Boolean isTuplestatus() {
+		return this.tuplestatus;
 	}
 
-	public Boolean getTuple_status() {
-		return this.tuple_status;
+	public Boolean getTuplestatus() {
+		return this.tuplestatus;
 	}
 
-	public void setTuple_status(Boolean tuple_status) {
-		this.tuple_status = tuple_status;
+	public void setTuple_status(Boolean tuplestatus) {
+		this.tuplestatus = tuplestatus;
 	}
 
-	public Timestamp getLast_update() {
-		return this.last_update;
+	public Timestamp getLastupdate() {
+		return this.lastupdate;
 	}
 
-	public void setLast_update(Timestamp last_update) {
-		this.last_update = last_update;
+	public void setLast_update(Timestamp lastupdate) {
+		this.lastupdate = lastupdate;
 	}
 }
