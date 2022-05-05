@@ -48,7 +48,7 @@ public class MovieApi {
     @GetMapping(value = "/movie", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listAllMovies(@RequestParam(required = false) Integer genreId,
                                            @RequestParam(defaultValue = "0") Integer page,
-                                           @RequestParam(defaultValue = "40") Integer size){
+                                           @RequestParam(defaultValue = "20") Integer size){
 
         return movieSearch.listAllMovies(genreId, page, size);
     }
@@ -85,7 +85,7 @@ public class MovieApi {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/movie/{title}/search", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/movie/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findByTitle(@PathVariable(name = "title") String title,
                                          @RequestParam(defaultValue = "0") Integer page,
                                          @RequestParam(defaultValue = "20") Integer size){
