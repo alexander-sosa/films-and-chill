@@ -59,26 +59,27 @@ CREATE TABLE permission(
   	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
 );
 
-/*CREATE TABLE user (
-	user_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE user (
+	userid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	name varchar(30),
 	lastname varchar(30),
-	permission_id int NOT NULL,
+	permissionid int NOT NULL,
 	email varchar(100) UNIQUE,
 	pass text,
-	tuple_status bool DEFAULT 1,
-    last_update timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (permission_id) REFERENCES permission(permission_id)
-);*/
+	tuplestatus bool DEFAULT 1,
+    lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (permissionid) REFERENCES permission(permissionid)
+);
 
 CREATE TABLE purchase(
 	purchaseid int NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	userid int NOT NULL,
 	totalcost double(5, 2) NOT NULL,
 	purchasedate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	address text,
 	tuplestatus bool DEFAULT 1,
   	lastupdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, 
-	FOREIGN KEY (userid) REFERENCES user(user_id)
+	FOREIGN KEY (userid) REFERENCES user(userid)
 );
 
 CREATE TABLE moviepurchase(
