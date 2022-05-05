@@ -14,4 +14,4 @@ DELETE http://localhost:8080/movie/1
 GET http://localhost:8080/movie/latest
 
 ###Buscar pelicula por titulo
-GET http://localhost:8080/movie/one/search
+GET http://localhost:8080/movie/the/search

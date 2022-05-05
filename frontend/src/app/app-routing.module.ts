@@ -28,7 +28,7 @@ import { MovieSearchComponent } from './components/movie-search/movie-search.com
     { path: 'user-profile', component: UseProfileComponent },
     { path: 'password-edit', component: PasswordEditComponent },
     { path: 'premieres', component: MoviePremieresComponent },
-    { path: 'movie-search', component: MovieSearchComponent }
+    { path: 'movie-search/:title', component: MovieSearchComponent }
   ];
 
   @NgModule({

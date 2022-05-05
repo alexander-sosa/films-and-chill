@@ -4,37 +4,40 @@
 
 <div class="container-movies">
     
-    <div class="row">
-        <div class="col-3" >
-        <!--<div class="col-3" *ngFor='let movie of movies'>-->
-            <div class="card text-center">
-                <a>
-                <!--<a [routerLink]="['/movie-detail/', movie.movieid]">-->
-                    <img src="" alt="img" class="card-img-top">
-                    <!--<img src="{{movie.imagelink}}" alt="img" class="card-img-top">-->
-                </a>
-                <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
-                    <div style="font-family: 'Rockwell';"> Titulo </div>
-                    <button  class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" >
-                        <i class="fa-solid fa-cart-shopping"></i>
-                    </button>
-                </div>
-                <div class="card-body" style="background-color: #EFCFA0;">
-                    <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">## Bs</p>
+    <div class="row">  
+            <div *ngIf="existMovie == true; else not_found">
+                <div class="col-3" *ngFor='let movie of movies'>
+                    <div class="card text-center">
+                        <a [routerLink]="['/movie-detail/', movie.movieid]">
+                            <img src="{{movie.imagelink}}" alt="img" class="card-img-top">
+                        </a>
+                        <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
+                            <div style="font-family: 'Rockwell';"> {{movie.title}} </div>
+                            <button [disabled]="StockValidation(movie)" class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
+                        </div>
+                        <div class="card-body" style="background-color: #EFCFA0;">
+                            <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}}  Bs</p>
+                        </div>
+                    </div>
+                    <br><br>
                 </div>
             </div>
-            <br><br>
-        </div>  
-        <div>
-            <div class="error">
-                <span>ERROR</span><br><br>
-                <span>No se encontro una película con ese titulo</span>
-            </div>
-            
-            <img class="not_found_img" src="https://github.com/alexander-sosa/films-and-chill/blob/sprint-3/images/404.png?raw=true"><br>
-            
-        </div>
+                
 
+            <ng-template #not_found>
+                <div>
+                    <div class="error">
+                        <span>ERROR</span><br><br>
+                        <span>No se encontro una película con el titulo<br><br> "{{title}}"</span>
+                    </div>
+                    
+                    <img class="not_found_img" src="https://github.com/alexander-sosa/films-and-chill/blob/sprint-3/images/404.png?raw=true"><br>
+                    
+                </div>
+            </ng-template>
+        
     </div>
 </div> 
 
