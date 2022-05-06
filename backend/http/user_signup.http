@@ -6,6 +6,6 @@ Content-Type: application/json
     "name": "Edgar",
     "lastname": "Carrasco",
     "permission_id": 1,
-    "username": "eddy10@noreply.com",
+    "username": "eddy@noreply.com",
     "pass": "12345678"
 }

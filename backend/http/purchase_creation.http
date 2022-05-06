@@ -1,0 +1,12 @@
+###
+POST http://localhost:8080/purchase
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjUxODgzMDk5LCJpYXQiOjE2NTE4NzMwOTl9.N8Xld00tOItPse6HicGQq9WjJWgijPQGoIfGlTnnfV1_TY7xOn2boeyclMhAbErsCXKwO3juXSCn6JyjF6Q4mw
+Content-Type: application/json
+
+{    
+    "userid": 1,
+    "movieid": 1,
+    "quantity": 1,
+    "totalcost": 16.9,
+    "address": "Direccion 1"
+}

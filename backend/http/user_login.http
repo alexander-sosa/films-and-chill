@@ -3,6 +3,6 @@ POST http://localhost:8080/auth
 Content-Type: application/json
 
 {
-    "username": "eddy10@noreply.com",
+    "username": "eddy@noreply.com",
     "password": "12345678"
 }
