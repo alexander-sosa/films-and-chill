@@ -84,7 +84,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form [formGroup]="BuyForm" (submit)="buy()">
+              <form [formGroup]="BuyForm" (submit)="Buy()">
                 <div class="mb-3" >
                     <div class="row align-items-center" style="margin-top: 0;">
                         <div class="col-auto">
@@ -161,13 +161,16 @@
                       <p class="text-danger">Minimo 20 caracteres</p> 
                     </div>
                   </div>
-                </div>
+                </div>              
+              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-pay" [disabled]="BuyForm.invalid">Pagar</button>
+              </div>
+              
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-              <button type="submit" class="btn btn-pay" [disabled]="BuyForm.invalid">Pagar</button>
-            </div>
+
           </div>
         </div>
       </div>

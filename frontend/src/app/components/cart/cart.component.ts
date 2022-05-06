@@ -4,6 +4,7 @@ import { Item } from 'src/app/models/Item';
 import { Movie } from 'src/app/models/Movie';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginFirstService } from 'src/app/services/login-first.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,7 @@ import { LoginFirstService } from 'src/app/services/login-first.service';
 })
 export class CartComponent implements OnInit {
   name: string | undefined;
+  IDU: number | undefined
 
   public BuyForm: FormGroup;
 
@@ -42,6 +44,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.IDU = Number(localStorage.getItem('idu'));
     if(!localStorage.getItem('token')){
       this.loginControlService.loginFirstAlert();
     }
@@ -117,7 +120,66 @@ export class CartComponent implements OnInit {
     this.total = this.subtotal;
   }
 
-  buy(){
-
+  Buy(){
+    Swal.fire({
+      title: 'confirmación de pago',
+      text: "Esta seguro de realizar el pago",
+      icon: 'warning',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonColor: '#914110',
+      cancelButtonColor: '#d33',
+      denyButtonText: 'Cancelar',
+      confirmButtonText: 'Confirmar',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Transacción exitosa',
+          'Pago realizado exitosamente',
+          'success')
+      } else if (result.isDenied) {
+        Swal.fire('Transacción cancelada',
+        '',
+        'error')
+      }
+    })
   }
+  //console.log("algo");
+    /**
+     * "userid": 1,
+    "movieid": 1,
+    "quantity": 1,
+    "totalcost": 16.9,
+    "address": "Direccion 1"
+     
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      var data ={
+        "userid": this.IDU,
+        "movieid": e.movie.movieid,
+        "quantity": e.amount,
+        "totalcost": this.total,
+        "address": this.BuyForm.get('address')?.value
+      }
+      console.log(data);
+      this.cartService.buyCart(data).subscribe(
+        res => {
+          c=true;
+
+        },
+        err => {
+          c=false;
+        }
+      );
+      
+    }*/
+
+    /*if{c==true}{
+
+    }*/
+
+
+
+  
 }

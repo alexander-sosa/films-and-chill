@@ -32,4 +32,8 @@ export class CartService {
   removeAll(){
     return this.http.delete(this.API_URL + '/cart', {headers: this.auth_headers});
   }
+
+  buyCart(cart: any){
+    return this.http.post<HttpResponse<any>>(this.API_URL + '/purchase', cart, {headers: this.auth_headers});
+  }
 }
