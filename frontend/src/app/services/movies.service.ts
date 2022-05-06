@@ -75,7 +75,7 @@ export class MoviesService {
   }
 
   getSearchMovie(title: string){
-    return this.http.get(this.API_URL + '/movie/'+title+'/search');
+    return this.http.get(this.API_URL + '/movie?title='+title);
   }
 
 }
