@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class MovieSearchComponent implements OnInit {
   title: string | undefined;
+  nf_title: string | undefined;
   existMovie?: boolean;
 
   control?:boolean;
@@ -49,6 +50,7 @@ export class MovieSearchComponent implements OnInit {
               ) { }
 
   ngOnInit(): void {
+    this.nf_title="";
     this.existMovie = false;
     const params = this.activatedRoute.snapshot.params;
     if(params.title){
@@ -60,6 +62,7 @@ export class MovieSearchComponent implements OnInit {
 
   getMovie(){
     if(this.title!=undefined){
+      this.formatTitle(this.title);
       this.moviesService.getSearchMovie(this.title).subscribe(
         res => {
           
@@ -68,6 +71,7 @@ export class MovieSearchComponent implements OnInit {
           console.log(this.response.content);
           if(this.response.content.length == 0){
             this.existMovie = false;
+           
           }else{
             this.existMovie= true;
   
@@ -87,6 +91,18 @@ export class MovieSearchComponent implements OnInit {
           this.existMovie = false;
         }
       );
+    }
+  }
+
+  formatTitle(t: string){
+    var aux = t?.split("_");
+    for (let i = 0; i < aux.length; i++) {
+      if (i < aux.length-1) {
+        this.nf_title += aux[i] + " ";
+      }else{
+        this.nf_title += aux[i];
+      }
+      
     }
   }
 

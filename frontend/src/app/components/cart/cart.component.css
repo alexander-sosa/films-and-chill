@@ -80,3 +80,33 @@
         width: 70%;
         height: auto;
     }
+
+    .modal-content{
+        background-color: #EFCFA0;
+        font-family: 'Trebuchet MS';
+        width: 150%;
+    }
+
+    .modal-footer{
+        margin-top: 5%;
+    }
+
+    .modal-header{
+        background-color: #914110;
+    }
+
+    .modal-title{
+        color: whitesmoke;
+        font-size: x-large;        
+    }
+
+    label{
+        font-family: 'Lucida Console';
+        font-size: large;
+    }
+
+    .btn-pay{
+        background-color: #532200;
+        color: white;
+        transition-duration: 0.4s;
+    }

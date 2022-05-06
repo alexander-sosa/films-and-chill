@@ -10,6 +10,7 @@ import { LoginFirstService } from 'src/app/services/login-first.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  name: string | undefined;
 
   constructor(
     private cartService: CartService,
@@ -32,6 +33,7 @@ export class CartComponent implements OnInit {
     if(!localStorage.getItem('token')){
       this.loginControlService.loginFirstAlert();
     }
+    this.name = localStorage.getItem('name')+" "+localStorage.getItem('lastname')
     this.listCart();
   }
 
