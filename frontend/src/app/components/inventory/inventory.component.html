@@ -56,11 +56,11 @@
               </thead>
                 <tbody>
                   <tr *ngFor='let user of users'>
-                    <th scope="row" style="text-align: center;">{{user. user_id}}</th>
+                    <th scope="row" style="text-align: center;">{{user.userid}}</th>
                     <td>{{user.name}}</td>
                     <td>{{user.lastname}}</td>
                     <td> 
-                      <div *ngIf="user.permission_id == 1; else Cliente">
+                      <div *ngIf="user.permissionid == 1; else Cliente">
                         Admin
                       </div>
                       <ng-template #Cliente>Cliente</ng-template>

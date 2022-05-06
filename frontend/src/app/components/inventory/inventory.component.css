@@ -55,6 +55,12 @@
         font-size: 30px;
     }
 
+    .btn-edit{
+        background-color: #532200;
+        color: white;
+        transition-duration: 0.4s;
+    }
+
     .btn-group{
         margin-top: 2%;
         margin-left: 5%;

@@ -40,14 +40,12 @@ export class InventoryComponent implements OnInit {
  
   users: any = [];
   user: User = {
-    user_id: 0,
+    userid: 0,
     name: '',
     lastname: '',
-    permission_id: 0,
+    permissionid: 0,
     username: ''
-  }
-
- 
+  } 
 
   genres: any = [];
   genre: Genre ={
@@ -75,7 +73,7 @@ export class InventoryComponent implements OnInit {
     });
 
     
-    const reg = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+    const reg = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
     this.NewProductForm = this.formBuilder.group({
       title: ['', Validators.required],
@@ -183,11 +181,11 @@ export class InventoryComponent implements OnInit {
   }
 
   showUser(u: User){
-    document.getElementById('IDU')?.setAttribute('value', String(u.user_id));
+    document.getElementById('IDU')?.setAttribute('value', String(u.userid));
     document.getElementById('user')?.setAttribute('value', String(u.name +' '+u.lastname));
-    console.log('used per; ', u.permission_id);
-    this.userselected = u.permission_id;
-    this.currentRol = u.permission_id;   
+    console.log('used per; ', u.permissionid);
+    this.userselected = u.permissionid;
+    this.currentRol = u.permissionid;   
     
   }
 

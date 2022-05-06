@@ -1,9 +1,9 @@
 
 export interface User{
-    user_id?: number;
+    userid?: number;
     name?: string;
     lastname?: string;
-    permission_id?: number;
+    permissionid?: number;
     username?: string;
     pass?: string;
 }

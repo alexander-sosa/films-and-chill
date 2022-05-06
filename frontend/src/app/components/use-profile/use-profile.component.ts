@@ -27,17 +27,17 @@ export class UseProfileComponent implements OnInit {
 
   users: any = [];
   user: User = {
-    user_id: 0,
+    userid: 0,
     name: '',
     lastname: '',
-    permission_id: 0,
+    permissionid: 0,
     username: ''
   }
   current_user: User = {
-    user_id: 0,
+    userid: 0,
     name: '',
     lastname: '',
-    permission_id: 0,
+    permissionid: 0,
     username: ''
   }
 
@@ -103,12 +103,12 @@ export class UseProfileComponent implements OnInit {
 
   showUserInfo(u: User){
     console.log('user:', u);
-    document.getElementById('IDUser')?.setAttribute('value', String(u.user_id));
+    document.getElementById('IDUser')?.setAttribute('value', String(u.userid));
     this.EditUserForm.get('name')?.setValue(u.name);
     this.EditUserForm.get('last_name')?.setValue(u.lastname);
     this.EditUserForm.get('email')?.setValue(u.username);
-    this.userselected = u.permission_id;
-    this.currentRol = u.permission_id;
+    this.userselected = u.permissionid;
+    this.currentRol = u.permissionid;
 
   }
 
