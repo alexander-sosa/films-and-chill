@@ -84,14 +84,19 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form [formGroup]="BuyForm" (submit)="buy()">
                 <div class="mb-3" >
                     <div class="row align-items-center" style="margin-top: 0;">
                         <div class="col-auto">
                             <label for="name" class="col-form-label">Nombre:</label>
                         </div>
                         <div class="col-auto">
-                            <input style="width: 500px;" type="text" class="form-control" id="name" value="{{name}}" disabled>
+                            <input style="width: 500px;" type="text" class="form-control" id="name" value="{{name}}" formControlName="name">
+                            <div *ngIf="getValue('name')?.invalid && (getValue('name')?.touched || getValue('name')?.dirty)">
+                              <div *ngIf="getValue('name')?.errors?.required">
+                                <p class="text-danger">Campo requerido</p> 
+                              </div>
+                            </div>
                         </div>
                     </div>
 
@@ -101,7 +106,12 @@
                         </div>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="col-auto">
-                            <input type="text" class="form-control" id="nit">
+                            <input type="text" class="form-control" id="nit" formControlName="nit">
+                            <div *ngIf="getValue('nit')?.invalid && (getValue('nit')?.touched || getValue('nit')?.dirty)">
+                              <div *ngIf="getValue('nit')?.errors?.required">
+                                <p class="text-danger">Campo requerido</p> 
+                              </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -141,14 +151,22 @@
                 </div>
 
                 <div class="mb-3" >
-                  <label for="adress" class="col-form-label">Dirección:</label>
-                  <textarea class="form-control" id="adress" style="margin-bottom: 0px;"></textarea>
+                  <label for="address" class="col-form-label">Dirección:</label>
+                  <textarea class="form-control" id="address" style="margin-bottom: 0px;" formControlName="address"></textarea>
+                  <div *ngIf="getValue('address')?.invalid && (getValue('address')?.touched || getValue('address')?.dirty)">
+                    <div *ngIf="getValue('address')?.errors?.required">
+                      <p class="text-danger">Campo requerido</p> 
+                    </div>
+                    <div *ngIf="getValue('address')?.errors?.minlength">
+                      <p class="text-danger">Minimo 20 caracteres</p> 
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-pay">Pagar</button>
+              <button type="submit" class="btn btn-pay" [disabled]="BuyForm.invalid">Pagar</button>
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Item } from 'src/app/models/Item';
 import { Movie } from 'src/app/models/Movie';
 import { CartService } from 'src/app/services/cart.service';
@@ -12,10 +13,21 @@ import { LoginFirstService } from 'src/app/services/login-first.service';
 export class CartComponent implements OnInit {
   name: string | undefined;
 
+  public BuyForm: FormGroup;
+
   constructor(
+    private formBuilder: FormBuilder,
     private cartService: CartService,
     private loginControlService: LoginFirstService
-    ) { }
+    ) {
+     
+      this.BuyForm = this.formBuilder.group({
+        name: ['',Validators.required],
+        nit: ['', Validators.required],
+        address: ['', [Validators.required, Validators.minLength(20)]]
+      }); 
+      
+     }
 
   cart: any | Movie = [];
   items: any | Item = [];
@@ -35,6 +47,10 @@ export class CartComponent implements OnInit {
     }
     this.name = localStorage.getItem('name')+" "+localStorage.getItem('lastname')
     this.listCart();
+  }
+
+  getValue(value:string){
+    return this.BuyForm.get(value);
   }
 
   listCart(){
@@ -99,5 +115,9 @@ export class CartComponent implements OnInit {
     }
     this.subtotal = (Math.round(this.subtotal * 100) / 100);
     this.total = this.subtotal;
+  }
+
+  buy(){
+
   }
 }
