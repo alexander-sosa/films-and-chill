@@ -39,7 +39,7 @@ public class MovieSearch {
         this.movieDao = movieDao;
     }*/
 
-    public ResponseEntity<?> listAllMovies(Integer genreId, Integer page, Integer size){
+    public ResponseEntity<?> listAllMovies(Integer genreId, String title, Integer page, Integer size){
         //PageRequest pageable = PageRequest.of(page, 40, Sort.by("movie_id"));
         //Page<Movie> movies = movieDao.findAll(pageable);
         //if(page != null)
@@ -49,14 +49,18 @@ public class MovieSearch {
             return listAllMoviesByGenre(genre_id, page);
         return ResponseEntity.ok(movieDao.listAllMovies(1, 40));*/
         //PageRequest pageable = PageRequest.of(page, size);
+        //System.out.println(title);
         Pageable pageable = PageRequest.of(page, size);
         Page<Movie> movies;
 
-        if(genreId == null)
+        if(genreId == null && title == null)
             movies = movieDao.findByTuplestatus(true, pageable);
-        else
+        else if (title == null)
             movies = movieDao.findByGenreidAndTuplestatus(genreId, true, pageable);
-        
+        else
+            //movies = movieDao.findByTitleAndTuplestatus(title, true, pageable);
+            movies = findByTitle(title, page, size);
+
         return ResponseEntity.ok(movies);
     }
 
@@ -84,12 +88,12 @@ public class MovieSearch {
         return ResponseEntity.ok(movies);
     }
 
-    public ResponseEntity<?> findByTitle(String title, Integer page, Integer size){
+    public Page<Movie> findByTitle(String title, Integer page, Integer size){
         title = "%" + title.toLowerCase() + "%";
         Pageable pageable = PageRequest.of(page, size);
         Page<Movie> movies = movieDao.findByTitleAndTuplestatus(title, true, pageable);
 
-        return ResponseEntity.ok(movies);
+        return movies;
     }
 
     /*public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id, Integer from){

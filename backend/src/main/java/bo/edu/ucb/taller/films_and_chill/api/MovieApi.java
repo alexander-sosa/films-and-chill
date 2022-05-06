@@ -47,10 +47,11 @@ public class MovieApi {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listAllMovies(@RequestParam(required = false) Integer genreId,
+                                           @RequestParam(required = false) String title,
                                            @RequestParam(defaultValue = "0") Integer page,
                                            @RequestParam(defaultValue = "20") Integer size){
 
-        return movieSearch.listAllMovies(genreId, page, size);
+        return movieSearch.listAllMovies(genreId, title, page, size);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -84,12 +85,12 @@ public class MovieApi {
         return movieSearch.findByReleaseYear(page, size);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findByTitle(@PathVariable(name = "title") String title,
                                          @RequestParam(defaultValue = "0") Integer page,
                                          @RequestParam(defaultValue = "20") Integer size){
         //System.out.println(title);
         return movieSearch.findByTitle(title, page, size);
-    }
+    }*/
 }

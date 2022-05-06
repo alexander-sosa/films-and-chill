@@ -13,17 +13,31 @@
 
         <div class="cart-list">
             <div class="card mb-3" *ngFor='let item of items' >
+                <!--div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{item.movie.imagelink}}" alt="Card image cap" style="height:350px">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div-->
                 <div class="row g-0" style=" padding-left: 3%; margin-top: 2%;">
-                  <div class="col-md-4" style="background-color: aliceblue; padding: 1%; padding-left: 8%;">
-                    <img src="{{item.movie.imagelink}}" class="card-img-top" alt="...">
+                  <div class="col-md-4" style="background-color: aliceblue;">
+                    <img class="card-img-top" src="{{item.movie.imagelink}}" alt="Card image cap" style="height:300px; width: 200px;">
                   </div>
                   <div class="col-md-8">
                     <div class="card-body">
-                      <h5 class="card-title">{{item.movie.title}}</h5>
-                      <p class="card-text">Precio: {{item.movie.cost}}$</p>
-                      <label>Unidades: </label>
-                      <input style="width: 15%; text-align: end;" class="form-control" type="number" value="1" min="1" max="{{item.movie.stock}}" [(ngModel)]="item.amount" (change)="calculatePrice()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-                      <button style="float: right" class="btn btn-del"><i class="fas fa-trash-alt" (click)="removeFromCart(item.movie.movieid)"></i></button>                        
+                      <h2 class="card-title">{{item.movie.title}}</h2>
+                      <h4 class="card-text">Precio: {{item.movie.cost}}$</h4>
+                      <div class="form-group row">
+                        <label for="unit" class="col-form-label">Unidades</label>
+                        <div class="col-sm-12">
+                            <input style="width: 15%; text-align: start;" class="form-control" id="unit" type="number" value="1" min="1" max="{{item.movie.stock}}" [(ngModel)]="item.amount" (change)="calculatePrice()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+                      </div>
+                      <!--label>Unidades: </label>
+                      <input style="width: 15%; text-align: start;" class="form-control" type="number" value="1" min="1" max="{{item.movie.stock}}" [(ngModel)]="item.amount" (change)="calculatePrice()" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"-->
+                      <button style="float: left" class="btn btn-del"><i class="fas fa-trash-alt" (click)="removeFromCart(item.movie.movieid)"></i></button>                        
                     </div>
                   </div>
                 </div>
