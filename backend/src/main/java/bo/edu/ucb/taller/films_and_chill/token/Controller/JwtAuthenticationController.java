@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import bo.edu.ucb.taller.films_and_chill.token.Config.JwtTokenUtil;
@@ -69,8 +70,9 @@ public class JwtAuthenticationController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public ResponseEntity<?> listAll() throws Exception{
-        return ResponseEntity.ok(userDetailsService.listAll());
+    public ResponseEntity<?> listAll(@RequestParam(defaultValue = "0") Integer page,
+                                     @RequestParam(defaultValue = "20") Integer size) throws Exception{
+        return userDetailsService.listAll(page, size);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
