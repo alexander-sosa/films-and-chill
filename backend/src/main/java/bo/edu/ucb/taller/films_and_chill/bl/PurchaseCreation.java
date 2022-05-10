@@ -26,29 +26,40 @@ public class PurchaseCreation {
 
     public ResponseEntity<?> savePurchase (PurchaseRequest request){
 
-        Purchase purchase = new Purchase();
-        purchase.setUserid(request.getUserid());
+        Purchase purchase = request.getPurchase();
+        purchase.setPurchasedate(new Timestamp(System.currentTimeMillis()));
+        purchase.setLastupdate(new Timestamp(System.currentTimeMillis()));
+        purchase.setTuplestatus(true);
+        /*purchase.setUserid(request.getUserid());
         purchase.setTotalcost(request.getTotalcost());
         purchase.setAddress(request.getAddress());
         purchase.setPurchasedate(new Timestamp(System.currentTimeMillis()));
         purchase.setLastupdate(new Timestamp(System.currentTimeMillis()));
-        purchase.setTuplestatus(true);
+        purchase.setTuplestatus(true);*/
+        //System.out.println(purchase.toString());
 
         purchaseDao.save(purchase);
 
         Optional<Purchase> purchases = purchaseDao.findTopByOrderByPurchaseidDesc();
         //System.out.println(request);
 
-        Moviepurchase mp = new Moviepurchase();
-        mp.setMovieid(request.getMovieid());
+        for(Moviepurchase movie : request.getMoviepurchases()){
+            Moviepurchase moviepurchase = movie;
+            moviepurchase.setPurchaseid(purchases.get().getPurchaseid());
+            moviepurchase.setLastupdate(new Timestamp(System.currentTimeMillis()));
+            moviepurchase.setTuplestatus(true);
+            moviepurchaseDao.save(moviepurchase);
+            //System.out.println(moviepurchase.toString());
+        }
+        /*mp.setMovieid(request.getMovieid());
         mp.setPurchaseid(purchases.get().getPurchaseid());
         mp.setQuantity(request.getQuantity());
         mp.setLastupdate(new Timestamp(System.currentTimeMillis()));
-        mp.setTuplestatus(true);
+        mp.setTuplestatus(true);*/
 
-        moviepurchaseDao.save(mp);
+        //moviepurchaseDao.save(mp);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Compra guardada");
+        return ResponseEntity.status(HttpStatus.CREATED).body(request);
         //return ResponseEntity.status(HttpStatus.CREATED).body(purchaseDao.save(purchase));
     }
 }

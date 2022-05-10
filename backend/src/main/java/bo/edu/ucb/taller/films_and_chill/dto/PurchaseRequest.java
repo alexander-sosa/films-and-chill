@@ -1,23 +1,43 @@
 package bo.edu.ucb.taller.films_and_chill.dto;
 
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 
 public class PurchaseRequest {
-    private Integer userid;
-    private Double totalcost;
-    private Timestamp purchasedate;
-    private String address;
-    private Integer movieid;
-    private Integer purchaseid;
-    private Integer quantity;
-    private Boolean tuplestatus;
-    private Timestamp lastupdate;
+
+    private Purchase purchase;
+    private Moviepurchase [] moviepurchases;
+
+    //private Integer userid;
+    //private Double totalcost;
+    //private Timestamp purchasedate;
+    //private String address;
+    //private Integer movieid;
+    //private Integer purchaseid;
+    //private Integer quantity;
+    //private Boolean tuplestatus;
+    //private Timestamp lastupdate;
 
 
     public PurchaseRequest() {
     }
 
-    public Integer getUserid() {
+    public Purchase getPurchase() {
+        return this.purchase;
+    }
+
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
+    }
+
+    public Moviepurchase[] getMoviepurchases() {
+        return this.moviepurchases;
+    }
+
+    public void setMoviepurchases(Moviepurchase[] moviepurchases) {
+        this.moviepurchases = moviepurchases;
+    }
+
+    /*public Integer getUserid() {
         return this.userid;
     }
 
@@ -92,5 +112,5 @@ public class PurchaseRequest {
     public void setLastupdate(Timestamp lastupdate) {
         this.lastupdate = lastupdate;
     }
-
+*/
 }

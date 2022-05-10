@@ -1,12 +1,22 @@
 ###
 POST http://localhost:8080/purchase
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjUxODgzMDk5LCJpYXQiOjE2NTE4NzMwOTl9.N8Xld00tOItPse6HicGQq9WjJWgijPQGoIfGlTnnfV1_TY7xOn2boeyclMhAbErsCXKwO3juXSCn6JyjF6Q4mw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjUyMjI3NTMyLCJpYXQiOjE2NTIyMTc1MzJ9.Y5e8IcKnDv4yJeueYG-YNsAll22b--y805jb6YHLLGkUecX9xpPYOAJBPV60o8GtKsyEnFHaQ-5gHxGFbLyOQA
 Content-Type: application/json
 
 {    
-    "userid": 1,
-    "movieid": 1,
-    "quantity": 1,
-    "totalcost": 16.9,
-    "address": "Direccion 1"
+    "purchase": {
+        "userid" : 1,
+        "totalcost": 16.5,
+        "address": "Direccion de prueba"
+    },
+    "moviepurchases": [
+        {
+            "movieid": 1,
+            "quantity": 2
+        },
+        {
+            "movieid": 2,
+            "quantity": 2
+        }
+    ]
 }
