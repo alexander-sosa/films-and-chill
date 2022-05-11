@@ -2,7 +2,7 @@ package bo.edu.ucb.taller.films_and_chill.api;
 
 import bo.edu.ucb.taller.films_and_chill.dao.PurchaseDao;
 import bo.edu.ucb.taller.films_and_chill.dto.Purchase;
-import bo.edu.ucb.taller.films_and_chill.dto.PurchaseDto;
+//import bo.edu.ucb.taller.films_and_chill.dto.PurchaseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

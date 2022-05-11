@@ -1,6 +1,6 @@
 package bo.edu.ucb.taller.films_and_chill.dto;
 
-import javax.persistence.Column;
+//import javax.persistence.Column;
 import java.sql.Timestamp;
 
 public class PurchaseDto {
@@ -11,6 +11,11 @@ public class PurchaseDto {
     private Double totalcost;
     private Timestamp purchasedate;
     private String address;
+
+    public PurchaseDto() 
+    {
+        
+    }
 
     public PurchaseDto(Integer purchaseid, Integer userid, String name, String lastname, Double totalcost, Timestamp purchasedate, String address) {
         this.purchaseid = purchaseid;
