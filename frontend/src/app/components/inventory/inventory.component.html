@@ -5,77 +5,108 @@
 
     <div class="pages">
       <mat-tab-group>
-        <mat-tab label="Inventario de Películas"> 
-            <div class="btn-group">
-                <button data-bs-toggle="modal" data-bs-target="#NewProduct"><i class="fa-solid fa-file-circle-plus"></i></button>        
-                <button><i class="fa-solid fa-print"></i></button>
-            </div>
-        
-            <table class="table table-bordered">
-                <thead>
-                    <tr style="background-color: #E1A140;">
-                      <th scope="col" style="width: 5%; text-align: center;">ID</th>
-                      <th scope="col">Título</th>
-                      <th scope="col">Descripción</th>
-                      <th scope="col" style="width: 5%; text-align: center;">Precio</th>
-                      <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
-                      <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
-                    </tr>
-                </thead>
-                  <tbody>
-                    <tr *ngFor='let movie of movies'>
-                      <th scope="row" style="text-align: center;">{{movie.movieid}}</th>
-                      <td>{{movie.title}}</td>
-                      <td *ngIf="movie.description == null || movie.description == '' ; else showDes">No se encontró una descripción</td>
-                      <ng-template #showDes>
-                        <td>{{movie.description}}</td>
-                      </ng-template>
-                      <td style="text-align: center;">{{movie.cost}}</td>
-                      <td style="text-align: center;">{{movie.stock}}</td>
-                      <td>
-                        <div class="btn-group-tb">
-                          <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
-                          <button (click)="deleteMovie(movie)" ><i class="fa-solid fa-trash"></i></button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-            </table>
-        </mat-tab>
-        <mat-tab label="Registro de usuarios">
-            <table class="table table-bordered">
+        <mat-tab label="Inventario de Películas">
+          <div class="btn-group">
+            <button data-bs-toggle="modal" data-bs-target="#NewProduct"><i class="fa-solid fa-file-circle-plus"></i></button>        
+            <button><i class="fa-solid fa-print"></i></button>
+          </div>
+    
+          <table class="table table-bordered">
               <thead>
                   <tr style="background-color: #E1A140;">
-                    <th scope="col" style="width: 5%; text-align: center;">ID Usuario</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Rol</th>
-                    <th scope="col">Email</th>
-                    <th scope="col" style="width: 14%; text-align: center;">Acciones</th>
+                    <th scope="col" style="width: 5%; text-align: center;">ID</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col" style="width: 5%; text-align: center;">Precio</th>
+                    <th scope="col" style="width: 6%; text-align: center;">Unidades</th>
+                    <th scope="col" style="width: 8%; text-align: center;">Acciones</th>
                   </tr>
               </thead>
                 <tbody>
-                  <tr *ngFor='let user of users'>
-                    <th scope="row" style="text-align: center;">{{user.userid}}</th>
-                    <td>{{user.name}}</td>
-                    <td>{{user.lastname}}</td>
-                    <td> 
-                      <div *ngIf="user.permissionid == 1; else Cliente">
-                        Admin
-                      </div>
-                      <ng-template #Cliente>Cliente</ng-template>
-                    </td>                    
-                    <td>{{user.username}}</td>
+                  <tr *ngFor='let movie of movies'>
+                    <th scope="row" style="text-align: center;">{{movie.movieid}}</th>
+                    <td>{{movie.title}}</td>
+                    <td *ngIf="movie.description == null || movie.description == '' ; else showDes">No se encontró una descripción</td>
+                    <ng-template #showDes>
+                      <td>{{movie.description}}</td>
+                    </ng-template>
+                    <td style="text-align: center;">{{movie.cost}}</td>
+                    <td style="text-align: center;">{{movie.stock}}</td>
                     <td>
                       <div class="btn-group-tb">
-                        <button data-bs-toggle="modal" data-bs-target="#UserDetails" (click)="showUser(user)"><i class="fa-solid fa-pen-to-square"></i></button>                     
-                        <button><i class="fa-solid fa-trash"></i></button>
+                        <button data-bs-toggle="modal" data-bs-target="#MovieDetails" (click)="openDetails(movie)"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button (click)="deleteMovie(movie)" ><i class="fa-solid fa-trash"></i></button>
                       </div>
                     </td>
                   </tr>
                 </tbody>
-            </table>
+          </table>
         </mat-tab>
+
+        <mat-tab label="Registro de usuarios">
+          <table class="table table-bordered">
+            <thead>
+                <tr style="background-color: #E1A140;">
+                  <th scope="col" style="width: 5%; text-align: center;">ID Usuario</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Rol</th>
+                  <th scope="col">Email</th>
+                  <th scope="col" style="width: 14%; text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+              <tbody>
+                <tr *ngFor='let user of users'>
+                  <th scope="row" style="text-align: center;">{{user.userid}}</th>
+                  <td>{{user.name}}</td>
+                  <td>{{user.lastname}}</td>
+                  <td> 
+                    <div *ngIf="user.permissionid == 1; else Cliente">
+                      Admin
+                    </div>
+                    <ng-template #Cliente>Cliente</ng-template>
+                  </td>                    
+                  <td>{{user.username}}</td>
+                  <td>
+                    <div class="btn-group-tb">
+                      <button data-bs-toggle="modal" data-bs-target="#UserDetails" (click)="showUser(user)"><i class="fa-solid fa-pen-to-square"></i></button>                     
+                      <button><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </mat-tab>
+        
+        <mat-tab label="Registro de Compras">
+          <table class="table table-bordered">
+            <thead>
+                <tr style="background-color: #E1A140;">
+                  <th scope="col" style="width: 5%; text-align: center;">ID compra</th>
+                  <th scope="col">Nombre de factura</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Dirección</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col" style="width: 14%; text-align: center;">Acciones</th>
+                </tr>
+            </thead>
+              <tbody><--!*ngFor='let user of users'-->
+                <tr> 
+                  <th scope="row" style="text-align: center;">10</th>
+                  <td>solares</td>
+                  <td>50.2</td>
+                  <td>Dirección</td>                    
+                  <td>15/3/22</td>
+                  <td>
+                    <div class="btn-group-tb">
+                       <button data-bs-toggle="modal" data-bs-target="#UserDetails" (click)="showUser(user)"><i class="fa-solid fa-pen-to-square"></i></button>                     
+                      <button><i class="fas fa-info-circle"></i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+        </mat-tab>      
         
       </mat-tab-group>
     </div>
