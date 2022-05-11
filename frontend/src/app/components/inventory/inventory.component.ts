@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 export class InventoryComponent implements OnInit {
   userselected?: Number;
   rols: any = [];
+  response : any = [];
   currentRol?: Number;
   currentMovie?: number;
 
@@ -159,7 +160,8 @@ export class InventoryComponent implements OnInit {
   getUsersList(){
     this.userSevice.getUsers().subscribe(
       res => {
-        this.users = res;
+        this.response = res;
+        this.users = this.response.content;
       },
       err => {
         console.log(err)
