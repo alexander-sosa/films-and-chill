@@ -96,6 +96,13 @@ public class MovieSearch {
         return movies;
     }
 
+    public ResponseEntity<?> findByPopular(Integer page, Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Movie> movies = movieDao.findByQuantityAndTuplestatusDesc(true, pageable);
+
+        return ResponseEntity.ok(movies);
+    }
+
     /*public ResponseEntity<?> listAllMoviesByGenre(Integer genre_id, Integer from){
         if(from != null)
             return ResponseEntity.ok(movieDao.listAllMoviesByGenre(genre_id, from));

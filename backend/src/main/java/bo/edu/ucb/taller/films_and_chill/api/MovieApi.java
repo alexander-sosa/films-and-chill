@@ -85,6 +85,13 @@ public class MovieApi {
         return movieSearch.findByReleaseYear(page, size);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/movie/popular", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> findPopular (@RequestParam(defaultValue = "0") Integer page,
+                                          @RequestParam(defaultValue = "12") Integer size){
+        return movieSearch.findByPopular(page, size);
+    }
+
     /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findByTitle(@PathVariable(name = "title") String title,

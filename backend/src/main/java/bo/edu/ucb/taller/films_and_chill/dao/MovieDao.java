@@ -31,6 +31,21 @@ public interface MovieDao extends JpaRepository<Movie, Integer>{
 
     @Query(value = "SELECT m FROM Movie m WHERE LOWER(m.title) LIKE (:title) AND m.tuplestatus = :tuplestatus")
     Page<Movie> findByTitleAndTuplestatus(String title, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+
+    /*@Query(value = " SELECT SUM(mp.quantity) as quantity, m.movieid , m.title, m.description, m.releaseyear, m.cost, " + 
+                   "    m.ratingid, m.genreid, m.imagelink, m.tuplestatus, m.lastupdate " + 
+                   " FROM Moviepurchase mp, Movie m " + 
+                   " WHERE mp.movieid = m.movieid " + 
+                   " AND m.tuplestatus = :tuplestatus " + 
+                   " GROUP BY mp.movieid " + 
+                   " ORDER BY SUM(mp.quantity) DESC;", nativeQuery = true)*/
+    @Query(value = " SELECT SUM(mp.quantity) as quantity, m" + 
+                   " FROM Moviepurchase mp, Movie m " + 
+                   " WHERE mp.movieid = m.movieid " + 
+                   " AND m.tuplestatus = :tuplestatus " +
+                   " GROUP BY mp.movieid " + 
+                   " ORDER BY SUM(mp.quantity) DESC")
+    Page<Movie> findByQuantityAndTuplestatusDesc(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
 }
 
 /*@Component

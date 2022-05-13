@@ -15,3 +15,6 @@ GET http://localhost:8080/movie/latest
 
 ###Buscar pelicula por titulo
 GET http://localhost:8080/movie?title=harry_potter
+
+###Buscar peliculas populares
+GET http://localhost:8080/movie/popular
