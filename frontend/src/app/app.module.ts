@@ -20,6 +20,7 @@ import { UseProfileComponent } from './components/use-profile/use-profile.compon
 import { PasswordEditComponent } from './components/password-edit/password-edit.component';
 import { MoviePremieresComponent } from './components/movie-premieres/movie-premieres.component';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
+import { MoviePopularComponent } from './components/movie-popular/movie-popular.component';
 
 
 
@@ -39,6 +40,7 @@ import { MovieSearchComponent } from './components/movie-search/movie-search.com
     PasswordEditComponent,
     MoviePremieresComponent,
     MovieSearchComponent,
+    MoviePopularComponent,
           
   ],
   imports: [
