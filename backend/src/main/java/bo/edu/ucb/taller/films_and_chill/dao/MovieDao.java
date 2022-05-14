@@ -32,13 +32,35 @@ public interface MovieDao extends JpaRepository<Movie, Integer>{
     @Query(value = "SELECT m FROM Movie m WHERE LOWER(m.title) LIKE (:title) AND m.tuplestatus = :tuplestatus")
     Page<Movie> findByTitleAndTuplestatus(String title, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
 
-    /*@Query(value = " SELECT SUM(mp.quantity) as quantity, m.movieid , m.title, m.description, m.releaseyear, m.cost, " + 
-                   "    m.ratingid, m.genreid, m.imagelink, m.tuplestatus, m.lastupdate " + 
-                   " FROM Moviepurchase mp, Movie m " + 
-                   " WHERE mp.movieid = m.movieid " + 
-                   " AND m.tuplestatus = :tuplestatus " + 
-                   " GROUP BY mp.movieid " + 
-                   " ORDER BY SUM(mp.quantity) DESC;", nativeQuery = true)*/
+    @Query(value = "SELECT * " + 
+                   "FROM Movie m, Actor a, Actormovie am " +
+                   "WHERE m.movieid = am.movieid " +
+                   "AND am.actorid = a.actorid " +
+                   "AND a.actorid IN ( " +
+                   "    SELECT actorid " +
+                   "    FROM actor " +
+                   "    WHERE LOWER(firstname) LIKE (:firstname)" +
+                   "    OR LOWER(lastname) LIKE (:firstname)" +
+                   ")" +
+                   "AND m.tuplestatus = :tuplestatus", 
+                   nativeQuery = true)
+    Page<Movie> findByNameAndTuplestatus(String firstname, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+
+    @Query(value = "SELECT * " + 
+                   "FROM Movie m, Actor a, Actormovie am " +
+                   "WHERE m.movieid = am.movieid " +
+                   "AND am.actorid = a.actorid " +
+                   "AND a.actorid IN ( " +
+                   "    SELECT actorid " +
+                   "    FROM actor " +
+                   "    WHERE LOWER(firstname) LIKE (:firstname)" +
+                   "    AND LOWER(lastname) LIKE (:lastname)" +
+                   ")" +
+                   "AND m.tuplestatus = :tuplestatus", 
+                   nativeQuery = true)
+    Page<Movie> findByFirstnameAndLastnameAndTuplestatus(String firstname, String lastname, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+
+
     @Query(value = " SELECT SUM(mp.quantity) as quantity, m" + 
                    " FROM Moviepurchase mp, Movie m " + 
                    " WHERE mp.movieid = m.movieid " + 

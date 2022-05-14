@@ -47,11 +47,11 @@ public class MovieApi {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listAllMovies(@RequestParam(required = false) Integer genreId,
-                                           @RequestParam(required = false) String title,
+                                           @RequestParam(required = false) String search,
                                            @RequestParam(defaultValue = "0") Integer page,
                                            @RequestParam(defaultValue = "20") Integer size){
 
-        return movieSearch.listAllMovies(genreId, title, page, size);
+        return movieSearch.listAllMovies(genreId, search, page, size);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")

@@ -1,5 +1,7 @@
 package bo.edu.ucb.taller.films_and_chill.bl;
 
+import java.util.HashMap;
+
 //import java.util.HashMap;
 //import java.util.Map;
 
@@ -39,7 +41,7 @@ public class MovieSearch {
         this.movieDao = movieDao;
     }*/
 
-    public ResponseEntity<?> listAllMovies(Integer genreId, String title, Integer page, Integer size){
+    public ResponseEntity<?> listAllMovies(Integer genreId, String search, Integer page, Integer size){
         //PageRequest pageable = PageRequest.of(page, 40, Sort.by("movie_id"));
         //Page<Movie> movies = movieDao.findAll(pageable);
         //if(page != null)
@@ -51,15 +53,25 @@ public class MovieSearch {
         //PageRequest pageable = PageRequest.of(page, size);
         //System.out.println(title);
         Pageable pageable = PageRequest.of(page, size);
-        Page<Movie> movies;
+        Page<Movie> movies = null;
 
-        if(genreId == null && title == null)
+        if(genreId == null && search == null)
             movies = movieDao.findByTuplestatus(true, pageable);
-        else if (title == null)
+        else if (search == null)
             movies = movieDao.findByGenreidAndTuplestatus(genreId, true, pageable);
-        else
+        else{
             //movies = movieDao.findByTitleAndTuplestatus(title, true, pageable);
-            movies = findByTitle(title, page, size);
+
+            HashMap<String, Object> result = new HashMap<String,Object>();
+
+            Page<Movie> moviesByTitle = findByTitle(search, page, size);
+            result.put("byTitle", moviesByTitle);
+
+            Page<Movie> moviesByName = findByName(search, page, size);
+            result.put("byName", moviesByName);
+
+            return ResponseEntity.ok(result);
+        }
 
         return ResponseEntity.ok(movies);
     }
@@ -92,6 +104,30 @@ public class MovieSearch {
         title = "%" + title.toLowerCase() + "%";
         Pageable pageable = PageRequest.of(page, size);
         Page<Movie> movies = movieDao.findByTitleAndTuplestatus(title, true, pageable);
+
+        return movies;
+    }
+
+    public Page<Movie> findByName(String name, Integer page, Integer size){
+
+        
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Movie> movies = null;
+
+        if(name.contains(" ")){
+            String fname = name.substring(0, name.indexOf(" "));
+            String lname = name.substring(name.indexOf(" ") + 1, name.length());
+
+            fname = "%" + fname.toLowerCase() + "%";
+            lname = "%" + lname.toLowerCase() + "%";
+            
+            movies = movieDao.findByFirstnameAndLastnameAndTuplestatus(fname, lname, true, pageable);
+            
+            return movies;
+        }
+
+        name = "%" + name.toLowerCase() + "%";
+        movies = movieDao.findByNameAndTuplestatus(name, true, pageable);
 
         return movies;
     }
