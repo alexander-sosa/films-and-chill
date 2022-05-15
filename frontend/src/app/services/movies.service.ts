@@ -78,4 +78,8 @@ export class MoviesService {
     return this.http.get(this.API_URL + '/movie?title='+title);
   }
 
+  getPopularMovies(){
+    return this.http.get(this.API_URL + '/movie/popular');
+  }
+
 }

@@ -9,6 +9,8 @@ import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 
 import { Router } from '@angular/router';
+import { Purchase, PurchaseShow } from 'src/app/models/Purchase';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-inventory',
@@ -60,10 +62,29 @@ export class InventoryComponent implements OnInit {
     rating: ''
   }
 
+  purchases: any = [];
+  purchasesShow: any = [];
+  purchaseBD: Purchase = {
+    purchaseid: 0,
+    userid: 0,
+    totalcost: 0,
+    purchasedate: new Date(),    
+    address: '',
+  }
+
+  purchase: PurchaseShow = {
+    purchaseid: 0,
+    user: '',
+    totalcost: 0,
+    purchasedate: '',
+    address: '',
+  }
+
 
   constructor(
     private moviesServies: MoviesService, 
     private userSevice: UserService, 
+    private purchaseService: PurchaseService,
     private formBuilder: FormBuilder,
     private router: Router
     ) { 
@@ -111,6 +132,7 @@ export class InventoryComponent implements OnInit {
     this.generateRols();
     this.getGenres();
     this.getRatings();
+    this.getPurchases();
   }
 
 
@@ -403,5 +425,43 @@ export class InventoryComponent implements OnInit {
     })
   }
 
-}
+  getPurchases(){
+    this.purchaseService.getPurchases().subscribe(
+      res => {
+        this.purchases = res;
+        this.preprocessingPurchases();
+        
+      },
+      err => console.log(err)
+    );
+  }
 
+  preprocessingPurchases(){
+    this.purchasesShow = [];
+    console.log(this.purchasesShow);
+    console.log(this.purchases.length);
+    console.log(this.users.lengt);
+    for (let i = 0; i < this.purchases.length; i++) {
+      const e= this.purchases[i]; 
+      for (let j = 0; j < this.users.length; j++) {
+        const f = this.users[j];
+        if (e.userid == f.userid) {  
+          var p = this.purchase; 
+          p.purchaseid = e.purchaseid;
+          p.user = (f.lastname).toUpperCase( );
+          p.totalcost = e.totalcost;
+          let aux = String(e.purchasedate).split('T',2);
+          p.purchasedate =  aux[0];
+          p.address = e.address;
+          console.log(p);
+          break;
+        }
+      } 
+              
+        //console.log(this.purchasesShow); 
+         
+    }
+    console.log(this.purchasesShow);
+  }
+
+}
