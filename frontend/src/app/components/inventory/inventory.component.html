@@ -90,13 +90,13 @@
                   <th scope="col" style="width: 14%; text-align: center;">Acciones</th>
                 </tr>
             </thead>
-              <tbody><--!*ngFor='let user of users'-->
-                <tr> 
-                  <th scope="row" style="text-align: center;">10</th>
-                  <td>solares</td>
-                  <td>50.2</td>
-                  <td>Dirección</td>                    
-                  <td>15/3/22</td>
+              <tbody>
+                <tr *ngFor='let purchase of purchases'>
+                  <th scope="row" style="text-align: center;">{{purchase.purchaseid}}</th>
+                  <td>{{purchase.userid}}</td>
+                  <td>{{purchase.totalcost}}</td>                  
+                  <td>{{purchase.address}}</td>
+                  <td>{{purchase.purchasedate}}</td>  
                   <td>
                     <div class="btn-group-tb">
                        <button data-bs-toggle="modal" data-bs-target="#DetalleCompra" (click)="showUser(user)"><i class="fas fa-info-circle"></i></button> 

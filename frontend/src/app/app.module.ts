@@ -21,6 +21,7 @@ import { PasswordEditComponent } from './components/password-edit/password-edit.
 import { MoviePremieresComponent } from './components/movie-premieres/movie-premieres.component';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 import { MoviePopularComponent } from './components/movie-popular/movie-popular.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 
 
@@ -50,7 +51,8 @@ import { MoviePopularComponent } from './components/movie-popular/movie-popular.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    IvyCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
