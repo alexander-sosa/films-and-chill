@@ -28,6 +28,7 @@ export class MoviePopularComponent implements OnInit {
 
   aux_movies: any | Movie = [];
   movies: any | Movie = [];
+  counts: any | number = [];
   cart: any | Movie = [];
   cart_list: any | Movie = [];
 
@@ -45,17 +46,9 @@ export class MoviePopularComponent implements OnInit {
       res => {
         //console.log(res);
         this.aux_movies = res;
-        this.aux_movies = this.aux_movies.content;
-        for (let i = 0; i < this.aux_movies.length; i++) {
-          const e= this.aux_movies[i];
-          //console.log(e);
-          //console.log(e[1]);  
-          /*for (let j = 0; j < e.length; j++) {
-            const f = e[j];
-            //console.log(f[1]);            
-          }*/
-          this.movies.push(e[1]);
-        }
+        this.movies = this.aux_movies.content;
+        //console.log(this.movies);
+        
       },
       err => {
         console.log(err);

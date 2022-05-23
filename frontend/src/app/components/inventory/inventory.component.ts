@@ -187,9 +187,6 @@ export class InventoryComponent implements OnInit {
       res => {
         this.response = res;
         this.users = this.response.content;
-        //this.tp = this.response.totalPages;
-        //this.getAllUsers();
-        //console.log(this.tp);
       },
       err => {
         console.log(err)
@@ -197,27 +194,6 @@ export class InventoryComponent implements OnInit {
     );
   }
 
-  /*getAllUsers(){
-    var aux: any = [];
-    console.log("tp "+this.tp);
-    for (let i = 0; i < Number(this.tp); i++) {
-      this.userSevice.getAllUsers(i).subscribe(
-        res => {
-          this.response = res;
-          this.aux_users = this.response.content;
-          this.preprocessingPurchases();
-          //this.Users = this.Users.concat(this.aux_users);
-          //console.log(this.Users);
-          //console.log(this.tp);
-        },
-        err => {
-          console.log(err)
-        }
-      );
-      
-    }
-    
-  }*/
 
   openDetails(m: Movie){
     this.currentMovie = m.movieid;

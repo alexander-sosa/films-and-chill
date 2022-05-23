@@ -28,6 +28,10 @@ export class PurchaseService {
     return this.http.get(this.API_URL + '/purchase', {headers: this.auth_headers});
   }
 
+  postPurchase(postData:any){
+    return this.http.post<HttpResponse<any>>((this.API_URL + '/purchase'), postData, { headers: this.auth_headers });
+  }
+
    
 }
 

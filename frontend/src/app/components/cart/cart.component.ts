@@ -4,6 +4,7 @@ import { Item } from 'src/app/models/Item';
 import { Movie } from 'src/app/models/Movie';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginFirstService } from 'src/app/services/login-first.service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,6 +21,7 @@ export class CartComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cartService: CartService,
+    private purchaseService: PurchaseService,
     private loginControlService: LoginFirstService
     ) {
      
@@ -114,13 +116,35 @@ export class CartComponent implements OnInit {
     this.subtotal = 0;
     for(let i = 0; i < this.cart.length ; i++){
       this.subtotal += this.cart[i].cost * this.items[i].amount;
-      console.log(this.subtotal);
+      //console.log(this.subtotal);
     }
     this.subtotal = (Math.round(this.subtotal * 100) / 100);
     this.total = this.subtotal;
   }
 
   Buy(){
+    var moviepurchases = [];
+    //console.log(this.items)
+    for (let i = 0; i < this.items.length; i++) {
+      const e = this.items[i];
+      var d = {
+        "movieid": e.movie.movieid,
+        "quantity": e.amount
+      }
+      moviepurchases.push(d);
+    }
+    //console.log(moviepurchases);
+    let data = {        
+      "purchase": {
+          "userid" : localStorage.getItem('idu'),
+          "totalcost": this.total,
+          "address": this.BuyForm.get('address')?.value
+      },
+      "moviepurchases": moviepurchases
+    }
+
+    console.log(data);
+
     Swal.fire({
       title: 'confirmación de pago',
       text: "Esta seguro de realizar el pago",
@@ -132,54 +156,27 @@ export class CartComponent implements OnInit {
       denyButtonText: 'Cancelar',
       confirmButtonText: 'Confirmar',
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        Swal.fire(
-          'Transacción exitosa',
-          'Pago realizado exitosamente',
-          'success')
+        this.purchaseService.postPurchase(data).subscribe(
+          res => {
+            console.log(res);
+            if (res != undefined) {
+              Swal.fire(
+              'Transacción exitosa',
+              'Pago realizado exitosamente',
+              'success')
+            }
+          },
+          err => console.log(err)
+        );
+        
       } else if (result.isDenied) {
         Swal.fire('Transacción cancelada',
         '',
         'error')
       }
     })
+    
   }
-  //console.log("algo");
-    /**
-     * "userid": 1,
-    "movieid": 1,
-    "quantity": 1,
-    "totalcost": 16.9,
-    "address": "Direccion 1"
-     
-    for (let i = 0; i < this.items.length; i++) {
-      const e = this.items[i];
-      var data ={
-        "userid": this.IDU,
-        "movieid": e.movie.movieid,
-        "quantity": e.amount,
-        "totalcost": this.total,
-        "address": this.BuyForm.get('address')?.value
-      }
-      console.log(data);
-      this.cartService.buyCart(data).subscribe(
-        res => {
-          c=true;
-
-        },
-        err => {
-          c=false;
-        }
-      );
-      
-    }*/
-
-    /*if{c==true}{
-
-    }*/
-
-
-
   
 }

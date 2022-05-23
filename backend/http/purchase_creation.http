@@ -1,11 +1,11 @@
 ###
 POST http://localhost:8080/purchase
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjUyMjI3NTMyLCJpYXQiOjE2NTIyMTc1MzJ9.Y5e8IcKnDv4yJeueYG-YNsAll22b--y805jb6YHLLGkUecX9xpPYOAJBPV60o8GtKsyEnFHaQ-5gHxGFbLyOQA
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0dXNlckBnbWFpbC5jb20iLCJleHAiOjE2NTMzMjcxODYsImlhdCI6MTY1MzMxNzE4Nn0.6VRZpBSpG5HCxDbO1wSGxUvvNYZIWFH_s8I2nxx7gp80aEAnPTts7rTo0f9x-bQz9xSrxhxXdpLwX2iHQJPZzQ
 Content-Type: application/json
 
 {    
     "purchase": {
-        "userid" : 1,
+        "userid" : 2,
         "totalcost": 16.5,
         "address": "Direccion de prueba"
     },

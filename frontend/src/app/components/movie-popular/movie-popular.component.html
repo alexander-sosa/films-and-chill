@@ -8,18 +8,21 @@
         <div class="col-3" *ngFor='let movie of movies'>
             <div class="card text-center">
                 <a [routerLink]="['/movie-detail/', movie.movieid]">
-                    <img src="{{movie.imagelink}}" alt="img" class="card-img-top">
+                    {{movie[1].imagelink}}
+                    <img src="{{movie[1].imagelink}}" alt="img" class="card-img-top">
                 </a>
                 <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #914110;">
                     <div style="font-family: 'Rockwell';">
-                        {{movie.title}}
+                        {{movie[1].title}}
+                        <br>
+                        Vendidas: {{movie[0]}} unid.
                     </div>
                     <button [disabled]="StockValidation(movie)" class="btn btn-info" style="background-color: whitesmoke; border-color: #532200; color: #532200;" (click)="addToCart(movie)">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
                 </div>
                 <div class="card-body" style="background-color: #EFCFA0;">
-                    <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}}Bs</p>
+                    <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;"> {{movie[1].cost}} Bs</p>
                 </div>
             </div>
             <br><br>
