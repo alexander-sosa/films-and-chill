@@ -22,7 +22,8 @@ import { MoviePremieresComponent } from './components/movie-premieres/movie-prem
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 import { MoviePopularComponent } from './components/movie-popular/movie-popular.component';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
-
+import { ChartsTestComponent } from './components/charts-test/charts-test.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     MoviePremieresComponent,
     MovieSearchComponent,
     MoviePopularComponent,
-          
+    ChartsTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +53,8 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
