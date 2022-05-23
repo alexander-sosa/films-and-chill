@@ -33,7 +33,7 @@
 
     .not_found_img{
         height: auto;
-        width: 50%;
+        width: 30%;
         display: block;
         margin-left: auto;
         margin-right: auto;
@@ -44,7 +44,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 60%;
+        width: 40%;
         text-align: center;
         font-size: 30px;
         font-family: 'Franklin Gothic Medium';

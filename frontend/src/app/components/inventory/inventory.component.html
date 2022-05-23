@@ -91,9 +91,9 @@
                 </tr>
             </thead>
               <tbody>
-                <tr *ngFor='let purchase of purchases'>
+                <tr *ngFor='let purchase of purchasesShow'>
                   <th scope="row" style="text-align: center;">{{purchase.purchaseid}}</th>
-                  <td>{{purchase.userid}}</td>
+                  <td>{{purchase.user}}</td>
                   <td>{{purchase.totalcost}}</td>                  
                   <td>{{purchase.address}}</td>
                   <td>{{purchase.purchasedate}}</td>  

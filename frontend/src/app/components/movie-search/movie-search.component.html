@@ -6,53 +6,93 @@
     
     <div class="row">  
         <h2>Resultados por título</h2>
-        <div class="demo" style="margin-bottom: 30px;">
-			<carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [cellsToScroll]="3">
-                <div class="carousel-cell" *ngFor='let  movie of moviesbytitle'>
-                    
-                    <div class="card text-center">
-                        <a [routerLink]="['/movie-detail/', movie.movieid]">
-                            <img src="{{movie.imagelink}}" alt="img" class="card-img-top" style="width: 290px; height: 370px; margin-left: -12px;">
-                        </a>
-                        <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
-                            <div style="font-family: 'Rockwell';"> {{movie.title}} </div>
-                            <button [disabled]="StockValidation(movie)" class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </button>
+        <div class="demo" style="margin-bottom: 30px;" *ngIf="existMoviebyTitle == true; else not_found">
+            <div *ngIf="moviesbytitle.length <= 5 ; else carousel ">
+                <carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [arrows]="false">
+
+                    <div class="carousel-cell" *ngFor='let movie of moviesbytitle'>
+
+                        <div class="card text-center">
+                            <a [routerLink]="['/movie-detail/', movie.movieid]">
+                                <img src="{{movie.imagelink}}" alt="img" class="card-img-top"
+                                    style="width: 290px; height: 370px; margin-left: -12px;">
+                            </a>
+                            <div class="card-header d-flex text-white justify-content-between align-items-center"
+                                style="background-color: #E1A140;">
+                                <div style="font-family: 'Rockwell';"> {{movie.title}} </div>
+                                <button [disabled]="StockValidation(movie)" class="btn btn-info"
+                                    style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </div>
+                            <div class="card-body" style="background-color: #EFCFA0;">
+                                <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}} Bs</p>
+                            </div>
                         </div>
-                        <div class="card-body" style="background-color: #EFCFA0;">
-                            <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}}  Bs</p>
-                        </div>
+
                     </div>
-                    
-                </div>
-			</carousel>
+                </carousel>
+            </div>
+			
+
+            <ng-template #carousel>
+                <carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [cellsToScroll]="3">
+
+                    <div class="carousel-cell" *ngFor='let movie of moviesbytitle'>
+
+                        <div class="card text-center">
+                            <a [routerLink]="['/movie-detail/', movie.movieid]">
+                                <img src="{{movie.imagelink}}" alt="img" class="card-img-top"
+                                    style="width: 290px; height: 370px; margin-left: -12px;">
+                            </a>
+                            <div class="card-header d-flex text-white justify-content-between align-items-center"
+                                style="background-color: #E1A140;">
+                                <div style="font-family: 'Rockwell';"> {{movie.title}} </div>
+                                <button [disabled]="StockValidation(movie)" class="btn btn-info"
+                                    style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </div>
+                            <div class="card-body" style="background-color: #EFCFA0;">
+                                <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}} Bs</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </carousel>
+            </ng-template>
+
 		</div>
         <br><br>
-        <!--
-            <div *ngIf="existMovie == true; else not_found">
-                <div class="col-3" *ngFor='let movie of movies'>
-                    <div class="card text-center">
-                        <a [routerLink]="['/movie-detail/', movie.movieid]">
-                            <img src="{{movie.imagelink}}" alt="img" class="card-img-top">
-                        </a>
-                        <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
-                            <div style="font-family: 'Rockwell';"> {{movie.title}} </div>
-                            <button [disabled]="StockValidation(movie)" class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                            </button>
-                        </div>
-                        <div class="card-body" style="background-color: #EFCFA0;">
-                            <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}}  Bs</p>
-                        </div>
-                    </div>
-                    <br><br>
-                </div>
-            </div>
--->
+
         <h2>Resultados por actor</h2>
-        <div class="demo">
-			<carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [cellsToScroll]="3">
+        <div class="demo" *ngIf="existMoviebyActor == true; else not_found2">
+            <div *ngIf="moviesbyactor.length <= 5 ; else carousel2 ">
+                <carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [arrows]="false">
+                    <div class="carousel-cell" *ngFor='let movie of moviesbyactor'>
+                        
+                        <div class="card text-center">
+                            <a [routerLink]="['/movie-detail/', movie.movieid]">
+                                <img src="{{movie.imagelink}}" alt="img" class="card-img-top" style="width: 290px; height: 370px; margin-left: -12px;">
+                            </a>
+                            <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
+                                <div style="font-family: 'Rockwell';"> {{movie.title}} </div>
+                                <button [disabled]="StockValidation(movie)" class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </div>
+                            <div class="card-body" style="background-color: #EFCFA0;">
+                                <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}}  Bs</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </carousel>
+            </div>			
+		</div>
+
+        <ng-template #carousel2>
+            <carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [cellsToScroll]="3">
                 <div class="carousel-cell" *ngFor='let movie of moviesbyactor'>
                     
                     <div class="card text-center">
@@ -72,34 +112,25 @@
                     
                 </div>
 			</carousel>
-		</div>
-        <!--
-        <div *ngIf="existMovie == true; else not_found">
-            <div class="col-3" *ngFor='let movie of movies'>
-                <div class="card text-center">
-                    <a [routerLink]="['/movie-detail/', movie.movieid]">
-                        <img src="{{movie.imagelink}}" alt="img" class="card-img-top">
-                    </a>
-                    <div class="card-header d-flex text-white justify-content-between align-items-center" style="background-color: #E1A140;">
-                        <div style="font-family: 'Rockwell';"> {{movie.title}} </div>
-                        <button [disabled]="StockValidation(movie)" class="btn btn-info" style="background-color: #532200; border-color: #532200; color: white;" (click)="addToCart(movie)">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </button>
-                    </div>
-                    <div class="card-body" style="background-color: #EFCFA0;">
-                        <p style="font-family: 'Trebuchet MS'; font-size: large; color: #532200;">{{movie.cost}}  Bs</p>
-                    </div>
-                </div>
-                <br><br>
-            </div>
-        </div>
-    -->
+        </ng-template>
 
             <ng-template #not_found>
                 <div>
                     <div class="error">
                         <span>ERROR</span><br><br>
                         <span>No se encontro una película con el titulo<br><br> "{{nf_title}}"</span>
+                    </div>
+                    
+                    <img class="not_found_img" src="https://github.com/alexander-sosa/films-and-chill/blob/sprint-3/images/404.png?raw=true"><br>
+                    
+                </div>
+            </ng-template>
+
+            <ng-template #not_found2>
+                <div>
+                    <div class="error">
+                        <span>ERROR</span><br><br>
+                        <span>No se encontro una película con el actor<br><br> "{{nf_title}}"</span>
                     </div>
                     
                     <img class="not_found_img" src="https://github.com/alexander-sosa/films-and-chill/blob/sprint-3/images/404.png?raw=true"><br>
