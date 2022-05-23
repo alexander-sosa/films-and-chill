@@ -47,7 +47,7 @@ public interface MovieDao extends JpaRepository<Movie, Integer>{
     Page<Movie> findByNameAndTuplestatus(String firstname, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
 
     @Query(value = "SELECT * " + 
-                   "FROM Movie m, Actor a, Actormovie am " +
+                   "FROM movie m, Actor a, Actormovie am " +
                    "WHERE m.movieid = am.movieid " +
                    "AND am.actorid = a.actorid " +
                    "AND a.actorid IN ( " +
