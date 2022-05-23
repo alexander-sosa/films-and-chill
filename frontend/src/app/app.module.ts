@@ -21,7 +21,9 @@ import { PasswordEditComponent } from './components/password-edit/password-edit.
 import { MoviePremieresComponent } from './components/movie-premieres/movie-premieres.component';
 import { MovieSearchComponent } from './components/movie-search/movie-search.component';
 import { MoviePopularComponent } from './components/movie-popular/movie-popular.component';
-
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { ChartsTestComponent } from './components/charts-test/charts-test.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -41,7 +43,7 @@ import { MoviePopularComponent } from './components/movie-popular/movie-popular.
     MoviePremieresComponent,
     MovieSearchComponent,
     MoviePopularComponent,
-          
+    ChartsTestComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,9 @@ import { MoviePopularComponent } from './components/movie-popular/movie-popular.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    IvyCarouselModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

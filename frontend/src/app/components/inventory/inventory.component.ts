@@ -429,7 +429,7 @@ export class InventoryComponent implements OnInit {
     this.purchaseService.getPurchases().subscribe(
       res => {
         this.purchases = res;
-        this.preprocessingPurchases();
+        //this.preprocessingPurchases();
         
       },
       err => console.log(err)
