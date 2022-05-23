@@ -2,7 +2,7 @@
 GET http://localhost:8080/movie?page=0
 
 ###Listado de pelicula con movie_id = 1
-GET http://localhost:8080/movie/1
+GET http://localhost:8080/movie/21
 
 ###Listado por genero
 GET http://localhost:8080/movie?genreId=1
@@ -14,7 +14,7 @@ DELETE http://localhost:8080/movie/1
 GET http://localhost:8080/movie/latest
 
 ###Buscar pelicula por titulo
-GET http://localhost:8080/movie?search=narnia
+GET http://localhost:8080/movie?search=robert downey jr
 
 ###Buscar peliculas populares
 GET http://localhost:8080/movie/popular

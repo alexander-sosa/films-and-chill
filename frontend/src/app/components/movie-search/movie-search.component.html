@@ -8,7 +8,7 @@
         <h2>Resultados por título</h2>
         <div class="demo" style="margin-bottom: 30px;">
 			<carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [cellsToScroll]="3">
-                <div class="carousel-cell" *ngFor='let movie of movies'>
+                <div class="carousel-cell" *ngFor='let  movie of moviesbytitle'>
                     
                     <div class="card text-center">
                         <a [routerLink]="['/movie-detail/', movie.movieid]">
@@ -53,7 +53,7 @@
         <h2>Resultados por actor</h2>
         <div class="demo">
 			<carousel class="carousel-html-content" [height]="500" [cellsToShow]="5" [cellsToScroll]="3">
-                <div class="carousel-cell" *ngFor='let movie of movies'>
+                <div class="carousel-cell" *ngFor='let movie of moviesbyactor'>
                     
                     <div class="card text-center">
                         <a [routerLink]="['/movie-detail/', movie.movieid]">
