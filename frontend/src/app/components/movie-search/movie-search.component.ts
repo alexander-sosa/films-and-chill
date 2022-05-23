@@ -13,7 +13,8 @@ import Swal from 'sweetalert2';
 export class MovieSearchComponent implements OnInit {
   title: string | undefined;
   nf_title: string | undefined;
-  existMovie?: boolean;
+  existMoviebyTitle?: boolean;
+  existMoviebyActor?: boolean;
 
   control?:boolean;
 
@@ -31,7 +32,8 @@ export class MovieSearchComponent implements OnInit {
   }
 
   response: any = [];
-  movies: any | Movie = [];
+  moviesbytitle: any | Movie = [];
+  moviesbyactor: any | Movie = [];
   cart: any | Movie = [];
   cart_list: any | Movie = [];
 
@@ -51,7 +53,8 @@ export class MovieSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.nf_title="";
-    this.existMovie = false;
+    this.existMoviebyTitle = false;
+    this.existMoviebyActor = false;
     const params = this.activatedRoute.snapshot.params;
     if(params.title){
       this.title = params.title; 
@@ -67,13 +70,29 @@ export class MovieSearchComponent implements OnInit {
         res => {
           
           this.response = res;
-          this.movies = this.response.content;
-          console.log(this.response.content);
-          if(this.response.content.length == 0){
-            this.existMovie = false;
+          this.moviesbytitle = this.response.byTitle.content;
+          this.moviesbyactor = this.response.byName.content;
+          //console.log(this.response.content);
+          if(this.response.byTitle.content.length == 0){
+            this.existMoviebyTitle = false;
            
           }else{
-            this.existMovie= true;
+            this.existMoviebyTitle= true;
+  
+            // pagination control
+            this.totalPages = this.response.totalPages;
+            this.totalMovies = this.response.totalMovies;
+            this.numberOfElements = this.response.numberOfElements;
+            this.pageNumber = this.response.number;
+            this.page = this.pageNumber + 1;
+            this.lastPage = this.response.last;
+            this.firstPage = this.response.first;
+          }
+          if(this.response.byName.content.length == 0){
+            this.existMoviebyActor = false;
+           
+          }else{
+            this.existMoviebyActor= true;
   
             // pagination control
             this.totalPages = this.response.totalPages;
@@ -88,7 +107,8 @@ export class MovieSearchComponent implements OnInit {
         },
         err => {
           console.log(err);
-          this.existMovie = false;
+          this.existMoviebyTitle = false;
+          this.existMoviebyActor = false;
         }
       );
     }

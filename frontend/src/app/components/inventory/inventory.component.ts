@@ -23,6 +23,7 @@ export class InventoryComponent implements OnInit {
   response : any = [];
   currentRol?: Number;
   currentMovie?: number;
+  tp?: number;
 
   public SetRolForm: FormGroup;
   public NewProductForm: FormGroup;
@@ -42,6 +43,8 @@ export class InventoryComponent implements OnInit {
   }
  
   users: any = [];
+  Users: any = [];
+  aux_users: any = [];
   user: User = {
     userid: 0,
     name: '',
@@ -190,6 +193,7 @@ export class InventoryComponent implements OnInit {
       }
     );
   }
+
 
   openDetails(m: Movie){
     this.currentMovie = m.movieid;
@@ -428,8 +432,8 @@ export class InventoryComponent implements OnInit {
   getPurchases(){
     this.purchaseService.getPurchases().subscribe(
       res => {
-        this.purchases = res;
-        //this.preprocessingPurchases();
+        this.purchases = res;        
+        this.preprocessingPurchases();
         
       },
       err => console.log(err)
@@ -437,31 +441,44 @@ export class InventoryComponent implements OnInit {
   }
 
   preprocessingPurchases(){
+    var p;
+    var c = 0;
+    //console.log(this.purchases);
     this.purchasesShow = [];
-    console.log(this.purchasesShow);
-    console.log(this.purchases.length);
-    console.log(this.users.lengt);
     for (let i = 0; i < this.purchases.length; i++) {
-      const e= this.purchases[i]; 
-      for (let j = 0; j < this.users.length; j++) {
-        const f = this.users[j];
-        if (e.userid == f.userid) {  
-          var p = this.purchase; 
-          p.purchaseid = e.purchaseid;
-          p.user = (f.lastname).toUpperCase( );
-          p.totalcost = e.totalcost;
-          let aux = String(e.purchasedate).split('T',2);
-          p.purchasedate =  aux[0];
-          p.address = e.address;
-          console.log(p);
-          break;
-        }
+      const e = this.purchases[i];    
+      if (c==2) {
+        break;
+      }  else{
+        this.userSevice.getUser(e.userid).subscribe(
+          res => {
+            this.user = res;  
+            var u = this.user.lastname;  
+            p = this.purchase; 
+            p.purchaseid = e.purchaseid;
+            if (u!=undefined) {
+              p.user = (u).toUpperCase( );
+            }
+            p.totalcost = e.totalcost;
+            let aux = String(e.purchasedate).split('T',2);
+            p.purchasedate =  aux[0];
+            p.address = e.address;
+            
+            this.purchasesShow[i] = p;console.log(this.purchasesShow);
+            //this.purchasesShow.push(p);
+            
+            //console.log("---------------------------------------------------------------------");
+            ;    
+            
+          },
+          err => console.log(err)
+        );
+        //console.log(p);
+        c++;
       } 
-              
-        //console.log(this.purchasesShow); 
-         
+      
     }
-    console.log(this.purchasesShow);
+    //console.log(this.purchasesShow);
   }
 
 }
