@@ -92,6 +92,14 @@ public class MovieApi {
         return movieSearch.findByPopular(page, size);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/movie/purchase/{purchaseid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> findPurchase (@RequestParam(defaultValue = "0") Integer page,
+                                           @RequestParam(defaultValue = "12") Integer size,
+                                           @PathVariable(name = "purchaseid") int purchaseid){
+        return movieSearch.findByPurchase(purchaseid, page, size);
+    }
+
     /*@CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/movie/search/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findByTitle(@PathVariable(name = "title") String title,

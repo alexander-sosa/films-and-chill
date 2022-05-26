@@ -114,9 +114,13 @@ public class MovieSearch {
         Pageable pageable = PageRequest.of(page, size);
         Page<Movie> movies = null;
 
-        if(name.contains(" ")){
+        if(name.contains("_")){
             String fname = name.substring(0, name.indexOf(" "));
-            String lname = name.substring(name.indexOf(" ") + 1, name.length());
+            String lname = name.substring(name.indexOf("_") + 1, name.length());
+
+            if(lname.contains("_"))
+                lname.replace("_", " ");
+            
 
             fname = "%" + fname.toLowerCase() + "%";
             lname = "%" + lname.toLowerCase() + "%";
@@ -135,6 +139,13 @@ public class MovieSearch {
     public ResponseEntity<?> findByPopular(Integer page, Integer size){
         Pageable pageable = PageRequest.of(page, size);
         Page<Movie> movies = movieDao.findByQuantityAndTuplestatusDesc(true, pageable);
+
+        return ResponseEntity.ok(movies);
+    }
+
+    public ResponseEntity<?> findByPurchase(Integer purchaseid, Integer page, Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Movie> movies = movieDao.findByPurchaseidAndTuplestatusDesc(purchaseid, true, pageable);
 
         return ResponseEntity.ok(movies);
     }

@@ -14,7 +14,10 @@ DELETE http://localhost:8080/movie/1
 GET http://localhost:8080/movie/latest
 
 ###Buscar pelicula por titulo
-GET http://localhost:8080/movie?search=robert
+GET http://localhost:8080/movie?search=robert_downey_jr
 
 ###Buscar peliculas populares
 GET http://localhost:8080/movie/popular
+
+###Buscar peliculas por compras
+GET http://localhost:8080/movie/purchase/200
