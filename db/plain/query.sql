@@ -27,12 +27,27 @@ email = 2,
 pass = 'new hashed pass'
 WHERE user_id = 5;
 
+---------------------------------------------------------------------
+-- Analytics Queries
+---------------------------------------------------------------------
+
 -- number of movie purchases
-SELECT count(*), movieid  
+SELECT count(*) as purchases_nbr, movieid  
 FROM moviepurchase 
 GROUP BY movieid 
 ORDER BY count(*) DESC
 LIMIT 12;
+
+/* 
+-- testing new query... do not use!
+SELECT count(*) as purchases_nbr, m.movieid, m.title
+FROM purchase p
+LEFT JOIN moviepurchase mp ON p.purchaseid = mp.purchaseid
+LEFT JOIN movie m ON mp.movieid = m.movieid
+GROUP BY movieid 
+ORDER BY count(*) DESC
+LIMIT 12;
+*/
 
 -- number of movie stock purchases
 SELECT sum(quantity), movieid  
@@ -40,3 +55,20 @@ FROM moviepurchase
 GROUP BY movieid 
 ORDER BY sum(quantity) DESC
 LIMIT 12;
+
+-- purchases number by genre
+SELECT count(*) as purchases_nbr, g.genreid, g.genre
+FROM moviepurchase mp
+LEFT JOIN movie m ON mp.movieid = m.movieid
+LEFT JOIN genre g ON m.genreid = g.genreid
+GROUP BY genreid 
+ORDER BY count(*) DESC
+LIMIT 12;
+
+-- purchases number by users
+SELECT count(*) as purchases_nbr, u.userid, u.name, u.lastname
+FROM purchase p
+LEFT JOIN user u ON p.userid = u.userid
+GROUP BY userid
+ORDER BY count(*) DESC
+LIMIT 100;
