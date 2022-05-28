@@ -165,6 +165,7 @@ export class CartComponent implements OnInit {
               'Transacción exitosa',
               'Pago realizado exitosamente',
               'success')
+              this.removeAll();
             }
           },
           err => console.log(err)
