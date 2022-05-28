@@ -66,6 +66,7 @@ export class InventoryComponent implements OnInit {
   }
 
   purchases: any = [];
+  purchasesDetails: any = [];
   purchasesShow: any = [];
   purchaseBD: Purchase = {
     purchaseid: 0,
@@ -483,6 +484,22 @@ export class InventoryComponent implements OnInit {
       
     }
     //console.log(this.purchasesShow);
+  }
+
+  showPurchase(p: Purchase){
+    document.getElementById('purId')?.setAttribute('value', String(p.purchaseid));
+    (<HTMLInputElement>document.getElementById('address')).value =  p.address;
+    (<HTMLInputElement>document.getElementById('date')).value =  '2020-11-30';
+    (<HTMLInputElement>document.getElementById('total')).value =  String(p.totalcost);
+    this.purchaseService.getPurchasesDetails(p.purchaseid).subscribe(
+      res=>{
+        this.response = res;
+        this.purchasesDetails = this.response.content;
+        //console.log(this.purchasesDetails);
+
+      },
+      err=>console.log(err)
+    );
   }
 
 }

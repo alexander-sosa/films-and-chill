@@ -99,7 +99,7 @@
                   <td>{{purchase.purchasedate}}</td>  
                   <td>
                     <div class="btn-group-tb">
-                       <button data-bs-toggle="modal" data-bs-target="#DetalleCompra" (click)="showUser(user)"><i class="fas fa-info-circle"></i></button> 
+                       <button data-bs-toggle="modal" data-bs-target="#DetalleCompra" (click)="showPurchase(purchase)"><i class="fas fa-info-circle"></i></button> 
                     </div>
                   </td>
                 </tr>
@@ -418,8 +418,8 @@
           <form class="row g-3">
             <div class="col-md-6">
               <div class="inline">              
-                <label for="name" class="col-form-label">ID:</label>
-                <input style="width: 100px;" type="number" class="form-control" id="name" value="5" disabled>
+                <label for="purId" class="col-form-label">ID:</label>
+                <input style="width: 100px;" type="number" class="form-control" id="purId" disabled>
               </div>
             </div>
 
@@ -432,13 +432,13 @@
 
             <div class="col-md-6" >
               <label for="address" class="col-form-label">Dirección:</label>
-              <textarea class="form-control" id="address" style="margin-bottom: 0px; width: 90%; height: 70%;" value="direccion"></textarea>              
+              <textarea class="form-control" id="address" style="margin-bottom: 0px; width: 90%; height: 70%;"  disabled></textarea>              
             </div>
 
             <div class="col-md-6">
               <div class="inline">
-                <label for="nit" class="col-form-label">Fecha:</label>
-                <input type="date" class="form-control" id="nit" value="17/4/21">
+                <label for="date" class="col-form-label">Fecha:</label>
+                <input type="date" class="form-control" id="date"  disabled>
               </div>              
             </div>             
 
@@ -452,10 +452,10 @@
                     </tr>
                 </thead>
                 <tbody style="background-color: #CBCDCB;">
-                    <tr>
-                      <th scope="row">titulo</th>
-                      <td>cantidad</td>
-                      <td>costo</td>
+                    <tr *ngFor='let movie of purchasesDetails'>
+                      <th scope="row">{{movie.title}}</th>
+                      <td></td>
+                      <td>{{movie.cost}}</td>
                     </tr>
                   </tbody>
             </table>
@@ -466,7 +466,7 @@
                 </div>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="col-auto">
-                    <input style="width: 100px; text-align: end;" type="number" class="form-control" id="total" value="100" disabled> 
+                    <input style="width: 100px; text-align: end;" type="number" class="form-control" id="total" disabled> 
                 </div>
                 <div class="col-auto">
                     <label for="total" class="col-form-label">Bs.</label>
