@@ -446,7 +446,8 @@ export class InventoryComponent implements OnInit {
     //console.log(this.purchases);
     this.purchasesShow = [];
     for (let i = 0; i < this.purchases.length; i++) {
-      const e = this.purchases[i];    
+      const e = this.purchases[i];  
+      console.log(e);  
       if (c==2) {
         break;
       }  else{
@@ -464,7 +465,9 @@ export class InventoryComponent implements OnInit {
             p.purchasedate =  aux[0];
             p.address = e.address;
             
-            this.purchasesShow[i] = p;console.log(this.purchasesShow);
+            console.log(p); 
+            this.purchasesShow.push(p);
+            console.log(this.purchasesShow);
             //this.purchasesShow.push(p);
             
             //console.log("---------------------------------------------------------------------");
