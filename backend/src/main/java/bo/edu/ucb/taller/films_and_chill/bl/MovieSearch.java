@@ -115,7 +115,7 @@ public class MovieSearch {
         Page<Movie> movies = null;
 
         if(name.contains("_")){
-            String fname = name.substring(0, name.indexOf(" "));
+            String fname = name.substring(0, name.indexOf("_"));
             String lname = name.substring(name.indexOf("_") + 1, name.length());
 
             if(lname.contains("_"))
