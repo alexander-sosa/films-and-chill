@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
 
 import bo.edu.ucb.taller.films_and_chill.dto.Purchase;
-import bo.edu.ucb.taller.films_and_chill.dto.PurchaseClient;
 
 //import bo.edu.ucb.taller.films_and_chill.token.Model.*;;
 

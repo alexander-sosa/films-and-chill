@@ -17,7 +17,6 @@ import bo.edu.ucb.taller.films_and_chill.dao.PurchaseDao;
 //import bo.edu.ucb.taller.films_and_chill.dto.Moviepurchase;
 import bo.edu.ucb.taller.films_and_chill.dto.Purchase;
 //import bo.edu.ucb.taller.films_and_chill.dto.PurchaseRequest;
-import bo.edu.ucb.taller.films_and_chill.dto.PurchaseClient;
 
 @Service
 public class PurchaseList {
