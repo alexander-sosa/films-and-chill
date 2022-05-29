@@ -1,4 +1,8 @@
 ### Getting purchase list...
 GET http://localhost:8080/purchase
+<<<<<<< HEAD
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjUzODAwMTU5LCJpYXQiOjE2NTM3OTAxNTl9.1SmKyf3ks2sv3wZ8ILufoPd6OAUdekvP_sT7FXmHde8BA0K3nS-ppOPF0qIDNOlz7UyQDwsXacp61GZViknXUQ
+=======
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YWxlQG5vcmVwbHkuY29tIiwiZXhwIjoxNjUzNzgzOTA2LCJpYXQiOjE2NTM3NzM5MDZ9.ZQM1iSs3SSaDjfQL8kecNqbNwaKy1H9C1c1TTzI9kkPOOkHJAJhLZcWdfd7xre_IGUJ0legWXa3U-o5WEKNaIw
+>>>>>>> 16ee22a3ebddf6b62a9c15240af66c88e37956ef
 Accept: application/json

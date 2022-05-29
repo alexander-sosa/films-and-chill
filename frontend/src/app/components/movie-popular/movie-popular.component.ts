@@ -47,7 +47,7 @@ export class MoviePopularComponent implements OnInit {
         //console.log(res);
         this.aux_movies = res;
         this.movies = this.aux_movies.content;
-        //console.log(this.movies);
+        console.log(this.movies);
         
       },
       err => {
@@ -101,7 +101,7 @@ export class MoviePopularComponent implements OnInit {
   };
 
   StockValidation(m: Movie){
-    console.log(m.stock);
+    //console.log(m.stock);
     if(m.stock != 0){
       return false;
     }else{
