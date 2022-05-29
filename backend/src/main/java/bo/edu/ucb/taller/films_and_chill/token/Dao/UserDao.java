@@ -11,4 +11,5 @@ import bo.edu.ucb.taller.films_and_chill.token.Model.DAOUser;
 public interface UserDao extends JpaRepository<DAOUser, Integer> {
     DAOUser findByUsername(String username);
     Page<DAOUser> findByTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+    DAOUser findByUseridAndTuplestatus(Integer userid, Boolean tuplestatus);
 }

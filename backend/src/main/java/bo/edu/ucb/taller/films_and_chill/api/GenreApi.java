@@ -24,4 +24,12 @@ public class GenreApi {
     public ResponseEntity<?> listAllGenres(){
         return genreSearch.listAllGenres();
     }
+
+    /********* PARA REPORTES *********/
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/movie/genre/report", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> mostSold(){
+        return genreSearch.mostSold();
+    }
 }

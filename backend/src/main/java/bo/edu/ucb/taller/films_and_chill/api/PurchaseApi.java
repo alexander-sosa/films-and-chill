@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import bo.edu.ucb.taller.films_and_chill.bl.PurchaseCreation;
-import bo.edu.ucb.taller.films_and_chill.bl.PurchaseList;
+import bo.edu.ucb.taller.films_and_chill.bl.PurchaseSearch;
 import bo.edu.ucb.taller.films_and_chill.dto.PurchaseRequest;
 
 //import java.util.List;
@@ -20,10 +20,10 @@ import bo.edu.ucb.taller.films_and_chill.dto.PurchaseRequest;
 public class PurchaseApi {
     
     private final PurchaseCreation purchaseCreation;
-    private final PurchaseList purchaseList;
+    private final PurchaseSearch purchaseList;
 
     @Autowired
-    public PurchaseApi(PurchaseCreation purchaseCreation, PurchaseList purchaseList) {
+    public PurchaseApi(PurchaseCreation purchaseCreation, PurchaseSearch purchaseList) {
         this.purchaseCreation = purchaseCreation;
         this.purchaseList = purchaseList;
     }

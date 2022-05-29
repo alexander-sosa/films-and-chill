@@ -136,9 +136,11 @@ public class MovieSearch {
         return movies;
     }
 
+    //findByCountAndTuplestatusDesc
+
     public ResponseEntity<?> findByPopular(Integer page, Integer size){
         Pageable pageable = PageRequest.of(page, size);
-        Page<Movie> movies = movieDao.findByQuantityAndTuplestatusDesc(true, pageable);
+        Page<Movie> movies = movieDao.findByCountAndTuplestatusDesc(true, pageable);
 
         return ResponseEntity.ok(movies);
     }
@@ -146,6 +148,15 @@ public class MovieSearch {
     public ResponseEntity<?> findByPurchase(Integer purchaseid, Integer page, Integer size){
         Pageable pageable = PageRequest.of(page, size);
         Page<Movie> movies = movieDao.findByPurchaseidAndTuplestatusDesc(purchaseid, true, pageable);
+
+        return ResponseEntity.ok(movies);
+    }
+
+    /********* PARA REPORTES *********/
+
+    public ResponseEntity<?> mostSold(Integer page, Integer size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Movie> movies = movieDao.findByQuantityAndTuplestatusDesc(true, pageable);
 
         return ResponseEntity.ok(movies);
     }

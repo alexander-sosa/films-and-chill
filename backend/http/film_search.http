@@ -21,3 +21,6 @@ GET http://localhost:8080/movie/popular
 
 ###Buscar peliculas por compras
 GET http://localhost:8080/movie/purchase/200
+
+###MAS VENDIDAS
+GET http://localhost:8080/movie/report

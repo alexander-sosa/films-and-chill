@@ -23,4 +23,8 @@ public class GenreSearch {
     public Genre findById(Integer genreid){
         return genreDao.findById(genreid).get(0);
     }
+
+    public ResponseEntity<?> mostSold(){
+        return ResponseEntity.ok(genreDao.mostSold());
+    }
 }
