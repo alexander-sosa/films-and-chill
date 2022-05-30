@@ -2,6 +2,7 @@ package bo.edu.ucb.taller.films_and_chill.dao;
 
 //import bo.edu.ucb.taller.films_and_chill.dto.PurchaseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.data.jpa.repository.Query;
 
 //import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,10 @@ public interface PurchaseDao extends JpaRepository<Purchase, Integer> {
     public Optional<Purchase> findTopByOrderByPurchaseidDesc();
 
     //@Query(value = " SELECT p, u.name FROM Purchase p, User u WHERE p.tuplestatus = :tuplestatus ")
+    /*@Query(value = " SELECT p" + 
+                   " FROM Moviepurchase mp, Purchase p " + 
+                   " WHERE mp.purchaseid = p.purchaseid " + 
+                   " AND p.tuplestatus = :tuplestatus )*/
     Page<Purchase> findByTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     //Page<Purchase> findByUseridAndTuplestatus(Integer userid, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     /*

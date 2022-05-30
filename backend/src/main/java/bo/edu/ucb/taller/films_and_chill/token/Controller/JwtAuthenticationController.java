@@ -93,6 +93,15 @@ public class JwtAuthenticationController {
         return userDetailsService.updateUser(user, user_id);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/user/report", method = RequestMethod.GET)
+    public ResponseEntity<?> mostSold(@RequestParam(defaultValue = "0") Integer page,
+                                      @RequestParam(defaultValue = "20") Integer size) throws Exception{
+
+        
+        return userDetailsService.mostSold(page, size);
+    }
+
     private void authenticate (String username, String password) throws Exception{
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

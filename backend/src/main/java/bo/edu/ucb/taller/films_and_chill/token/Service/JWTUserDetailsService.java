@@ -139,4 +139,17 @@ public class JWTUserDetailsService implements UserDetailsService{
                 allowedUsers.add(user);
         return allowedUsers;*/
     }
+
+    public ResponseEntity<?> mostSold(Integer page, Integer size){
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<?> users = userDao.findByPurchaseAndTuplestatus(true, pageable);
+        return ResponseEntity.ok(users);
+        /*Iterable<DAOUser> users = userDao.findAll();
+        List<DAOUser> allowedUsers = new ArrayList<>();
+        for(DAOUser user: users)
+            if(user.isTuplestatus())
+                allowedUsers.add(user);
+        return allowedUsers;*/
+    }
 }
