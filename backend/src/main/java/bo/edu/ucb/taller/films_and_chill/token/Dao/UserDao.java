@@ -16,18 +16,18 @@ public interface UserDao extends JpaRepository<DAOUser, Integer> {
     Page<DAOUser> findByTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     DAOUser findByUseridAndTuplestatus(Integer userid, Boolean tuplestatus);
 
-    @Query(value = " SELECT count(purchase.purchaseid) as purchases_nbr, " + 
-                   "        u.userid, " +
+    @Query(value = " SELECT count(*) as purchases_nbr, u" + 
+                   /*"        u.userid, " +
                    "        u.name, " +
                    "        u.lastname, " +
                    "        u.permissionid, " +
                    "        u.email, " +
                    "        u.pass, " +
                    "        u.tuplestatus, " +
-                   "        u.lastupdate " +
-                   " FROM purchase p, User u " + 
-                   " WHERE purchase.userid = u.userid " + 
+                   "        u.lastupdate " +*/
+                   " FROM DAOUser u, Purchase p " + 
+                   " WHERE p.userid = u.userid " + 
                    " GROUP BY p.userid " + 
-                   " ORDER BY count(purchase.purchaseid) DESC ", nativeQuery = true)
+                   " ORDER BY count(p.purchaseid) DESC ")
     Page<?>findByPurchaseAndTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
 }
