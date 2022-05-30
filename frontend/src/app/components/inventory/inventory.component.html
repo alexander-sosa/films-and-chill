@@ -78,7 +78,7 @@
           </table>
         </mat-tab>
         
-        <mat-tab label="Registro de Compras">
+        <mat-tab label="Registro de Compras" >
           <table class="table table-bordered">
             <thead>
                 <tr style="background-color: #E1A140;">
@@ -91,7 +91,7 @@
                 </tr>
             </thead>
               <tbody>
-                <tr *ngFor='let purchase of purchases'>
+                <tr *ngFor='let purchase of purchasesShow'>
                   <th scope="row" style="text-align: center;">{{purchase.purchaseid}}</th>
                   <td>{{purchase.user}}</td>
                   <td>{{purchase.totalcost}}</td>                  
@@ -426,7 +426,7 @@
             <div class="col-md-6">
               <div class="inline">    
                 <label for="name" class="col-form-label">Nombre:</label>
-                <input style="width: 260px;" type="text" class="form-control" id="name" value="nombre de factura"> 
+                <input style="width: 260px;" type="text" class="form-control" id="name" disabled> 
               </div>              
             </div>
 
@@ -453,9 +453,9 @@
                 </thead>
                 <tbody style="background-color: #CBCDCB;">
                     <tr *ngFor='let movie of purchasesDetails'>
-                      <th scope="row">{{movie.title}}</th>
-                      <td></td>
-                      <td>{{movie.cost}}</td>
+                      <th scope="row">{{movie[1].title}}</th>
+                      <td>{{movie[0]}}</td>
+                      <td>{{movie[1].cost}}</td>
                     </tr>
                   </tbody>
             </table>

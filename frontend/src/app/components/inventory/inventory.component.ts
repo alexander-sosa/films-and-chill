@@ -137,6 +137,7 @@ export class InventoryComponent implements OnInit {
     this.getGenres();
     this.getRatings();
     this.getPurchases();
+    //this.preprocessingPurchases();
   }
 
 
@@ -434,62 +435,48 @@ export class InventoryComponent implements OnInit {
     this.purchaseService.getPurchases().subscribe(
       res => {
         this.response = res;        
-        this.purchases = this.response.content; 
-        //this.preprocessingPurchases();
+        this.purchases = this.response.purchases.content; 
+        this.aux_users = this.response.users;
+        
+        this.preprocessingPurchases();
         
       },
       err => console.log(err)
     );
   }
 
+  
+
   preprocessingPurchases(){
-    var p;
-    var c = 0;
-    //console.log(this.purchases);
-    this.purchasesShow = [];
-    for (let i = 0; i < this.purchases.length; i++) {
-      const e = this.purchases[i];  
-      console.log(e);  
-      if (c==2) {
-        break;
-      }  else{
-        this.userSevice.getUser(e.userid).subscribe(
-          res => {
-            this.user = res;  
-            var u = this.user.lastname;  
-            p = this.purchase; 
-            p.purchaseid = e.purchaseid;
-            if (u!=undefined) {
-              p.user = (u).toUpperCase( );
-            }
-            p.totalcost = e.totalcost;
-            let aux = String(e.purchasedate).split('T',2);
-            p.purchasedate =  aux[0];
-            p.address = e.address;
-            
-            console.log(p); 
-            this.purchasesShow.push(p);
-            console.log(this.purchasesShow);
-            //this.purchasesShow.push(p);
-            
-            //console.log("---------------------------------------------------------------------");
-            ;    
-            
-          },
-          err => console.log(err)
-        );
-        //console.log(p);
-        c++;
-      } 
+    //const aux_array: any[] =[];    
+    for (let i = 0; i < (this.purchases.length); i++) {
+      //console.log("-->", aux_array)
+      const e = this.purchases[i];
+      const f = this.aux_users[i];   
+      //var p = this.purchase;
+      let aux = String(e.purchasedate).split('T',2);
+
+      const  p = {
+        purchaseid: e.purchaseid,
+        user: (f.lastname).toUpperCase( ),
+        totalcost: e.totalcost,
+        purchasedate: aux[0],
+        address: e.address,
+      }
+
+      this.purchasesShow.push(p);
+      
       
     }
-    //console.log(this.purchasesShow);
+    
+    console.log(this.purchasesShow);
   }
 
-  showPurchase(p: Purchase){
+  showPurchase(p: PurchaseShow ){
     document.getElementById('purId')?.setAttribute('value', String(p.purchaseid));
+    (<HTMLInputElement>document.getElementById('name')).value =  p.user;
     (<HTMLInputElement>document.getElementById('address')).value =  p.address;
-    (<HTMLInputElement>document.getElementById('date')).value =  '2020-11-30';
+    (<HTMLInputElement>document.getElementById('date')).value =  p.purchasedate;
     (<HTMLInputElement>document.getElementById('total')).value =  String(p.totalcost);
     this.purchaseService.getPurchasesDetails(p.purchaseid).subscribe(
       res=>{
