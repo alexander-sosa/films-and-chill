@@ -19,6 +19,7 @@ export class MovieAnalyticsComponent implements OnInit {
   quantities?: any = [];
   titles?: any = [];
   maxValue?: number = 0;
+  clickObject?: any;
 
   constructor(private analyticsService: AnalyticsService,
               private router: Router) { }
@@ -26,7 +27,6 @@ export class MovieAnalyticsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setData();
-    
   }
 
   setData(){
@@ -36,7 +36,7 @@ export class MovieAnalyticsComponent implements OnInit {
         this.response = this.response.content;
         for (const data of this.response) {
           this.quantities.push(Number(data[0]));
-          this.titles.push((data[1].title));
+          this.titles.push(data[1].title + ' (' + data[1].movieid + ')');
         }
         this.setchart();
         
@@ -51,8 +51,6 @@ export class MovieAnalyticsComponent implements OnInit {
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    
     scales: {
       x: {},
       y: {
@@ -85,14 +83,21 @@ export class MovieAnalyticsComponent implements OnInit {
       { 
         data: this.quantities, 
         label: 'Compras realizadas',
-        backgroundColor: '#000000' 
+        backgroundColor: '#E1A140',
+        hoverBackgroundColor: '#000000'
       }
     ]
   };
 
    // events
    public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    console.log(active);
+    if(active != undefined){
+      console.log(active[0]);
+      this.clickObject = active[0];
+      console.log(this.clickObject.index);
+      console.log(this.titles[this.clickObject.index])
+    }
   }
 
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
@@ -101,7 +106,7 @@ export class MovieAnalyticsComponent implements OnInit {
 
   public setchart(): void {
     this.barChartData.datasets[0].data = this.quantities;
-    this.maxValue = Math.max(...this.quantities);
+    this.maxValue = Math.max(this.quantities);
     this.chart?.update();
   }
 
