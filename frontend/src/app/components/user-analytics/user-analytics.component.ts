@@ -57,7 +57,7 @@ export class UserAnalyticsComponent implements OnInit {
       x: {},
       y: {
         min: 0,
-        max: 5
+        max: 5,
         ticks: {
           stepSize: 1
        }

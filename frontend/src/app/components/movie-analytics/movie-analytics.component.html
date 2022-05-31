@@ -1,1 +1,21 @@
-<p>movie-analytics works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col align-self-center">
+            <h2 class="text-center">Ususarios más activos de la semana</h2>
+            <!-- Bar Chart-->
+            <div>
+                <div>
+                    <canvas 
+                    baseChart [data]="barChartData" 
+                    [options]="barChartOptions" 
+                    [plugins]="barChartPlugins"
+                    [type]="barChartType" 
+                    (chartHover)="chartHovered($event)" 
+                    (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+                <!--<button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>-->
+            </div>
+        </div>
+    </div>
+</div>
