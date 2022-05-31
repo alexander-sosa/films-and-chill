@@ -25,6 +25,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { ChartsTestComponent } from './components/charts-test/charts-test.component';
 import { NgChartsModule } from 'ng2-charts';
 import { MovieAnalyticsComponent } from './components/movie-analytics/movie-analytics.component';
+import { UserAnalyticsComponent } from './components/user-analytics/user-analytics.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MovieAnalyticsComponent } from './components/movie-analytics/movie-anal
     MoviePopularComponent,
     ChartsTestComponent,
     MovieAnalyticsComponent,
+    UserAnalyticsComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { MovieSearchComponent } from './components/movie-search/movie-search.com
 import { MoviePopularComponent } from './components/movie-popular/movie-popular.component';
 import { ChartsTestComponent } from './components/charts-test/charts-test.component';
 import { MovieAnalyticsComponent } from './components/movie-analytics/movie-analytics.component';
+import { UserAnalyticsComponent } from './components/user-analytics/user-analytics.component';
 
   const routes: Routes = [
     { path: '', redirectTo: '/movies', pathMatch: 'full' },
@@ -33,7 +34,8 @@ import { MovieAnalyticsComponent } from './components/movie-analytics/movie-anal
     { path: 'movie-search/:title', component: MovieSearchComponent },
     { path: 'popular', component: MoviePopularComponent },
     { path: 'charts', component: ChartsTestComponent},
-    { path: 'movie-analytics', component: MovieAnalyticsComponent}
+    { path: 'movie-analytics', component: MovieAnalyticsComponent},
+    { path: 'user-analytics', component: UserAnalyticsComponent}
   ];
 
   @NgModule({
