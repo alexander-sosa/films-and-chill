@@ -16,7 +16,8 @@ export class GenreAnalyticsComponent implements OnInit {
 
   response?: any;
   quantities?: any = [];
-  genres?: any = []
+  genres?: any = [];
+  ids?: any = [];
   clickObject?: any;
 
   constructor(private analyticsService: AnalyticsService,
@@ -32,7 +33,8 @@ export class GenreAnalyticsComponent implements OnInit {
         this.response = res;
         for(let data of this.response){
           this.quantities.push(data.purchases_nbr);
-          this.genres.push(data.genre.genre + ' [' + data.genre.genreid + ']');
+          this.genres.push(data.genre.genre);
+          this.ids.push(data.genre.genreid);
         }
         //console.log(this.quantities);
         //console.log(this.genres);
@@ -76,7 +78,8 @@ export class GenreAnalyticsComponent implements OnInit {
     datasets: [ {
       data: this.quantities,
       backgroundColor: ['#E1A140', '#532200', '#A47551', '#914110', '#523A28'],
-      hoverBackgroundColor: '#000000',
+      hoverBackgroundColor: '#CDCDCD',
+      hoverBorderColor: '#CDCDCD'
     } ]
   };
 
@@ -89,7 +92,7 @@ export class GenreAnalyticsComponent implements OnInit {
       this.clickObject = active[0];
       //console.log(this.clickObject.index);
       //console.log(this.genres[this.clickObject.index]);
-      let id = this.getId(this.genres[this.clickObject.index]);
+      let id = this.ids[this.clickObject.index];
       //console.log(id);
       this.router.navigateByUrl('/genre-timeline/' + id);
     }
@@ -98,12 +101,5 @@ export class GenreAnalyticsComponent implements OnInit {
   public setchart(): void {
     this.pieChartData.datasets[0].data = this.quantities;
     this.pieChart?.update();
-  }
-
-  public getId(genre: string): number{
-    let start = genre.indexOf('[');
-    let end = genre.indexOf(']');
-    let id = genre.substring(start + 1, end);
-    return Number(id);
   }
 }

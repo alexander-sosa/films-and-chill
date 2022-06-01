@@ -81,8 +81,11 @@ export class UserAnalyticsComponent implements OnInit {
   public barChartData: ChartData<'bar'> = {
     labels: this.userlabels,
     datasets: [
-      { data: this.userpuchases, label: 'Compras realizadas',
-        backgroundColor: '#E1A140' }
+      { 
+        data: this.userpuchases, label: 'Compras realizadas',
+        backgroundColor: '#E1A140',
+        hoverBackgroundColor: '#000000'
+       }
     ]
   };
 

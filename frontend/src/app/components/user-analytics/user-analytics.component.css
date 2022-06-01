@@ -1,13 +1,17 @@
-    row{
-        width: auto;
-    }
+row{
+    width: auto;
+}
 
-    h2{
-        font-family: 'Rockwell';
-        font-weight: 400;
-        font-size: xx-large;
-        border-bottom-style: solid;
-        border-bottom-width: 3px;
-        border-bottom-color: black;
-        margin-bottom: 5%;
-    }
+h2{
+    font-family: 'Rockwell';
+    font-weight: 400;
+    font-size: xx-large;
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: black;
+    margin-bottom: 5%;
+}
+
+.blacked{
+    font-weight: bold;
+}

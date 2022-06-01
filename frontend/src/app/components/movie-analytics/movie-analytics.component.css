@@ -11,3 +11,12 @@ h2{
     border-bottom-color: black;
     margin-bottom: 5%;
 }
+
+.blacked{
+    font-weight: bold;
+}
+
+.cursive{
+    font-style: italic;
+    font-size: small;
+}

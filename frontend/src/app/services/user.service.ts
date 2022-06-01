@@ -53,7 +53,7 @@ export class UserService {
   }
 
   getUsersReport(){
-    return this.http.get(this.API_URL + '/user/report', { 'headers': this.headers });
+    return this.http.get(this.API_URL + '/analytics/user', { 'headers': this.auth_headers });
   }
  
 }
