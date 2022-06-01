@@ -48,8 +48,20 @@ export class GenreAnalyticsComponent implements OnInit {
       legend: {
         display: true,
         position: 'top',
+        labels: {
+          font: {
+            size: 14,
+            family: 'Verdana'
+          }
+        }
+        
       },
       datalabels: {
+        color: 'white',
+        font: {
+          size: 14,
+          family: 'Verdana'
+        },
         formatter: (value, ctx) => {
           if (ctx.chart.data.labels) {
             return ctx.chart.data.labels[ctx.dataIndex];
@@ -62,7 +74,9 @@ export class GenreAnalyticsComponent implements OnInit {
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
     labels: this.genres,
     datasets: [ {
-      data: this.quantities
+      data: this.quantities,
+      backgroundColor: ['#E1A140', '#532200', '#A47551', '#914110', '#523A28'],
+      hoverBackgroundColor: '#000000',
     } ]
   };
 

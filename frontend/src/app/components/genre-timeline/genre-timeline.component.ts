@@ -43,7 +43,8 @@ export class GenreTimelineComponent implements OnInit {
 
           for(let data of this.response){
             this.quantities.push(Number(data[0]));
-            this.dates.push(data[1].purchasedate);
+            const aux = data[1].purchasedate.split('T',2);
+            this.dates.push(aux[0]);
           }
           this.setchart();
         }, 
@@ -72,8 +73,18 @@ export class GenreTimelineComponent implements OnInit {
     plugins: {
       legend: {
         display: true,
+        labels: {
+          font: {
+            size: 14,
+            family: 'Verdana'
+          }
+        }
       },
       datalabels: {
+        font: {
+          size: 14,
+          family: 'Verdana'
+        },
         anchor: 'end',
         align: 'end'
       }
@@ -91,8 +102,10 @@ export class GenreTimelineComponent implements OnInit {
       { 
         data: this.quantities, 
         label: 'Compras realizadas',
-        backgroundColor: '#E1A140',
-        hoverBackgroundColor: '#000000'
+        borderColor: '#E1A140',
+        backgroundColor: '#914110',
+        
+        
       }
     ]
   };

@@ -28,10 +28,10 @@ export class AnalyticsService {
   }
 
   getGenreAnalytics(){
-    return this.http.get(this.API_URL + '/movie/genre/report', {headers: this.auth_headers});
+    return this.http.get(this.API_URL + '/analytics/genre', {headers: this.auth_headers});
   }
 
   getGenreTimeline(genreid: number){
-    return this.http.get(this.API_URL + '/purchase/genre/' + genreid, {headers: this.auth_headers});
+    return this.http.get(this.API_URL + '/analytics/genre/' + genreid, {headers: this.auth_headers});
   }
 }
