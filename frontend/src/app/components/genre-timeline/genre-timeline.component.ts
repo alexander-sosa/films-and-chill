@@ -35,6 +35,14 @@ export class GenreTimelineComponent implements OnInit {
     if(param.genre_id){
       this.genre_id = param.genre_id;
 
+      this.moviesService.getGenre(this.genre_id).subscribe(
+        res => {
+          this.response = res;
+          this.genre= this.response.genre;
+        },
+        err => console.log(err)
+      );
+
       //this.moviesService.getGenres()
       this.analyticsService.getGenreTimeline(this.genre_id).subscribe(
         res => {

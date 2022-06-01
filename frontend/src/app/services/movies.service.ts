@@ -42,6 +42,10 @@ export class MoviesService {
     return this.http.get(this.API_URL + '/movie/genre', {headers: this.auth_headers});
   }
 
+  getGenre(id: number){
+    return this.http.get(this.API_URL + '/movie/genre/'+id, {headers: this.headers});
+  }
+
   getRatings(){
     return this.http.get(this.API_URL + '/movie/rating', {headers: this.auth_headers});
   }

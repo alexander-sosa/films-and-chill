@@ -20,11 +20,11 @@ export class AnalyticsService {
   constructor(private http: HttpClient) { }
 
   getMovieAnalytics(){
-    return this.http.get(this.API_URL + '/movie/report', {headers: this.auth_headers});
+    return this.http.get(this.API_URL + '/analytics/movie', {headers: this.auth_headers});
   }
 
   getMovieTimeline(movieid: number){
-    return this.http.get(this.API_URL + '/purchase/' + movieid, {headers: this.auth_headers});
+    return this.http.get(this.API_URL + '/analytics/movie/' + movieid, {headers: this.auth_headers});
   }
 
   getGenreAnalytics(){

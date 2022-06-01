@@ -49,7 +49,8 @@ export class MovieTimelineComponent implements OnInit {
 
           for(let data of this.response){
             this.quantities.push(Number(data[0]));
-            this.dates.push(data[1].purchasedate);
+            const aux = data[1].purchasedate.split('T',2);
+            this.dates.push(aux[0]);
           }
           this.setchart();
         },
@@ -98,8 +99,8 @@ export class MovieTimelineComponent implements OnInit {
       { 
         data: this.quantities, 
         label: 'Compras realizadas',
-        backgroundColor: '#E1A140',
-        hoverBackgroundColor: '#000000'
+        borderColor: '#E1A140',
+        backgroundColor: '#914110',
       }
     ]
   };
