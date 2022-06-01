@@ -41,4 +41,13 @@ public class PurchaseApi {
         //List<Purchase> purchases = purchaseDao.findAll();
         return purchaseList.listPurchases(page, size);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/purchase/{movieid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> data(@RequestParam(defaultValue = "0") Integer page,
+                                  @RequestParam(defaultValue = "20") Integer size,
+                                  @PathVariable(name = "movieid") Integer movieid){
+        //List<Purchase> purchases = purchaseDao.findAll();
+        return purchaseList.data(movieid, page, size);
+    }
 }

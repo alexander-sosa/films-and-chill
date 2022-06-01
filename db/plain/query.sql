@@ -72,3 +72,8 @@ LEFT JOIN user u ON p.userid = u.userid
 GROUP BY userid
 ORDER BY count(*) DESC
 LIMIT 100;
+
+SELECT * 
+FROM purchase p
+LEFT JOIN moviepurchase mp ON p.purchaseid = mp.purchaseid
+WHERE mp.movieid = 5;

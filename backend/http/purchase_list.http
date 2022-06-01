@@ -2,3 +2,8 @@
 GET http://localhost:8080/purchase
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YWxlQG5vcmVwbHkuY29tIiwiZXhwIjoxNjUzODg0ODYxLCJpYXQiOjE2NTM4NzQ4NjF9.er16CENqbvHyTsOpr_eqFqPAlaaHqa95xxEVrPCorDWahY6urFwRmZbC3qcTeJoKxXzFHHkg52gr5TqPdRhLnQ
 Accept: application/json
+
+### Data
+GET http://localhost:8080/purchase/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjU0MDUxNDU3LCJpYXQiOjE2NTQwNDE0NTd9.ucuXoSzqAQaKXawaIabkvHJeRNPuiaGyxrlQeUKVenvI1vULmPWQkOyjUN7NZ6sBf-y5UJPKBb3eBfMaAOylvw
+Accept: application/json

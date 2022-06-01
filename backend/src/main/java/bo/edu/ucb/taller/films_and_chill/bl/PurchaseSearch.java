@@ -53,4 +53,13 @@ public class PurchaseSearch {
 
         return ResponseEntity.ok(result);
     }
+
+    public ResponseEntity<?> data(Integer movieid, Integer page, Integer size){
+        
+        Pageable pageable = PageRequest.of(page, size);
+
+        Page<Purchase> purchases = purchaseDao.findByMovieid(movieid, true, pageable);
+
+        return ResponseEntity.ok(purchases);
+    }
 }

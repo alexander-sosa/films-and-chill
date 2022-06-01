@@ -9,9 +9,8 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 
-//import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-//import org.springframework.data.jpa.repository.Query;
 
 import bo.edu.ucb.taller.films_and_chill.dto.Purchase;
 
@@ -28,6 +27,13 @@ public interface PurchaseDao extends JpaRepository<Purchase, Integer> {
                    " WHERE mp.purchaseid = p.purchaseid " + 
                    " AND p.tuplestatus = :tuplestatus )*/
     Page<Purchase> findByTuplestatus(Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
+
+    @Query(value = " SELECT mp.quantity as quantity, p" + 
+                   " FROM Moviepurchase mp, Purchase p " + 
+                   " WHERE mp.purchaseid = p.purchaseid " + 
+                   " AND mp.movieid = :movieid" +
+                   " AND p.tuplestatus = :tuplestatus" )
+    Page<Purchase> findByMovieid(Integer movieid, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     //Page<Purchase> findByUseridAndTuplestatus(Integer userid, Boolean tuplestatus, org.springframework.data.domain.Pageable pageable);
     /*
     @Query(value = "select p.purchaseid, p.userid, u.name, u.lastname, p.totalcost, p.purchasedate, p.address from purchase p, user u where p.purchaseid = u.userid", nativeQuery = true)
