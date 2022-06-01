@@ -32,9 +32,6 @@
                 </form>
             </li>
             <!--
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
@@ -45,9 +42,6 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
               </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
             -->
           </ul>
@@ -73,8 +67,17 @@
           <li class="nav-item active">
             <a class="nav-link" routerLink="/inventory">Dashboard<span class="sr-only">(current)</span></a>
           </li>
-        </ul>
-       
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Analytics
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/movie-analytics">Peliculas</a>
+              <a class="dropdown-item" routerLink="/genre-analytics">Generos</a>
+              <a class="dropdown-item" routerLink="/user-analytics">Usuarios</a>
+            </div>
+          </li>  
+        </ul>   
         <a [routerLink]="['/user-profile']">
           <span>{{name}}&nbsp;{{lastname}}</span>
         </a>
