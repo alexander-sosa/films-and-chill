@@ -3,6 +3,3 @@ GET http://localhost:8080/movie/genre
 
 ###
 GET http://localhost:8080/movie/genre/1
-
-###
-GET http://localhost:8080/movie/genre/report

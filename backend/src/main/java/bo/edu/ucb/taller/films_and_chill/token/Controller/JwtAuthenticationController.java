@@ -93,8 +93,10 @@ public class JwtAuthenticationController {
         return userDetailsService.updateUser(user, user_id);
     }
 
+    /********* PARA GRAFICOS *********/
+
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/user/report", method = RequestMethod.GET)
+    @RequestMapping(value = "/analytics/user", method = RequestMethod.GET)
     public ResponseEntity<?> mostSold(@RequestParam(defaultValue = "0") Integer page,
                                       @RequestParam(defaultValue = "20") Integer size) throws Exception{
 

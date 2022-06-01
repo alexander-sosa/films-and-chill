@@ -100,10 +100,10 @@ public class MovieApi {
         return movieSearch.findByPurchase(purchaseid, page, size);
     }
 
-    /********* PARA REPORTES *********/
+    /********* PARA GRAFICOS *********/
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/movie/report", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/analytics/movie", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> mostSold (@RequestParam(defaultValue = "0") Integer page,
                                           @RequestParam(defaultValue = "10") Integer size){
         return movieSearch.mostSold(page, size);

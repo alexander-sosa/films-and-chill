@@ -32,10 +32,10 @@ public class GenreApi {
         return ResponseEntity.ok(genreSearch.findById(genreid));
     }
 
-    /********* PARA REPORTES *********/
+    /********* PARA GRAFICOS *********/
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping(value = "/movie/genre/report", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/analytics/genre", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> mostSold(){
         return genreSearch.mostSold();
     }
