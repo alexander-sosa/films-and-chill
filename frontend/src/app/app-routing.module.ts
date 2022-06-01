@@ -17,6 +17,8 @@ import { ChartsTestComponent } from './components/charts-test/charts-test.compon
 import { MovieAnalyticsComponent } from './components/movie-analytics/movie-analytics.component';
 import { UserAnalyticsComponent } from './components/user-analytics/user-analytics.component';
 import { MovieTimelineComponent } from './components/movie-timeline/movie-timeline.component';
+import { GenreAnalyticsComponent } from './components/genre-analytics/genre-analytics.component';
+import { GenreTimelineComponent } from './components/genre-timeline/genre-timeline.component';
 
   const routes: Routes = [
     { path: '', redirectTo: '/movies', pathMatch: 'full' },
@@ -37,7 +39,9 @@ import { MovieTimelineComponent } from './components/movie-timeline/movie-timeli
     { path: 'charts', component: ChartsTestComponent},
     { path: 'movie-analytics', component: MovieAnalyticsComponent},
     { path: 'user-analytics', component: UserAnalyticsComponent},
-    { path: 'movie-timeline/:movie_id', component: MovieTimelineComponent}
+    { path: 'movie-timeline/:movie_id', component: MovieTimelineComponent},
+    { path: 'genre-analytics', component: GenreAnalyticsComponent},
+    { path: 'genre-timeline/:genre_id', component: GenreTimelineComponent}
   ];
 
   @NgModule({

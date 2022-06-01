@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col align-self-center">
+            <h2 class="text-center">Popularidad de generos</h2>
+            <div style="width: 60%;" class="align-self-center">
+                <div class="chart">
+                    <canvas baseChart
+                        [data]="pieChartData"
+                        [type]="pieChartType"
+                        [options]="pieChartOptions"
+                        [plugins]="pieChartPlugins"
+                        (chartClick)="pieChartClicked($event)" 
+                    >
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

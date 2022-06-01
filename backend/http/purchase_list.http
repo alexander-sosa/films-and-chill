@@ -6,6 +6,7 @@ Accept: application/json
 ### Data
 GET http://localhost:8080/purchase/557
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YWxlQG5vcmVwbHkuY29tIiwiZXhwIjoxNjU0MDUyMDk1LCJpYXQiOjE2NTQwNDIwOTV9.o4kOF0seP50zMB79SrRE0H9kIUpkGxdqEe72A8_ea6_UBNG7S1C_S-qnPqXgxRWRWbli195u05giaxIUXQpqbQ
+
 ### Data movie
 GET http://localhost:8080/purchase/1
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjU0MDUxNDU3LCJpYXQiOjE2NTQwNDE0NTd9.ucuXoSzqAQaKXawaIabkvHJeRNPuiaGyxrlQeUKVenvI1vULmPWQkOyjUN7NZ6sBf-y5UJPKBb3eBfMaAOylvw
@@ -13,5 +14,5 @@ Accept: application/json
 
 ### Data genre
 GET http://localhost:8080/purchase/genre/1
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJlZGR5QG5vcmVwbHkuY29tIiwiZXhwIjoxNjU0MDUxNDU3LCJpYXQiOjE2NTQwNDE0NTd9.ucuXoSzqAQaKXawaIabkvHJeRNPuiaGyxrlQeUKVenvI1vULmPWQkOyjUN7NZ6sBf-y5UJPKBb3eBfMaAOylvw
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YWxlQG5vcmVwbHkuY29tIiwiZXhwIjoxNjU0MDYyNzk0LCJpYXQiOjE2NTQwNTI3OTR9.QV_lgGucHmVpwGhWZmNmrTtPhkUX7IXtxccaVcpRX04gVb7YOgECTE5yuvqQ3o6JDHnpqI8b9U0b3KoMmuH-fQ
 Accept: application/json

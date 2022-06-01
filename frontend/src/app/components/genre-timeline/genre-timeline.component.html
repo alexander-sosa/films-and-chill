@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col align-self-center">
+            <h2 class="text-center">Linea de tiempo</h2>
+            <!-- Bar Chart-->
+            <div>
+                <div>
+                    <canvas 
+                    baseChart [data]="barChartData" 
+                    [options]="barChartOptions" 
+                    [plugins]="barChartPlugins"
+                    [type]="barChartType" 
+                    >
+                    </canvas>
+                </div>
+                <!--<button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>-->
+            </div>
+        </div>
+    </div>
+</div>
