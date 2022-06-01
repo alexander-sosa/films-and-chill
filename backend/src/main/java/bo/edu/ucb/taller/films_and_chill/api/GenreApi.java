@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import bo.edu.ucb.taller.films_and_chill.bl.GenreSearch;
@@ -23,6 +24,12 @@ public class GenreApi {
     @GetMapping(value = "/movie/genre", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> listAllGenres(){
         return genreSearch.listAllGenres();
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/movie/genre/{genreid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> listById(@PathVariable(name = "genreid") Integer genreid){
+        return ResponseEntity.ok(genreSearch.findById(genreid));
     }
 
     /********* PARA REPORTES *********/
