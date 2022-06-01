@@ -43,8 +43,6 @@ public class Purchase {
     @Column
     private Timestamp lastupdate;
 
-    private Integer quantity;
-
     public Purchase() 
     {
 
@@ -108,13 +106,5 @@ public class Purchase {
 
     public void setLastupdate(Timestamp lastupdate) {
         this.lastupdate = lastupdate;
-    }
-
-    public Integer getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 }

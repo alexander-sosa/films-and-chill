@@ -44,10 +44,19 @@ public class PurchaseApi {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/purchase/{movieid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> data(@RequestParam(defaultValue = "0") Integer page,
+    public ResponseEntity<?> dataMovie(@RequestParam(defaultValue = "0") Integer page,
                                   @RequestParam(defaultValue = "20") Integer size,
                                   @PathVariable(name = "movieid") Integer movieid){
         //List<Purchase> purchases = purchaseDao.findAll();
-        return purchaseList.data(movieid, page, size);
+        return purchaseList.dataMovie(movieid, page, size);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/purchase/genre/{genreid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> dataGenre(@RequestParam(defaultValue = "0") Integer page,
+                                       @RequestParam(defaultValue = "20") Integer size,
+                                       @PathVariable(name = "genreid") Integer genreid){
+        //List<Purchase> purchases = purchaseDao.findAll();
+        return purchaseList.dataGenre(genreid, page, size);
     }
 }
