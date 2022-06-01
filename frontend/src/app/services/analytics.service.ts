@@ -22,4 +22,8 @@ export class AnalyticsService {
   getMovieAnalytics(){
     return this.http.get(this.API_URL + '/movie/report', {headers: this.auth_headers});
   }
+
+  getMovieTimeline(movieid: number){
+    return this.http.get(this.API_URL + '/purchase/' + movieid, {headers: this.auth_headers});
+  }
 }

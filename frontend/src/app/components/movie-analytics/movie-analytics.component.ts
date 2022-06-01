@@ -36,7 +36,7 @@ export class MovieAnalyticsComponent implements OnInit {
         this.response = this.response.content;
         for (const data of this.response) {
           this.quantities.push(Number(data[0]));
-          this.titles.push(data[1].title + ' (' + data[1].movieid + ')');
+          this.titles.push(data[1].title + ' [' + data[1].movieid + ']');
         }
         this.setchart();
         
@@ -91,12 +91,14 @@ export class MovieAnalyticsComponent implements OnInit {
 
    // events
    public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(active);
+    //console.log(active);
     if(active != undefined){
-      console.log(active[0]);
+      //console.log(active[0]);
       this.clickObject = active[0];
-      console.log(this.clickObject.index);
-      console.log(this.titles[this.clickObject.index])
+      //console.log(this.clickObject.index);
+      console.log(this.titles[this.clickObject.index]);
+      let id = this.getId(this.titles[this.clickObject.index]);
+      this.router.navigateByUrl("/movie-timeline/" + id);
     }
   }
 
@@ -108,6 +110,13 @@ export class MovieAnalyticsComponent implements OnInit {
     this.barChartData.datasets[0].data = this.quantities;
     this.maxValue = Math.max(this.quantities);
     this.chart?.update();
+  }
+
+  public getId(title: string): number{
+    let start = title.indexOf('[');
+    let end = title.indexOf(']');
+    let id = title.substring(start + 1, end);
+    return Number(id);
   }
 
 /*   getMovieAnalytics(){

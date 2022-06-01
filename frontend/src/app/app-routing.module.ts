@@ -16,6 +16,7 @@ import { MoviePopularComponent } from './components/movie-popular/movie-popular.
 import { ChartsTestComponent } from './components/charts-test/charts-test.component';
 import { MovieAnalyticsComponent } from './components/movie-analytics/movie-analytics.component';
 import { UserAnalyticsComponent } from './components/user-analytics/user-analytics.component';
+import { MovieTimelineComponent } from './components/movie-timeline/movie-timeline.component';
 
   const routes: Routes = [
     { path: '', redirectTo: '/movies', pathMatch: 'full' },
@@ -35,7 +36,8 @@ import { UserAnalyticsComponent } from './components/user-analytics/user-analyti
     { path: 'popular', component: MoviePopularComponent },
     { path: 'charts', component: ChartsTestComponent},
     { path: 'movie-analytics', component: MovieAnalyticsComponent},
-    { path: 'user-analytics', component: UserAnalyticsComponent}
+    { path: 'user-analytics', component: UserAnalyticsComponent},
+    { path: 'movie-timeline/:movie_id', component: MovieTimelineComponent}
   ];
 
   @NgModule({

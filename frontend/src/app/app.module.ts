@@ -26,6 +26,7 @@ import { ChartsTestComponent } from './components/charts-test/charts-test.compon
 import { NgChartsModule } from 'ng2-charts';
 import { MovieAnalyticsComponent } from './components/movie-analytics/movie-analytics.component';
 import { UserAnalyticsComponent } from './components/user-analytics/user-analytics.component';
+import { MovieTimelineComponent } from './components/movie-timeline/movie-timeline.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { UserAnalyticsComponent } from './components/user-analytics/user-analyti
     ChartsTestComponent,
     MovieAnalyticsComponent,
     UserAnalyticsComponent,
+    MovieTimelineComponent,
   ],
   imports: [
     BrowserModule,
